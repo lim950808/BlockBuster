@@ -1,0 +1,52 @@
+# http port set
+server:
+  port: 8081
+  
+spring:
+  # File Size
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+  # Oracle Connect
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/xe
+    username: scott
+    password: tiger
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    
+  # ORM JPA
+  jpa:
+    hibernate:
+      ddl-auto: none # create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        
+  # gmail Transfer
+  mail: 
+    host: smtp.gmail.com
+    port: 587
+    username: 
+    password: 
+    properties: 
+      mail:
+        smtp:
+          auth: true
+          starttls.enable: true
+        
+  # view resolver(Template -> JSP Use)
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+# Mybatis
+mybatis:
+  # dto Location
+  type-aliases-package: com.oracle.BlockBuster.model
+  # xml Location
+  config-location: classpath:configuration.xml
+  mapper-locations: classpath:mappers/*.xml      
