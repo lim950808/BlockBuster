@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="JEProductDao">
+<mapper namespace="JEDaoImpl">
 
+	<select id="JEProductTotal" resultType="int">
+		SELECT count(*) FROM product
+	</select>
+	
+	<select id="JEProductListAll" parameterType="Product" resultType="Product">
+		<![CDATA[
+		SELECT *
+		FROM (
+        		SELECT rownum rn, a.*
+        		FROM (SELECT * FROM product ORDER BY pno) a
+     		 )
+		WHERE rn >= #{start} 
+		AND   rn <= #{end}
+		]]>
+	</select>
+	
 </mapper>
+
