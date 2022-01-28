@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class JECart {
+public class Cart {
 
 }

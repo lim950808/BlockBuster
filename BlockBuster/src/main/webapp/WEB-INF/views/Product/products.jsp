@@ -29,13 +29,14 @@
 		        <p>${product.price}원</p>
 		        <!-- 링크태그 이동은 get방식 이동 -->
 		        <p><a href="product.jsp?id=${product.pno}" 
-		            class="btn btn-success" role="button">상품정보 &raquo;</a>
+		            class="btn btn-success" role="button">상세정보 &raquo;</a>
 		      </div>
 	      </c:forEach>
 	   </div>
 	   <div class="col-sm-1"></div>
 </div>
-</div> 
+</div>
+</div>
 <pre>
 
 </pre>

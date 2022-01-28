@@ -139,7 +139,7 @@ form.example::after {
 	<!--  <div class="container" id="banner"> -->
 	  <div class="row">
 		   <div class="col-sm-4">
-		   <a href="main.jsp"><img src="/resources/img/logo.png" alt="main" width="80%" height="80%"></a>
+		   <a href="../main"><img src="/resources/img/logo.png" alt="main" width="80%" height="80%"></a>
 	       </div>
 	       
 	      <form class="example" id="search" action="#" style="margin:30px; max-width:260px">

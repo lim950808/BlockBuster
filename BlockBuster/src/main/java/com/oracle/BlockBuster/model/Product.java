@@ -26,17 +26,9 @@ public class Product {
 	private String cat_name;
 	private String gen_name;
 	
-	
-	//productlist paging
-	public void setStart(int start) {
-		// TODO Auto-generated method stub
-		
-	}
+	//paging
+	private int 	start;			private int 	end;
 
-	public void setEnd(int end) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 
 }

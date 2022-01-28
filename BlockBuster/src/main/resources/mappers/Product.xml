@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="JEDaoImpl">
+<mapper namespace="JEDao">
 
 	<select id="JEProductTotal" resultType="int">
 		SELECT count(*) FROM product
 	</select>
 	
 	<select id="JEProductListAll" parameterType="Product" resultType="Product">
-		<![CDATA[
 		SELECT *
 		FROM (
         		SELECT rownum rn, a.*
         		FROM (SELECT * FROM product ORDER BY pno) a
      		 )
-		WHERE rn >= #{start} 
-		AND   rn <= #{end}
-		]]>
+		WHERE rn BETWEEN #{start} AND #{end}
 	</select>
+	
+	<select id="JEProductSelOne" parameterType="int" resultType="Product">
+		SELECT * FROM product WHERE pno = #{pno}
+	</select>
+	
+	<update id="JEproductUpdate" parameterType="Product">
+		UPDATE product SET title=#{title}, year=#{year}, 
+						   category=#{category}, genre=#{genre}, 
+						   country=#{country}, director=#{director}, 
+						   casting=#{casting}, description=#{description}, 
+						   p_img=#{p_img}
+		WHERE pno=#{pno}
+	</update>
+	
+	<select id="JESelectManager" resultType="Product">
+	
+	</select>
+	
+	<select id="insertProduct" parameterType="Product">
+		INSERT INTO product
+		VALUES(#{title}, #{year}, #{category}, #{genre}, #{country}, #{director}, #{casting}, #{description}, #{p_img})
+	</select>
+	
+	<delete id="deleteProduct" parameterType="int">
+		DELETE FROM product
+		WHERE pno=#{pno}
+	</delete>
 	
 </mapper>
 

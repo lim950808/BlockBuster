@@ -19,6 +19,13 @@
 	</properties>
 	<dependencies>
 	
+		<!-- console에 sql log보기 위해 -->
+		<dependency>
+        	<groupId>org.lazyluke</groupId>
+          		<artifactId>log4jdbc-remix</artifactId>
+        	<version>0.2.7</version>
+      	</dependency>
+	
 		<!--  could not find the document Error -->
 		<dependency>
 		    <groupId>org.apache.maven.plugins</groupId>

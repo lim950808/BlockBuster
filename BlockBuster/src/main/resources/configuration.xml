@@ -4,7 +4,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Product" type="com.oracle.BlockBuster.model.Product"/>
-		<typeAlias alias="JECart" type="com.oracle.BlockBuster.model.JECart"/>
-		<typeAlias alias="JEPayment" type="com.oracle.BlockBuster.model.JEPayment"/>
+		<typeAlias alias="Category" type="com.oracle.BlockBuster.model.Category"/>
+		<typeAlias alias="Cart" type="com.oracle.BlockBuster.model.Cart"/>
 	</typeAliases>
 </configuration>

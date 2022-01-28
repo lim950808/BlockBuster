@@ -10,4 +10,14 @@ public interface JEService {
 
 	List<Product> listProduct(Product product);
 
+	Product detail(int pno);
+
+	int update(Product product);
+
+	List<Product> listManager();
+
+	int insert(Product product);
+
+	int delete(int pno);
+
 }
