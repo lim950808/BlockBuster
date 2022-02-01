@@ -21,11 +21,10 @@
 	</select>
 	
 	<update id="JEproductUpdate" parameterType="Product">
-		UPDATE product SET title=#{title}, year=#{year}, 
-						   category=#{category}, genre=#{genre}, 
-						   country=#{country}, director=#{director}, 
-						   casting=#{casting}, description=#{description}, 
-						   p_img=#{p_img}
+		UPDATE product SET title=#{title}, category=#{category}, genre=#{genre}, 
+						   year=#{year}, country=#{country}, 
+						   director=#{director}, casting=#{casting}, price=#{price},
+						   description=#{description}, p_img=#{p_img}, p_video{p_video}
 		WHERE pno=#{pno}
 	</update>
 	
@@ -35,7 +34,7 @@
 	
 	<select id="insertProduct" parameterType="Product">
 		INSERT INTO product
-		VALUES(#{title}, #{year}, #{category}, #{genre}, #{country}, #{director}, #{casting}, #{description}, #{p_img})
+		VALUES(#{pno}, #{title}, #{category}, #{genre}, #{year}, #{country}, #{director}, #{casting}, #{description}, #{price}, #{p_img}, #{p_video})
 	</select>
 	
 	<delete id="deleteProduct" parameterType="int">

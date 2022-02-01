@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="../header.jsp" %>
-<%@ include file="../menu.jsp" %>
+<%@ include file="../header1.jsp" %>
+<%-- <%@ include file="../menu.jsp" %> --%>
 
 <div class="container mt-5">
 <div class="row">
@@ -22,12 +22,10 @@
 		<div class="row" align="center">   	
 	      <c:forEach  var="product" items="${productlist}">
 		      <div class="col-md-4">
-		        <%-- <img src="./resources/images/${book.filename}" style="width:100%"> --%>
 		        <img src="${product.p_img}" style="width:100%">
 		        <h3>${product.title}</h3>
-		        <p>${product.description}</p>
-		        <p>${product.price}원</p>
-		        <!-- 링크태그 이동은 get방식 이동 -->
+		        <%-- <p>${product.description}</p>
+		        <p>${product.price}원</p> --%>
 		        <p><a href="product.jsp?id=${product.pno}" 
 		            class="btn btn-success" role="button">상세정보 &raquo;</a>
 		      </div>

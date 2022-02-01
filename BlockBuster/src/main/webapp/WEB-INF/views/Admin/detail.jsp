@@ -28,7 +28,7 @@ td {	background: #f9f3b3;	}
 		<tr><th>제작국가</th><td>${product.country }</td></tr>
 		<tr><th>감독</th><td>${product.director }</td></tr>
 		<tr><th>출연진</th><td>${product.casting }</td></tr>
-		<tr><th>가격</th><td>${product.price }</td></tr>
+		<tr><th>가격(원)</th><td>${product.price }</td></tr>
 		<tr><td colspan="2">
 			<input type="button" value="목록"
 				onclick="location.href='productList'">

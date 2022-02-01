@@ -171,7 +171,7 @@ form.example::after {
 						<div class="dropdown-content">
 						  	<a href="#">내 정보</a>
 						    <a href="#">구매내역</a>
-						    <a href="#">1:1문의</a>
+						    <a href="/Admin/productList">1:1문의</a>
 						    <a href="#">로그아웃</a>			      
 						</div>
 						</div>

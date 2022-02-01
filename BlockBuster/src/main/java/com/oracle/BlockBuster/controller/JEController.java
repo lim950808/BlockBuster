@@ -64,8 +64,8 @@ public class JEController {
 	@PostMapping(value = "update")
 	public String update(Product product, Model model) {
 		int uptCnt = js.update(product);
-		model.addAttribute("uptCnt", uptCnt);				// Test Controller간 Date 전달
-		model.addAttribute("kk3", "Message Test");	// Test Controller간 Date 전달
+		//model.addAttribute("uptCnt", uptCnt);				// Test Controller간 Date 전달
+		//model.addAttribute("kk3", "Message Test");	// Test Controller간 Date 전달
 		
 		return "forward:/Admin/productList";
 	}
@@ -98,7 +98,7 @@ public class JEController {
 		model.addAttribute("pno", pno);
 		if(product != null) {
 			model.addAttribute("msg", "중복된 영상입니다.");
-			return "forward:writeForm";
+			return "forward:/Admin/writeForm";
 		}else {
 			model.addAttribute("msg", "등록 가능합니다.");
 			return "forward:/Admin/writeForm";

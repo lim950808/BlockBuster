@@ -94,7 +94,7 @@ td {	background: #f9f3b3;	}
             </td>
         </tr>
         <tr>
-            <th>가격</th>
+            <th>가격(원)</th>
             <td>
                 <input type="number" name="price">
             </td>

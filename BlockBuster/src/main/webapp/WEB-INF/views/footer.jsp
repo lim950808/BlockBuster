@@ -15,12 +15,19 @@
                   <span><a href="/privacy">개인정보보호정책</a></span>&emsp;</p>
                 
 <hr>
-<p style="padding-left:30%">BlockBuster 1st Project 프로젝트<br>
+<!-- <p style="padding-left:30%">BlockBuster 1st Project 프로젝트<br>
 전화번호 : 02-123-4567 | 주소 : 서울특별시 강남구 테헤란로 7길 7, 중앙정보처리학원 7층 4실습실.<br>
 이메일 : korea@BlockBuster.com  | 제작기간 : 22-0105-22-0228
+</p> -->
+<!-- <p style="padding-left:30%"><a>&copy; BlockBuster All rights reserved.</a></p> -->
+<p>
+	BlockBuster 1st Project 프로젝트<br>
+	전화번호 : 02-123-4567 | 주소 : 서울특별시 강남구 테헤란로 7길 7, 중앙정보처리학원 7층 4실습실.<br>
+	이메일 : korea@BlockBuster.com  | 제작기간 : 22-0105-22-0228
 </p>
-<p style="padding-left:30%"><a>&copy; BlockBuster All rights reserved.</a></p>
-
+<p>
+	<a>&copy; BlockBuster All rights reserved.</a>
+</p>
 </footer> 
 
 </body>
