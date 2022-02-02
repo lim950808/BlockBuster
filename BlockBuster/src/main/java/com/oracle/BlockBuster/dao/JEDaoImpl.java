@@ -92,5 +92,11 @@ public class JEDaoImpl implements JEDao {
 		}
 		return result;
 	}
+	//상품상세페이지
+	@Override
+	public Product getProductsInfo(int pno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	 
 }

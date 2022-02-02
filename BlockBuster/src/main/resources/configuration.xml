@@ -6,5 +6,6 @@
 		<typeAlias alias="Product" type="com.oracle.BlockBuster.model.Product"/>
 		<typeAlias alias="Category" type="com.oracle.BlockBuster.model.Category"/>
 		<typeAlias alias="Cart" type="com.oracle.BlockBuster.model.Cart"/>
+		<typeAlias alias="Payment" type="com.oracle.BlockBuster.model.Payment"/>
 	</typeAliases>
 </configuration>

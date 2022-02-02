@@ -42,5 +42,12 @@
 		WHERE pno=#{pno}
 	</delete>
 	
+	<!-- 상품 정보 -->
+	<select id="getProductsInfo" resultType="Product">
+		SELECT product.pno, product.title, product.category, product.genre, product.year, product.director, product.casting, product.p_img
+		FROM product LEFT OUTER JOIN category ON product.category = category.category
+		WHERE pno = ${pno}
+	</select>
+	
 </mapper>
 

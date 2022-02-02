@@ -26,7 +26,7 @@
 		        <h3>${product.title}</h3>
 		        <%-- <p>${product.description}</p>
 		        <p>${product.price}원</p> --%>
-		        <p><a href="product.jsp?id=${product.pno}" 
+		        <p><a href="productDetail.jsp?id=${product.pno}" 
 		            class="btn btn-success" role="button">상세정보 &raquo;</a>
 		      </div>
 	      </c:forEach>

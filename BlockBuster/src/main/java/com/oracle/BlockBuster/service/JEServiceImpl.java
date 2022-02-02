@@ -62,4 +62,10 @@ public class JEServiceImpl implements JEService {
 		return result;
 	}
 
+	@Override
+	public Product getProductsInfo(int pno) {
+		Product productInfo = Product.getProductsInfo(pno);
+		return productsInfo;
+	}
+
 }

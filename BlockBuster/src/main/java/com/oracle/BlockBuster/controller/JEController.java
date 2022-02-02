@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -109,6 +110,13 @@ public class JEController {
 	public String delete(int pno, Model model) {
 		int result = js.delete(pno);
 		return "redirect:/Admin/productList";
+	}
+	
+	//상품 상세 -> productDetail페이지
+	@GetMapping("/Product/productDetail/{pno}")
+	public String productDetail(@PathVariable("pno") int pno, Model model) {
+		model.addAttribute("productsInfo", JEService.getProductsInfo(pno));
+		return "/Product/productDetail";
 	}
 	
 }

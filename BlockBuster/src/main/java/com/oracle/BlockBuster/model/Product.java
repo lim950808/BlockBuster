@@ -29,6 +29,13 @@ public class Product {
 	//paging
 	private int 	start;			private int 	end;
 
+
+
+	public static Product getProductsInfo(int pno2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

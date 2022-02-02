@@ -20,4 +20,6 @@ public interface JEDao {
 
 	int delete(int pno);
 
+	//상품상세페이지
+	Product getProductsInfo(int pno);
 }

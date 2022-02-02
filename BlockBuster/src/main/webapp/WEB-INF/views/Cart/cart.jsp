@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="../header.jsp" %>
+<%@ include file="../header1.jsp" %>
 <%-- <%@ include file="../menu.jsp" %> --%>
 
 <div class="container mt-5">
@@ -71,7 +71,7 @@
       </tr>
     </table>
     <div class="container">
-  		<p><a href="welcome.jsp" class="btn btn-outline-secondary">&laquo; HOME</a>
+  		<p><a href="../main.jsp" class="btn btn-outline-secondary">&laquo; HOME</a>
  	</div>
   </div>
   <hr>
