@@ -2,8 +2,6 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <title>Insert title here</title>
 </head>
 <body>
@@ -29,7 +27,6 @@
 	<a>&copy; BlockBuster All rights reserved.</a>
 </p>
 </footer> 
-
 </body>
 </html>
     

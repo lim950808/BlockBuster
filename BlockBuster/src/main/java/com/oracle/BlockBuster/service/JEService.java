@@ -20,6 +20,10 @@ public interface JEService {
 
 	int delete(int pno);
 
-	Product getProductsInfo(int pno);
+	public List<Product> list(int genre, int level) throws Exception;
+	
+	Product productDetail(int pno);
+
+
 
 }

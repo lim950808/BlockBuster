@@ -29,13 +29,8 @@ public class Product {
 	//paging
 	private int 	start;			private int 	end;
 
-
-
-	public static Product getProductsInfo(int pno2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	//카테고리별 분류: 1차, 2차
+	private int level;
 	
 
 }

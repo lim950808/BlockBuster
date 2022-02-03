@@ -1,5 +1,6 @@
 package com.oracle.BlockBuster.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -53,7 +54,7 @@ public class JEDaoImpl implements JEDao {
 	public int update(Product product) {
 		int uptCnt = 0;
 		try {
-			uptCnt = session.update("JEproductUpdate", product);
+			uptCnt = session.update("JEProductUpdate", product);
 		}catch (Exception e) {
 			
 		}
@@ -92,11 +93,35 @@ public class JEDaoImpl implements JEDao {
 		}
 		return result;
 	}
-	//상품상세페이지
+	
+	//1차 분류
 	@Override
-	public Product getProductsInfo(int pno) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> list(int genre, int category) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("genre", genre);
+		map.put("category", category);
+		return session.selectList("products_1", map);
 	}
+	
+	//2차 분류
+	@Override
+	public List<Product> list(int genre) {
+		return session.selectList("products_2", genre);
+	}
+	
+	
+	@Override
+	public Product productDetail(int pno) {
+		Product product = new Product();
+		try {
+			//						  mapper ID	, Parameter
+			product = session.selectOne("JEProductDetail", pno);
+		}catch (Exception e) {
+			
+		}
+		return product;
+	}
+
+
 	 
 }

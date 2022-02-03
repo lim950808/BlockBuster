@@ -63,9 +63,23 @@ public class JEServiceImpl implements JEService {
 	}
 
 	@Override
-	public Product getProductsInfo(int pno) {
-		Product productInfo = Product.getProductsInfo(pno);
-		return productsInfo;
+	public List<Product> list(int genre, int level) throws Exception {
+		int category = 0;
+		if(level == 1) { //1차 분류
+			category = genre;
+			return jd.list(genre, category);
+		}else { //2차 분류
+			return jd.list(genre);
+		}
 	}
+	
+	@Override
+	public Product productDetail(int pno) {
+		Product product = null;
+		product = jd.productDetail(pno);
+		return product;
+	}
+
+
 
 }

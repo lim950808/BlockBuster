@@ -25,6 +25,12 @@ public class MainController {
 	}
 	// main페이지 끝.
 	
+	@GetMapping(value = "home")
+	public String home() {
+		logger.info("home 시작");
+		return "home";
+	}
+	
 	
 	// 조병훈님, header 시작 부분---------------------------------------------
 	@GetMapping(value="header1")

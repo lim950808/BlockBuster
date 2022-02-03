@@ -20,11 +20,11 @@
 		SELECT * FROM product WHERE pno = #{pno}
 	</select>
 	
-	<update id="JEproductUpdate" parameterType="Product">
+	<update id="JEProductUpdate" parameterType="Product">
 		UPDATE product SET title=#{title}, category=#{category}, genre=#{genre}, 
 						   year=#{year}, country=#{country}, 
 						   director=#{director}, casting=#{casting}, price=#{price},
-						   description=#{description}, p_img=#{p_img}, p_video{p_video}
+						   description=#{description}, p_img=#{p_img}, p_video=#{p_video}
 		WHERE pno=#{pno}
 	</update>
 	
@@ -42,11 +42,27 @@
 		WHERE pno=#{pno}
 	</delete>
 	
-	<!-- 상품 정보 -->
-	<select id="getProductsInfo" resultType="Product">
-		SELECT product.pno, product.title, product.category, product.genre, product.year, product.director, product.casting, product.p_img
-		FROM product LEFT OUTER JOIN category ON product.category = category.category
-		WHERE pno = ${pno}
+	<!-- 카테고리별 상품 리스트: 1차 분류 -->
+	<select id="products_1" resultType="Product">
+		SELECT p.pno, p.title, p.category, p.genre, p.p_img, c.category, c.genre, c.cat_name, c.gen_name
+		FROM product p
+		INNER JOIN category c
+		ON p.genre = c.genre
+		WHERE p.genre = #{genre} OR c.category = #{category}
+	</select>
+	
+	<!-- 카테고리별 상품 리스트: 2차 분류 -->
+	<select id="products_2" resultType="Product">
+		SELECT p.pno, p.title, p.category, p.genre, p.p_img, c.category, c.genre, c.cat_name, c.gen_name
+		FROM product p
+		INNER JOIN category c
+		ON p.genre = c.genre
+		WHERE p.genre = #{genre}
+	</select>
+	
+	<!-- 상품 상세정보 -->
+	<select id="JEProductDetail" parameterType="int" resultType="Product">
+		SELECT * FROM product WHERE pno = #{pno}
 	</select>
 	
 </mapper>
