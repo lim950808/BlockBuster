@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../header1.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<
 <title>Insert title here</title>
+
 <style>
 
  body { margin:0; padding:0; font-family:'맑은 고딕', verdana; }
@@ -43,53 +46,64 @@
  aside#aside li a { color:#000; display:block; padding:10px 0; }
  aside#aside li a:hover { text-decoration:none; background:#eee; }
  
- aside#aside li { position:relative; }
-aside#aside li:hover { background:#eee; }   
-aside#aside li > ul.low { display:none; position:absolute; top:0; left:180px;  }
-aside#aside li:hover > ul.low { display:block; }
-aside#aside li:hover > ul.low li a { background:#eee; border:1px solid #eee; }
-aside#aside li:hover > ul.low li a:hover { background:#fff;}
-aside#aside li > ul.low li { width:180px; }
- 
  footer#footer { margin-top:100px; border-radius:50px 50px 0 0; }
  footer#footer div#footer_box { padding:0 20px; }
  
 </style>
+
+<style>
+ /*
+ section#content ul li { display:inline-block; margin:10px; }
+ section#content div.goodsThumb img { width:200px; height:200px; }
+ section#content div.goodsName { padding:10px 0; text-align:center; }
+ section#content div.goodsName a { color:#000; }
+ */
+ section#content ul li { margin:10px 0; }
+ section#content ul li img { width:250px; height:250px; }
+ section#content ul li::after { content:""; display:block; clear:both; }
+ section#content div.p_img { float:left; width:250px; }
+ section#content div.info { float:right; width:calc(100% - 270px); }
+ section#content div.info { font-size:20px; line-height:2; }
+ section#content div.info span { display:inline-block; width:100px; font-weight:bold; margin-right:10px; }
+ section#content div.info .delete { text-align:right; }
+ section#content div.info .delete button { font-size:22px;
+            padding:5px 10px; border:1px solid #eee; background:#eee;}
+ 
+</style>
+
 </head>
 <body>
 <div id="root">
-	<%-- <header id="header">
-		<div id="header_box">
-			<%@ include file="include/header.jsp" %>
-		</div>
-	</header> --%>
-
-	<%-- <nav id="nav">
-		<div id="nav_box">
-			<%@ include file="include/nav.jsp" %>
-		</div>
-	</nav> --%>
 	
 	<section id="container">
 		<div id="container_box">
 		
 			<section id="content">
-				본문 영역
+				<ul>
+ 					<c:forEach items="${cartList}" var="cartList">
+	 					<li>
+	  						<div class="p_img">
+	   							<a href="/Product/productDetail?pno=${product.pno}">
+	   								<img src="${product.p_img}">
+	   							</a>
+	  						</div> 
+	  						<div class="info">
+	   							<p>
+	   								${cartList.title}<br />
+	   								<fmt:formatNumber pattern="###,###,###" value="${cartList.price}" />원
+	   							</p>
+	   							<div class="delete">
+	   								<button type="button" class="delete_btn">삭제</button>
+	   							</div>
+	  						</div>
+	 					</li>
+ 					</c:forEach>
+				</ul>
 			</section>
-			
-			<aside id="aside">
-				<%@ include file="aside.jsp" %>
-			</aside>
-			
+		
 		</div>
 	</section>
-
-	<%-- <footer id="footer">
-		<div id="footer_box">
-			<%@ include file="include/footer.jsp" %>
-		</div>		
-	</footer> --%>
-
 </div>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

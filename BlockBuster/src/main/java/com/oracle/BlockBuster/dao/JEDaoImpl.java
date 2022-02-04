@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.BlockBuster.model.Cart;
+import com.oracle.BlockBuster.model.CartList;
 import com.oracle.BlockBuster.model.Product;
 
 @Repository
@@ -120,6 +122,18 @@ public class JEDaoImpl implements JEDao {
 			
 		}
 		return product;
+	}
+
+	//카트담기
+	@Override
+	public void addCart(CartList cart) throws Exception {
+		session.insert("addCart", cart);
+	}
+
+	//카트 리스트
+	@Override
+	public List<CartList> cartList(String id) throws Exception {
+		return session.selectList("cartList", id);
 	}
 
 

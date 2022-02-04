@@ -34,7 +34,7 @@
 	
 	<select id="insertProduct" parameterType="Product">
 		INSERT INTO product
-		VALUES(#{pno}, #{title}, #{category}, #{genre}, #{year}, #{country}, #{director}, #{casting}, #{description}, #{price}, #{p_img}, #{p_video})
+		VALUES(product_pno_seq, #{title}, #{category}, #{genre}, #{year}, #{country}, #{director}, #{casting}, #{description}, #{price}, #{p_img}, #{p_video})
 	</select>
 	
 	<delete id="deleteProduct" parameterType="int">
@@ -63,6 +63,21 @@
 	<!-- 상품 상세정보 -->
 	<select id="JEProductDetail" parameterType="int" resultType="Product">
 		SELECT * FROM product WHERE pno = #{pno}
+	</select>
+	
+	<!-- 카트 담기 -->
+	<insert id="addCart">
+ 		INSERT INTO cart (no, id, title, count, price)
+ 		VALUES (cart_no_seq, #{id}, #{title}, #{count}, #{price})
+	</insert>
+	
+	<!-- 카트 리스트 -->
+	<select id="cartList" resultType="CartList">
+		SELECT row_number() over(order by c.no desc) as no, c.no, c.id, c.pno, p.title, p.price, p.p_img
+		FROM cart c
+		INNER JOIN product p
+		ON c.pno = p.pno
+		WHERE c.id = #{id}
 	</select>
 	
 </mapper>

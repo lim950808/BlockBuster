@@ -2,6 +2,8 @@ package com.oracle.BlockBuster.dao;
 
 import java.util.List;
 
+import com.oracle.BlockBuster.model.Cart;
+import com.oracle.BlockBuster.model.CartList;
 import com.oracle.BlockBuster.model.Product;
 
 public interface JEDao {
@@ -25,6 +27,12 @@ public interface JEDao {
 	public List<Product> list(int genre) throws Exception;
 	
 	Product productDetail(int pno);
+
+	//카트 담기
+	public void addCart(CartList cart) throws Exception;
+
+	//카트 리스트
+	List<CartList> cartList(String id) throws Exception;
 
 
 }

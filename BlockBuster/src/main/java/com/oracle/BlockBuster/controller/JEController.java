@@ -2,6 +2,7 @@ package com.oracle.BlockBuster.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.oracle.BlockBuster.model.Cart;
+import com.oracle.BlockBuster.model.CartList;
+import com.oracle.BlockBuster.model.Member;
 import com.oracle.BlockBuster.model.Product;
 import com.oracle.BlockBuster.service.JEService;
 import com.oracle.BlockBuster.service.Paging;
@@ -129,6 +134,30 @@ public class JEController {
 		Product product = js.productDetail(pno);
 		model.addAttribute("product", product);
 		return "/Product/productDetail";
+	}
+	
+	//카트담기
+	@ResponseBody
+	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
+	public int addCart(CartList cart, HttpSession session) throws Exception {
+		int result = 0;
+		Member member = (Member)session.getAttribute("member");
+		if(member != null) {
+			cart.setId(member.getId());
+			js.addCart(cart);
+			result = 1;
+		}
+		return result;
+	}
+	
+	//카트 목록
+	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET)
+	public void getCartList(HttpSession session, Model model) throws Exception {
+		logger.info("get cart list");
+		Member member = (Member)session.getAttribute("member");
+		String id = member.getId();
+		List<CartList> cartList = js.cartList(id);
+		model.addAttribute("cartList", cartList);
 	}
 	
 }

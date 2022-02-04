@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.BlockBuster.dao.JEDao;
+import com.oracle.BlockBuster.model.Cart;
+import com.oracle.BlockBuster.model.CartList;
 import com.oracle.BlockBuster.model.Product;
 
 @Service
@@ -80,6 +82,19 @@ public class JEServiceImpl implements JEService {
 		return product;
 	}
 
+	//카트 담기
+	@Override
+	public void addCart(CartList cart) throws Exception {
+		jd.addCart(cart);
+	}
+
+	//카트 리스트
+	@Override
+	public List<CartList> cartList(String id) throws Exception {
+		return jd.cartList(id);
+	}
+
+	
 
 
 }

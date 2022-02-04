@@ -2,6 +2,8 @@ package com.oracle.BlockBuster.service;
 
 import java.util.List;
 
+import com.oracle.BlockBuster.model.Cart;
+import com.oracle.BlockBuster.model.CartList;
 import com.oracle.BlockBuster.model.Product;
 
 public interface JEService {
@@ -24,6 +26,10 @@ public interface JEService {
 	
 	Product productDetail(int pno);
 
+	//카트 담기
+	void addCart(CartList cart) throws Exception;
 
+	//카트 리스트
+	List<CartList> cartList(String id) throws Exception;
 
 }

@@ -6,6 +6,8 @@
 		<typeAlias alias="Product" type="com.oracle.BlockBuster.model.Product"/>
 		<typeAlias alias="Category" type="com.oracle.BlockBuster.model.Category"/>
 		<typeAlias alias="Cart" type="com.oracle.BlockBuster.model.Cart"/>
+		<typeAlias alias="CartList" type="com.oracle.BlockBuster.model.CartList"/>
 		<typeAlias alias="Payment" type="com.oracle.BlockBuster.model.Payment"/>
+		<typeAlias alias="Member" type="com.oracle.BlockBuster.model.Member"/>
 	</typeAliases>
 </configuration>
