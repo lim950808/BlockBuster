@@ -82,23 +82,45 @@ public class JEServiceImpl implements JEService {
 		return product;
 	}
 
-	//카트 담기
+	/*
+	 * //카트 담기
+	 * 
+	 * @Override public void addCart(CartList cart) throws Exception {
+	 * jd.addCart(cart); }
+	 * 
+	 * //카트 리스트
+	 * 
+	 * @Override public List<CartList> cartList(String id) throws Exception { return
+	 * jd.cartList(id); }
+	 * 
+	 * //카트 삭제
+	 * 
+	 * @Override public void deleteCart(Cart cart) throws Exception {
+	 * jd.deleteCart(cart); }
+	 */
+
 	@Override
-	public void addCart(CartList cart) throws Exception {
-		jd.addCart(cart);
+	public void cartAdd(Cart cart) {
+		jd.save(cart);
 	}
 
-	//카트 리스트
 	@Override
-	public List<CartList> cartList(String id) throws Exception {
-		return jd.cartList(id);
+	public List<Cart> list(String id) {
+		return jd.findAll(id);
 	}
 
-	//카트 삭제
 	@Override
-	public void deleteCart(Cart cart) throws Exception {
-		jd.deleteCart(cart);	
+	public int cartUpdate(Cart cart) {
+		return jd.cartUpdate(cart);
 	}
+
+	@Override
+	public int cartDelete(int id) {
+		return jd.cartDelete(id);
+	}
+
+
+	
 
 	
 

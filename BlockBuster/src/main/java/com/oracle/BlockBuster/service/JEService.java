@@ -26,13 +26,24 @@ public interface JEService {
 	
 	Product productDetail(int pno);
 
+	/*
+	 * //카트 담기 void addCart(CartList cart) throws Exception;
+	 * 
+	 * //카트 리스트 List<CartList> cartList(String id) throws Exception;
+	 * 
+	 * //카트 삭제 void deleteCart(Cart cart) throws Exception;
+	 */
+
 	//카트 담기
-	void addCart(CartList cart) throws Exception;
+	void cartAdd(Cart cart);
 
 	//카트 리스트
-	List<CartList> cartList(String id) throws Exception;
+	List<Cart> list(String id);
+
+	//카트 수정
+	int cartUpdate(Cart cart);
 
 	//카트 삭제
-	void deleteCart(Cart cart) throws Exception;
+	int cartDelete(int id);
 
 }

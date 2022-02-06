@@ -28,14 +28,20 @@ public interface JEDao {
 	
 	Product productDetail(int pno);
 
-	//카트 담기
-	public void addCart(CartList cart) throws Exception;
+	/*
+	 * //카트 담기 public void addCart(CartList cart) throws Exception;
+	 * 
+	 * //카트 리스트 List<CartList> cartList(String id) throws Exception;
+	 * 
+	 * //카트 삭제 void deleteCart(Cart cart) throws Exception;
+	 */
 
-	//카트 리스트
-	List<CartList> cartList(String id) throws Exception;
+	int save(Cart cart);
 
-	//카트 삭제
-	void deleteCart(Cart cart) throws Exception;
+	List<Cart> findAll(String id);
 
+	int cartUpdate(Cart cart);
+
+	int cartDelete(int id);
 
 }

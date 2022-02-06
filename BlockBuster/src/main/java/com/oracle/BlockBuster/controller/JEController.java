@@ -142,49 +142,96 @@ public class JEController {
 		return "/Product/productDetail";
 	}
 	
-	//카트담기
-	@ResponseBody
-	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
-	public int addCart(CartList cart, HttpSession session) throws Exception {
-		
-		int result = 0;
+	/*
+	 * //카트담기
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/Product/productDetail/addCart", method =
+	 * RequestMethod.POST) public int addCart(CartList cart, HttpSession session)
+	 * throws Exception {
+	 * 
+	 * int result = 0; Member member = (Member)session.getAttribute("member");
+	 * if(member != null) { cart.setId(member.getId()); js.addCart(cart); result =
+	 * 1; } return result; }
+	 * 
+	 * //카트 목록
+	 * 
+	 * @RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET) public
+	 * void getCartList(HttpSession session, Model model) throws Exception {
+	 * logger.info("get cart list"); Member member =
+	 * (Member)session.getAttribute("member"); String id = member.getId();
+	 * List<CartList> cartList = js.cartList(id); model.addAttribute("cartList",
+	 * cartList); }
+	 * 
+	 * //카트 삭제
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/Cart/deleteCart", method = RequestMethod.POST)
+	 * public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]")
+	 * List<String> chArr, Cart cart) throws Exception { logger.info("delete cart");
+	 * Member member = (Member)session.getAttribute("member"); String id =
+	 * member.getId(); int result = 0; int no = 0; if(member != null) {
+	 * cart.setId(id); for(String i : chArr) { no = Integer.parseInt(i);
+	 * cart.setNo(no); js.deleteCart(cart); } result = 1; } return result; }
+	 */
+	
+	///////////////////////////////////
+	
+	//카트 controller
+	/*
+	 * @RequestMapping("/Cart/count") public @ResponseBody String cartCount(Cart
+	 * cart, HttpSession session) { int count =
+	 * js.cartCount(member.getMember().getId());
+	 * 
+	 * Gson gson = new Gson(); String countToJson=gson.toJson(count);
+	 * 
+	 * return countToJson; }
+	 */
+	
+	//카트 담기
+	@PostMapping("/Cart/add")
+	public String cartAdd(Cart cart, HttpSession session) {
 		Member member = (Member)session.getAttribute("member");
-		if(member != null) {
-			cart.setId(member.getId());
-			js.addCart(cart);
-			result = 1;
-		}
-		return result;
+		cart.setId(member.getId());		
+		js.cartAdd(cart);		
+		return "redirect:/Cart/list";
 	}
 	
 	//카트 목록
-	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET)
-	public void getCartList(HttpSession session, Model model) throws Exception {
-		logger.info("get cart list");
+	@GetMapping("/Cart/list")
+	public void cartList(HttpSession session, Model model) {
 		Member member = (Member)session.getAttribute("member");
 		String id = member.getId();
-		List<CartList> cartList = js.cartList(id);
-		model.addAttribute("cartList", cartList);
+		List<Cart> list = js.list(id);
+		model.addAttribute("list", list);
 	}
 	
-	//카트 삭제
-	@ResponseBody
-	@RequestMapping(value = "/Cart/deleteCart", method = RequestMethod.POST)
-	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, Cart cart) throws Exception {
-		logger.info("delete cart");
-		Member member = (Member)session.getAttribute("member");
-		String id = member.getId();
-		int result = 0;
-		int no = 0;
-		if(member != null) {
-			cart.setId(id);
-			for(String i : chArr) {
-				no = Integer.parseInt(i);
-				cart.setNo(no);
-				js.deleteCart(cart);
-			}
-			result = 1;
-		}
+	/*
+	 * @RequestMapping(value={"/cartList","/amountTotal"}) public @ResponseBody
+	 * String addedCartList(@AuthenticationPrincipal UserDetail user) {
+	 * SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd"); String today =
+	 * format.format(System.currentTimeMillis());
+	 * 
+	 * int userId = user.getUser().getId();
+	 * 
+	 * List<Cart> list =cartSvc.cartList(userId, today);
+	 * 
+	 * Gson gson = new Gson(); String listToJson=gson.toJson(list);
+	 * 
+	 * return listToJson; }
+	 */
+	
+	@RequestMapping("/Cart/update")
+	public @ResponseBody int cartUpdate(Cart cart) {
+		int result = js.cartUpdate(cart);
+		return result;
+	}
+	
+	@RequestMapping("/Cart/delete")
+	public @ResponseBody int cartDelete(@RequestParam("id") int id) {
+		int result = js.cartDelete(id);
 		return result;
 	}
 	

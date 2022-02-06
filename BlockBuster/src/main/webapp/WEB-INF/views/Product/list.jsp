@@ -87,6 +87,10 @@
 				<%@ include file="../aside.jsp" %>
 			</aside>
 			
+			<form>
+          		<input class="form-control" type="hidden" value="${product.pno }" placeholder="Search" aria-label="Search">
+          		<button type="submit"><i class="fa fa-search"></i></button>
+      		</form>
 		</div>
 	</section>
 </div>

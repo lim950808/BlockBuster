@@ -65,27 +65,49 @@
 		SELECT * FROM product WHERE pno = #{pno}
 	</select>
 	
-	<!-- 카트 담기 -->
-	<insert id="addCart">
+ 	<!-- 카트 담기 -->
+	<!-- <insert id="addCart">
  		INSERT INTO cart (no, id, title, count, price)
  		VALUES (cart_no_seq, #{id}, #{title}, #{count}, #{price})
-	</insert>
+	</insert> -->
 	
 	<!-- 카트 리스트 -->
-	<select id="cartList" resultType="CartList">
+	<!-- <select id="cartList" resultType="CartList">
 		SELECT row_number() over(order by c.no desc) as no, c.no, c.id, c.pno, p.title, p.price, p.p_img
 		FROM cart c
 		INNER JOIN product p
 		ON c.pno = p.pno
 		WHERE c.id = #{id}
-	</select>
+	</select> -->
 	
 	<!-- 카트 삭제 -->
-	<delete id="deleteCart">
+	<!-- <delete id="deleteCart">
 		DELETE cart
      	WHERE no = #{no}
         AND id = #{id}
-</delete>
-	
+	</delete> -->
+ 	
+ 	<insert id="save">
+ 		INSERT INTO cart (no, id, title, count, price)
+ 		VALUES (cart_no_seq, #{id}, #{title}, #{count}, #{price})
+ 	</insert>
+ 	
+ 	<select id="findAll" resultType="Cart">
+ 		SELECT row_number() over(order by c.no desc) as no, c.no, c.id, c.pno, p.title, p.price, p.p_img
+		FROM cart c
+		INNER JOIN product p
+		ON c.pno = p.pno
+		WHERE c.id = #{id}
+ 	</select>
+ 	
+ 	
+ 	<delete id="cartDelete">
+ 		DELETE FROM cart WHERE id = #{id}
+ 	</delete>
+ 	
+ 	<update id="cartUpdate">
+ 		UPDATE cart SET count=#{count} WHERE id=#{id}
+ 	</update>
+ 	
 </mapper>
 

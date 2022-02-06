@@ -10,7 +10,7 @@
 
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="/resources/css/user/shop/default.css" />
-
+<link rel="stylesheet" href="/css/style.css">
 <style>
 		div.products div.p_img { float:left; width:350px; }
 		div.products div.p_img img { width:350px; height:auto; }
@@ -59,13 +59,26 @@
 						<p class="genre">${product.genre}</p>
 						<p class="year">${product.year}</p>
 						<p class="director">${product.director}</p>
-						<p class="casting">${product.casting}</p>
-						
+						<p class="casting">${product.casting}</p>					
 						<p class="price">
 							<fmt:formatNumber pattern="###,###,###" value="${product.price}" /> 원
 						</p>
-						
-						<p class="addToCart">
+						<form action="/Cart/list" method="post" onsubmit="return cartAlert();">
+						<script>
+						function cartAlert(){
+							var cartAlert = confirm("장바구니에 담으시겠습니까?");
+							if(cartAlert){
+								return true;
+							}else{
+								return false;
+							}						
+						}
+						</script>
+						<div class="add_to_cart">
+		              		<input type="submit" value="장바구니" class="btn_3">
+		              	</div>
+						</form>
+						<!-- <p class="addToCart">
 							<button type="button" class="addCart_btn">장바구니</button>
 							<script>
 								$(".addCart_btn").click(function(){
@@ -91,7 +104,7 @@
 									});
 								});
 							</script>
-						</p>
+						</p> -->
 					</div>
 					
 					<div class="description">${product.description}</div>
