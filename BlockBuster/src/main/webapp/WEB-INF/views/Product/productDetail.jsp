@@ -7,9 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
-	
-	<link rel="stylesheet" href="/resources/css/user/shop/default.css" /> -->
+
+<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="/resources/css/user/shop/default.css" />
+
 <style>
 		div.products div.p_img { float:left; width:350px; }
 		div.products div.p_img img { width:350px; height:auto; }
@@ -33,7 +34,7 @@
 	</style>
 </head>
 <body>
-<%@ include file="../header1.jsp" %>
+<%-- <%@ include file="../header1.jsp" %> --%>
 <pre>
 
 </pre>
@@ -70,6 +71,7 @@
 								$(".addCart_btn").click(function(){
 									
 									var pno = $("#pno").val();
+									var data = {pno : pno};
 									
 									$.ajax({
 										url : "/Product/productDetail/addCart",
@@ -79,10 +81,8 @@
 											
 											if(result == 1) {
 												alert("카트 담기 성공");
-												$(".numBox").val("1");
 											} else {
 												alert("회원만 사용가능")
-												$(".numBox").val("1");
 											}
 										},
 										error : function(){

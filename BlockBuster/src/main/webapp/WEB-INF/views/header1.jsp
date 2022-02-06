@@ -112,6 +112,7 @@ body {
 	<div class="navbar">
 	
 	  <a href="../main"><b>BlockBuster</b></a>
+	  <a href="login">로그인</a>
 	  
 	  <div class="dropdown">
 	    <button class="dropbtn">카테고리 

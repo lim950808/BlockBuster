@@ -2,6 +2,7 @@ package com.oracle.BlockBuster.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,7 @@ import com.oracle.BlockBuster.model.Member;
 import com.oracle.BlockBuster.model.Product;
 import com.oracle.BlockBuster.service.JEService;
 import com.oracle.BlockBuster.service.Paging;
+import com.oracle.BlockBuster.service.loginCheck;
 
 @Controller
 public class JEController {
@@ -31,6 +34,9 @@ public class JEController {
 	
 	@Autowired
 	private JEService js;
+	
+	@Autowired
+	private loginCheck loginCheck; //sessionId 받아오는 모듈
 	
 	// 영상목록
 	@RequestMapping(value = "/Admin/productList")
@@ -140,6 +146,7 @@ public class JEController {
 	@ResponseBody
 	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
 	public int addCart(CartList cart, HttpSession session) throws Exception {
+		
 		int result = 0;
 		Member member = (Member)session.getAttribute("member");
 		if(member != null) {
@@ -158,6 +165,27 @@ public class JEController {
 		String id = member.getId();
 		List<CartList> cartList = js.cartList(id);
 		model.addAttribute("cartList", cartList);
+	}
+	
+	//카트 삭제
+	@ResponseBody
+	@RequestMapping(value = "/Cart/deleteCart", method = RequestMethod.POST)
+	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, Cart cart) throws Exception {
+		logger.info("delete cart");
+		Member member = (Member)session.getAttribute("member");
+		String id = member.getId();
+		int result = 0;
+		int no = 0;
+		if(member != null) {
+			cart.setId(id);
+			for(String i : chArr) {
+				no = Integer.parseInt(i);
+				cart.setNo(no);
+				js.deleteCart(cart);
+			}
+			result = 1;
+		}
+		return result;
 	}
 	
 }

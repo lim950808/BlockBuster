@@ -94,6 +94,12 @@ public class JEServiceImpl implements JEService {
 		return jd.cartList(id);
 	}
 
+	//카트 삭제
+	@Override
+	public void deleteCart(Cart cart) throws Exception {
+		jd.deleteCart(cart);	
+	}
+
 	
 
 

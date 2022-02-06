@@ -80,5 +80,12 @@
 		WHERE c.id = #{id}
 	</select>
 	
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+		DELETE cart
+     	WHERE no = #{no}
+        AND id = #{id}
+</delete>
+	
 </mapper>
 

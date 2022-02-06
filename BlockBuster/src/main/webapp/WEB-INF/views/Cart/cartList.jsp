@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header1.jsp" %>
+<%-- <%@ include file="../header1.jsp" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
 
 <style>
 
@@ -66,9 +68,20 @@
  section#content div.info { font-size:20px; line-height:2; }
  section#content div.info span { display:inline-block; width:100px; font-weight:bold; margin-right:10px; }
  section#content div.info .delete { text-align:right; }
- section#content div.info .delete button { font-size:22px;
-            padding:5px 10px; border:1px solid #eee; background:#eee;}
+ section#content div.info .delete button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
  
+.allCheck { float:left; width:200px; }
+.allCheck input { width:16px; height:16px; }
+.allCheck label { margin-left:10px; }
+.delBtn { float:right; width:300px; text-align:right; }
+.delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+
+.checkBox { float:left; width:30px; }
+.checkBox input { width:16px; height:16px; }
+
+.listResult { padding:20px; background:#eee; }
+.listResult .sum { float:left; width:45%; font-size:22px; }
+
 </style>
 
 </head>
@@ -80,8 +93,59 @@
 		
 			<section id="content">
 				<ul>
+					<li>
+  						<div class="allCheck">
+   							<input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label>
+   							<script>
+							$("#allCheck").click(function(){
+ 								var chk = $("#allCheck").prop("checked");
+ 								if(chk) {
+  									$(".chBox").prop("checked", true);
+ 								}else {
+  									$(".chBox").prop("checked", false);
+ 								}
+							});
+							</script> 
+  						</div>
+  						<div class="delBtn">
+   							<button type="button" class="selectDelete_btn">선택 삭제</button>
+   							<script>
+							$(".selectDelete_btn").click(function(){
+								var confirm_val = confirm("정말 삭제하시겠습니까?");
+							  	if(confirm_val) {
+							   		var checkArr = new Array();
+								   	$("input[class='chBox']:checked").each(function(){
+								    	checkArr.push($(this).attr("data-no"));
+								   	});
+								    
+								   	$.ajax({
+								    	url : "/Cart/deleteCart",
+								    	type : "post",
+								    	data : { chbox : checkArr },
+								    	success : function(result){
+								    		if(result == 1) {
+								    			location.href = "/Cart/cartList";
+								    		}else {
+								    			alert("삭제 실패");
+								    		}
+								    	}
+								   	});
+							  	} 
+							 });
+							</script>
+  						</div>
+ 					</li>
+					<c:set var="sum" value="0" />
  					<c:forEach items="${cartList}" var="cartList">
 	 					<li>
+	 						<div class="checkBox">
+   								<input type="checkbox" name="chBox" class="chBox" data-cartNum="${cartList.no}" />
+   								<script>
+ 								$(".chBox").click(function(){
+  									$("#allCheck").prop("checked", false);
+ 								});
+								</script>
+  							</div>
 	  						<div class="p_img">
 	   							<a href="/Product/productDetail?pno=${product.pno}">
 	   								<img src="${product.p_img}">
@@ -93,12 +157,42 @@
 	   								<fmt:formatNumber pattern="###,###,###" value="${cartList.price}" />원
 	   							</p>
 	   							<div class="delete">
-	   								<button type="button" class="delete_btn">삭제</button>
+	   								<button type="button" class="delete_${cartList.no}_btn" data-cartNum="${cartList.no}">삭제</button>
+	   								<script>
+									$(".delete_${cartList.no}_btn").click(function(){
+										var confirm_val = confirm("정말 삭제하시겠습니까?");
+									  
+									  	if(confirm_val) {
+									   		var checkArr = new Array();
+									   
+									   		checkArr.push($(this).attr("data-no"));
+									              
+										   	$.ajax({
+										    	url : "/Cart/deleteCart",
+										    	type : "post",
+										    	data : { chbox : checkArr },
+										    	success : function(result){
+											     	if(result == 1) {            
+											      		location.href = "/Cart/cartList";
+											     	} else {
+											      		alert("삭제 실패");
+											     	}
+										    	}
+										   	});
+									  	} 
+									 });
+									</script>
 	   							</div>
 	  						</div>
 	 					</li>
+	 				<c:set var="sum" value="${sum + (cartList.price * cartList.count)}" />
  					</c:forEach>
 				</ul>
+				<div class="listResult">
+					<div class="sum">
+				  		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
+				 	</div>
+				</div>
 			</section>
 		
 		</div>

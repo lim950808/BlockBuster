@@ -136,6 +136,12 @@ public class JEDaoImpl implements JEDao {
 		return session.selectList("cartList", id);
 	}
 
+	//카트 삭제
+	@Override
+	public void deleteCart(Cart cart) throws Exception {
+		session.delete("deleteCart", cart);
+	}
+
 
 	 
 }

@@ -34,5 +34,8 @@ public interface JEDao {
 	//카트 리스트
 	List<CartList> cartList(String id) throws Exception;
 
+	//카트 삭제
+	void deleteCart(Cart cart) throws Exception;
+
 
 }
