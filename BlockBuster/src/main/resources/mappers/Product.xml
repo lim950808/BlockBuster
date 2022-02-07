@@ -109,5 +109,30 @@
  		UPDATE cart SET count=#{count} WHERE id=#{id}
  	</update>
  	
+ 	<select id="orderCartList" resultType="Payment">
+		SELECT c.*, p.productNm, p.price, p.filePath
+		FROM cart c
+		INNER JOIN product p ON c.productId = p.id AND p.delDt is null
+		LEFT OUTER JOIN user u ON c.insId = u.id
+		WHERE c.insId = #{id}
+	</select>
+	
+	<select id="orderResultView" resultType="Payment">
+		SELECT o.*, c1.codeNm as 'deliveryNm', c2.codeNm as 'paymentNm', p.productNm, p.filePath
+		FROM orderInfo o
+		INNER JOIN code c1 ON o.deliveryCd = c1.code AND c1.codeGbn = 'DELIVERY'
+		INNER JOIN code c2 ON o.paymentCd = c2.code AND c2.codeGbn = 'PAYMENT'
+		INNER JOIN product p ON o.productId = p.id
+		WHERE orderNo = #{orderNo};
+	</select>
+	
+	<select id="orderListAll" resultType="Payment">
+		SELECT distinct o.orderNo, c.codeNm as 'deliveryNm'
+		FROM orderInfo o
+		LEFT OUTER JOIN user u ON o.insId = u.id
+		INNER JOIN code c ON o.deliveryCd = c.code AND c.codeGbn = 'DELIVERY'
+		WHERE o.insId = #{id} AND paymentCd in ('01', '02')
+		ORDER BY o.orderNo desc;
+	</select>
 </mapper>
 

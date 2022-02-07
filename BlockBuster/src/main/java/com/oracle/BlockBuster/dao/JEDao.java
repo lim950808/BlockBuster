@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.oracle.BlockBuster.model.Cart;
 import com.oracle.BlockBuster.model.CartList;
+import com.oracle.BlockBuster.model.Payment;
 import com.oracle.BlockBuster.model.Product;
 
 public interface JEDao {
@@ -43,5 +44,11 @@ public interface JEDao {
 	int cartUpdate(Cart cart);
 
 	int cartDelete(int id);
+
+	List<Payment> orderCartList(int id);
+
+	List<Payment> orderResultView(String orderNo);
+
+	List<Payment> orderListAll(int id);
 
 }

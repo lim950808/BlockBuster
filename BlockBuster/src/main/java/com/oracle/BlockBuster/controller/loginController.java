@@ -38,7 +38,7 @@ public class loginController {
 	public String login(String id, String password, HttpServletRequest request) throws Exception{
 		
 		//ID와 PW 검증
-		if(!loginCheck.loginCheckB(id, password)) {
+		if(!loginCheck.loginCheck(id, password)) {
 			
 			//불일치 시, 메세지 띄우고 재로그인
 			String error = URLEncoder.encode("ID 또는 PW가 일치하지 않습니다.","UTF-8");

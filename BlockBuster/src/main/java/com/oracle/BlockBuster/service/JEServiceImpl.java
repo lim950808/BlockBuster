@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.oracle.BlockBuster.dao.JEDao;
 import com.oracle.BlockBuster.model.Cart;
 import com.oracle.BlockBuster.model.CartList;
+import com.oracle.BlockBuster.model.Payment;
 import com.oracle.BlockBuster.model.Product;
 
 @Service
@@ -117,6 +118,24 @@ public class JEServiceImpl implements JEService {
 	@Override
 	public int cartDelete(int id) {
 		return jd.cartDelete(id);
+	}
+
+	@Override
+	public List<Payment> orderCartList(int id) {
+		List<Payment> orderList = jd.orderCartList(id);
+		return orderList;
+	}
+
+	@Override
+	public List<Payment> orderResultView(String orderNo) {
+		List<Payment> orderList = jd.orderResultView(orderNo);
+		return orderList;
+	}
+
+	@Override
+	public List<Payment> orderListAll(int id) {
+		List<Payment> orderList = jd.orderListAll(id);
+		return orderList;
 	}
 
 

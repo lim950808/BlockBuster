@@ -1,6 +1,8 @@
 package com.oracle.BlockBuster.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.oracle.BlockBuster.model.Cart;
 import com.oracle.BlockBuster.model.CartList;
 import com.oracle.BlockBuster.model.Member;
+import com.oracle.BlockBuster.model.Payment;
 import com.oracle.BlockBuster.model.Product;
 import com.oracle.BlockBuster.service.JEService;
 import com.oracle.BlockBuster.service.Paging;
@@ -233,6 +236,67 @@ public class JEController {
 	public @ResponseBody int cartDelete(@RequestParam("id") int id) {
 		int result = js.cartDelete(id);
 		return result;
+	}
+	
+	/////////////////////////////////
+	
+	// 결제 payment
+	
+	@GetMapping("")
+	public String orderPathRedirect() {
+		return "redirect:/Order/";
+	}
+	
+	@GetMapping("/")
+	public String order() {
+		return "/Order/order";
+	}
+
+	@GetMapping("/Order/list")
+	public @ResponseBody Map<String, Object> orderCartList(HttpSession session, int id, Model model) {
+		List<Payment> orderCartList = js.orderCartList(id);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data", orderCartList);
+		
+		return map;
+	}
+	
+	@GetMapping("/Order/result/{orderNo}")
+	public String orderResult(Model model, @PathVariable String orderNo) {
+		model.addAttribute("orderNo", orderNo);
+		return "/Order/result";
+	}
+	
+	@GetMapping("/Order/result/view")
+	public @ResponseBody Map<String, Object> orderResultView(@RequestParam String orderNo) {
+		List<Payment> orderList = js.orderResultView(orderNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data", orderList);
+		
+		return map;
+	}
+	
+	@GetMapping("/Order/view/{orderNo}")
+	public String orderView(Model model, @PathVariable String orderNo) {
+		model.addAttribute("orderNo", orderNo);
+		return "/Order/view";
+	}
+	
+//	@GetMapping("/Order/list")
+//	public String orderList() {
+//		return "/Order/list";
+//	}
+	
+	@GetMapping("/Order/list/all")
+	public @ResponseBody Map<String, Object> orderResultView(HttpSession session, Model model, int id) {
+		List<Payment> orderList = js.orderListAll(id);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data", orderList);
+		
+		return map;
 	}
 	
 }

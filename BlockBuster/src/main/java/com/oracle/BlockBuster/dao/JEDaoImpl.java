@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.oracle.BlockBuster.model.Cart;
 import com.oracle.BlockBuster.model.CartList;
+import com.oracle.BlockBuster.model.Payment;
 import com.oracle.BlockBuster.model.Product;
 
 @Repository
@@ -162,6 +163,21 @@ public class JEDaoImpl implements JEDao {
 	@Override
 	public int cartDelete(int id) {
 		return session.delete("cartDelete", id);
+	}
+
+	@Override
+	public List<Payment> orderCartList(int id) {
+		return session.selectList("orderCartList", id);
+	}
+
+	@Override
+	public List<Payment> orderResultView(String orderNo) {
+		return session.selectList("orderResultView", orderNo);
+	}
+
+	@Override
+	public List<Payment> orderListAll(int id) {
+		return session.selectList("orderListAll", id);
 	}
 
 	
