@@ -17,7 +17,7 @@ public interface JEService {
 
 	int update(Product product);
 
-	List<Product> listManager();
+	//List<Product> listManager();
 
 	int insert(Product product);
 
@@ -36,10 +36,10 @@ public interface JEService {
 	 */
 
 	//카트 담기
-	void cartAdd(Cart cart);
+	void addCart(Cart cart);
 
 	//카트 리스트
-	List<Cart> list(String id);
+	List<Cart> cartList(String id);
 
 	//카트 수정
 	int cartUpdate(Cart cart);

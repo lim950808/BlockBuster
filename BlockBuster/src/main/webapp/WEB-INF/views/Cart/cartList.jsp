@@ -2,14 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <%@ include file="../header1.jsp" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
 
 <style>
 
@@ -82,6 +79,25 @@
 .listResult { padding:20px; background:#eee; }
 .listResult .sum { float:left; width:45%; font-size:22px; }
 
+.listResult .orderOpne { float:right; width:45%; text-align:right; }
+.listResult .orderOpne button { font-size:18px; padding:5px 10px; border:1px solid #999; background:#fff;}
+.listResult::after { content:""; display:block; clear:both; } 
+
+.orderInfo { border:5px solid #eee; padding:20px; display:none; }
+.orderInfo .inputArea { margin:10px 0; }
+.orderInfo .inputArea label { display:inline-block; width:120px; margin-right:10px; }
+.orderInfo .inputArea input { font-size:14px; padding:5px; }
+#userAddr2, #userAddr3 { width:250px; }
+
+.orderInfo .inputArea:last-child { margin-top:30px; }
+.orderInfo .inputArea button { font-size:20px; border:2px solid #ccc; padding:5px 10px; background:#fff; margin-right:20px;}
+
+.orderInfo .inputArea #sample2_address { width:230px; }
+.orderInfo .inputArea #sample2_detailAddress { width:280px; }
+.orderInfo .inputArea #sample2_extraAddress { display:none; }
+
+<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+
 </style>
 
 </head>
@@ -136,10 +152,10 @@
   						</div>
  					</li>
 					<c:set var="sum" value="0" />
- 					<c:forEach items="${cartList}" var="cartList">
+ 					<c:forEach items="${cart}" var="cart">
 	 					<li>
 	 						<div class="checkBox">
-   								<input type="checkbox" name="chBox" class="chBox" data-cartNum="${cartList.no}" />
+   								<input type="checkbox" name="chBox" class="chBox" data-cartNum="${cart.no}" />
    								<script>
  								$(".chBox").click(function(){
   									$("#allCheck").prop("checked", false);
@@ -153,13 +169,14 @@
 	  						</div> 
 	  						<div class="info">
 	   							<p>
-	   								${cartList.title}<br />
-	   								<fmt:formatNumber pattern="###,###,###" value="${cartList.price}" />원
+	   								<span>제목</span>${cart.title}<br />
+	   								<span>가격</span><fmt:formatNumber pattern="###,###,###" value="${cart.price}" />원
 	   							</p>
+	   							
 	   							<div class="delete">
-	   								<button type="button" class="delete_${cartList.no}_btn" data-cartNum="${cartList.no}">삭제</button>
+	   								<button type="button" class="delete_${price.no}_btn" data-cartNum="${cart.no}">삭제</button>
 	   								<script>
-									$(".delete_${cartList.no}_btn").click(function(){
+									$(".delete_${cart.no}_btn").click(function(){
 										var confirm_val = confirm("정말 삭제하시겠습니까?");
 									  
 									  	if(confirm_val) {
@@ -185,7 +202,7 @@
 	   							</div>
 	  						</div>
 	 					</li>
-	 				<c:set var="sum" value="${sum + (cartList.price * cartList.count)}" />
+	 				<c:set var="sum" value="${sum + (cart.price * cart.count)}" />
  					</c:forEach>
 				</ul>
 				<div class="listResult">
@@ -193,11 +210,27 @@
 				  		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
 				 	</div>
 				</div>
+				
+				<div class="orderInfo">
+					<form role="form" method="post" autocomplete="off">
+						<div class="inputArea">
+						<button type="submit" class="order_btn">주문</button>
+						<button type="button" class="cancel_btn">취소</button>
+						
+						<script>
+						$(".cancel_btn").click(function(){
+							$(".orderInfo").slideUp();  // $(".orderInfo")를 숨기고
+							$(".orderOpne_bnt").slideDown();  // $(".orderOpne_bnt")를 나타냄
+						});						
+						</script>
+						</div>
+					</form>
+				</div>
+
 			</section>
 		
 		</div>
 	</section>
 </div>
 </body>
-<%@ include file="../footer.jsp" %>
 </html>

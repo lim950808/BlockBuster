@@ -17,6 +17,7 @@ td {	background: #f9f3b3;	}
 </style>
 </head>
 <body>
+${sessionScope.id }
 <h2>영상 상세정보</h2>
 <form action="update" method="post">
   <input type="hidden" name="pno" value="${product.pno }">

@@ -47,10 +47,10 @@ public class loginController {
 		
 		//일치 시, 입력받은 id를 세션에 저장해서 메인으로
 		HttpSession session = request.getSession();
-		session.setAttribute("id", id);
+		session.setAttribute("member", id);
 		
 		
-		return "forward:home";
+		return "forward:/home";
 		
 	}
 	

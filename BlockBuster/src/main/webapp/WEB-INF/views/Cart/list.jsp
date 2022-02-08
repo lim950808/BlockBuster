@@ -73,7 +73,7 @@
 		<div class="card-body" id="list-body"></div>
 		<div class="card-footer">
 			<div class="pull-right" style="margin: 10px">
-				<a href="/Cart/payment" class="btn btn-success pull-right" id="btnOrder">주문하기</a>
+				<a href="/Order/order" class="btn btn-success pull-right" id="btnOrder">주문하기</a>
 				<div class="pull-right" style="margin: 5px">
 					전체 금액: <b>0원</b>
 				</div>
@@ -87,7 +87,7 @@ cartList();
 function cartList(){
 	$.ajax({
 		async:false,
-		url:"/Cart/cartList",
+		url:"/Cart/list",
 		type:"get",
 		dataType:"json",
 		success:function(data){

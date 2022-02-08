@@ -16,7 +16,8 @@ tr { height: 30px; background: yellow; }
 th {	background: #b9b973;	}
 td {	background: #f9f3b3;	}
 </style>
-<script>
+
+<!-- <script>
     function chk() {
         if(!frm.pno.value) {
             alert('품번을 입력한 후에 확인하세요');
@@ -24,20 +25,21 @@ td {	background: #f9f3b3;	}
             return false;
         } else location.href="confirm?pno=" + frm.pno.value;
     }
-</script>
+</script> -->
+
 </head>
 <body>
 	<h2>영상정보 입력</h2>
     <c:if test="${msg != null}">${msg}</c:if>
     <form action="write" method="post" name="frm">
     <table>
-        <tr>
+        <%-- <tr>
             <th>품번</th>
             <td>
                 <input type="number" name="pno" required="required" maxlength="4" value="${pno}">
                 <input type="button" value="중복확인" onclick="chk()">
             </td>
-        </tr>
+        </tr> --%>
         <tr>
             <th>영상제목</th>
             <td>

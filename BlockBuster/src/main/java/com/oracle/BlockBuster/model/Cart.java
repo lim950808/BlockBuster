@@ -14,4 +14,6 @@ public class Cart {
 	private int count; //수량
 	private int price; //가격
 	
+	private String p_img; //상품 사진
+	
 }

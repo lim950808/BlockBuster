@@ -17,7 +17,7 @@ public interface JEDao {
 
 	int update(Product product);
 
-	List<Product> listManager();
+	//List<Product> listManager();
 
 	int insert(Product product);
 
@@ -37,9 +37,9 @@ public interface JEDao {
 	 * //카트 삭제 void deleteCart(Cart cart) throws Exception;
 	 */
 
-	int save(Cart cart);
+	void addCart(Cart cart);
 
-	List<Cart> findAll(String id);
+	List<Cart> cartList(String id);
 
 	int cartUpdate(Cart cart);
 

@@ -64,16 +64,16 @@ public class JEDaoImpl implements JEDao {
 		return uptCnt;
 	}
 
-	@Override
-	public List<Product> listManager() {
-		List<Product> productList = null;
-		try {
-			productList = session.selectList("JESelectManager");
-		}catch (Exception e) {
-			
-		}
-		return productList;
-	}
+//	@Override
+//	public List<Product> listManager() {
+//		List<Product> productList = null;
+//		try {
+//			productList = session.selectList("JESelectManager");
+//		}catch (Exception e) {
+//			
+//		}
+//		return productList;
+//	}
 
 	@Override
 	public int insert(Product product) {
@@ -143,15 +143,19 @@ public class JEDaoImpl implements JEDao {
 	 */
 
 	@Override
-	public int save(Cart cart) {
-		return session.insert("cartAdd", cart);
+	public void addCart(Cart cart) {
+		System.out.println("JEDaoImpl addCart start..");
+		try {
+			session.insert("addCart", cart);
+
+		} catch (Exception e) {
+			System.out.println("JEDaoImpl addCart e.getMessage())->"+e.getMessage());
+		}
 	}
 
 	@Override
-	public List<Cart> findAll(String id) {
-		List<Cart> list = null;
-		session.selectList("list", id);
-		return list;
+	public List<Cart> cartList(String id) {
+		return session.selectList("cartList", id);
 	}
 
 

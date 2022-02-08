@@ -44,12 +44,12 @@ public class JEServiceImpl implements JEService {
 		return uptCnt;
 	}
 
-	@Override
-	public List<Product> listManager() {
-		List<Product> productList = null;
-		productList = jd.listManager();
-		return productList;
-	}
+//	@Override
+//	public List<Product> listManager() {
+//		List<Product> productList = null;
+//		productList = jd.listManager();
+//		return productList;
+//	}
 
 	@Override
 	public int insert(Product product) {
@@ -101,13 +101,13 @@ public class JEServiceImpl implements JEService {
 	 */
 
 	@Override
-	public void cartAdd(Cart cart) {
-		jd.save(cart);
+	public void addCart(Cart cart) {
+		jd.addCart(cart);
 	}
 
 	@Override
-	public List<Cart> list(String id) {
-		return jd.findAll(id);
+	public List<Cart> cartList(String id) {
+		return jd.cartList(id);
 	}
 
 	@Override

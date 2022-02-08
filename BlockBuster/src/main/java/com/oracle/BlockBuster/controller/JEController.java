@@ -73,26 +73,29 @@ public class JEController {
 	@GetMapping(value = "/Admin/updateForm")
 	public String updateForm(int pno, Model model) {
 		Product product = js.detail(pno);
+		System.out.println("JEController updateForm start...");
 		model.addAttribute("product", product);
 		
 		return "/Admin/updateForm";
 	}
 	// 영상 수정
-	@PostMapping(value = "update")
+	@PostMapping(value = "/Admin/update")
 	public String update(Product product, Model model) {
 		int uptCnt = js.update(product);
-		//model.addAttribute("uptCnt", uptCnt);				// Test Controller간 Date 전달
+		System.out.println("JEController update count->" + uptCnt);
+		model.addAttribute("uptCnt", uptCnt);				// Test Controller간 Date 전달
 		//model.addAttribute("kk3", "Message Test");	// Test Controller간 Date 전달
 		
-		return "forward:/Admin/productList";
+		return "forward:/Admin/detail";
 	}
 	//영상 등록
 	@RequestMapping(value = "/Admin/writeForm")
 	public String writeForm(Model model) {
+		System.out.println("JEController writeForm start...");
 		//Emp emp = null;
 		//관리자 사번만 Get
-		List<Product> productList = js.listManager();
-		model.addAttribute("productMngList", productList); //product Manager List
+//		List<Product> productList = js.listManager();
+//		model.addAttribute("productMngList", productList); //product Manager List
 		
 		return "/Admin/writeForm";
 	}
@@ -101,6 +104,7 @@ public class JEController {
 	public String write(Product product, Model model) {
 		//System.out.println("emp.getHiredate->"+emp.getHiredate());
 		// Service, Dao , Mapper명[insertEmp] 까지 -> insert
+		System.out.println("JEController start write...");
 		int result = js.insert(product);
 		if(result > 0) return "redirect:/Admin/productList";
 		else {
@@ -108,24 +112,25 @@ public class JEController {
 			return "forward:/Admin/writeForm";
 		}
 	}
-	//중복 체크
-	@GetMapping(value = "/Admin/confirm")
-	public String confirm(int pno, Model model) {
-		Product product = js.detail(pno);
-		model.addAttribute("pno", pno);
-		if(product != null) {
-			model.addAttribute("msg", "중복된 영상입니다.");
-			return "forward:/Admin/writeForm";
-		}else {
-			model.addAttribute("msg", "등록 가능합니다.");
-			return "forward:/Admin/writeForm";
-		}
-	}
+//	//중복 체크
+//	@GetMapping(value = "/Admin/confirm")
+//	public String confirm(int pno, Model model) {
+//		Product product = js.detail(pno);
+//		model.addAttribute("pno", pno);
+//		if(product != null) {
+//			model.addAttribute("msg", "중복된 영상입니다.");
+//			return "forward:/Admin/writeForm";
+//		}else {
+//			model.addAttribute("msg", "등록 가능합니다.");
+//			return "forward:/Admin/writeForm";
+//		}
+//	}
 	//상품 삭제
-	@RequestMapping(value = "delete")
+	@RequestMapping(value = "/Admin/delete")
 	public String delete(int pno, Model model) {
+		System.out.println("JEController Start delete...");
 		int result = js.delete(pno);
-		return "redirect:/Admin/productList";
+		return "redirect:productList";
 	}
 	//카테고리별 영상 리스트
 	@RequestMapping(value = "/Product/list", method = RequestMethod.GET)
@@ -194,21 +199,52 @@ public class JEController {
 	 */
 	
 	//카트 담기
-	@PostMapping("/Cart/add")
-	public String cartAdd(Cart cart, HttpSession session) {
-		Member member = (Member)session.getAttribute("member");
-		cart.setId(member.getId());		
-		js.cartAdd(cart);		
-		return "redirect:/Cart/list";
+//	@RequestMapping(value = "/Cart/add", method = RequestMethod.POST)
+//	public String cartAdd(Cart cart, Model model, HttpSession session) {
+//		Member id = (Member)session.getAttribute("id");
+//		cart.setId(member.getId());		
+//		js.cartAdd(cart);		
+//		return "redirect:/Cart/list";
+//	}
+//	@PostMapping("/Cart/add")
+//	@RequestMapping(value = "/Cart/add")
+//	public String cartAdd(Cart cart, Model model, HttpSession session) {
+//		Member member = (Member)session.getAttribute("member");
+//		String id = member.getId();
+//		model.addAttribute("id", id);
+//		
+//		js.cartAdd(cart);
+//		return "redirect:list";
+//	}
+	@ResponseBody
+	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
+	public int addCart(Cart cart, HttpSession session) throws Exception {
+		int result = 0;
+		System.out.println("addCart start...");
+		String member = (String)session.getAttribute("member");
+		System.out.println("addCart member->"+member);
+	    if(member != null) {
+			cart.setId(member);
+			js.addCart(cart);
+			result = 1;
+		}
+		return result;
 	}
 	
-	//카트 목록
-	@GetMapping("/Cart/list")
-	public void cartList(HttpSession session, Model model) {
+//	//카트 목록
+//	@GetMapping(value = "/Cart/list")
+//	public String cartList() {
+//		return "/Cart/list";
+//	}
+	
+	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET)
+	public void cartList(HttpSession session, Model model) throws Exception {
+		System.out.println("get cartList started...");
+		// Login member
 		Member member = (Member)session.getAttribute("member");
 		String id = member.getId();
-		List<Cart> list = js.list(id);
-		model.addAttribute("list", list);
+		List<Cart> cartList = js.cartList(id);
+		model.addAttribute("cartList", cartList);
 	}
 	
 	/*
@@ -244,10 +280,10 @@ public class JEController {
 	
 	@GetMapping("")
 	public String orderPathRedirect() {
-		return "redirect:/Order/";
+		return "redirect:/Order/order";
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/Order/order")
 	public String order() {
 		return "/Order/order";
 	}

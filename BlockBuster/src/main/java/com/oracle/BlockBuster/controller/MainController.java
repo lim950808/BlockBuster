@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oracle.BlockBuster.service.MainService;
 
@@ -18,14 +19,14 @@ public class MainController {
 	public MainService ms;
 	
 	// main페이지 시작
-	@GetMapping(value = "main")
+	@RequestMapping(value = "main")
 	public String main() {
 		logger.info("main 시작");
 		return "main";
 	}
 	// main페이지 끝.
 	
-	@GetMapping(value = "home")
+	@RequestMapping(value = "home")
 	public String home() {
 		logger.info("home 시작");
 		return "home";

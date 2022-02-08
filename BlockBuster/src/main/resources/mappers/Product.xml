@@ -29,12 +29,12 @@
 	</update>
 	
 	<select id="JESelectManager" resultType="Product">
-	
+		SELECT * FROM product
 	</select>
 	
 	<select id="insertProduct" parameterType="Product">
 		INSERT INTO product
-		VALUES(product_pno_seq, #{title}, #{category}, #{genre}, #{year}, #{country}, #{director}, #{casting}, #{description}, #{price}, #{p_img}, #{p_video})
+		VALUES(#{title}, #{category}, #{genre}, #{year}, #{country}, #{director}, #{casting}, #{description}, #{price}, #{p_img}, #{p_video})
 	</select>
 	
 	<delete id="deleteProduct" parameterType="int">
@@ -66,19 +66,19 @@
 	</select>
 	
  	<!-- 카트 담기 -->
-	<!-- <insert id="addCart">
- 		INSERT INTO cart (no, id, title, count, price)
- 		VALUES (cart_no_seq, #{id}, #{title}, #{count}, #{price})
-	</insert> -->
+	<insert id="addCart" parameterType="Cart">
+ 		INSERT INTO cart (no, id, pno, title, price)
+ 		VALUES (cart_no_seq.NEXTVAL, #{id}, #{pno}, #{title}, #{price})
+	</insert>
 	
 	<!-- 카트 리스트 -->
-	<!-- <select id="cartList" resultType="CartList">
+	<select id="cartList" resultType="Cart">
 		SELECT row_number() over(order by c.no desc) as no, c.no, c.id, c.pno, p.title, p.price, p.p_img
 		FROM cart c
 		INNER JOIN product p
 		ON c.pno = p.pno
 		WHERE c.id = #{id}
-	</select> -->
+	</select>
 	
 	<!-- 카트 삭제 -->
 	<!-- <delete id="deleteCart">
@@ -87,7 +87,7 @@
         AND id = #{id}
 	</delete> -->
  	
- 	<insert id="save">
+ 	<!-- <insert id="save">
  		INSERT INTO cart (no, id, title, count, price)
  		VALUES (cart_no_seq, #{id}, #{title}, #{count}, #{price})
  	</insert>
@@ -98,7 +98,7 @@
 		INNER JOIN product p
 		ON c.pno = p.pno
 		WHERE c.id = #{id}
- 	</select>
+ 	</select> -->
  	
  	
  	<delete id="cartDelete">

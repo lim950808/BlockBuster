@@ -10,18 +10,40 @@
 
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="/resources/css/user/shop/default.css" />
-<link rel="stylesheet" href="/css/style.css">
-<style>
-		div.products div.p_img { float:left; width:350px; }
-		div.products div.p_img img { width:350px; height:auto; }
+<!-- <link rel="stylesheet" href="/css/style.css"> -->
+	<style>
+		div.goods div.goodsImg { float:left; width:350px; }
+		div.goods div.goodsImg img { width:350px; height:auto; }
 		
-		div.products div.info { float:right; width:330px; font-size:22px; }
-		div.products div.info p { margin:0 0 20px 0; }
-		div.products div.info p span { display:inline-block; width:100px; margin-right:15px; } 
+		div.goods div.goodsInfo { float:right; width:330px; font-size:22px; }
+		div.goods div.goodsInfo p { margin:0 0 20px 0; }
+		div.goods div.goodsInfo p span { display:inline-block; width:100px; margin-right:15px; } 
+		
+		div.goods div.goodsInfo p.cartStock input { font-size:22px; width:50px; padding:5px; margin:0; border:1px solid #eee; }
+		div.goods div.goodsInfo p.cartStock button { font-size:26px; border:none; background:none; } 
+		div.goods div.goodsInfo p.addToCart { text-align:right; }
+		div.goods div.goodsInfo p.addToCart button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+		div.goods div.gdsDes { font-size:18px; clear:both; padding-top:30px; }
+	</style>
+	
 
-		div.products div.info p.addToCart { text-align:right; }
-		div.products div.info p.addToCart button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
-		div.products div.description { font-size:18px; clear:both; padding-top:30px; }
+	<style>
+		section.replyForm { padding:30px 0; }
+		section.replyForm div.input_area { margin:10px 0; }
+		section.replyForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px;; height:150px; }
+		section.replyForm button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
+		
+		section.replyList { padding:30px 0; }
+		section.replyList ol { padding:0; margin:0; }
+		section.replyList ol li { padding:10px 0; border-bottom:2px solid #eee; }
+		section.replyList div.userInfo { }
+		section.replyList div.userInfo .userName { font-size:24px; font-weight:bold; }
+		section.replyList div.userInfo .date { color:#999; display:inline-block; margin-left:10px; }
+		section.replyList div.replyContent { padding:10px; margin:20px 0; }
+		section.replyList div.replyFooter { margin-bottom:10px; }
+		
+		section.replyList div.replyFooter button { font-size:14px; border: 1px solid #999; background:none; margin-right:10px; }
+		
 	</style>
 	
 	<style>
@@ -34,7 +56,9 @@
 	</style>
 </head>
 <body>
-<%-- <%@ include file="../header1.jsp" %> --%>
+
+${sessionScope.id }
+
 <pre>
 
 </pre>
@@ -46,7 +70,9 @@
 			<section id="content">
 				
 				<form role="form" method="post">
-					<input type="hidden" name="pno" value="${product.pno}" />
+					<input type="hidden" name="pno" id="pno" value="${product.pno}" />
+					<input type="hidden" name="price" id="price" value="${product.price}" />
+					<input type="hidden" name="title" id="title" value="${product.title}" />
 				</form>
 				
 				<div class="products"><!-- <div class="goods"> -->
@@ -63,7 +89,7 @@
 						<p class="price">
 							<fmt:formatNumber pattern="###,###,###" value="${product.price}" /> 원
 						</p>
-						<form action="/Cart/list" method="post" onsubmit="return cartAlert();">
+						<!-- <form action="/Cart/list" method="post" onsubmit="return cartAlert();">
 						<script>
 						function cartAlert(){
 							var cartAlert = confirm("장바구니에 담으시겠습니까?");
@@ -77,14 +103,18 @@
 						<div class="add_to_cart">
 		              		<input type="submit" value="장바구니" class="btn_3">
 		              	</div>
-						</form>
-						<!-- <p class="addToCart">
+						</form> -->
+						<p class="addToCart">
 							<button type="button" class="addCart_btn">장바구니</button>
 							<script>
 								$(".addCart_btn").click(function(){
 									
 									var pno = $("#pno").val();
-									var data = {pno : pno};
+									var price = $("#price").val();
+									var title = $("#title").val();
+									var data = {pno : pno,
+												price : price,
+												title : title};
 									
 									$.ajax({
 										url : "/Product/productDetail/addCart",
@@ -104,7 +134,7 @@
 									});
 								});
 							</script>
-						</p> -->
+						</p>
 					</div>
 					
 					<div class="description">${product.description}</div>
