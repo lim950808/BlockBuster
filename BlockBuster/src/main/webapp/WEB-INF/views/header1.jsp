@@ -190,7 +190,7 @@ body {
 	  		</div>
 	  </div> -->
 	  
-	  <a href="../cart.jsp"><i class="fa fa-shopping-cart"></i></a>
+	  <a href="/Cart/cartList"><i class="fa fa-shopping-cart"></i></a>
 	  
 	  <form>
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">

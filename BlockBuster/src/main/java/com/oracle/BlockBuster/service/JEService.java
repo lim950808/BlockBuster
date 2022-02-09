@@ -39,18 +39,23 @@ public interface JEService {
 	void addCart(Cart cart);
 
 	//카트 리스트
-	List<Cart> cartList(String id);
+	List<Cart> cartList(String member);
 
-	//카트 수정
-	int cartUpdate(Cart cart);
+//	//카트 수정
+//	int cartUpdate(Cart cart);
 
 	//카트 삭제
-	int cartDelete(int id);
+	void deleteCart(Cart cart);
+	//int cartDelete(int id);
 
 	List<Payment> orderCartList(int id);
 
 	List<Payment> orderResultView(String orderNo);
 
 	List<Payment> orderListAll(int id);
+
+	void orderInfo(Payment payment);
+
+
 
 }

@@ -216,6 +216,8 @@ public class JEController {
 //		js.cartAdd(cart);
 //		return "redirect:list";
 //	}
+	
+	//카트에 담기(최종)
 	@ResponseBody
 	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
 	public int addCart(Cart cart, HttpSession session) throws Exception {
@@ -237,14 +239,21 @@ public class JEController {
 //		return "/Cart/list";
 //	}
 	
+	//카트 리스트
 	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET)
-	public void cartList(HttpSession session, Model model) throws Exception {
+	public String getCartList(HttpSession session, Model model) throws Exception {
 		System.out.println("get cartList started...");
 		// Login member
-		Member member = (Member)session.getAttribute("member");
-		String id = member.getId();
-		List<Cart> cartList = js.cartList(id);
+		String member = (String)session.getAttribute("member");
+		System.out.println("get cartList member->"+member);
+		// Login member
+//		Member member = (Member)session.getAttribute("member");
+//		String id = member.getId();
+		List<Cart> cartList = js.cartList(member);
+		System.out.println("get cartList cartList.size()->"+cartList.size());
 		model.addAttribute("cartList", cartList);
+		return "/Cart/cartList";
+
 	}
 	
 	/*
@@ -262,16 +271,41 @@ public class JEController {
 	 * return listToJson; }
 	 */
 	
-	@RequestMapping("/Cart/update")
-	public @ResponseBody int cartUpdate(Cart cart) {
-		int result = js.cartUpdate(cart);
+//	@RequestMapping("/Cart/update")
+//	public @ResponseBody int cartUpdate(Cart cart) {
+//		int result = js.cartUpdate(cart);
+//		return result;
+//	}
+	
+	//카트 삭제
+	@ResponseBody
+	@RequestMapping(value = "/Cart/deleteCart", method = RequestMethod.POST)
+	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, Cart cart) {
+		System.out.println("Delete cart");
+		String member = (String)session.getAttribute("member");
+		int result = 0;
+		int no = 0; //카트 번호(cartNum)
+		
+		//로그인 여부 구분
+		if(member != null) {
+			cart.setId(member);
+			for(String i : chArr) {
+				no = Integer.parseInt(i);
+				cart.setNo(no);
+				js.deleteCart(cart);
+			}
+			result = 1;
+		}
 		return result;
 	}
 	
-	@RequestMapping("/Cart/delete")
-	public @ResponseBody int cartDelete(@RequestParam("id") int id) {
-		int result = js.cartDelete(id);
-		return result;
+	//주문
+	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.POST)
+	public void order(HttpSession session, Payment payment) {
+		System.out.println("order start...");
+		String member = (String)session.getAttribute("member");
+		
+		js.orderInfo(payment);
 	}
 	
 	/////////////////////////////////

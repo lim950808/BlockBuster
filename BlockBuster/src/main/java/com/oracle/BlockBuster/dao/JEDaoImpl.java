@@ -154,19 +154,32 @@ public class JEDaoImpl implements JEDao {
 	}
 
 	@Override
-	public List<Cart> cartList(String id) {
-		return session.selectList("cartList", id);
+	public List<Cart> cartList(String member) {
+		 List<Cart> listCartRtn = null;
+		System.out.println("JEDaoImpl cartList start..");
+		try {
+			listCartRtn = session.selectList("cartList", member);
+			System.out.println("JEDaoImpl cartList listCartRtn.size()--<"+listCartRtn.size());
+		} catch (Exception e) {
+			System.out.println("JEDaoImpl cartList e.getMessage())->"+e.getMessage());
+		}
+		return listCartRtn;
 	}
 
 
-	@Override
-	public int cartUpdate(Cart cart) {
-		return session.update("cartUpdate", cart);
-	}
+//	@Override
+//	public int cartUpdate(Cart cart) {
+//		return session.update("cartUpdate", cart);
+//	}
 
+//	@Override
+//	public int cartDelete(int id) {
+//		return session.delete("cartDelete", id);
+//	}
+	
 	@Override
-	public int cartDelete(int id) {
-		return session.delete("cartDelete", id);
+	public void deleteCart(Cart cart) {
+		session.delete("deleteCart", cart);
 	}
 
 	@Override
@@ -182,6 +195,11 @@ public class JEDaoImpl implements JEDao {
 	@Override
 	public List<Payment> orderListAll(int id) {
 		return session.selectList("orderListAll", id);
+	}
+
+	@Override
+	public void orderInfo(Payment payment) {
+		session.insert("orderInfo", payment);
 	}
 
 	

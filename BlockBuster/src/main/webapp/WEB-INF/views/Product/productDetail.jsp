@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<%@ include file="../header1.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,7 +106,7 @@ ${sessionScope.id }
 		              	</div>
 						</form> -->
 						<p class="addToCart">
-							<button type="button" class="addCart_btn">장바구니</button>
+							<button type="button" class="addCart_btn">장바구니에 담기</button>
 							<script>
 								$(".addCart_btn").click(function(){
 									
@@ -123,13 +124,13 @@ ${sessionScope.id }
 										success : function(result){
 											
 											if(result == 1) {
-												alert("카트 담기 성공");
+												alert("장바구니에서 결제를 완료해주세요.");
 											} else {
-												alert("회원만 사용가능")
+												alert("로그인 해주세요.")
 											}
 										},
 										error : function(){
-											alert("카트 담기 실패");
+											alert("카트 담기 실패!!");
 										}
 									});
 								});

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../header1.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,9 +97,14 @@
 .orderInfo .inputArea #sample2_detailAddress { width:280px; }
 .orderInfo .inputArea #sample2_extraAddress { display:none; }
 
-<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
 
 </style>
+
+<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+
+<!-- kakaoPay -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 </head>
 <body>
@@ -151,30 +157,32 @@
 							</script>
   						</div>
  					</li>
+ 					
 					<c:set var="sum" value="0" />
- 					<c:forEach items="${cart}" var="cart">
+					
+ 					<c:forEach var="cart" items="${cartList}" >
 	 					<li>
 	 						<div class="checkBox">
-   								<input type="checkbox" name="chBox" class="chBox" data-cartNum="${cart.no}" />
+   								<input type="checkbox" name="chBox" class="chBox" data-no="${cart.no}" />
    								<script>
- 								$(".chBox").click(function(){
-  									$("#allCheck").prop("checked", false);
- 								});
+	 								$(".chBox").click(function(){
+	  									$("#allCheck").prop("checked", false);
+	 								});
 								</script>
   							</div>
-	  						<div class="p_img">
+	  						<%-- <div class="p_img">
 	   							<a href="/Product/productDetail?pno=${product.pno}">
 	   								<img src="${product.p_img}">
 	   							</a>
-	  						</div> 
+	  						</div>  --%>
 	  						<div class="info">
 	   							<p>
-	   								<span>제목</span>${cart.title}<br />
-	   								<span>가격</span><fmt:formatNumber pattern="###,###,###" value="${cart.price}" />원
+	   								<span>제목 : </span>${cart.title}<br />
+	   								<span>가격 : </span><fmt:formatNumber pattern="###,###,###" value="${cart.price}" />원
 	   							</p>
 	   							
 	   							<div class="delete">
-	   								<button type="button" class="delete_${price.no}_btn" data-cartNum="${cart.no}">삭제</button>
+	   								<button type="button" class="delete_${cart.no}_btn" data-no="${cart.no}">삭제</button>
 	   								<script>
 									$(".delete_${cart.no}_btn").click(function(){
 										var confirm_val = confirm("정말 삭제하시겠습니까?");
@@ -202,27 +210,81 @@
 	   							</div>
 	  						</div>
 	 					</li>
-	 				<c:set var="sum" value="${sum + (cart.price * cart.count)}" />
+	 				<c:set var="sum" value="${sum + cart.price}" />
  					</c:forEach>
 				</ul>
 				<div class="listResult">
 					<div class="sum">
 				  		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
 				 	</div>
+				 	<div class="orderOpne">
+					<button type="button" class="orderOpne_bnt">주문 정보 입력</button>
+					<script>
+						$(".orderOpne_bnt").click(function(){
+							$(".orderInfo").slideDown();  // $(".orderInfo")를 나타내고
+							$(".orderOpne_bnt").slideUp();  // $(".orderOpne_bnt")를 숨김
+						});						
+					</script>
+					
+				</div>
 				</div>
 				
 				<div class="orderInfo">
 					<form role="form" method="post" autocomplete="off">
+						<input type="hidden" name="amount" value="${sum}" />
 						<div class="inputArea">
-						<button type="submit" class="order_btn">주문</button>
+						<!-- <button type="submit" class="order_btn">주문</button> -->
+						<button id="check_module" type="button">결제</button>
+							<script>
+								$("#check_module").click(function () {
+									var IMP = window.IMP; // 생략가능
+									IMP.init('imp05518360'); 
+									// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+									// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+									IMP.request_pay({
+										pg: 'kakao',
+										pay_method: 'card',
+										merchant_uid: 'merchant_' + new Date().getTime(),
+										/* 
+										 *  merchant_uid에 경우 
+										 *  https://docs.iamport.kr/implementation/payment
+										 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+										 */
+										name: '주문명 : ${cart.title}',
+										// 결제창에서 보여질 이름
+										// name: '주문명 : ${auction.a_title}',
+										// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
+										amount: '${cart.price}',
+										// amount: ${bid.b_bid},
+										// 가격 
+										buyer_name: '${cart.id}',
+										// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
+										// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
+										}, function (rsp) {
+											console.log(rsp);
+										if (rsp.success) {
+											var msg = '결제가 완료되었습니다.';
+											msg += '결제 금액 : ' + rsp.paid_amount;
+											// success.submit();
+											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
+											// 자세한 설명은 구글링으로 보시는게 좋습니다.
+										} else {
+											var msg = '결제에 실패하였습니다.';
+											msg += '에러내용 : ' + rsp.error_msg;
+										}
+										alert(msg);
+									});
+								});
+							</script>
+							
 						<button type="button" class="cancel_btn">취소</button>
-						
-						<script>
-						$(".cancel_btn").click(function(){
-							$(".orderInfo").slideUp();  // $(".orderInfo")를 숨기고
-							$(".orderOpne_bnt").slideDown();  // $(".orderOpne_bnt")를 나타냄
-						});						
-						</script>
+							<script>
+							$(".cancel_btn").click(function(){
+								$(".orderInfo").slideUp();  // $(".orderInfo")를 숨기고
+								$(".orderOpne_bnt").slideDown();  // $(".orderOpne_bnt")를 나타냄
+							});						
+							</script>
+							
 						</div>
 					</form>
 				</div>

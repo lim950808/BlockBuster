@@ -72,13 +72,37 @@
 	</insert>
 	
 	<!-- 카트 리스트 -->
-	<select id="cartList" resultType="Cart">
-		SELECT row_number() over(order by c.no desc) as no, c.no, c.id, c.pno, p.title, p.price, p.p_img
+	<!-- <select id="cartList" resultType="Cart">
+		SELECT row_number() over(order by c.no desc) as num, c.no, c.id, c.pno, p.title, p.price, p.p_img
 		FROM cart c
 		INNER JOIN product p
 		ON c.pno = p.pno
 		WHERE c.id = #{id}
+	</select> -->
+	
+	<!-- 카트 리스트 -->
+	<select id="cartList" resultType="Cart">
+		SELECT c.no, c.count, p.pno, m.id, p.title, p.price, p.p_img
+		FROM member m, product p, cart c
+		WHERE m.id = c.id
+		AND c.pno = p.pno
+		AND c.id = #{id}
+		ORDER BY no DESC
 	</select>
+	
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+		DELETE cart
+		WHERE no = #{no}
+		AND id = #{id}
+	</delete>
+	
+	<!-- 주문 상세 정보 -->
+	<insert id="orderInfo_Details">
+		INSERT INTO payment(s_no, id, pno, price)
+			SELECT payment_s_no_seq.NEXTVAL, #{id}, #{pno}, #{price}
+			FROM cart
+	</insert>
 	
 	<!-- 카트 삭제 -->
 	<!-- <delete id="deleteCart">
@@ -101,9 +125,9 @@
  	</select> -->
  	
  	
- 	<delete id="cartDelete">
+ 	<!-- <delete id="cartDelete">
  		DELETE FROM cart WHERE id = #{id}
- 	</delete>
+ 	</delete> -->
  	
  	<update id="cartUpdate">
  		UPDATE cart SET count=#{count} WHERE id=#{id}

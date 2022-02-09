@@ -39,16 +39,20 @@ public interface JEDao {
 
 	void addCart(Cart cart);
 
-	List<Cart> cartList(String id);
+	List<Cart> cartList(String member);
 
-	int cartUpdate(Cart cart);
+//	int cartUpdate(Cart cart);
 
-	int cartDelete(int id);
+//	int cartDelete(int id);
+	
+	void deleteCart(Cart cart);
 
 	List<Payment> orderCartList(int id);
 
 	List<Payment> orderResultView(String orderNo);
 
 	List<Payment> orderListAll(int id);
+
+	void orderInfo(Payment payment);
 
 }

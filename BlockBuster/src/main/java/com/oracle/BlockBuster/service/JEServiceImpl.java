@@ -106,18 +106,23 @@ public class JEServiceImpl implements JEService {
 	}
 
 	@Override
-	public List<Cart> cartList(String id) {
-		return jd.cartList(id);
+	public List<Cart> cartList(String member) {
+		return jd.cartList(member);
 	}
 
-	@Override
-	public int cartUpdate(Cart cart) {
-		return jd.cartUpdate(cart);
-	}
+//	@Override
+//	public int cartUpdate(Cart cart) {
+//		return jd.cartUpdate(cart);
+//	}
 
+//	@Override
+//	public int cartDelete(int id) {
+//		return jd.cartDelete(id);
+//	}
+	
 	@Override
-	public int cartDelete(int id) {
-		return jd.cartDelete(id);
+	public void deleteCart(Cart cart) {
+		jd.deleteCart(cart);
 	}
 
 	@Override
@@ -138,10 +143,11 @@ public class JEServiceImpl implements JEService {
 		return orderList;
 	}
 
-
-	
-
-	
+	@Override
+	public void orderInfo(Payment payment) {
+		jd.orderInfo(payment);
+		
+	}
 
 
 }
