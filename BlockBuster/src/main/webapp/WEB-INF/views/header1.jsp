@@ -173,8 +173,8 @@ body {
 	  <div class="dropdown">
 	  	<button class="dropbtn">마이페이지</button>
 	  		<div class="dropdown-content">
-	    		<a href="#">내 정보</a>
-	    		<a href="/Admin/productList">구매내역</a>
+	    		<a href="/Admin/productList">내 정보</a>
+	    		<a href="/Order/list">구매내역</a>
 	    		<a href="#">1:1 문의</a>
 	    		<a href="#">로그아웃</a>
 	  		</div>

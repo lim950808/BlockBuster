@@ -47,7 +47,8 @@ public interface JEDao {
 	
 	void deleteCart(Cart cart);
 
-	List<Payment> orderCartList(int id);
+	//구매내역
+	List<Payment> orderCartList(String member);
 
 	List<Payment> orderResultView(String orderNo);
 

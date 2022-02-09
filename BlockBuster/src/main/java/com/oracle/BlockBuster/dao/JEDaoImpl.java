@@ -183,8 +183,8 @@ public class JEDaoImpl implements JEDao {
 	}
 
 	@Override
-	public List<Payment> orderCartList(int id) {
-		return session.selectList("orderCartList", id);
+	public List<Payment> orderCartList(String member) {
+		return session.selectList("orderCartList", member);
 	}
 
 	@Override

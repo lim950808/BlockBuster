@@ -126,8 +126,8 @@ public class JEServiceImpl implements JEService {
 	}
 
 	@Override
-	public List<Payment> orderCartList(int id) {
-		List<Payment> orderList = jd.orderCartList(id);
+	public List<Payment> orderCartList(String member) {
+		List<Payment> orderList = jd.orderCartList(member);
 		return orderList;
 	}
 

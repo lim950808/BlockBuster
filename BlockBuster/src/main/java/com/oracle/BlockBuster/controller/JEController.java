@@ -289,8 +289,8 @@ public class JEController {
 		//로그인 여부 구분
 		if(member != null) {
 			cart.setId(member);
-			for(String i : chArr) {
-				no = Integer.parseInt(i);
+			for(String i : chArr) { //ajax에서 받은 chArr의 갯수만큼 반복
+				no = Integer.parseInt(i); //i번째 데이터를 no에 저장
 				cart.setNo(no);
 				js.deleteCart(cart);
 			}
@@ -323,9 +323,9 @@ public class JEController {
 	}
 
 	@GetMapping("/Order/list")
-	public @ResponseBody Map<String, Object> orderCartList(HttpSession session, int id, Model model) {
-		List<Payment> orderCartList = js.orderCartList(id);
-		
+	public @ResponseBody Map<String, Object> orderCartList(HttpSession session, String member, Model model) {
+		List<Payment> orderCartList = js.orderCartList(member);
+		System.out.println("orderCartList start...");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data", orderCartList);
 		
