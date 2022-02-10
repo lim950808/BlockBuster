@@ -58,7 +58,6 @@
 </head>
 <body>
 
-${sessionScope.id }
 
 <pre>
 
@@ -135,6 +134,9 @@ ${sessionScope.id }
 									});
 								});
 							</script>
+						</p>
+						<p class="reviewBbs">
+							<button type="button" onclick="location.href='/Review/reviewBbs' ">리뷰게시판</button>
 						</p>
 					</div>
 					

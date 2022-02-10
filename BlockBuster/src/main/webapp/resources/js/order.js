@@ -370,7 +370,7 @@ function getOrderNo(){
 
 	$.ajax({
 		async: false, 
-		url: "/order/check",
+		url: "/Order/check",
 		type: "get", 
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",
 		data: false,
@@ -409,7 +409,7 @@ function insertCheck(){
 function orderResult(orderNo){
 	$.ajax({
 		async: false, 
-		url: "/order/result/view",
+		url: "/Order/result/view",
 		type: "get", 
 		data: {"orderNo" : orderNo},
 		dataType: "json",
@@ -422,9 +422,9 @@ function orderResult(orderNo){
 				$.each(item, function(index, jsonData){
 					orderListHtml += `<tr>`;
 					orderListHtml += `	<td style="vertical-align: middle;">`;
-					orderListHtml += `		<table><tr style="border-top: 2px solid white;"><td style="width:20%;padding-left:0;"><img src="` + jsonData.filePath + `" width="80px"/></td>`;
-					orderListHtml += `		<td style="width:auto;padding-left:0;"><span style="font-size: 10.5pt; font-weight: 500;"><a href="/product/` + jsonData.productId + `" style="color: black; text-decoration: none;">` + jsonData.productNm + `</a></span></td></tr></table>`;
-					orderListHtml += `		<input type="hidden" value="` + jsonData.productId + `" />`;
+					orderListHtml += `		<table><tr style="border-top: 2px solid white;"><td style="width:20%;padding-left:0;"><img src="` + jsonData.p_img + `" width="80px"/></td>`;
+					orderListHtml += `		<td style="width:auto;padding-left:0;"><span style="font-size: 10.5pt; font-weight: 500;"><a href="/Product/` + jsonData.pno + `" style="color: black; text-decoration: none;">` + jsonData.productNm + `</a></span></td></tr></table>`;
+					orderListHtml += `		<input type="hidden" value="` + jsonData.pno + `" />`;
 					orderListHtml += `	</td>`;
 					orderListHtml += `	<td style="vertical-align: middle;"><h5>` + jsonData.cnt + `</h5></td>`;
 					orderListHtml += `	<td style="vertical-align: middle; padding-left: 0;padding-right: 0;"><h6>` + number_format(jsonData.amount) + `원</h6></td>`;
@@ -463,7 +463,7 @@ function orderResult(orderNo){
 function orderListAll(){
 	$.ajax({
 		async: false, 
-		url: "/order/list/all",
+		url: "/Order/list/all",
 		type: "get", 
 		data: false,
 		dataType: "json",

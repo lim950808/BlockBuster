@@ -46,13 +46,16 @@ public interface JEDao {
 //	int cartDelete(int id);
 	
 	void deleteCart(Cart cart);
+	
+	// 카트 비우기
+	public void cartAllDelete(String member);
 
 	//구매내역
 	List<Payment> orderCartList(String member);
 
-	List<Payment> orderResultView(String orderNo);
+	Payment orderResultView(String orderNo);
 
-	List<Payment> orderListAll(int id);
+	List<Payment> orderListAll(String member);
 
 	void orderInfo(Payment payment);
 

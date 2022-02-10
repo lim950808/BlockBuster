@@ -6,6 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 검색창 -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- searchbox -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -58,6 +67,32 @@
 </style>
 
 </head>
+<script>
+function RecommendTitleWords(){
+	$('#searchingist2').remove();
+	var str="";
+	var str2="";
+	var categoryNo = $('#category').val(); 
+	$.ajax({
+				url : "${pageContext.request.contextPath}/rcmdTitleWords",
+				data:{category:categoryNo},
+				dataType:'json',
+				success:function(data){
+					str += "<datalist id='searchingist2'>"
+					$(data).each( 
+							function(){
+								str2 = "<option value='"+this.title+"'/><option value='"+this.casting+"'/><option value='"+this.cat_name+"'/><option value='"+this.gen_name+"'/><option value='"+this.year+"'/><option value='"+this.country+"'/><option value='"+this.director+"'/>";
+								str += str2;
+								}
+					);
+					str += "</datalist>";
+					$('#words2').append(str);
+				}
+			}
+		);
+	return true;
+}
+</script>
 <body>
 <div id="root">
 	
@@ -87,10 +122,16 @@
 				<%@ include file="../aside.jsp" %>
 			</aside>
 			
-			<form>
+			<%-- <form>
           		<input class="form-control" type="hidden" value="${product.pno }" placeholder="Search" aria-label="Search">
           		<button type="submit"><i class="fa fa-search"></i></button>
+      		</form> --%>
+      		<form name="form" class="example" id="search" action="${pageContext.request.contextPath}/HTGetPdtSearchResult" onfocus="RecommendTitleWords()" method="post" style="margin:20px; max-width:200px">
+         		<input type="text" placeholder="제목을 입력 하세요" name="keyword" id="words2" list="searchingist2">
+         		<input type="hidden" id="category">
+         		<button type="submit"><i class="fa fa-search"></i></button>
       		</form>
+      		
 		</div>
 	</section>
 </div>

@@ -5,7 +5,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- 검색창 -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- searchbox -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<!-- 상단 메뉴 검색 비동기 처리부분  -->
+<script type="text/javascript">
+function getRecommendWords(){
+	$('#searchingist1').remove();
+	var str="";
+	var str2="";
+	var i= 1;
+	$.ajax({
+				url : "${pageContext.request.contextPath}/rcmdSearchWord",
+				dataType:'json',
+				success:function(data){
+					str += "<datalist id='searchingist1'>"
+					$(data).each( //500개를 또 불러온다... 조건처리 할 때 
+							function(){
+								str2 = "<option value='"+this.title+"'/><option value='"+this.casting+"'/><option value='"+this.cat_name+"'/><option value='"+this.gen_name+"'/><option value='"+this.year+"'/><option value='"+this.country+"'/><option value='"+this.director+"'/>";
+								str += str2;
+								}
+					);
+					str += "</datalist>";
+					$('#words1').append(str);
+				}
+			}
+		);
+}
+</script>
+
 <style>
 * {
   box-sizing: border-box;
@@ -192,10 +228,14 @@ body {
 	  
 	  <a href="/Cart/cartList"><i class="fa fa-shopping-cart"></i></a>
 	  
-	  <form>
+	  <!-- <form>
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">
           <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
+      </form> -->
+      <form name="form" class="example" id="search" action="${pageContext.request.contextPath}/HTGetSearchResult" method="post" style="margin:20px; max-width:200px">
+			<input type="text" placeholder="키워드를 입력하세요" name="keyword" id="words1" list="searchingist1" onfocus="getRecommendWords()" autofocus="autofocus">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
 	  
 	</div>
 </body>

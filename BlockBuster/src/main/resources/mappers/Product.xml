@@ -88,6 +88,12 @@
 		AND id = #{id}
 	</delete>
 	
+	<!-- 카트 비우기 -->
+	<delete id="cartAllDelete">
+		DELETE cart
+		WHERE id = #{id}
+	</delete>
+	
 	<!-- 주문 상세 정보 -->
 	<insert id="orderInfo_Details">
 		INSERT INTO payment(s_no, id, pno, price)
@@ -121,11 +127,11 @@
 	</select>
 	
 	<select id="orderResultView" resultType="Payment">
-		SELECT o.*, c1.codeNm as 'deliveryNm', c2.codeNm as 'paymentNm', p.productNm, p.filePath
+		SELECT o.*, c1.codeNm as 'deliveryNm', c2.codeNm as 'paymentNm', p.productNm, p.p_img
 		FROM orderInfo o
 		INNER JOIN code c1 ON o.deliveryCd = c1.code AND c1.codeGbn = 'DELIVERY'
 		INNER JOIN code c2 ON o.paymentCd = c2.code AND c2.codeGbn = 'PAYMENT'
-		INNER JOIN product p ON o.productId = p.id
+		INNER JOIN product p ON o.pno = p.pno
 		WHERE orderNo = #{orderNo};
 	</select>
 	

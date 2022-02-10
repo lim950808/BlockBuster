@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="JJMemberDao">
+	
+	<select id="idpwChk" parameterType="JJMemberDto" resultType="java.lang.String">
+		select count(*) from member where id like #{id, jdbcType=VARCHAR} and password like #{password, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="registration" >
+			insert into member(id,password,nickname,email)
+			values (#{id},#{password})
+	</select>
+	
+	<select id="memberidCheck" parameterType="JJMemberDto" resultType="java.lang.String">
+			SELECT count(*) FROM member	WHERE id = #{id}
+	</select>
+	
+	<select id="membernicknameCheck" parameterType="JJMemberDto" resultType="java.lang.String">
+			SELECT count(*) FROM member	WHERE nickname = #{nickname}
+	</select>
+</mapper>

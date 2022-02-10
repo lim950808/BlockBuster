@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="HTDao">  
+	<!-- sql에 특수문자 많이 들어가거나 <>거 들어가면 <![CDATA[sql문장]]> 처리 해보기-->
+	<!--통합검색의 검색 결과 리스트-->
+	<select id="HTGetSearchResult" parameterType="java.lang.String" resultType="Product">
+		<![CDATA[
+		select a.* from 
+		(select p.pno, p.category, p.genre, p.title, p.year, p.country, p.director, p.description, p.p_img, p.casting, p.price, p.p_video, c.cat_name, c.gen_name
+		from product p, category c where p.genre = c.genre) a
+		where title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or description like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or casting like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or director like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or gen_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or cat_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or country like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or year like '%'||#{keyword, jdbcType=NUMERIC}||'%'
+		]]>
+	</select>
+	
+	<!--통합검색의 검색 결과 수 카운트-->
+	<select id="HTGetSearchCnt" parameterType="java.lang.String" resultType="int">
+		<![CDATA[
+		select count(*) from 
+		(select p.pno, p.category, p.genre, p.title, p.year, p.country, p.director, p.description, p.p_img, p.casting, p.price, p.p_video, c.cat_name, c.gen_name
+		from product p, category c where p.genre = c.genre) a
+		where title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or description like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or casting like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or director like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or gen_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or cat_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or country like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or year like '%'||#{keyword, jdbcType=NUMERIC}||'%'
+		]]>
+	</select>
+	
+	<!--통합검색의 영화 결과 수 카운트-->
+	<select id="HTGetMovieCnt" parameterType="java.lang.String" resultType="int">
+	<![CDATA[select count(*) from 
+		(select p.pno, p.category, p.genre, p.title, p.year, p.country, p.director, p.description, p.p_img, p.casting, p.price, p.p_video, c.cat_name, c.gen_name
+		from product p, category c
+		where p.genre = c.genre and (p.genre=1100 or p.genre=1200 or p.genre=1300 or p.genre=1400 or p.genre=1500 or p.genre=1600 or p.genre=1700))
+		where title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or description like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or casting like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or director like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or gen_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or cat_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or country like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or year like '%'||#{keyword, jdbcType=NUMERIC}||'%'
+		]]>
+	</select>
+
+	<!--통합검색의 드라마 결과 수 카운트-->
+	<select id="HTGetDramaCnt" parameterType="java.lang.String" resultType="int">
+	<![CDATA[select count(*) from 
+		(select p.pno, p.category, p.genre, p.title, p.year, p.country, p.director, p.description, p.p_img, p.casting, p.price, p.p_video, c.cat_name, c.gen_name
+		from product p, category c
+		where p.genre = c.genre and (p.genre=2100 or p.genre=2200 or p.genre=2300))
+		where title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or description like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or casting like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or director like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or gen_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or cat_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or country like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or year like '%'||#{keyword, jdbcType=NUMERIC}||'%'
+		]]>
+	</select>
+	
+	<!--통합검색의 예능 결과 수 카운트-->
+	<select id="HTGetEntertainmentCnt" parameterType="java.lang.String" resultType="int">
+	<![CDATA[select count(*) from 
+		(select p.pno, p.category, p.genre, p.title, p.year, p.country, p.director, p.description, p.p_img, p.casting, p.price, p.p_video, c.cat_name, c.gen_name
+		from product p, category c
+		where p.genre = c.genre and (p.genre=3100 or p.genre=3200 or p.genre=3300 or p.genre=3400 or p.genre=3500))
+		where title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or description like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or casting like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or director like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or gen_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or cat_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or country like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or year like '%'||#{keyword, jdbcType=NUMERIC}||'%'
+	]]>
+	</select>
+	
+	<!--통합검색의 다큐 결과 수 카운트-->
+	<select id="HTGetDocumentaryCnt" parameterType="java.lang.String" resultType="int">
+	<![CDATA[select count(*) from 
+		(select p.pno, p.category, p.genre, p.title, p.year, p.country, p.director, p.description, p.p_img, p.casting, p.price, p.p_video, c.cat_name, c.gen_name
+		from product p, category c
+		where p.genre = c.genre and (p.genre=4100 or p.genre=4200 or p.genre=4300))
+		where title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or description like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or casting like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or director like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or gen_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or cat_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or country like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or year like '%'||#{keyword, jdbcType=NUMERIC}||'%'
+		]]>
+	</select>
+	
+	<!--통합검색의 애니메이션 결과 수 카운트-->
+	<select id="HTGetAnimationCnt" parameterType="java.lang.String" resultType="int">
+	<![CDATA[select count(*) from 
+		(select p.pno, p.category, p.genre, p.title, p.year, p.country, p.director, p.description, p.p_img, p.casting, p.price, p.p_video, c.cat_name, c.gen_name
+		from product p, category c
+		where p.genre = c.genre and (p.genre=5100 or p.genre=5200))
+		where title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or description like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or casting like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or director like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or  gen_name like'%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or cat_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or country like  '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		or year like '%'||#{keyword, jdbcType=NUMERIC}||'%'
+		]]>
+	</select>
+	
+	<!--검색어 입력시 제목관련 추천단어 표시-->
+	<select id="HTrcmdTitleWord" resultType="Product">
+		select distinct(title) from product
+	</select>
+	
+		<!--검색어 입력시 카테고리명 관련 추천단어 표시-->
+	<select id="HTrcmdCategoryWord" resultType="Product">
+		select distinct(cat_name) from category
+	</select>
+	
+		<!--검색어 입력시 장르 관련 추천단어 표시-->
+	<select id="HTrcmdGenreWord" resultType="Product">
+		select distinct(gen_name) from category
+	</select>
+	
+		<!--검색어 입력시 연도 관련 추천단어 표시-->
+	<select id="HTrcmdYearWord" resultType="Product">
+		select distinct(year) from product
+	</select>
+	
+		<!--검색어 입력시 국가 관련 추천단어 표시-->
+	<select id="HTrcmdNationWord" resultType="Product">
+		select distinct(country) from product
+	</select>
+	
+		<!--검색어 입력시 감독 관련 추천단어 표시-->
+	<select id="HTrcmdDirectorWord" resultType="Product">
+		select distinct(director) from product
+	</select>
+	
+		<!--검색어 입력시 출연자 관련 추천단어 표시-->
+	<select id="HTrcmdCastingWord" resultType="Product">
+		select distinct(casting) from product
+	</select>
+
+	<!--카테고리 별 검색어를 통한 조회결과 갯수-->
+	<select id="HTGetPdtSearchCount" parameterType="PdtSearchVo" resultType="int">
+		select count(pno) from product where category=#{category, jdbcType=NUMERIC} and title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+	</select>
+	
+	<!--카테고리 별 검색어를 통한 조회결과-->
+	<select id="HTGetPdtSearchResult" parameterType="PdtSearchVo" resultType="Product">
+		<![CDATA[select * from
+        (select p.pno, p.category, p.genre, c.gen_name, p.title, p.casting, p.p_img
+       	from product p, category c
+        where p.genre=c.genre)
+		where category = #{category, jdbcType=NUMERIC}
+		and title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+		]]>
+	</select>
+	
+	<!-- 영화의 각 장르별 검색결과 갯수 조회 -->
+	<select id="HTmEachCnt" parameterType="PdtSearchVo" resultType="java.lang.String">
+		select count(*) from product where genre=#{genre, jdbcType=NUMERIC} and title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+	</select>
+	
+	<!-- 드라마 각 장르별 검색결과 갯수 조회 -->
+	<select id="HTdEachCnt" parameterType="PdtSearchVo" resultType="java.lang.String">
+		select count(*) from product where genre=#{genre, jdbcType=NUMERIC} and title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+	</select>
+	
+	<!-- 예능 각 장르별 검색결과 갯수 조회 -->
+	<select id="HTeEachCnt" parameterType="PdtSearchVo" resultType="java.lang.String">
+		select count(*) from product where genre=#{genre, jdbcType=NUMERIC} and title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+	</select>
+	
+	<!-- 다큐 각 장르별 검색결과 갯수 조회 -->
+	<select id="HTdcEachCnt" parameterType="PdtSearchVo" resultType="java.lang.String">
+		select count(*) from product where genre=#{genre, jdbcType=NUMERIC} and title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+	</select>
+	
+	<!-- 애니 각 장르별 검색결과 갯수 조회 -->
+	<select id="HTaEachCnt" parameterType="PdtSearchVo" resultType="java.lang.String">
+		select count(*) from product where genre=#{genre, jdbcType=NUMERIC} and title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+	</select>
+	
+	<!-- 카테고리 별 제목 리스트 출력 -->
+	<select id="HTrcmdTitleWords" parameterType="java.lang.String" resultType="Product">
+		select title from product where category = #{category, jdbcType=NUMERIC}
+	</select>
+
+	<!-- API 카테고리 넘버 및 카테고리 명 출력 -->
+	<select id="HTgetGenNameList" resultType="Product">
+		select genre, cat_name, gen_name from category
+	</select>
+
+	<!-- API 장르 넘버 및 장르 명 출력 -->
+	<select id="HTgetAllListByGenre" parameterType="ProductApiVo" resultType="ProductVo">
+		select c.cat_name, c.gen_name, p.title, p.year, p.country, p.casting, p.director, p.p_img, p.p_video
+		from product p, category c
+		where p.genre = c.genre and p.genre like #{genre, jdbcType=NUMERIC}
+		<if test='title != null'>
+			and p.title like '%'||#{title, jdbcType=VARCHAR}||'%' 
+		</if>
+		<if test='casting != null'>
+			 and p.casting like '%'||#{casting, jdbcType=VARCHAR}||'%' 
+		</if>
+		<if test='country != null'>
+			and p.country like '%'||#{country, jdbcType=VARCHAR}||'%' 
+		</if>
+		<if test='year != null'>
+			and p.year like '%'||#{year, jdbcType=NUMERIC}||'%' 
+		</if>
+		<if test='director != null'>
+			and p.director like '%'||#{director, jdbcType=VARCHAR}||'%' 
+		</if>
+	</select>
+</mapper>

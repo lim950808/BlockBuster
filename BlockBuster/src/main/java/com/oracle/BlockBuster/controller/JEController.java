@@ -1,5 +1,7 @@
 package com.oracle.BlockBuster.controller;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -137,8 +139,8 @@ public class JEController {
 	public void getList(@RequestParam("g") int genre, @RequestParam("l") int level, Model model) throws Exception {
 		List<Product> list = null;
 		list = js.list(genre, level);
+		//model.addAttribute("c", category);
 		model.addAttribute("list", list);
-		
 	}
 	//상품 상세 -> productDetail페이지
 	@GetMapping(value = "/Product/productDetail")
@@ -301,11 +303,32 @@ public class JEController {
 	
 	//주문
 	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.POST)
-	public void order(HttpSession session, Payment payment) {
+	public String order(HttpSession session, Payment payment) {
 		System.out.println("order start...");
 		String member = (String)session.getAttribute("member");
 		
+		// 캘린더 호출
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);  // 연도 추출
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);  // 월 추출
+		String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));  // 일 추출
+		String subNum = "";  // 랜덤 숫자를 저장할 문자열 변수
+		
+		for(int i = 1; i <= 6; i ++) {  // 6회 반복
+			subNum += (int)(Math.random() * 10);  // 0~9까지의 숫자를 생성하여 subNum에 저장
+		}
+		
+		String orderId = ymd + "_" + subNum;  // [연월일]_[랜덤숫자] 로 구성된 문자
+		System.out.println("Controller cartList orderId -> " + orderId);
+		payment.setOrderId(orderId);
+		payment.setId(member);
+		
 		js.orderInfo(payment);
+		
+		// 주문 테이블, 주문 상세 테이블에 데이터를 전송하고, 카트 비우기
+		js.cartAllDelete(member);
+		
+		return "redirect:/Order/result";
 	}
 	
 	/////////////////////////////////
@@ -334,18 +357,28 @@ public class JEController {
 	
 	@GetMapping("/Order/result/{orderNo}")
 	public String orderResult(Model model, @PathVariable String orderNo) {
+		System.out.println("order start...");
+		System.out.println("order orderNo->"+orderNo);
 		model.addAttribute("orderNo", orderNo);
 		return "/Order/result";
 	}
+//	@RequestMapping(value = "Order/result")
+//    public String orderResult(Payment payment, Model model) {
+//    	model.addAttribute("payment", payment);
+//    	return "/Order/result";
+//    }
 	
 	@GetMapping("/Order/result/view")
-	public @ResponseBody Map<String, Object> orderResultView(@RequestParam String orderNo) {
-		List<Payment> orderList = js.orderResultView(orderNo);
+//	public @ResponseBody Map<String, Object> orderResultView(@RequestParam String orderNo) {
+	public String orderResultView(@RequestParam String orderNo, Model model) {
+		Payment orderList = js.orderResultView(orderNo);
+		System.out.println("order orderNo->"+orderNo);
+		model.addAttribute("orderList", orderList);
+
+	//	Map<String, Object> map = new HashMap<String, Object>();
+	//	map.put("data", orderList);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("data", orderList);
-		
-		return map;
+		return "/Order/result";
 	}
 	
 	@GetMapping("/Order/view/{orderNo}")
@@ -360,8 +393,8 @@ public class JEController {
 //	}
 	
 	@GetMapping("/Order/list/all")
-	public @ResponseBody Map<String, Object> orderResultView(HttpSession session, Model model, int id) {
-		List<Payment> orderList = js.orderListAll(id);
+	public @ResponseBody Map<String, Object> orderResultView(HttpSession session, Model model, String member) {
+		List<Payment> orderList = js.orderListAll(member);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data", orderList);

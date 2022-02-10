@@ -84,7 +84,8 @@
 .listResult .orderOpne button { font-size:18px; padding:5px 10px; border:1px solid #999; background:#fff;}
 .listResult::after { content:""; display:block; clear:both; } 
 
-.orderInfo { border:5px solid #eee; padding:20px; display:none; }
+/* .orderInfo { border:5px solid #eee; padding:20px; display:none; } */
+.orderInfo { border:5px solid #eee; padding:20px; }
 .orderInfo .inputArea { margin:10px 0; }
 .orderInfo .inputArea label { display:inline-block; width:120px; margin-right:10px; }
 .orderInfo .inputArea input { font-size:14px; padding:5px; }
@@ -171,11 +172,11 @@
 	 								});
 								</script>
   							</div>
-	  						<%-- <div class="p_img">
+	  						<div class="p_img">
 	   							<a href="/Product/productDetail?pno=${product.pno}">
 	   								<img src="${product.p_img}">
 	   							</a>
-	  						</div>  --%>
+	  						</div>
 	  						<div class="info">
 	   							<p>
 	   								<span>제목 : </span>${cart.title}<br />
@@ -219,18 +220,60 @@
 				  		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
 				 	</div>
 				 	<div class="orderOpne">
-					<button type="button" class="orderOpne_bnt">주문 정보 입력</button>
-					<script>
-						$(".orderOpne_bnt").click(function(){
-							$(".orderInfo").slideDown();  // $(".orderInfo")를 나타내고
-							$(".orderOpne_bnt").slideUp();  // $(".orderOpne_bnt")를 숨김
-						});						
-					</script>
-					
-				</div>
+						<!-- <button type="button" class="orderOpne_bnt">주문 정보 입력</button>
+						<script>
+							$(".orderOpne_bnt").click(function(){
+								$(".orderInfo").slideDown();  // $(".orderInfo")를 나타내고
+								$(".orderOpne_bnt").slideUp();  // $(".orderOpne_bnt")를 숨김
+							});						
+						</script> -->
+						<button id="check_module" type="button">결제</button>
+							<script>
+								$("#check_module").click(function () {
+									var IMP = window.IMP; // 생략가능
+									IMP.init('imp05518360'); 
+									// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+									// ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+									IMP.request_pay({
+										pg: 'kakaopay',
+										pay_method: 'card',
+										merchant_uid: 'merchant_' + new Date().getTime(),
+										/* 
+										 *  merchant_uid에 경우 
+										 *  https://docs.iamport.kr/implementation/payment
+										 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+										 */
+										name: '주문명 : BlockBuster',
+										// 결제창에서 보여질 이름
+										// name: '주문명 : ${auction.a_title}',
+										// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
+										amount: '${sum}',
+										// amount: ${bid.b_bid},
+										// 가격 
+										buyer_name: '${cart.id}',
+										// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
+										// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
+									}, function (rsp) {
+											console.log(rsp);
+										if (rsp.success) {
+											var msg = '결제가 완료되었습니다.';
+											location.href='/Order/result/{orderNo}'
+											/* msg += '결제 금액 : ' + rsp.paid_amount; */
+											// success.submit();
+											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
+											// 자세한 설명은 구글링으로 보시는게 좋습니다.
+										}else {
+											var msg = '결제에 실패하였습니다.';
+											msg += '에러내용 : ' + rsp.error_msg;
+										}
+										alert(msg);
+									});
+								});
+							</script>
+					</div>
 				</div>
 				
-				<div class="orderInfo">
+				<%-- <div class="orderInfo">
 					<form role="form" method="post" autocomplete="off">
 						<input type="hidden" name="amount" value="${sum}" />
 						<div class="inputArea">
@@ -265,7 +308,7 @@
 											console.log(rsp);
 										if (rsp.success) {
 											var msg = '결제가 완료되었습니다.';
-											location.href='/Order/result'
+											location.href='/Order/result/{orderNo}'
 											/* msg += '결제 금액 : ' + rsp.paid_amount; */
 											// success.submit();
 											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
@@ -278,19 +321,18 @@
 									});
 								});
 							</script>
-		<!-- javascript : 4cbc774dcdae3830a07047ebbc971678 -->
-		<!-- admin : 34a5aed5e690f527d9e0302aa9d325b6 -->				
-						<button type="button" class="cancel_btn">취소</button>
+					
+						<!-- <button type="button" class="cancel_btn">취소</button>
 							<script>
 							$(".cancel_btn").click(function(){
 								$(".orderInfo").slideUp();  // $(".orderInfo")를 숨기고
 								$(".orderOpne_bnt").slideDown();  // $(".orderOpne_bnt")를 나타냄
 							});						
-							</script>
+							</script> -->
 							
 						</div>
 					</form>
-				</div>
+				</div> --%>
 
 			</section>
 		

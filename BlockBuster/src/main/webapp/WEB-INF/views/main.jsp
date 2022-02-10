@@ -64,9 +64,16 @@ span.carousel-control-next-icon {
 <body>
 <%-- <%@ include file="menu.jsp" %> --%>
 <pre>
-
+${member}
+${member}
+${member}
+${member}
 </pre>
 <div class="container">
+${sessionScope.id}
+${sessionScope.member}
+${sessionScope.sessionId}
+${member.id}
 <!-- <div class="container" id="body">
 <div class="row">
 <div class="col-sm-1"></div>

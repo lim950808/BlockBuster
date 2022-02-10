@@ -17,7 +17,7 @@ public class loginCheck {
 	//DB와 검증하도록 바꿔야 함
 	public boolean loginCheck(String id, String password) {
 		logger.info("[*-2] loginCheck, 최초 로그인 시 id/pw 검증");
-		return "hwivelop".equals(id) && "1234".equals(password); //임시 사용일 경우, 본인 아이디랑 비밀번호로 변경 하세요.
+		return "admin".equals(id) && "1234".equals(password); //임시 사용일 경우, 본인 아이디랑 비밀번호로 변경 하세요.
 	}
 	
 	

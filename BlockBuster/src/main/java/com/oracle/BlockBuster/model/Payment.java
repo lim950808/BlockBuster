@@ -15,6 +15,7 @@ public class Payment {
 	
 	//주문번호
 	private String orderNo;
+	private String orderId;
 	
 	private String paymentCd;
 }

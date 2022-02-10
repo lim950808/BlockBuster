@@ -3,11 +3,18 @@
 
 <configuration>
 	<typeAliases>
+		<!-- 임재억 -->
 		<typeAlias alias="Product" type="com.oracle.BlockBuster.model.Product"/>
 		<typeAlias alias="Category" type="com.oracle.BlockBuster.model.Category"/>
 		<typeAlias alias="Cart" type="com.oracle.BlockBuster.model.Cart"/>
 		<typeAlias alias="CartList" type="com.oracle.BlockBuster.model.CartList"/>
 		<typeAlias alias="Payment" type="com.oracle.BlockBuster.model.Payment"/>
 		<typeAlias alias="Member" type="com.oracle.BlockBuster.model.Member"/>
+		<!-- 정재경 -->
+		<typeAlias alias="JJMemberDto" type="com.oracle.BlockBuster.model.JJMember"/>
+		<!-- 김흥태 -->
+		<typeAlias alias="PdtSearchVo" type="com.oracle.BlockBuster.model.PdtSearchVo"/>
+		<typeAlias alias="ProductVo" type="com.oracle.BlockBuster.model.ProductVo"/>
+		<typeAlias alias="ProductApiVo" type="com.oracle.BlockBuster.model.ProductApiVo"/>
 	</typeAliases>
 </configuration>

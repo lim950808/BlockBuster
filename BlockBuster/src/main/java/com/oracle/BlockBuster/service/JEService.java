@@ -47,13 +47,16 @@ public interface JEService {
 	//카트 삭제
 	void deleteCart(Cart cart);
 	//int cartDelete(int id);
+	
+	// 카트 비우기
+	public void cartAllDelete(String member);
 
 	//구매내역
 	List<Payment> orderCartList(String member);
 
-	List<Payment> orderResultView(String orderNo);
+	Payment orderResultView(String orderNo);
 
-	List<Payment> orderListAll(int id);
+	List<Payment> orderListAll(String member);
 
 	void orderInfo(Payment payment);
 

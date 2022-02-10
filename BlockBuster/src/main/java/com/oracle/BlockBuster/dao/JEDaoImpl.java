@@ -188,18 +188,43 @@ public class JEDaoImpl implements JEDao {
 	}
 
 	@Override
-	public List<Payment> orderResultView(String orderNo) {
-		return session.selectList("orderResultView", orderNo);
+	public Payment orderResultView(String orderNo) {
+		System.out.println("Dao orderResultView orderNo.getId() -> " + orderNo);
+		
+		System.out.println("JEDaoImpl orderResultView start..");
+		try {
+			int insertCount = session.insert("orderResultView", orderNo);
+			System.out.println("JEDaoImpl orderInfo insertCount-->"+insertCount);
+			
+		} catch (Exception e) {
+			System.out.println("JEDaoImpl orderResultView e.getMessage())->"+e.getMessage());
+		}
+		return session.selectOne("orderResultView", orderNo);
 	}
 
 	@Override
-	public List<Payment> orderListAll(int id) {
-		return session.selectList("orderListAll", id);
+	public List<Payment> orderListAll(String member) {
+		return session.selectList("orderListAll", member);
 	}
 
 	@Override
 	public void orderInfo(Payment payment) {
+		System.out.println("Dao orderInfo payment.getId() -> " + payment.getId());
+
 		session.insert("orderInfo", payment);
+		
+		System.out.println("JEDaoImpl cartList start..");
+		try {
+			int insertCount = session.insert("orderInfo", payment);
+			System.out.println("JEDaoImpl orderInfo insertCount-->"+insertCount);
+		} catch (Exception e) {
+			System.out.println("JEDaoImpl orderInfo e.getMessage())->"+e.getMessage());
+		}
+	}
+
+	@Override
+	public void cartAllDelete(String member) {
+		session.delete("cartAllDelete", member);
 	}
 
 	

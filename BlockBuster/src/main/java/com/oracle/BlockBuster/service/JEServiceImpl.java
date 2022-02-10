@@ -132,20 +132,30 @@ public class JEServiceImpl implements JEService {
 	}
 
 	@Override
-	public List<Payment> orderResultView(String orderNo) {
-		List<Payment> orderList = jd.orderResultView(orderNo);
+	public Payment orderResultView(String orderNo) {
+		Payment orderList = jd.orderResultView(orderNo);
+		System.out.println("Service orderInfo orderNo -> " + orderNo);
 		return orderList;
 	}
 
 	@Override
-	public List<Payment> orderListAll(int id) {
-		List<Payment> orderList = jd.orderListAll(id);
+	public List<Payment> orderListAll(String member) {
+		
+		List<Payment> orderList = jd.orderListAll(member);
 		return orderList;
 	}
 
 	@Override
 	public void orderInfo(Payment payment) {
+		System.out.println("Service orderInfo  payment.getId() -> " + payment.getId());
+		
 		jd.orderInfo(payment);
+		
+	}
+
+	@Override
+	public void cartAllDelete(String member) {
+		jd.cartAllDelete(member);
 		
 	}
 
