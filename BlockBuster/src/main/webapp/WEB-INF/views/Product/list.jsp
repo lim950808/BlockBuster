@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header1.jsp" %>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,6 +73,7 @@ function RecommendTitleWords(){
 	var str="";
 	var str2="";
 	var categoryNo = $('#category').val(); 
+	$('#sCategory').val(categoryNo);
 	$.ajax({
 				url : "${pageContext.request.contextPath}/rcmdTitleWords",
 				data:{category:categoryNo},
@@ -81,18 +82,39 @@ function RecommendTitleWords(){
 					str += "<datalist id='searchingist2'>"
 					$(data).each( 
 							function(){
-								str2 = "<option value='"+this.title+"'/><option value='"+this.casting+"'/><option value='"+this.cat_name+"'/><option value='"+this.gen_name+"'/><option value='"+this.year+"'/><option value='"+this.country+"'/><option value='"+this.director+"'/>";
-								str += str2;
+								if(this.title != null){
+									str2 = str2 + "<option value='"+this.title+"'/>";
+								}
+								if(this.casting != null){
+									str2 = str2 + "<option value='"+this.casting+"'/>";
+								}
+								if(this.cat_name != null){
+									str2 = str2 + "<option value='"+this.cat_name+"'/>";
+								}
+								if(this.gen_name != null){
+									str2 = str2 + "<option value='"+this.gen_name+"'/>";
+								}
+								if(this.year != 0){
+									str2 = str2 + "<option value='"+this.year+"'/>";
+								}
+								if(this.country != null){
+									str2 = str2 + "<option value='"+this.country+"'/>";
+								}
+								if(this.director != null){
+									str2 = str2 + "<option value='"+this.director+"'/>";
+								}
+									str += str2;
+									str2 = "";
 								}
 					);
 					str += "</datalist>";
-					$('#words2').append(str);
+					$('#words').append(str);
 				}
 			}
 		);
-	return true;
 }
 </script>
+
 <body>
 <div id="root">
 	
@@ -104,8 +126,10 @@ function RecommendTitleWords(){
  					<c:forEach items="${list}" var="product">
 	 					<li>
 	  						<div class="p_img">
+								<input type="hidden" id="category" value="${product.category}">
 	   							<a href="/Product/productDetail?pno=${product.pno}">
 	   								<img src="${product.p_img}">
+
 	   							</a>
 	  						</div> 
 	  						<div class="title">
@@ -126,11 +150,16 @@ function RecommendTitleWords(){
           		<input class="form-control" type="hidden" value="${product.pno }" placeholder="Search" aria-label="Search">
           		<button type="submit"><i class="fa fa-search"></i></button>
       		</form> --%>
-      		<form name="form" class="example" id="search" action="${pageContext.request.contextPath}/HTGetPdtSearchResult" onfocus="RecommendTitleWords()" method="post" style="margin:20px; max-width:200px">
+      		<%-- <form name="form" class="example" id="search" action="${pageContext.request.contextPath}/HTGetPdtSearchResult" onfocus="RecommendTitleWords()" method="post" style="margin:20px; max-width:200px">
          		<input type="text" placeholder="제목을 입력 하세요" name="keyword" id="words2" list="searchingist2">
          		<input type="hidden" id="category">
          		<button type="submit"><i class="fa fa-search"></i></button>
-      		</form>
+      		</form> --%>
+      		<form action="${pageContext.request.contextPath}/HTGetPdtSearchResult">
+				<input type="hidden" id="sCategory" name="category"> <!-- el로 값 넣는게 불가함으로 제이쿼리로 반영 -->
+	          	<input class="form-control" type="search" name="keyword" id="words" list="searchingist2" onfocus="RecommendTitleWords()" placeholder="Search" aria-label="Search">
+	          	<button type="submit"><i class="fa fa-search"></i></button>
+      		</form>	
       		
 		</div>
 	</section>

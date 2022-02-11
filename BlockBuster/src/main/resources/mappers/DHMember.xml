@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="DHDao">
+<!-- 조회 -->
+<select id="memberSelOne" parameterType="java.lang.String" resultType="Member">
+	select * from member where id = #{id}
+</select>
+
+<!-- 회원정보 수정 -->
+<update id="memberUpdate" parameterType="Member">
+	update member set nickname= #{nickname},
+						    email= #{email}, 
+					  password= #{password}
+							where id= #{id}
+</update>
+<!-- DELSTATUS(탈퇴여부) : 일반회원 0(Default), 탈퇴회원1 -->
+<update id="memberDelete" parameterType="java.lang.String">
+	update member 
+	set DELSTATUS=1
+	where id= #{id}
+</update>
+</mapper>

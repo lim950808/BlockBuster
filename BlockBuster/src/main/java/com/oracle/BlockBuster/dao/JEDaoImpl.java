@@ -153,17 +153,22 @@ public class JEDaoImpl implements JEDao {
 		}
 	}
 
+//	@Override
+//	public List<Cart> cartList(String member) {
+//		 List<Cart> listCartRtn = null;
+//		System.out.println("JEDaoImpl cartList start..");
+//		try {
+//			listCartRtn = session.selectList("cartList", member);
+//			System.out.println("JEDaoImpl cartList listCartRtn.size()--<"+listCartRtn.size());
+//		} catch (Exception e) {
+//			System.out.println("JEDaoImpl cartList e.getMessage())->"+e.getMessage());
+//		}
+//		return listCartRtn;
+//	}
+	
 	@Override
 	public List<Cart> cartList(String member) {
-		 List<Cart> listCartRtn = null;
-		System.out.println("JEDaoImpl cartList start..");
-		try {
-			listCartRtn = session.selectList("cartList", member);
-			System.out.println("JEDaoImpl cartList listCartRtn.size()--<"+listCartRtn.size());
-		} catch (Exception e) {
-			System.out.println("JEDaoImpl cartList e.getMessage())->"+e.getMessage());
-		}
-		return listCartRtn;
+			return session.selectList("cartList", member);
 	}
 
 
@@ -226,6 +231,12 @@ public class JEDaoImpl implements JEDao {
 	public void cartAllDelete(String member) {
 		session.delete("cartAllDelete", member);
 	}
+
+	@Override
+	   public List<Product> categoryList(int c) {
+	      List<Product> list = session.selectList("HTcategoryList", c);
+	      return list;
+	   }
 
 	
 

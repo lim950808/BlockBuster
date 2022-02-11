@@ -105,7 +105,7 @@ public class HTController {
 		System.out.println("HTController의 rcmdSearchWord메서드 시작...");
 		//검색어가 있을 때
 		if(!pvo.getKeyword().equals("") || !pvo.getKeyword().equals(null)) {
-		pvo.setCategory("1000"); // 통합시 제거예정
+		 // 통합시 제거예정
 		int searchCnt = hts.GetPdtSearchCount(pvo); //검색어로 조회한 장르 구분없는 카테고리 검색 결과 갯수
 		List<Product> productsList = hts.GetPdtSearchResult(pvo); //검색어로 조회한 장르 구분없는 카테고리 검색 결과 리스트
 		System.out.println("HTController의 rcmdSearchWord메서드의 searchCnt : "+searchCnt);

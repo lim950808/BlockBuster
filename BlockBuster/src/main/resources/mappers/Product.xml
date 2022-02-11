@@ -60,6 +60,12 @@
 		WHERE p.genre = #{genre}
 	</select>
 	
+	<select id="HTcategoryList" parameterType="int" resultType="Product">
+      SELECT pno, title, category, genre, p_img
+      from product
+      where category like #{c}
+   </select>
+	
 	<!-- 상품 상세정보 -->
 	<select id="JEProductDetail" parameterType="int" resultType="Product">
 		SELECT * FROM product WHERE pno = #{pno}
@@ -88,7 +94,7 @@
 		AND id = #{id}
 	</delete>
 	
-	<!-- 카트 비우기 -->
+	<!-- 결제 후 카트 비우기 -->
 	<delete id="cartAllDelete">
 		DELETE cart
 		WHERE id = #{id}
@@ -141,7 +147,7 @@
 		LEFT OUTER JOIN user u ON o.insId = u.id
 		INNER JOIN code c ON o.deliveryCd = c.code AND c.codeGbn = 'DELIVERY'
 		WHERE o.insId = #{id} AND paymentCd in ('01', '02')
-		ORDER BY o.orderNo desc;
+		ORDER BY o.orderNo DESC;
 	</select>
 </mapper>
 

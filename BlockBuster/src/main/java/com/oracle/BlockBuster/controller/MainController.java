@@ -34,10 +34,10 @@ public class MainController {
 	
 	
 	// 조병훈님, header 시작 부분---------------------------------------------
-	@GetMapping(value="header1")
+	@GetMapping(value="header")
 	public String header1() {
-		logger.info("상단 header1"); 
-		return "header1";
+		logger.info("상단 header"); 
+		return "header";
 	}
 	// 조병훈님, header 끝 부분---------------------20220127 ver.------------
 

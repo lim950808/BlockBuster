@@ -59,4 +59,6 @@ public interface JEDao {
 
 	void orderInfo(Payment payment);
 
+	List<Product> categoryList(int c);
+
 }

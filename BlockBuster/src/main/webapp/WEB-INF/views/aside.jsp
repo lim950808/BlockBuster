@@ -12,7 +12,7 @@ aside#aside li > ul.low li { width:180px; }
 <h3>카테고리</h3>
 
 <ul>
-	<li><a href="/Product/list?g=1000&l=1">영화</a>
+	<li><a href="${pageContext.request.contextPath}/CategoryList?c=1000">영화</a>
 		<ul class="low">
 			<!-- <li><a href="/Product/products?category=1000&genre=1100">공포</a></li>
 			<li><a href="/Product/products?category=1000&genre=1200">액션</a></li>
@@ -30,7 +30,7 @@ aside#aside li > ul.low li { width:180px; }
 			<li><a href="/Product/list?g=1700&l=2">멜로/로멘스</a></li>
 		</ul>
 	</li>
-	<li><a href="/Product/list?g=2000&l=1">드라마</a>
+	<li><a href="${pageContext.request.contextPath}/CategoryList?c=2000">드라마</a>
 		<ul class="low">
 			<!-- <li><a href="/Product/products?category=2000&genre=2100">한드</a></li>
 			<li><a href="/Product/products?category=2000&genre=2200">미드</a></li>
@@ -40,7 +40,7 @@ aside#aside li > ul.low li { width:180px; }
 			<li><a href="/Product/list?g=2300&l=2">한드</a></li>
 		</ul>
 	</li>
-	<li><a href="/Product/list?g=3000&l=1">예능</a>
+	<li><a href="${pageContext.request.contextPath}/CategoryList?c=3000">예능</a>
 		<ul class="low">
 			<!-- <li><a href="/Product/products?category=3000&genre=3100">KBS</a></li>
 			<li><a href="/Product/products?category=3000&genre=3200">MBC</a></li>
@@ -54,7 +54,7 @@ aside#aside li > ul.low li { width:180px; }
 			<li><a href="/Product/list?g=3500&l=2">JTBC</a></li>
 		</ul>
 	</li>
-	<li><a href="/Product/list?g=4000&l=1">다큐</a>
+	<li><a href="${pageContext.request.contextPath}/CategoryList?c=4000">다큐</a>
 		<ul class="low">
 			<!-- <li><a href="/Product/products?category=4000&genre=4100">히스토리</a></li>
 			<li><a href="/Product/products?category=4000&genre=4200">디스커버리</a></li>
@@ -64,7 +64,7 @@ aside#aside li > ul.low li { width:180px; }
 			<li><a href="/Product/list?g=4300&l=2">내셔널 지오그래픽</a></li>
 		</ul>
 	</li>
-	<li><a href="/Product/list?g=5000&l=1">애니</a>
+	<li><a href="${pageContext.request.contextPath}/CategoryList?c=5000">애니</a>
 		<ul class="low">
 			<!-- <li><a href="/Product/products?category=5000&genre=5100">디즈니</a></li>
 			<li><a href="/Product/products?category=5000&genre=5200">지브리</a></li> -->

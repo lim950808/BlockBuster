@@ -37,6 +37,8 @@ public class JJMemberDaoImpl implements JJMemberDao {
 		}
 		return result;
 	}
+	
+	
 	@Override
 	public void registration(JJMember member) {
 		System.out.println("memberDaoImpl -> 회원가입 시작....");

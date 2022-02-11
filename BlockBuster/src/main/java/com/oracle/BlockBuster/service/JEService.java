@@ -48,6 +48,8 @@ public interface JEService {
 	void deleteCart(Cart cart);
 	//int cartDelete(int id);
 	
+	void orderInfo(Payment payment);
+	
 	// 카트 비우기
 	public void cartAllDelete(String member);
 
@@ -58,7 +60,8 @@ public interface JEService {
 
 	List<Payment> orderListAll(String member);
 
-	void orderInfo(Payment payment);
+	List<Product> categoryList(int c);
+
 
 
 

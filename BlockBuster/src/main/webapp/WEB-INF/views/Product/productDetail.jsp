@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
-<%@ include file="../header1.jsp" %>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,6 +105,7 @@
 		              	</div>
 						</form> -->
 						<p class="addToCart">
+							<!-- <a href="/Cart/cartList" class="btn btn-success pull-right" id="btnOrder">주문하기</a> -->
 							<button type="button" class="addCart_btn">장바구니에 담기</button>
 							<script>
 								$(".addCart_btn").click(function(){
@@ -136,16 +137,21 @@
 							</script>
 						</p>
 						<p class="reviewBbs">
-							<button type="button" onclick="location.href='/Review/reviewBbs' ">리뷰게시판</button>
+							<button type="button" onclick="location.href='${pageContext.request.contextPath}/reviewProductList?pno=${product.pno}' ">리뷰게시판</button>
 						</p>
 					</div>
 					
 					<div class="description">${product.description}</div>
 				</div>
-				</section>
-				</div>
-				</section>
-				</div>
+			</section>
+			
+			<aside id="aside">
+				<%@ include file="../aside.jsp" %>
+			</aside>
+			
+		</div>
+	</section>
+</div>
 				
 <%-- <div class="wrapper">
 <div class="wrap">

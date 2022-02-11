@@ -159,5 +159,10 @@ public class JEServiceImpl implements JEService {
 		
 	}
 
+	@Override
+	   public List<Product> categoryList(int c) {
+	      List<Product> list = jd.categoryList(c);
+	      return list;
+	   }
 
 }

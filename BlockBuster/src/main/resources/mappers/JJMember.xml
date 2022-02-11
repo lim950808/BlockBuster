@@ -11,11 +11,11 @@
 			values (#{id},#{password})
 	</select>
 	
-	<select id="memberidCheck" parameterType="JJMemberDto" resultType="java.lang.String">
-			SELECT count(*) FROM member	WHERE id = #{id}
+	<select id="memberidCheck" resultType="java.lang.String" parameterType="JJMember">
+			SELECT count(*) FROM member WHERE id = #{id}
 	</select>
 	
-	<select id="membernicknameCheck" parameterType="JJMemberDto" resultType="java.lang.String">
+	<select id="membernicknameCheck" parameterType="JJMember" resultType="int">
 			SELECT count(*) FROM member	WHERE nickname = #{nickname}
 	</select>
 </mapper>

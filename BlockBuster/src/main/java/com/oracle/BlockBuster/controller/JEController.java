@@ -148,9 +148,22 @@ public class JEController {
 	//@GetMapping("/Product/productDetail/{pno}")
 	//public String product(Model model, @PathVariable("pno") int pno) {
 		Product product = js.productDetail(pno);
+		product.setPno(pno);
 		model.addAttribute("product", product);
+		
 		return "/Product/productDetail";
 	}
+	
+	@GetMapping(value = "CategoryList")
+	   public String CategoryList(Model model, HttpServletRequest request) {
+	      int c = Integer.parseInt(request.getParameter("c"));
+	      System.out.println("JEController의 CategoryList메서드 실행");
+	      System.out.println("JEController의 CategoryList메서드 입력된 카테고리 값 => "+c);
+	      List<Product> list = js.categoryList(c);
+	      System.out.println("JEController의 CategoryList메서드의 list.size() => "+list.size());
+	      model.addAttribute("list", list);
+	      return "/Product/list";
+	   }
 	
 	/*
 	 * //카트담기
@@ -335,15 +348,15 @@ public class JEController {
 	
 	// 결제 payment
 	
-	@GetMapping("")
-	public String orderPathRedirect() {
-		return "redirect:/Order/order";
-	}
+//	@GetMapping("")
+//	public String orderPathRedirect() {
+//		return "redirect:/Order/order";
+//	}
 	
-	@GetMapping("/Order/order")
-	public String order() {
-		return "/Order/order";
-	}
+//	@GetMapping("/Order/order")
+//	public String order() {
+//		return "/Order/order";
+//	}
 
 	@GetMapping("/Order/list")
 	public @ResponseBody Map<String, Object> orderCartList(HttpSession session, String member, Model model) {

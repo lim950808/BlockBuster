@@ -20,8 +20,21 @@
 
   <!-- Template Main CSS File -->
   <link href="/css/style.css" rel="stylesheet">
+  
+  <style type="text/css">
+	.vid-bg {
+	   position: absolute;
+	   right: 0;
+	   bottom: 0;
+	   min-width: 100%;
+	   min-height: 100%;
+	}
+</style>
 </head>
 <body>
+
+<!-- background video -->
+   <video src="/resources/video/AvengersVsThanos.mp4" class="vid-bg" autoplay loop muted></video>
 
   <!-- ======= Hero Section ======= -->
   
@@ -40,7 +53,7 @@
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to <span>BLOCKBUSTER</span></h2>
                 <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="${pageContext.request.contextPath}/loginView" class="btn-get-started animate__animated animate__fadeInUp scrollto">시작하기</a>
+                <a href="${pageContext.request.contextPath}/welcomeCB" class="btn-get-started animate__animated animate__fadeInUp scrollto">시작하기</a>
               </div>
             </div>
           </div>
@@ -52,7 +65,7 @@
               <div class="carousel-content">
                  <h2 class="animate__animated animate__fadeInDown">환영합니다!</h2>
                  <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-  	             <a href="${pageContext.request.contextPath}/loginView" class="btn-get-started animate__animated animate__fadeInUp scrollto">시작하기</a>
+  	             <a href="${pageContext.request.contextPath}/welcomeCB" class="btn-get-started animate__animated animate__fadeInUp scrollto">시작하기</a>
               </div>
             </div>
           </div>
@@ -64,7 +77,7 @@
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">당신의 리뷰를 기다리고있습니다</h2>
                 <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="${pageContext.request.contextPath}/loginView" class="btn-get-started animate__animated animate__fadeInUp scrollto">시작하기</a>
+                <a href="${pageContext.request.contextPath}/welcomeCB" class="btn-get-started animate__animated animate__fadeInUp scrollto">시작하기</a>
               </div>
             </div>
           </div>

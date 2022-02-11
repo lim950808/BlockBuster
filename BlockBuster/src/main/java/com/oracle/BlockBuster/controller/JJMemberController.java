@@ -35,6 +35,13 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		return "welcome";
 	}
 	
+	// welcome페이지 로그인
+	   @GetMapping(value = "welcomeCB")
+	   public String welcomeCB() {
+	      logger.info("welcomeCB 시작");
+	      return "welcomeCB";
+	   }
+	   // welcome페이지 끝
 	
 	//로그인 시작
 	@GetMapping(value="loginView")
@@ -112,13 +119,13 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	
 	 
 	
-	@RequestMapping(value="/idCheck.do")
-	@ResponseBody
-	public String idCheck(JJMember member, HttpServletRequest request) {
-		logger.info("idCheck 시작...");
-		String result= ms.idCheck(member);
-		return result;
-	}
+//	@RequestMapping(value="/idCheck.do")
+//	@ResponseBody
+//	public String idCheck(JJMember member, HttpServletRequest request) {
+//		logger.info("idCheck 시작...");
+//		String result= ms.idCheck(member);
+//		return result;
+//	}
 	
 	
 	 @RequestMapping(value="/nicknameCheck.do")

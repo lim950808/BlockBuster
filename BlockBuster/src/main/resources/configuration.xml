@@ -16,5 +16,16 @@
 		<typeAlias alias="PdtSearchVo" type="com.oracle.BlockBuster.model.PdtSearchVo"/>
 		<typeAlias alias="ProductVo" type="com.oracle.BlockBuster.model.ProductVo"/>
 		<typeAlias alias="ProductApiVo" type="com.oracle.BlockBuster.model.ProductApiVo"/>
+		<!-- 김성휘 -->
+		<typeAlias alias="SHReviewModel" type="com.oracle.BlockBuster.model.SHReviewModel"/>
+		<typeAlias alias="SHCommentModel" type="com.oracle.BlockBuster.model.SHCommentModel"/>
+		<typeAlias alias="SHGoodModel" type="com.oracle.BlockBuster.model.SHGoodModel"/>
+		<typeAlias alias="SHSearchModel" type="com.oracle.BlockBuster.model.SHSearchModel"/>
+		<typeAlias alias="SHTitleModel" type="com.oracle.BlockBuster.model.SHTitleModel"/>
+		<!-- 이창빈 -->
+		<typeAlias alias="CBfaqDto" 		type="com.oracle.BlockBuster.model.CBfaqDto"/>
+		<typeAlias alias="CBSearchVO" 		type="com.oracle.BlockBuster.model.CBSearchVO"/>
+		<!-- 김동현 -->
+		<typeAlias alias="MemberDto" type="com.oracle.BlockBuster.model.Member"/>
 	</typeAliases>
 </configuration>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="SHReviewDao">
+
+
+    <!-- product에서 넘왔을 때 리뷰게시판-->
+	<select id="SH_reviewProductList" parameterType="SHReviewModel" resultType="SHReviewModel">
+			
+		<![CDATA[
+	 	    SELECT *
+			FROM (
+			        SELECT rownum rn ,  a.*
+			        FROM  (SELECT r.*, m.nickname
+			        			  ,(SELECT count(*) FROM comments WHERE r_no=r.r_no) commentCnt
+			        			  ,(SELECT count(*) FROM review_good WHERE r_no=r.r_no) good
+							FROM review r LEFT OUTER JOIN member m ON r.id = m.id
+							WHERE pno=#{pno} ORDER BY r_no DESC) a
+			     )
+			WHERE  rn >= #{start} 
+			AND    rn <= #{end}
+		  ]]>	
+			
+	</select>
+	
+	<select id="SH_pnoToTitle" parameterType="int" resultType="String">
+		SELECT DISTINCT title FROM review WHERE pno=#{pno}
+	</select>
+
+
+	<!-- 게시판 기능 구현 -->
+	<select id="SH_reviewList" parameterType="SHReviewModel" resultType="SHReviewModel">
+			
+		<![CDATA[
+	 	    SELECT *
+			FROM (
+			        SELECT rownum rn ,  a.*
+			        FROM  (SELECT r.*, m.nickname
+			        			  ,(SELECT count(*) FROM comments WHERE r_no=r.r_no) commentCnt
+			        			  ,(SELECT count(*) FROM review_good WHERE r_no=r.r_no) good
+							FROM review r LEFT OUTER JOIN member m ON r.id = m.id
+							ORDER BY r_no DESC) a
+			     )
+			WHERE  rn >= #{start} 
+			AND    rn <= #{end}
+		  ]]>	
+			
+	</select>
+
+	
+	<update id="SH_reviewHit">
+		UPDATE review SET r_hit=r_hit+1 WHERE r_no=#{r_no}
+	</update>
+	
+
+	<select id="SH_total" resultType="int">
+			SELECT count(*) FROM review
+	</select>
+	
+	
+	<select id="SH_totalPro" parameterType="int" resultType="int">
+			SELECT count(*) FROM review WHERE pno=#{pno}
+	</select>
+	
+	
+	<select id="SH_reviewDetail" resultType="SHReviewModel">
+			SELECT review.*, member.nickname
+			FROM review LEFT OUTER JOIN member ON review.id = member.id
+			WHERE r_no =#{r_no}
+	</select>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="SH_reviewDelete" parameterType="int">
+			DELETE FROM review WHERE r_no=#{r_no}
+	</delete>
+	
+	<!-- 이미지 삭제 -->
+	<update id="SH_imgDelete" parameterType="int">
+		UPDATE review SET r_img = '' WHERE r_no=#{r_no}
+	</update>
+	
+	
+	<update id="SH_ReviewEdit" parameterType="SHReviewModel">
+			UPDATE review SET r_title=#{r_title}, r_content=#{r_content}, r_img=#{r_img} WHERE r_no = #{r_no}
+	</update>
+	
+	
+	
+	
+	<!-- 상품페이지, 일반 리뷰 경로에서 글작성할 떄로.. -->
+	<insert id="SH_reviewWrite" parameterType="SHReviewModel">
+			INSERT INTO review(r_no, pno, id, title, r_title, r_content,r_img) 
+			values(REVIEW_R_NO_SEQ.nextval, #{pno}, #{id}, #{title}, #{r_title}, #{r_content}, #{r_img})
+	</insert>
+	
+	
+	<select id="SH_titleToPno" resultType="int">
+		SELECT pno FROM product WHERE title=#{title}
+	</select>
+	
+
+
+
+	<!-- 댓글기능구현 -->
+	<insert id="SH_commentInsert" parameterType="SHCommentModel">
+			INSERT INTO comments(r_no, cno, c_content, id) VALUES(#{r_no}, COMMENT_CNO_SEQ.nextval, #{c_content},#{id})
+	</insert>
+	
+	<select id="SH_c_total" resultType="int">
+			SELECT count(*) FROM comments WHERE r_no = #{r_no}
+	</select>
+	
+	<select id="SH_commentList" parameterType="SHCommentModel" resultType="SHCommentModel">
+	
+		<![CDATA[
+	 	    SELECT *
+			FROM (
+			        SELECT rownum rn ,  a.*
+			        FROM  (SELECT comments.*, member.nickname
+						   FROM comments left outer join member on comments.id = member.id
+						   WHERE comments.r_no = #{r_no} ORDER BY cno DESC) a
+			     )
+			WHERE  rn >= #{start} 
+			AND    rn <= #{end}
+		 ]]>	
+			
+	</select>
+	
+	<select id="SH_commentId" parameterType="SHCommentModel" resultType="SHCommentModel">
+    	SELECT * FROM comments WHERE r_no=#{r_no} AND cno=#{cno}
+    </select>
+	
+	<delete id="SH_commentDelete" parameterType="SHcommentModel">
+		DELETE FROM comments WHERE cno=#{cno}
+	</delete>
+	
+	
+	<!-- 댓글 수정 -->
+	<update id="SH_commentEdit" parameterType="SHcommentModel">
+		UPDATE comments SET c_content = #{c_content} WHERE cno=#{cno}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 게시글 좋아요 구현 -->
+	<select id="SH_totalGood" resultType="int">
+		SELECT count(*) FROM review_good WHERE r_no=#{r_no}
+	</select>
+	
+	<select id="SH_userGood" resultType="int">
+		SELECT count(*) FROM review_good WHERE r_no = #{r_no} AND id = #{id}
+	</select>
+	
+	<insert id="SH_InsertGood" parameterType="SHGoodModel">
+		INSERT INTO review_good(r_no, id, good) values(#{r_no},#{id}, 1)
+	</insert>
+	
+	<delete id="SH_deleteGood" parameterType="SHgoodModel">
+		DELETE FROM review_good WHERE r_no=#{r_no} and id=#{id}
+	</delete>
+	
+	
+	
+	<!-- 게시글 검색 구현 -->
+	<select id="SH_searchModel" resultType="SHReviewModel" parameterType="SHSearchModel">
+		SELECT r.*, m.nickname
+      			  ,(SELECT count(*) FROM comments WHERE r_no=r.r_no) commentCnt
+      			  ,(SELECT count(*) FROM review_good WHERE r_no=r.r_no) good
+		FROM review r LEFT OUTER JOIN member m ON r.id = m.id
+			<if test='search_option.equals("title")'>
+				where title like '%'||#{keyword, jdbcType=VARCHAR}||'%' 
+			</if> 
+			<if test='search_option.equals("r_title")'>
+				where r_title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+			</if>
+		ORDER BY r_no DESC
+    </select>
+    
+    
+    <select id="SH_searchTitle" resultType="SHTitleModel">
+		SELECT DISTINCT title FROM product
+    </select>
+    
+    
+	
+</mapper>

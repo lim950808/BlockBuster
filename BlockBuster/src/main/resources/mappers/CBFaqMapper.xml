@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="CBFaqDao">
+
+	<select id="cbFaqTotal" resultType="int">
+			SELECT count(*) FROM faq
+	</select>
+	
+<!-- FAQ list 화면, paging 처리  -->
+ 	<select id="cbFaqListAll3" parameterType="CBFaqDto"   resultType="CBFaqDto">
+ 	    SELECT *
+		FROM (
+		        SELECT rownum rn ,  a.*
+		        FROM  (select * from faq order by f_no DESC) a
+		     )
+		WHERE rn between #{start} AND  #{end}   <!--  between 는 >=를 의미 -->
+    </select> 
+ 
+<!-- FAQ 쓰기 -->
+	<select id="cbFaqSelect" resultType="CBFaqDto">
+        SELECT   *  FROM  faq
+ </select>
+    
+    <insert id="insertFaq" parameterType="CBFaqDto">
+    <!-- f_no_SEQ 자동으로 up되기 위해 FAQ_F_NO_SEQ.nextval 필수 -->
+    	insert into faq(f_no, id,  f_title, f_content) values (FAQ_F_NO_SEQ.nextval,  #{id},  #{f_title}, #{f_content} )
+    <!-- 	insert into faq (f_no, id , f_title, f_content, f_date ) values (faq_seq.nextval,?, ?, sysdate, 0)"; -->
+    </insert>
+
+<!-- FAQ 수정 -->
+	<select id="cbFaqSelOne"  parameterType="int" resultType="CBFaqDto" >
+       select * From faq Where f_no = #{f_no}   
+    </select>  
+
+	<update id="cbFaqUpdate" parameterType="CBFaqDto">
+		 update faq set f_title=#{f_title}, f_content=#{f_content}	               
+		 where f_no=#{f_no}
+    </update>
+
+<!-- FAQ 삭제 -->
+	 <delete id="deleteFaq" parameterType="CBFaqDto">
+    	delete from faq where f_no=#{f_no}
+    </delete>
+
+<!-- FAQ 검색 -->
+	   <select id="faqList" resultType="CBfaqDto" parameterType="CBSearchVO">
+     
+      select * from faq
+     
+      <if test='search_option.equals("all")'>
+         where f_content like '%'||#{keyword}||'%' or  f_title like '%'||#{keyword}||'%'
+       </if> 
+       <if test='search_option.equals("f_content")'>
+         where f_content like '%'||#{keyword}||'%' 
+       </if> 
+       <if test='search_option.equals("f_title")'>
+         where f_title like '%'||#{keyword}||'%'
+       </if> 
+<!-- 검색 조건으로 title, content, 두가지 포함 모두 찾을 때 의 기능을 구현 
+
+DB확인용
+select * from faq  where f_content like '%'||'keyword'||'%' or  f_title like '%'||#{keyword}||'%'
+select * from faq where f_content like '%'||'keyword'|| '%'
+select * from faq where f_content like '%'||'keyword'|| '%'
+
+-->
+   </select>
+
+</mapper>
