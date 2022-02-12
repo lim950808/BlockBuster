@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ include file="../header1.jsp" %> --%>
-<%-- <%@ include file="../menu.jsp" %> --%>
+<%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -222,7 +221,7 @@ function getAllListByGenre(){
 </tr>
 </table>
 <div id="result"></div>
-<%-- <%@ include file="../footer.jsp" %> --%>
+<%@ include file="../footer.jsp" %>
 </div>
 </body>
 </html>

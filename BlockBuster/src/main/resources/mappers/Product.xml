@@ -60,10 +60,18 @@
 		WHERE p.genre = #{genre}
 	</select>
 	
+	<!-- 카테고리 별 나열 -->
 	<select id="HTcategoryList" parameterType="int" resultType="Product">
       SELECT pno, title, category, genre, p_img
       from product
       where category like #{c}
+   </select>
+   
+   <!-- 장르 별 나열 -->
+   <select id="HTgenreList" parameterType="int" resultType="Product">
+      SELECT pno, title, category, genre, p_img
+      from product
+      where genre like #{g}
    </select>
 	
 	<!-- 상품 상세정보 -->

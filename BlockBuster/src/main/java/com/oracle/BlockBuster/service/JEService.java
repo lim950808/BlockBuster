@@ -62,6 +62,8 @@ public interface JEService {
 
 	List<Product> categoryList(int c);
 
+	List<Product> genreList(int g);
+
 
 
 

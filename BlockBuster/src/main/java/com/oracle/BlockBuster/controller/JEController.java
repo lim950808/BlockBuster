@@ -165,6 +165,17 @@ public class JEController {
 	      return "/Product/list";
 	   }
 	
+	@GetMapping(value = "GenreList")
+	   public String GenreList(Model model, HttpServletRequest request) {
+	      int g = Integer.parseInt(request.getParameter("g"));
+	      System.out.println("JEController의 GenreList메서드 실행");
+	      System.out.println("JEController의 GenreList메서드 입력된 카테고리 값 => "+g);
+	      List<Product> list = js.genreList(g);
+	      System.out.println("JEController의 GenreList메서드의 list.size() => "+list.size());
+	      model.addAttribute("list", list);
+	      return "/Product/list";
+	   }
+	
 	/*
 	 * //카트담기
 	 * 

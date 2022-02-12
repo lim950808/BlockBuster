@@ -61,4 +61,6 @@ public interface JEDao {
 
 	List<Product> categoryList(int c);
 
+	List<Product> genreList(int g);
+
 }

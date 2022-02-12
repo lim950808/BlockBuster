@@ -63,7 +63,7 @@
 
 </pre>
 <div id="root">
-	
+	${sessionScope.sessionId}
 	<section id="container">
 		<div id="container_box">
 		

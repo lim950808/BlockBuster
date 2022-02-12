@@ -165,4 +165,10 @@ public class JEServiceImpl implements JEService {
 	      return list;
 	   }
 
+	@Override
+	public List<Product> genreList(int g) {
+		List<Product> list = jd.genreList(g);
+	      return list;
+	}
+
 }

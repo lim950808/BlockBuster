@@ -61,6 +61,19 @@ public class DHController {
 		
 		return "/member/memberModifyForm";
 	}
+	
+//	//회원수정
+//		@GetMapping(value = "/member/memberModifyForm")
+//		public String modifyForm(HttpSession session, Model model) {
+//			System.out.println("JKController JKModifyForm start...");
+//			String id = (String) session.getAttribute("sessionId");
+//			System.out.println("JKController JKModifyForm id->" + id);
+//			Member member = ds.memberDetail(id);
+//			model.addAttribute("member", member);
+//			
+//			return "/member/memberModifyForm";
+//		}
+		
 	@PostMapping(value ="/member/memberUpdate")
 	public String memberUpdate(Member member, Model model) {
 		System.out.println("JKController MemberUpdate start...");
@@ -70,6 +83,18 @@ public class DHController {
 		
 		return "/member/myinfo";
 	}//회원수정 끝
+		
+//		@PostMapping(value ="/member/memberUpdate")
+//		public String memberUpdate(HttpSession session, Model model) {
+//			System.out.println("JKController MemberUpdate start...");
+//			String id = (String) session.getAttribute("sessionId");
+//			Member member = ds.memberDetail(id);
+//			int uptCnt = ds.memberUpdate(member);
+//			System.out.println("jks.MemberUpdate(member) Count-->"+uptCnt);
+//			model.addAttribute("uptCnt",uptCnt);
+//			
+//			return "/member/myinfo";
+//		}//회원수정 끝
 	
 	
 	//회원삭제 DELSTATUS(탈퇴여부) : 일반회원 0(Default), 탈퇴회원1

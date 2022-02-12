@@ -86,7 +86,7 @@
  
  </head>
 <body>
-<%-- <jsp:include page=""/> 추후 상단 header들어갈 부분 --%>
+<%@ include file="../header.jsp" %>
 
 <div class="jumbotron">
    <div class="container">
@@ -813,6 +813,6 @@
 </c:choose>
 </div> <!-- 전체 블록 종료 -->
 
-<%-- <jsp:include page=""/> 추후 상단 푸터 들어갈 부분 --%>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

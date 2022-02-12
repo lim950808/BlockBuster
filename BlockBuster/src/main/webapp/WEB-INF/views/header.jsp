@@ -199,7 +199,7 @@ body {
 	<div class="navbarJE">
 	
 	  <a href="../main"><b>BlockBuster</b></a>
-	  <a href="login">로그인</a>
+	  <a href="${pageContext.request.contextPath}/login">로그인</a>
 	  
 	  <div class="dropdownJE">
 	    <button class="dropbtnJE">카테고리 
@@ -211,39 +211,39 @@ body {
 	      </div>   
 	      <div class="rowJE">
 	        <div class="columnJE">
-	          <h3>영화</h3>
-	          <a href="#">액션</a>
-	          <a href="#">공포</a>
-	          <a href="#">범죄/스릴러</a>
-	          <a href="#">전쟁</a>
-	          <a href="#">판타지/SF</a>
-	          <a href="#">코미디</a>
-	          <a href="#">멜로/로멘스</a>
+	          <a href="${pageContext.request.contextPath}/CategoryList?c=1000"><h3>영화</h3></a>
+	          <a href="/GenreList?g=1100">공포</a>
+	          <a href="/GenreList?g=1200">액션</a>
+	          <a href="/GenreList?g=1300">범죄/스릴러</a>
+	          <a href="/GenreList?g=1400">전쟁</a>
+	          <a href="/GenreList?g=1500">판타지/SF</a>
+	          <a href="/GenreList?g=1600">코미디</a>
+	          <a href="/GenreList?g=1700">멜로/로멘스</a>
 	        </div>
 	        <div class="columnJE">
-	          <h3>드라마</h3>
-	          <a href="#">한드</a>
-	          <a href="#">미드</a>
-	          <a href="#">일드</a>
+	          <a href="${pageContext.request.contextPath}/CategoryList?c=2000"><h3>드라마</h3></a>
+	          <a href="/GenreList?g=2100">한드</a>
+	          <a href="/GenreList?g=2200">미드</a>
+	          <a href="/GenreList?g=2300">일드</a>
 	        </div>
 	        <div class="columnJE">
-	          <h3>예능</h3>
-	          <a href="#">KBS</a>
-	          <a href="#">MBC</a>
-	          <a href="#">SBS</a>
-	          <a href="#">TVN</a>
-	          <a href="#">JTBC</a>
+	          <a href="${pageContext.request.contextPath}/CategoryList?c=3000"><h3>예능</h3></a>
+	          <a href="/GenreList?g=3100">KBS</a>
+	          <a href="/GenreList?g=3200">MBC</a>
+	          <a href="/GenreList?g=3300">SBS</a>
+	          <a href="/GenreList?g=3400">TVN</a>
+	          <a href="/GenreList?g=3500">JTBC</a>
 	        </div>
 	        <div class="columnJE">
-	          <h3>애니</h3>
-	          <a href="#">디즈니</a>
-	          <a href="#">지브리</a>
+	          <a href="${pageContext.request.contextPath}/CategoryList?c=4000"><h3>다큐</h3></a>
+	          <a href="/GenreList?g=4100">The History Channel</a>
+	          <a href="/GenreList?g=4200">Discovery Channel</a>
+	          <a href="/GenreList?g=4300">National Geographic</a>
 	        </div>
 	        <div class="columnJE">
-	          <h3>다큐</h3>
-	          <a href="#">The History Channel</a>
-	          <a href="#">Discovery Channel</a>
-	          <a href="#">National Geographic</a>
+	          <a href="${pageContext.request.contextPath}/CategoryList?c=5000"><h3>애니</h3></a>
+	          <a href="/GenreList?g=5100">디즈니</a>
+	          <a href="/GenreList?g=5200">지브리</a>
 	        </div>
 	      </div>
 	    </div>
@@ -260,11 +260,11 @@ body {
 	  <div class="dropdownJE">
 	  	<button class="dropbtnJE">마이페이지</button>
 	  		<div class="dropdown-contentJE">
-	    		<a href="/Admin/productList">내 정보</a>
+	    		<a href="/member/myinfo">내 정보</a>
 	    		<a href="/Order/list">구매내역</a>
 	    		<a href="#">1:1 문의</a>
 	    		<a href="${pageContext.request.contextPath}/RestAPI">Rest API</a>
-	    		<a href="#">로그아웃</a>
+	    		<a href="/Admin/productList">로그아웃</a>
 	  		</div>
 	  </div>
 	 <%-- <c:if test="${sessionId == 'admin' }"> 써서 admin 처리 --%>

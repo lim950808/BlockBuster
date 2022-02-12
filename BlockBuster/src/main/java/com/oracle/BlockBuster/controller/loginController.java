@@ -47,7 +47,7 @@ public class loginController {
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", id); //id인지 member인지 확인 필요
 
-		return "forward:/home";
+		return "forward:/main";
 
 	}
 

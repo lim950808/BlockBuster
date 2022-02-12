@@ -116,12 +116,21 @@ function RecommendTitleWords(){
 </script>
 
 <body>
+<pre>
+
+</pre>
 <div id="root">
 	
 	<section id="container">
 		<div id="container_box">
+			<!-- 해당 카테고리 내에서만 제목으로 검색 -->
+			<form action="${pageContext.request.contextPath}/HTGetPdtSearchResult">
+				<input type="hidden" id="sCategory" name="category"> <!-- el로 값 넣는게 불가함으로 제이쿼리로 반영 -->
+	          	<input class="form-control" type="search" name="keyword" id="words" list="searchingist2" onfocus="RecommendTitleWords()" placeholder="Search" aria-label="Search">
+	          	<button type="submit"><i class="fa fa-search"></i></button>
+      		</form>
 		
-			<section id="content">
+			<section id="content">	
 				<ul>
  					<c:forEach items="${list}" var="product">
 	 					<li>
@@ -155,15 +164,18 @@ function RecommendTitleWords(){
          		<input type="hidden" id="category">
          		<button type="submit"><i class="fa fa-search"></i></button>
       		</form> --%>
-      		<form action="${pageContext.request.contextPath}/HTGetPdtSearchResult">
+      		<%-- <form action="${pageContext.request.contextPath}/HTGetPdtSearchResult">
 				<input type="hidden" id="sCategory" name="category"> <!-- el로 값 넣는게 불가함으로 제이쿼리로 반영 -->
 	          	<input class="form-control" type="search" name="keyword" id="words" list="searchingist2" onfocus="RecommendTitleWords()" placeholder="Search" aria-label="Search">
 	          	<button type="submit"><i class="fa fa-search"></i></button>
-      		</form>	
+      		</form>	 --%>
       		
 		</div>
 	</section>
 </div>
 </body>
+<pre>
+
+</pre>
 <%@ include file="../footer.jsp" %>
 </html>

@@ -238,6 +238,12 @@ public class JEDaoImpl implements JEDao {
 	      return list;
 	   }
 
+	@Override
+	public List<Product> genreList(int g) {
+		List<Product> list = session.selectList("HTgenreList", g);
+	      return list;
+	}
+
 	
 
 
