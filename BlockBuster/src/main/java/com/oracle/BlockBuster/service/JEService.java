@@ -39,7 +39,7 @@ public interface JEService {
 	void addCart(Cart cart);
 
 	//카트 리스트
-	List<Cart> cartList(String member);
+	List<Cart> cartList(String id);
 
 //	//카트 수정
 //	int cartUpdate(Cart cart);
@@ -51,7 +51,7 @@ public interface JEService {
 	void orderInfo(Payment payment);
 	
 	// 카트 비우기
-	public void cartAllDelete(String member);
+	public void cartAllDelete(String id);
 
 	//구매내역
 	List<Payment> orderCartList(String member);

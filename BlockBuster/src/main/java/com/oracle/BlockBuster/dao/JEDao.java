@@ -37,18 +37,20 @@ public interface JEDao {
 	 * //카트 삭제 void deleteCart(Cart cart) throws Exception;
 	 */
 
+	//카트에 담기
 	void addCart(Cart cart);
-
-	List<Cart> cartList(String member);
+	//카트 리스트
+	List<Cart> cartList(String id);
 
 //	int cartUpdate(Cart cart);
 
 //	int cartDelete(int id);
 	
+	//카트 삭제
 	void deleteCart(Cart cart);
 	
 	// 카트 비우기
-	public void cartAllDelete(String member);
+	public void cartAllDelete(String id);
 
 	//구매내역
 	List<Payment> orderCartList(String member);

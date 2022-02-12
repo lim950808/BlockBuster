@@ -142,6 +142,7 @@ public class JEDaoImpl implements JEDao {
 	 * session.delete("deleteCart", cart); }
 	 */
 
+	//카트에 담기
 	@Override
 	public void addCart(Cart cart) {
 		System.out.println("JEDaoImpl addCart start..");
@@ -166,9 +167,10 @@ public class JEDaoImpl implements JEDao {
 //		return listCartRtn;
 //	}
 	
+	//카트 리스트
 	@Override
-	public List<Cart> cartList(String member) {
-			return session.selectList("cartList", member);
+	public List<Cart> cartList(String id) {
+			return session.selectList("cartList", id);
 	}
 
 
@@ -182,6 +184,7 @@ public class JEDaoImpl implements JEDao {
 //		return session.delete("cartDelete", id);
 //	}
 	
+	//카트 삭제
 	@Override
 	public void deleteCart(Cart cart) {
 		session.delete("deleteCart", cart);
@@ -227,17 +230,20 @@ public class JEDaoImpl implements JEDao {
 		}
 	}
 
+	//카트 비우기
 	@Override
-	public void cartAllDelete(String member) {
-		session.delete("cartAllDelete", member);
+	public void cartAllDelete(String id) {
+		session.delete("cartAllDelete", id);
 	}
 
+	//카테고리 별 영상
 	@Override
 	   public List<Product> categoryList(int c) {
 	      List<Product> list = session.selectList("HTcategoryList", c);
 	      return list;
 	   }
 
+	//장르 별 영상
 	@Override
 	public List<Product> genreList(int g) {
 		List<Product> list = session.selectList("HTgenreList", g);

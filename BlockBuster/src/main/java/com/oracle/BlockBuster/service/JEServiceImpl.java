@@ -100,14 +100,16 @@ public class JEServiceImpl implements JEService {
 	 * jd.deleteCart(cart); }
 	 */
 
+	//카트에 담기
 	@Override
 	public void addCart(Cart cart) {
 		jd.addCart(cart);
 	}
 
+	//카트 리스트
 	@Override
-	public List<Cart> cartList(String member) {
-		return jd.cartList(member);
+	public List<Cart> cartList(String id) {
+		return jd.cartList(id);
 	}
 
 //	@Override
@@ -120,6 +122,7 @@ public class JEServiceImpl implements JEService {
 //		return jd.cartDelete(id);
 //	}
 	
+	//카트 삭제
 	@Override
 	public void deleteCart(Cart cart) {
 		jd.deleteCart(cart);
@@ -153,9 +156,10 @@ public class JEServiceImpl implements JEService {
 		
 	}
 
+	//카트 비우기
 	@Override
-	public void cartAllDelete(String member) {
-		jd.cartAllDelete(member);
+	public void cartAllDelete(String id) {
+		jd.cartAllDelete(id);
 		
 	}
 

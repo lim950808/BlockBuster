@@ -243,16 +243,32 @@ public class JEController {
 //		return "redirect:list";
 //	}
 	
+//	//카트에 담기(최종)
+//	@ResponseBody
+//	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
+//	public int addCart(Cart cart, HttpSession session) throws Exception {
+//		int result = 0;
+//		System.out.println("addCart start...");
+//		String member = (String)session.getAttribute("member");
+//		System.out.println("addCart member->"+member);
+//	    if(member != null) {
+//			cart.setId(member);
+//			js.addCart(cart);
+//			result = 1;
+//		}
+//		return result;
+//	}
+	
 	//카트에 담기(최종)
 	@ResponseBody
 	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
 	public int addCart(Cart cart, HttpSession session) throws Exception {
 		int result = 0;
 		System.out.println("addCart start...");
-		String member = (String)session.getAttribute("member");
-		System.out.println("addCart member->"+member);
-	    if(member != null) {
-			cart.setId(member);
+		String id = (String)session.getAttribute("sessionId");
+		System.out.println("addCart id->"+id);
+	    if(id != null) {
+			cart.setId(id);
 			js.addCart(cart);
 			result = 1;
 		}
@@ -270,17 +286,33 @@ public class JEController {
 	public String getCartList(HttpSession session, Model model) throws Exception {
 		System.out.println("get cartList started...");
 		// Login member
-		String member = (String)session.getAttribute("member");
-		System.out.println("get cartList member->"+member);
+		String id = (String)session.getAttribute("sessionId");
+		System.out.println("get cartList id->"+id);
 		// Login member
 //		Member member = (Member)session.getAttribute("member");
 //		String id = member.getId();
-		List<Cart> cartList = js.cartList(member);
+		List<Cart> cartList = js.cartList(id);
 		System.out.println("get cartList cartList.size()->"+cartList.size());
 		model.addAttribute("cartList", cartList);
 		return "/Cart/cartList";
-
 	}
+	
+//	//카트 리스트
+//	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET)
+//	public String getCartList(HttpSession session, Model model) throws Exception {
+//		System.out.println("get cartList started...");
+//		// Login member
+//		String member = (String)session.getAttribute("member");
+//		System.out.println("get cartList member->"+member);
+//		// Login member
+////		Member member = (Member)session.getAttribute("member");
+////		String id = member.getId();
+//		List<Cart> cartList = js.cartList(member);
+//		System.out.println("get cartList cartList.size()->"+cartList.size());
+//		model.addAttribute("cartList", cartList);
+//		return "/Cart/cartList";
+//
+//	}
 	
 	/*
 	 * @RequestMapping(value={"/cartList","/amountTotal"}) public @ResponseBody
@@ -308,13 +340,13 @@ public class JEController {
 	@RequestMapping(value = "/Cart/deleteCart", method = RequestMethod.POST)
 	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, Cart cart) {
 		System.out.println("Delete cart");
-		String member = (String)session.getAttribute("member");
+		String id = (String)session.getAttribute("sessionId");
 		int result = 0;
 		int no = 0; //카트 번호(cartNum)
 		
 		//로그인 여부 구분
-		if(member != null) {
-			cart.setId(member);
+		if(id != null) {
+			cart.setId(id);
 			for(String i : chArr) { //ajax에서 받은 chArr의 갯수만큼 반복
 				no = Integer.parseInt(i); //i번째 데이터를 no에 저장
 				cart.setNo(no);
@@ -329,7 +361,7 @@ public class JEController {
 	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.POST)
 	public String order(HttpSession session, Payment payment) {
 		System.out.println("order start...");
-		String member = (String)session.getAttribute("member");
+		String id = (String)session.getAttribute("sessionId");
 		
 		// 캘린더 호출
 		Calendar cal = Calendar.getInstance();
@@ -345,12 +377,12 @@ public class JEController {
 		String orderId = ymd + "_" + subNum;  // [연월일]_[랜덤숫자] 로 구성된 문자
 		System.out.println("Controller cartList orderId -> " + orderId);
 		payment.setOrderId(orderId);
-		payment.setId(member);
+		payment.setId(id);
 		
 		js.orderInfo(payment);
 		
 		// 주문 테이블, 주문 상세 테이블에 데이터를 전송하고, 카트 비우기
-		js.cartAllDelete(member);
+		js.cartAllDelete(id);
 		
 		return "redirect:/Order/result";
 	}
