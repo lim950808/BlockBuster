@@ -12,7 +12,6 @@ body {	font-family: 굴림체; text-align: center;	}
 table { border: 1px solid pink; width: 100%; 
          }
 tr { height: 30px; background: yellow; }
-/* th {	background: #C9BFED;	} */
 th {	background: #b9b973;	}
 td {	background: #f9f3b3;	}
 </style>
@@ -29,6 +28,9 @@ td {	background: #f9f3b3;	}
 		<tr><th>감독</th><td>${product.director }</td></tr>
 		<tr><th>출연진</th><td>${product.casting }</td></tr>
 		<tr><th>가격(원)</th><td>${product.price }</td></tr>
+		<tr><th>줄거리</th><td>${product.description }</td></tr>
+		<tr><th>이미지</th><td>${product.p_img }</td></tr>
+		<tr><th>영상 URL</th><td>${product.p_video }</td></tr>
 		<tr><td colspan="2">
 			<input type="button" value="목록"
 				onclick="location.href='productList'">

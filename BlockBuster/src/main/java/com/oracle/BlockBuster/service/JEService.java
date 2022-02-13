@@ -11,20 +11,40 @@ public interface JEService {
 
 	int total();
 
+////////////////////////////////////
+// 관리자 상품 관리
+////////////////////////////////////
+	
+	//관리자 - 영상 전체
 	List<Product> listProduct(Product product);
 
+	//관리자 - 상품 상세 페이지
 	Product detail(int pno);
 
+	//관리자 - 상품 수정
 	int update(Product product);
 
-	//List<Product> listManager();
-
+	//관리자 - 상품 등록
 	int insert(Product product);
 
+	//관리자 - 상품 삭제
 	int delete(int pno);
+	
+	
+/////////////////////////////////////////
+// 상품 페이지
+/////////////////////////////////////////
 
+	//영상 레벨별 나누기
 	public List<Product> list(int genre, int level) throws Exception;
 	
+	//카테고리 별 영상
+	List<Product> categoryList(int c);
+
+	//장르 별 영상
+	List<Product> genreList(int g);
+	
+	//상품 상세 페이지
 	Product productDetail(int pno);
 
 	/*
@@ -60,9 +80,6 @@ public interface JEService {
 
 	List<Payment> orderListAll(String member);
 
-	List<Product> categoryList(int c);
-
-	List<Product> genreList(int g);
 
 
 

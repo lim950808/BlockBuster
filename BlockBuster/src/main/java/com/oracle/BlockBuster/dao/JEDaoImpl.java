@@ -30,6 +30,10 @@ public class JEDaoImpl implements JEDao {
 		return tot;
 	}
 
+////////////////////////////////////
+//관리자 상품 관리
+////////////////////////////////////
+	
 	@Override
 	public List<Product> listProduct(Product product) {
 		List<Product> productList = null;
@@ -55,33 +59,24 @@ public class JEDaoImpl implements JEDao {
 
 	@Override
 	public int update(Product product) {
-		int uptCnt = 0;
+		int editresult = 0;
 		try {
-			uptCnt = session.update("JEProductUpdate", product);
+			editresult = session.update("JEProductUpdate", product);
 		}catch (Exception e) {
 			
 		}
-		return uptCnt;
+		return editresult;
 	}
 
-//	@Override
-//	public List<Product> listManager() {
-//		List<Product> productList = null;
-//		try {
-//			productList = session.selectList("JESelectManager");
-//		}catch (Exception e) {
-//			
-//		}
-//		return productList;
-//	}
-
+	// 입력한 영상 정보를 실제 DB에 등록하는 부분 
 	@Override
 	public int insert(Product product) {
 		int result = 0;
+		System.out.println("JEDaoImpl insert start...");
 		try {
 			result = session.insert("insertProduct", product);
-		}catch (Exception e) {
-			
+		} catch (Exception e) {
+			System.out.println("JEDaoImpl insertProduct Exception->"+e.getMessage());
 		}
 		return result;
 	}
@@ -92,10 +87,15 @@ public class JEDaoImpl implements JEDao {
 		try {
 			result = session.delete("deleteProduct", pno);
 		}catch (Exception e) {
-			
+			System.out.println("JEDaoImpl deleteProduct Exception->>>" + e.getMessage());
 		}
 		return result;
 	}
+	
+	
+/////////////////////////////////////////
+//상품 페이지
+/////////////////////////////////////////
 	
 	//1차 분류
 	@Override

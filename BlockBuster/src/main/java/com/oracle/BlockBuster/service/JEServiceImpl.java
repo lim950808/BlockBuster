@@ -23,6 +23,10 @@ public class JEServiceImpl implements JEService {
 		return totCnt;
 	}
 
+////////////////////////////////////
+//관리자 상품 관리
+////////////////////////////////////
+	
 	@Override
 	public List<Product> listProduct(Product product) {
 		List<Product> productList = null;
@@ -37,6 +41,7 @@ public class JEServiceImpl implements JEService {
 		return product;
 	}
 
+	//관리자 - 상품 수정
 	@Override
 	public int update(Product product) {
 		int uptCnt = 0;
@@ -44,26 +49,27 @@ public class JEServiceImpl implements JEService {
 		return uptCnt;
 	}
 
-//	@Override
-//	public List<Product> listManager() {
-//		List<Product> productList = null;
-//		productList = jd.listManager();
-//		return productList;
-//	}
-
+	//관리자 - 상품 등록
 	@Override
 	public int insert(Product product) {
 		int result = 0;
+		System.out.println("JEServiceImpl insert Start...");
 		result = jd.insert(product);
 		return result;
 	}
 
+	//관리자 - 상품 삭제
 	@Override
 	public int delete(int pno) {
 		int result = 0;
 		result = jd.delete(pno);
 		return result;
 	}
+	
+
+/////////////////////////////////////////
+//상품 페이지
+/////////////////////////////////////////
 
 	@Override
 	public List<Product> list(int genre, int level) throws Exception {

@@ -19,9 +19,9 @@ td {	background: #f9f3b3;	}
 <body>
 ${sessionScope.id }
 <h2>영상 상세정보</h2>
-<form action="update" method="post">
-  <input type="hidden" name="pno" value="${product.pno }">
-         
+<form action="/Admin/update" method="post" id=form1 enctype="multipart/form-data" target="myBatisFrame">
+  <input type="hidden" name="pno" value="${product.pno}">
+          
   <table>  
 	<tr><th>품번</th><td>${product.pno }</td></tr>
 	<tr><th>영상제목</th><td>
@@ -43,7 +43,8 @@ ${sessionScope.id }
 	<tr><th>줄거리</th><td>
 	    <input type="text" name="description" value="${product.description }"></td></tr>
 	<tr><th>이미지</th><td>
-	    <input type="text" name="p_img" value="${product.p_img }"></td></tr>
+	    <input class="" id="imgFile" name="imgFile" type="file"></td></tr>
+	   <%--  <input type="file" class="" name="imgFile" value="${product.p_img }"></td></tr> --%>
 	<tr><th>영상 URL</th><td>
 	    <input type="text" name="p_video" value="${product.p_video }"></td><tr>
 	</tr>
@@ -53,6 +54,13 @@ ${sessionScope.id }
 	</tr>
 </table>
 </form>
+<script>
+		function addFilePath(msg) {
+			alert(msg);
+			document.getElementById("form1").reset();
+		}
+</script>
+	
 <%@ include file="../footer.jsp" %>
 </body>
 </html>

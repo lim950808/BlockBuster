@@ -11,17 +11,27 @@ public interface JEDao {
 
 	int total();
 
+////////////////////////////////////
+//관리자 상품 관리
+////////////////////////////////////
+	
 	List<Product> listProduct(Product product);
 
 	Product detail(int pno);
 
+	//관리자 - 상품 수정
 	int update(Product product);
 
-	//List<Product> listManager();
-
+	//관리자 - 상품 등록
 	int insert(Product product);
 
+	//관리자 - 상품 삭제
 	int delete(int pno);
+	
+	
+/////////////////////////////////////////
+//상품 페이지
+/////////////////////////////////////////
 
 	public List<Product> list(int genre, int category) throws Exception;
 	

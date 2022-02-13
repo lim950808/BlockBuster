@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp" %>
-<%-- <%@ include file="../menu.jsp" %> --%>
+
 <%
 	String context = request.getContextPath();
 %>
@@ -28,7 +28,7 @@ td {	background: #f9f3b3;	}
 	<%-- <p>uptCnt 수정시 전달 Message : ${uptCnt } <p>
 	<p>kk3 수정시 전달 Message : ${kk3 } <p> --%>
 	
-	<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
+<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
 	
 	<table>
 		<tr><th>No</th><th>품번</th><th>제목</th><th>대분류</th><th>소분류</th><th>가격(원)</th></tr>
@@ -39,27 +39,19 @@ td {	background: #f9f3b3;	}
 			<c:set var="num" value="${num - 1 }"></c:set>
 		</c:forEach>
 	</table>
-	<%-- <c:if test="${pg.startPage > pg.pageBlock }">
-		<a href="<%=context %>/Admin/productList?currentPage=${pg.startPage - pg.pageBlock }">[이전]</a>
+
+	<c:if test="${pg.startPage > pg.pageBlock}">
+		<a href="/Admin/productList?currentPage=${pg.startPage - pg.pageBlock}">[이전]</a>
 	</c:if>
-	<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
-		<a href="<%=context %>/Admin/productList?currentPage=${i }">[${i }]</a>
-	</c:forEach>
-	<c:if test="${pg.endPage < pg.totalPage }">
-		<a href="<%=context %>/Admin/productList?currentPage=${pg.startPage + pg.pageBlock }">[다음]</a>
-	</c:if> --%>
-	<c:if test="${pg.startPage > pg.pageBlock }">
-		<a href="/Admin/productList?currentPage=${pg.startPage - pg.pageBlock }">[이전]</a>
-	</c:if>
-	<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
+	<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
 		<a href="/Admin/productList?currentPage=${i }">[${i }]</a>
 	</c:forEach>
-	<c:if test="${pg.endPage < pg.totalPage }">
-		<a href="/Admin/productList?currentPage=${pg.startPage + pg.pageBlock }">[다음]</a>
+	<c:if test="${pg.endPage < pg.totalPage}">
+		<a href="/Admin/productList?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
 	</c:if>
 <pre>
 
 </pre>
-<%@ include file="../footer.jsp" %>
+
 </body>
 </html>

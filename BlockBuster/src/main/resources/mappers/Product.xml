@@ -32,12 +32,12 @@
 		SELECT * FROM product
 	</select>
 	
-	<select id="insertProduct" parameterType="Product">
-		INSERT INTO product
-		VALUES(#{title}, #{category}, #{genre}, #{year}, #{country}, #{director}, #{casting}, #{description}, #{price}, #{p_img}, #{p_video})
-	</select>
+	<insert id="insertProduct" parameterType="Product">
+		INSERT INTO product(PNO, title, category, genre, year, country, director, casting, description, price, p_img, p_video)
+		VALUES(PRODUCT_PNO_SEQ.nextval, #{title}, #{category}, #{genre}, #{year}, #{country}, #{director}, #{casting}, #{description}, #{price}, #{p_img}, #{p_video})
+	</insert>
 	
-	<delete id="deleteProduct" parameterType="int">
+	<delete id="deleteProduct" parameterType="Product">
 		DELETE FROM product
 		WHERE pno=#{pno}
 	</delete>

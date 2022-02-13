@@ -1,10 +1,12 @@
 package com.oracle.BlockBuster.controller;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.BlockBuster.model.Cart;
 import com.oracle.BlockBuster.model.CartList;
@@ -42,6 +46,11 @@ public class JEController {
 	
 	@Autowired
 	private loginCheck loginCheck; //sessionId 받아오는 모듈
+	
+	
+////////////////////////////////////
+// 관리자 상품 관리
+////////////////////////////////////
 	
 	// 영상목록
 	@RequestMapping(value = "/Admin/productList")
@@ -71,7 +80,7 @@ public class JEController {
 		
 		return "/Admin/detail";
 	}
-	// 영상 수정 폼
+	// 영상 수정 폼으로 이동시키는 역할
 	@GetMapping(value = "/Admin/updateForm")
 	public String updateForm(int pno, Model model) {
 		Product product = js.detail(pno);
@@ -82,51 +91,91 @@ public class JEController {
 	}
 	// 영상 수정
 	@PostMapping(value = "/Admin/update")
-	public String update(Product product, Model model) {
-		int uptCnt = js.update(product);
-		System.out.println("JEController update count->" + uptCnt);
-		model.addAttribute("uptCnt", uptCnt);				// Test Controller간 Date 전달
-		//model.addAttribute("kk3", "Message Test");	// Test Controller간 Date 전달
+	public String update(HttpServletRequest request, MultipartFile imgFile, Product product, Model model) throws Exception {
+		logger.info("Product Edit Start...");
 		
-		return "forward:/Admin/detail";
+		//파일 첨부
+		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
+		
+		System.out.println("uploadForm POST Start");
+		logger.info("originalName: "+ imgFile.getOriginalFilename());
+		logger.info("size: "+ imgFile.getSize());
+		logger.info("contentType: "+ imgFile.getContentType());	
+		logger.info("uploadPath: "+ uploadPath);	
+		
+		String p_img = uploadFile(imgFile.getOriginalFilename(), imgFile.getBytes(), uploadPath);
+		
+		logger.info("p_img: " + p_img);
+		product.setP_img(p_img);
+		
+		System.out.println("pno 존재 여부"+product.getPno());
+		
+		logger.info("ProductEdit() Start");
+		int editresult = js.update(product);
+		System.out.println("product edit 반영 결과 : " + editresult);
+		model.addAttribute("editresult", editresult);
+		
+		return "forward:productList";
 	}
-	//영상 등록
-	@RequestMapping(value = "/Admin/writeForm")
-	public String writeForm(Model model) {
-		System.out.println("JEController writeForm start...");
-		//Emp emp = null;
-		//관리자 사번만 Get
-//		List<Product> productList = js.listManager();
-//		model.addAttribute("productMngList", productList); //product Manager List
-		
+	//영상 등록버튼 누르면 등록 Form 으로 이동하게 해주는 역할
+	@RequestMapping(value = "/Admin/writeForm", method=RequestMethod.GET )
+	public String writeForm() {
+		System.out.println("JEController insertProduct start...");	
 		return "/Admin/writeForm";
 	}
+	// 영상등록 Form에 입력한 값을 DB에 입력시키는 역할
+	@RequestMapping(value="/Admin/write",  method=RequestMethod.POST)
+	public String write(HttpServletRequest request, MultipartFile imgFile, Product product, Model model) throws Exception {
+		System.out.println("JEController Start write..." );
 	
-	@RequestMapping(value = "/Admin/write", method = RequestMethod.POST)
-	public String write(Product product, Model model) {
-		//System.out.println("emp.getHiredate->"+emp.getHiredate());
-		// Service, Dao , Mapper명[insertEmp] 까지 -> insert
-		System.out.println("JEController start write...");
+		if(imgFile!=null) {
+			String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
+			
+			System.out.println("uploadForm POST Start");
+			logger.info("originalName: "+ imgFile.getOriginalFilename());
+			logger.info("size: "+ imgFile.getSize());
+			logger.info("contentType: "+ imgFile.getContentType());	
+			logger.info("uploadPath: "+ uploadPath);
+			
+			String p_img = uploadFile(imgFile.getOriginalFilename(), imgFile.getBytes(), uploadPath);
+			
+			logger.info("p_img: " + p_img);
+			product.setP_img(p_img);
+		}
+		
+		// 상품 등록
+		logger.info("Product ---> Product Wrtite() 시작");
 		int result = js.insert(product);
-		if(result > 0) return "redirect:/Admin/productList";
+		
+		if (result > 0) 
+			return "redirect:/Admin/productList";
 		else {
-			model.addAttribute("msg", "입력 실패!! 확인해보세요");
+			model.addAttribute("msg", "입력 실패 확인해 보세요");
 			return "forward:/Admin/writeForm";
 		}
+	    	
 	}
-//	//중복 체크
-//	@GetMapping(value = "/Admin/confirm")
-//	public String confirm(int pno, Model model) {
-//		Product product = js.detail(pno);
-//		model.addAttribute("pno", pno);
-//		if(product != null) {
-//			model.addAttribute("msg", "중복된 영상입니다.");
-//			return "forward:/Admin/writeForm";
-//		}else {
-//			model.addAttribute("msg", "등록 가능합니다.");
-//			return "forward:/Admin/writeForm";
-//		}
-//	}
+	//파일 업로드
+	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
+		UUID uid = UUID.randomUUID();
+		// requestPath = requestPath + "/resources/image";
+		System.out.println("uploadPath->"+uploadPath);
+		
+		// Directory 생성
+		File fileDirectory = new File(uploadPath);
+		if (!fileDirectory.exists()) {
+			fileDirectory.mkdirs();
+			System.out.println("업로드용 폴더 생성: " + uploadPath);
+		}
+		
+		String savedName = uid.toString() + "_" + originalName;
+		logger.info("savedName: " + savedName);
+		
+		File target = new File(uploadPath, savedName);
+		FileCopyUtils.copy(fileData, target); // org.springframework.util.FileCopyUtils
+		
+		return savedName;
+	}
 	//상품 삭제
 	@RequestMapping(value = "/Admin/delete")
 	public String delete(int pno, Model model) {
@@ -134,6 +183,13 @@ public class JEController {
 		int result = js.delete(pno);
 		return "redirect:productList";
 	}
+	
+	
+	
+/////////////////////////////////////////
+// 상품 페이지
+/////////////////////////////////////////
+	
 	//카테고리별 영상 리스트
 	@RequestMapping(value = "/Product/list", method = RequestMethod.GET)
 	public void getList(@RequestParam("g") int genre, @RequestParam("l") int level, Model model) throws Exception {

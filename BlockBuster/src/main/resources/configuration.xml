@@ -27,5 +27,7 @@
 		<typeAlias alias="CBSearchVO" 		type="com.oracle.BlockBuster.model.CBSearchVO"/>
 		<!-- 김동현 -->
 		<typeAlias alias="MemberDto" type="com.oracle.BlockBuster.model.Member"/>
+		<!-- 조병훈 -->
+		<typeAlias alias="BHDto" type="com.oracle.BlockBuster.model.BHDto"/>
 	</typeAliases>
 </configuration>
