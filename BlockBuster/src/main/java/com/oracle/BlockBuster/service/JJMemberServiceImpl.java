@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.oracle.BlockBuster.dao.JJMemberDao;
 import com.oracle.BlockBuster.model.JJMember;
+import com.oracle.BlockBuster.model.Member;
 
 @Service
 public class JJMemberServiceImpl implements JJMemberService {
@@ -42,5 +43,11 @@ public class JJMemberServiceImpl implements JJMemberService {
 		return result;
 	}
 
-	
+	@Override
+	public void regSubmit(JJMember member) {
+		System.out.println("regSubmit의 메소드 실행...");
+		memberDao.regSubmit(member);
+		
+	}
+
 }

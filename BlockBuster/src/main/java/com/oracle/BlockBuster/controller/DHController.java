@@ -36,18 +36,32 @@ public class DHController {
 //		return "/member/myinfo";
 //	}
 	
+//	//내정보 조회
+//	@GetMapping(value = "/member/myinfo")
+//	public String myinfo(HttpSession session, Model model) {
+//		System.out.println("JKController myinfo start...");
+//		//System.out.println("JKController myinfo id->"+id);
+//		String id = (String) session.getAttribute("sessionId");
+//		Member member = ds.memberDetail(id);
+//		//session.getAttribute("sessionId", member.getId());
+//		System.out.println("JKController myinfo member.getNickname()->"+member.getNickname());
+//		model.addAttribute("member",member);
+//		
+//		return "/member/myinfo";
+//	}
+	
 	//내정보 조회
-	@GetMapping(value = "/member/myinfo")
-	public String myinfo(HttpSession session, Model model) {
-		System.out.println("JKController myinfo start...");
-//		System.out.println("JKController myinfo id->"+id);
-		String id = (String) session.getAttribute("sessionId");
-		Member member = ds.memberDetail(id);
-		System.out.println("JKController myinfo member.getNickname()->"+member.getNickname());
-		model.addAttribute("member",member);
-		
-		return "/member/myinfo";
-	}
+		@GetMapping(value = "/member/myinfo")
+		public String myinfo(HttpSession session, Model model) {
+			System.out.println("JKController myinfo start...");
+			//System.out.println("JKController myinfo id->"+id);
+			String id = (String) session.getAttribute("sessionId");
+			Member member = ds.memberDetail(id);
+			System.out.println("JKController myinfo member.getNickname()->"+member.getNickname());
+			model.addAttribute("member",member);
+			
+			return "/member/myinfo";
+		}
 	
 	
 	

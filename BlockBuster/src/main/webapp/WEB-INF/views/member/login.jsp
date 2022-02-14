@@ -48,8 +48,8 @@ function checkIdPw(){
 		ID : <input type="text" id="id" name="id" placeholder="Enter ID" required autofocus><br>
 		PW : <input type="text" id="password" name="password" placeholder="Enter password"><br>
 		<div>
-		<a href="findId.jsp" class="txt1">아이디를 잊으셨나요?</a>
-		<a href="findPw.jsp" class="txt1" id="test">비밀번호를 잊으셨나요?</a>
+		<a href="${pageContext.request.contextPath}/findId" class="txt1">아이디를 잊으셨나요?</a>
+		<a href="${pageContext.request.contextPath}/findPw" class="txt1" id="test">비밀번호를 잊으셨나요?</a>
 		</div>
 		<button type="submit">로그인</button>
 		<p class="text-muted text-center mt-2 ml-2 mb-0">회원이 아니신가요? <a href="${pageContext.request.contextPath}/registrationView" class="text-primary ml-1">회원가입</a></p>

@@ -19,21 +19,26 @@ function chkcode(){
 	var weSendCode = $('#weSendCode').val();
 	console.log(youCode);
 	console.log(weSendCode);
-	
 	if(youCode != weSendCode){
 		var result = "<div id='lists' style='margin:20px 0 0 10px;padding:20px 15px;font-size:14px;color:#555;line-height:20px;border:1px solid #ddd;background:#f5f5f5'>코드를 확인해주세요<br></div>";
 		$(result).insertAfter("#youCode");
 	}else{
-		return true;
+		var form document.emailCheckFrm;
+		form.submit();
 	}
 	});
 }
+
+<%= request.getAttribute("id") %>
+<%= request.getAttribute("password") %>
+<%= request.getAttribute("nickname") %>
+<%= request.getAttribute("email") %>
 </script>
 </head>
 <body>
 	<h1 align="center"> 이메일 코드 확인</h1>
 		email: <input id="youCode" name="youCode" type="number" placeholder="code를 입력하세요"><br>
-	<form id="emailCheckFrm" name="emailCheckFrm" action="${pageContext.request.contextPath}/main" onsubmit="chkcode(); return false;"> <!-- 로그인 후 메인으로 날라간 컨트롤러 맵핑  -->
+	<form id="emailCheckFrm" name="emailCheckFrm" action="${pageContext.request.contextPath}/regSubmit.do" onsubmit="chkcode(); return false;"> <!-- 로그인 후 메인으로 날라간 컨트롤러 맵핑  -->
 		<input type="hidden" id="weSendCode" value="${code}">
 		<input type="hidden" id="mailSendResult" value="${mailSendResult}">
 		<input type="hidden" name="id" value="${member.id}">

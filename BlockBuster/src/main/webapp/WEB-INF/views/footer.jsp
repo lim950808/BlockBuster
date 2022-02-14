@@ -3,14 +3,33 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Insert title here</title>
+<style type="text/css">
+body{
+  background-color: #333;
+  color: #fff;
+}
+.foot {
+	background-color: #333
+}
+.foot span{
+	color: #fff;
+}
+.foot hr{
+	border-color: #fff;
+}
+
+.foot p{
+	color: #fff;
+}
+</style>
 </head>
 <body>
 
-<footer>
-<p align="center"><span><a href="/introduce">회사 소개</a></span>&emsp;
-                  <span><a href="/serviceInt">서비스 소개</a></span>&emsp;
-				  <span><a href="/policy">이용약관</a></span>&emsp;
-                  <span><a href="/privacy">개인정보보호정책</a></span>&emsp;</p>
+<footer class="foot">
+<p align="center"><a href="/introduce"><span>회사 소개</span></a>&emsp;
+                  <a href="/serviceInt"><span>서비스 소개</span></a>&emsp;
+				  <a href="/policy"><span>이용약관</span></a>&emsp;
+                  <a href="/privacy"><span>개인정보보호정책</span></a>&emsp;</p>
                 
 <hr>
 <!-- <p style="padding-left:30%">BlockBuster 1st Project 프로젝트<br>

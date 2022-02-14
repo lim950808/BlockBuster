@@ -24,12 +24,12 @@ public class loginController {
 	private loginCheck loginCheck; // sessionId 받아오는 모듈
 
 	
-	 @GetMapping(value="login") 
-	 public String login() {
-		 logger.info("[*-1] loginForm 시작");
-
-		 return "loginForm"; 
-	 }
+//	 @GetMapping(value="login") 
+//	 public String login() {
+//		 logger.info("[*-1] loginForm 시작");
+//
+//		 return "loginForm"; 
+//	 }
 	 
 
 	@PostMapping("loginCheck")

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-aside#aside li { position:relative; }
-aside#aside li:hover { background:#eee; }   
+aside#aside li { position:relative;}
+aside#aside li:hover { background:#eee;}   
 aside#aside li > ul.low { display:none; position:absolute; top:0; left:180px;  }
 aside#aside li:hover > ul.low { display:block; }
 aside#aside li:hover > ul.low li a { background:#eee; border:1px solid #eee; }

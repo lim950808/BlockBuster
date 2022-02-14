@@ -119,6 +119,9 @@ function RecommendTitleWords(){
 <pre>
 
 </pre>
+<aside id="aside">
+				<%@ include file="../aside.jsp" %>
+			</aside>
 <div id="root">
 	
 	<section id="container">
@@ -151,9 +154,7 @@ function RecommendTitleWords(){
 				</ul>
 			</section>
 			
-			<aside id="aside">
-				<%@ include file="../aside.jsp" %>
-			</aside>
+			
 			
 			<%-- <form>
           		<input class="form-control" type="hidden" value="${product.pno }" placeholder="Search" aria-label="Search">

@@ -188,7 +188,12 @@ body {
 } 
 
 .exampleJE fa fa-search :hover{
-	background-color: #D5D5D5;
+	background-color: #D5D5D5;	
+}
+
+.navbarJE span {
+	color: red;
+	font-size: 30px;
 }
 
 </style>
@@ -196,7 +201,10 @@ body {
 <body>
 	<div class="navbarJE">
 	
-	  <a href="../main"><b>BlockBuster</b></a>
+	 <a href="../main"><span>BlockBuster</span></a>
+	  <!-- <a class="navbar-brand" href="../main">
+    	<img src="/resources/img/logo.png" alt="" width="150" height="50" class="d-inline-block align-text-top">
+    </a> -->
 	  <a href="${pageContext.request.contextPath}/login">로그인</a>
 	  
 	  <div class="dropdownJE">

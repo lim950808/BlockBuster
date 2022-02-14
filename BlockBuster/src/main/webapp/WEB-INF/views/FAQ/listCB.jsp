@@ -12,18 +12,22 @@
 <title>Insert title here</title>
 <!-- <link href="/css/faqCB.css" rel="stylesheet" > -->
 <style type="text/css">
+/* body{
+	background-color: #333;
+} */
+
 .titleCB h2{
 	font-size:60px;
 	font-weight:bold;
 	font-family: 'Montserrat', sans-serif;
 	text-align:center;
-	color:#08088A;
+	color:#fff;
 	letter-spacing:0px;
   	transition:1s;
   	-webkit-transition:1s;
   	-ms-transition:1s;
   	position: relative;
-  	padding:10px;
+  	padding:20px;
  
 }
 
@@ -31,7 +35,7 @@
 .titleCB h2:after{
   	content:"";
   	position: absolute;
-  	height: 7px;
+  	height: 3px;
   	width: 0px;
   	background:#ffd800;
   	transition:300ms;
@@ -39,15 +43,16 @@
   	-ms-transition:1s;
   	opacity:0.3;
   	left:50%;
+  
 }
 
 .titleCB h2:before{
-  	bottom:0;
+  	bottom:0px;
 }
 
-.titleCB h2:after{
+/* .titleCB h2:after{
   	top:0;  
-}
+} */
 
 .titleCB h2:hover{
 	letter-spacing:30px;
@@ -70,25 +75,31 @@
 
 .accordion {
 	
-  	background-color: #08088A;
+  	background-color: #333;
   	color: #fff;
   	cursor: pointer;
   	padding: 18px;
   	width: 100%;
   	text-align: left;
-  	border: 1px solid #fff;
+  	border-bottom: 1px solid #fff;
+  	border-left: 0;
+  	border-right: 0;
   	outline: none;
   	transition: 0.4s;
+  	
 }
 .active, .accordion:hover {
-  	background-color: #0042ED;
+  	background-color: #ffd800;
+  	color: #000;
 }
 .panel {
   	padding: 18px;
-  	background-color: #EBF7FF;
+  	background-color: #4d4d4d;
   	font-family: 'Montserrat', sans-serif;
   	display: none;
   	overflow: hidden;
+	font-weight: bold;
+	color: #fff;
 }
 
 .panel input{
@@ -96,7 +107,7 @@
 	background-color: #ffd600;
 	font: 12px 굴림;
 	font-weight: bold;
-	color: black;
+	color: #000;
 	width: 130;
 	height: 30;
   	border: none;
@@ -215,9 +226,12 @@ ${ sessionScope.id}
 		
 	<button class="accordion"> ${faq.f_no}&emsp;&emsp;&emsp;&emsp;&emsp;${faq.f_title }</button>
 		<div class="panel">
-  			<p>${faq.f_content } <br><br><br>			  			
+  			<p>${faq.f_content } <br><br><br>		
+  	<!-- ------------------------------ admin 권한 설정하기 --------------------------------------- -->
+		<c:if test="${sessionScope.id eq 'admin' }">	  			
 			<input type="button"  value="수정" onclick="location.href='updateFormCB?f_no=${faq.f_no}'">
-			<input type="button"  value="삭제" onclick="location.href='deleteCB?f_no=${faq.f_no}'">		
+			<input type="button"  value="삭제" onclick="location.href='deleteCB?f_no=${faq.f_no}'">	
+		</c:if>	
   			</p>
 		</div><br>
 	
@@ -234,8 +248,10 @@ ${ sessionScope.id}
  <c:if test="${pg.endPage < pg.totalPage }">
  	<a href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage+pg.pageBlock }">[다음]</a>
  </c:if>
- 
+<!-- ------------------------------ admin 권한 설정하기 --------------------------------------- --> 	
+<c:if test="${sessionScope.id eq 'admin' }"> 
 	<input type="button" value="입력" onclick="location.href='<%=context%>/FAQ/writeFormCB'" class="button">	
+	</c:if>
 	&nbsp; 
 	<input type="button" value="목록" onclick="location.href='<%=context%>/FAQ/listCB'" class="button"><p>
 

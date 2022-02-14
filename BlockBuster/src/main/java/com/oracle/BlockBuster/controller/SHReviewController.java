@@ -37,11 +37,12 @@ public class SHReviewController {
 	private loginCheck loginCheck; //ID session 가져오는 module
 
 	
-	//게시판 리스트 검색창
+	//게시판 리스트 검색창 3.
 	@RequestMapping(value = "search")
 	public String search(SHSearchModel searchModel, String currentPage, Model model) {
 		logger.info("[STRAT] search 리뷰게시판 통합 검색 시작--------------------");
-		
+		System.out.println("controller searchModel : "+searchModel.getSearch_option());
+
 		//Paging 호출
 		logger.info("[2-1-1] totalSearch() 시작");
 		int total = SHservice.totalSearch(searchModel);
@@ -71,6 +72,8 @@ public class SHReviewController {
 			
 			model.addAttribute("reviewList",searchResult); // 심플
 			model.addAttribute("keyword",searchModel.getKeyword()); //쉬운방법
+			model.addAttribute("boardKind", "3");
+			model.addAttribute("Search_option",searchModel.getSearch_option()); //쉬운방법
 		}
 		return "Review/reviewListSH";
 	}
@@ -78,7 +81,7 @@ public class SHReviewController {
 	
 	
 	
-	//게시판 목록(일반)
+	//게시판 목록(일반)  1
 	@RequestMapping(value="reviewList")
 	public String reviewList(SHReviewModel SHreviewModel, String currentPage, Model model) {
 		logger.info("[STRAT] 전체 reviewList 시작--------------------");
@@ -101,6 +104,7 @@ public class SHReviewController {
 		
 		model.addAttribute("pg",pg);
 		model.addAttribute("total", total);
+		model.addAttribute("boardKind", "1");
 		
 		
 		return "Review/reviewListSH";
@@ -109,7 +113,7 @@ public class SHReviewController {
 
 	
 	
-	//게시판 목록(상품페이지)
+	//게시판 목록(상품페이지) 2
 	@RequestMapping(value="reviewProductList")
 	public String reviewProductList(int pno, String currentPage, Model model) {
 		logger.info("[STRAT] 상품페이지로부터 reviewProductList 시작--------------------");
@@ -141,6 +145,7 @@ public class SHReviewController {
 		model.addAttribute("pno", pno); // 리스트에서 번호에 따라 리뷰남기는 방식이다름 
 		model.addAttribute("pg",pg);
 		model.addAttribute("total", total);
+		model.addAttribute("boardKind", "2");
 		
 		
 		return "Review/reviewListSH";

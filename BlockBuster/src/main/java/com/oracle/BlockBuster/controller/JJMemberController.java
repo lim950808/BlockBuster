@@ -12,9 +12,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.oracle.BlockBuster.model.JJMember;
 import com.oracle.BlockBuster.service.JJMemberService;
 
@@ -35,13 +38,6 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		return "welcome";
 	}
 	
-	// welcome페이지 로그인
-	   @GetMapping(value = "welcomeCB")
-	   public String welcomeCB() {
-	      logger.info("welcomeCB 시작");
-	      return "welcomeCB";
-	   }
-	   // welcome페이지 끝
 	
 	//로그인 시작
 	@GetMapping(value="loginView")
@@ -50,13 +46,13 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		return "member/login";
 	}
 	
-//	@GetMapping(value="login")
-//	public String login(JJMember member,HttpServletRequest request) {
-//		logger.info("login 시작");
-//		HttpSession session = request.getSession();
-//		session.setAttribute("member", member.getId());
-//		return	"/main";
-//	}
+	@GetMapping(value="login")
+	public String login(JJMember member,HttpServletRequest request) {
+		logger.info("login 시작");
+		HttpSession session = request.getSession();
+		session.setAttribute("sessionId", member.getId());
+		return	"/main";
+	}
 	
 	@RequestMapping("idpwCheck")
 	@ResponseBody
@@ -74,13 +70,6 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		logger.info("registrationView 시작...");
 		return "member/registration";
 	}
-	
-	 //emailCheck view 매핑 메소드
-	 @RequestMapping("/member/email.do")
-	 public String email() {
-		 return "member/emailCheck";
-	 }
-	
 	
 	 @RequestMapping("registration.do")
 		public String registration(JJMember member, Model model)  {
@@ -116,16 +105,27 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 			model.addAttribute("member",member);
 			return "member/emailCheck";
 		}
-	
+	 
+	 
+	 @RequestMapping(value="regSubmit.do")
+	 public String regSubmit(Model model, JJMember member, HttpServletRequest request) {
+		 logger.info("regSubmit시작....");
+		 request.setAttribute("id", member);
+		 request.setAttribute("password", member);
+		 request.setAttribute("nickname", member);
+		 request.setAttribute("email", member);
+		 ms.regSubmit(member);
+		return "member/login";
+	 }
 	 
 	
-//	@RequestMapping(value="/idCheck.do")
-//	@ResponseBody
-//	public String idCheck(JJMember member, HttpServletRequest request) {
-//		logger.info("idCheck 시작...");
-//		String result= ms.idCheck(member);
-//		return result;
-//	}
+	@RequestMapping(value="/idCheck.do")
+	@ResponseBody
+	public String idCheck(JJMember member, HttpServletRequest request) {
+		logger.info("idCheck 시작...");
+		String result= ms.idCheck(member);
+		return result;
+	}
 	
 	
 	 @RequestMapping(value="/nicknameCheck.do")

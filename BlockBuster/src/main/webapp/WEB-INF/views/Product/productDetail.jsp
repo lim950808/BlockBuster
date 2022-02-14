@@ -64,6 +64,11 @@
 <pre>
 
 </pre>
+
+<aside id="aside">
+	<%@ include file="../aside.jsp" %>
+</aside>
+
 <div id="root">
 	${sessionScope.sessionId}
 	<section id="container">
@@ -147,9 +152,7 @@
 				</div>
 			</section>
 			
-			<aside id="aside">
-				<%@ include file="../aside.jsp" %>
-			</aside>
+			
 			
 		</div>
 	</section>

@@ -12,7 +12,7 @@
 
 <title>리뷰게시판</title></head>
 <body>
-
+ 	    <input type="hidden" name="boardKind" value="$(boardKind)">
   
   
 	<div align="center">
@@ -61,13 +61,14 @@
 				<option value="r_title">글제목</option>
 		    </select>
 		    <input name="keyword" value="">
+		    <input type="hidden" name="Search_option" value="$(Search_option)">
 		    <input type="submit" value="조회">
 		</form>
 		
 		
 		<!-- 페이징처리 -->	
 		<c:choose>
-		    <c:when test="${pno eq null}">
+		    <c:when test="${boardKind eq '1'}">
 				<c:if test="${pg.startPage > pg.pageBlock }">
 					<a href="reviewList?currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
 				</c:if>
@@ -80,21 +81,7 @@
 					<a href="reviewList?currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
 				</c:if>
 		    </c:when>
-		   <%--  <c:when test="${searchPage eq 7}">
-				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="search?keyword=#{keyword}&currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
-				</c:if>
-				
-				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-					<a href="search?keyword=#{keyword}&currentPage=${i}">[${i}]</a>
-				</c:forEach>
-				
-				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="search?keyword=#{keyword}&currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
-				</c:if>
-		    </c:when> --%>
-		    
-		    <c:otherwise>
+		    <c:when test="${boardKind eq '2'}">
 				<c:if test="${pg.startPage > pg.pageBlock }">
 					<a href="reviewProductList?pno=${pno}&currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
 				</c:if>
@@ -106,7 +93,22 @@
 				<c:if test="${pg.endPage < pg.totalPage }">
 					<a href="reviewProductList?pno=${pno}&currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
 				</c:if>
-		    </c:otherwise>
+		    </c:when>
+		    <c:when test="${boardKind eq '3'}">
+				<c:if test="${pg.startPage > pg.pageBlock }">
+					<a href="search?keyword=${keyword}&currentPage=${pg.startPage-pg.pageBlock}&search_option=${Search_option}">⬅︎</a>
+				</c:if>
+				
+				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+					<a href="search?keyword=${keyword}&currentPage=${i}&search_option=${Search_option}">[${i}]</a>
+				</c:forEach>
+				
+				<c:if test="${pg.endPage < pg.totalPage }">
+					<a href="search?keyword=${keyword}&currentPage=${pg.startPage+pg.pageBlock}&search_option=${Search_option}">➡︎︎</a>
+				</c:if>
+		    </c:when>
+		    
+				
 		</c:choose>
 		
 		
