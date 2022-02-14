@@ -5,14 +5,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<!-- 
-<script src="http://code.jquery.com/jquery-1.7.js" type="text/javascript"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
- -->
+
 <script type="text/javascript">
-	
-	
+
+	function insertCheck(){
+		if(r_title.value.length == 0){
+			alert("제목을 입력해주세요.");
+			r_title.value.focus();
+			return;
+		}else if(r_content.value.length == 0){
+			alert("내용을 입력해주세요.");
+			r_content.value.focus();
+			return;
+		}else{
+			$('#frm').submit();
+		}
+	} 
+
 </script>
+	
 <body>
 
 	<div class="container">
@@ -20,7 +31,7 @@
 		<h3>리뷰작성하기</h3>
 		
 		<!-- 파일 등록을 위해 enctype="multipart/form-data" 을 선언 -->
-		<form action="<c:url value="reviewProWrite"/>" class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data"  target="SHFrame">
+		<form action="<c:url value="reviewProWrite"/>" class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data">
 
 
 			<input type="hidden" name="pno" value="${pno}">
@@ -31,13 +42,16 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-xs-12 col-form-label" for="title">영화제목</label>
 				<div class="col-sm-10 col-xs-12">
-					<input class="form-control" id="title" name="title" placeholder="영상제목" type="text" value="${title}" />
+					<input class="form-control" id="title" name="title" type="text" value="${title}" readonly/>
 				</div>
 			</div>
+
+
+			<!-- class에 사용되는 form-group, row 등은 부트스트랩에서 사용되는 class -->
 			<div class="form-group row">
-				<label class="col-sm-2 col-xs-12 col-form-label" for="title">제목</label>
+				<label class="col-sm-2 col-xs-12 col-form-label" for="title">글제목</label>
 				<div class="col-sm-10 col-xs-12">
-					<input class="form-control" id="r_title" name="r_title" placeholder="글제목" type="text" value="" />
+					<input class="form-control" id="r_title" name="r_title" placeholder="제목" type="text" value="" />
 				</div>
 			</div>
 	
@@ -57,20 +71,16 @@
 	
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<a class="btn btn-success" type="submit" onclick="boardIn();return false;" role="button" title="저장"><i class="fa fa-save"></i> 저장</a>
+					<a class="btn btn-success" type="submit" onclick="insertCheck();return false;" role="button" title="저장"><i class="fa fa-save"></i> 저장</a>
 					<a class="btn btn-primary" href="javascript:window.history.back();" role="button" title="리스트"><i class="fa fa-list-ul"></i> 리스트</a>
 				</div>
 			</div>
 	
 		</form>
-		
 	</div>
 
-	<script type="text/javascript">
-		function boardIn(){
-			$('#frm').submit();
-		}
-	</script>
+
+	
 
 </body>
 </html>

@@ -3,35 +3,53 @@
 
 <mapper	namespace="SHReviewDao">
 
-
-    <!-- product에서 넘왔을 때 리뷰게시판-->
-	<select id="SH_reviewProductList" parameterType="SHReviewModel" resultType="SHReviewModel">
-			
-		<![CDATA[
+	<!-- 게시판 리스트 검색창 페이지 total -->
+	<select id="SH_totalSearch" parameterType="SHSearchModel" resultType="int">
+			SELECT count(*) FROM review 
+			<if test='search_option.equals("title")'>
+				where title like '%'||#{keyword, jdbcType=VARCHAR}||'%' 
+			</if> 
+			<if test='search_option.equals("r_title")'>
+				where r_title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+			</if>
+	</select>
+	
+	
+	<!-- 게시판 리스트 검색창 -->
+	<select id="SH_search" resultType="SHReviewModel" parameterType="SHSearchModel">
+						
 	 	    SELECT *
 			FROM (
 			        SELECT rownum rn ,  a.*
-			        FROM  (SELECT r.*, m.nickname
-			        			  ,(SELECT count(*) FROM comments WHERE r_no=r.r_no) commentCnt
-			        			  ,(SELECT count(*) FROM review_good WHERE r_no=r.r_no) good
+			        FROM  (						
+						
+							SELECT r.*, m.nickname
+									,(SELECT count(*) FROM comments WHERE r_no=r.r_no) commentCnt
+									,(SELECT count(*) FROM review_good WHERE r_no=r.r_no) good
 							FROM review r LEFT OUTER JOIN member m ON r.id = m.id
-							WHERE pno=#{pno} ORDER BY r_no DESC) a
+							<if test='search_option.equals("title")'>
+								where title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+							</if> 
+							<if test='search_option.equals("r_title")'>
+								where r_title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+							</if>
+							ORDER BY r_no DESC
+							) a
 			     )
-			WHERE  rn >= #{start} 
-			AND    rn <= #{end}
-		  ]]>	
-			
+			WHERE  rn &gt;= #{start} 
+			AND    rn &lt;= #{end}
+    </select>
+    
+    
+    <!-- 게시판 리스트(일반) 페이지 total -->
+	<select id="SH_total" resultType="int">
+			SELECT count(*) FROM review
 	</select>
 	
-	<select id="SH_pnoToTitle" parameterType="int" resultType="String">
-		SELECT DISTINCT title FROM review WHERE pno=#{pno}
-	</select>
 
-
-	<!-- 게시판 기능 구현 -->
+	<!-- 게시판 리스트(일반) -->
 	<select id="SH_reviewList" parameterType="SHReviewModel" resultType="SHReviewModel">
 			
-		<![CDATA[
 	 	    SELECT *
 			FROM (
 			        SELECT rownum rn ,  a.*
@@ -41,33 +59,114 @@
 							FROM review r LEFT OUTER JOIN member m ON r.id = m.id
 							ORDER BY r_no DESC) a
 			     )
+		<![CDATA[
 			WHERE  rn >= #{start} 
 			AND    rn <= #{end}
 		  ]]>	
 			
 	</select>
-
 	
+	<!-- 게시판 리스트(상품페이지) 페이지 total -->
+	<select id="SH_totalPro" parameterType="int" resultType="int">
+			SELECT count(*) FROM review WHERE pno=#{pno}
+	</select>
+
+    <!-- 게시판 리스트(상품페이지)-->
+	<select id="SH_reviewProductList" parameterType="SHReviewModel" resultType="SHReviewModel">
+			
+	 	    SELECT *
+			FROM (
+			        SELECT rownum rn ,  a.*
+			        FROM  (SELECT r.*, m.nickname
+			        			  ,(SELECT count(*) FROM comments WHERE r_no=r.r_no) commentCnt
+			        			  ,(SELECT count(*) FROM review_good WHERE r_no=r.r_no) good
+							FROM review r LEFT OUTER JOIN member m ON r.id = m.id
+							WHERE pno=#{pno} ORDER BY r_no DESC) a
+			     )
+		<![CDATA[
+			WHERE  rn >= #{start} 
+			AND    rn <= #{end}
+		  ]]>	
+			
+	</select>
+	
+	
+	<!-- 조회수 증가 -->
 	<update id="SH_reviewHit">
 		UPDATE review SET r_hit=r_hit+1 WHERE r_no=#{r_no}
 	</update>
 	
-
-	<select id="SH_total" resultType="int">
-			SELECT count(*) FROM review
-	</select>
-	
-	
-	<select id="SH_totalPro" parameterType="int" resultType="int">
-			SELECT count(*) FROM review WHERE pno=#{pno}
-	</select>
-	
-	
+	<!-- 게시글 상세보기 -->
 	<select id="SH_reviewDetail" resultType="SHReviewModel">
 			SELECT review.*, member.nickname
 			FROM review LEFT OUTER JOIN member ON review.id = member.id
 			WHERE r_no =#{r_no}
 	</select>
+	
+		
+	<!-- 게시글 좋아요 - 게시글의 전체 추천수 -->
+	<select id="SH_totalGood" resultType="int">
+		SELECT count(*) FROM review_good WHERE r_no=#{r_no}
+	</select>
+	
+	<!-- 게시글 좋아요 - 게시글의 로그인 유저의 좋아요 여부 -->
+	<select id="SH_userGood" resultType="int">
+		SELECT count(*) FROM review_good WHERE r_no = #{r_no} AND id = #{id}
+	</select>
+	
+	<!-- 게시글 좋아요 - 추가 -->
+	<insert id="SH_InsertGood" parameterType="SHGoodModel">
+		INSERT INTO review_good(r_no, id, good) values(#{r_no},#{id}, 1)
+	</insert>
+	
+	<!-- 게시글 좋아요 - 해제 -->
+	<delete id="SH_deleteGood" parameterType="SHgoodModel">
+		DELETE FROM review_good WHERE r_no=#{r_no} and id=#{id}
+	</delete>
+	
+	
+	
+	
+	
+	<!-- 게시글 작성하기(상품페이지) - pno로 title 확인 -->
+	<select id="SH_pnoToTitle" parameterType="int" resultType="String">
+		SELECT DISTINCT title FROM review WHERE pno=#{pno}
+	</select>
+
+
+	<!-- 게시글 작성하기(일반) - title로 pno 확인 -->
+	<select id="SH_titleToPno" resultType="int">
+		SELECT pno FROM product WHERE title=#{title}
+	</select>
+
+	
+	<!-- 게시글 작성하기 -->
+	<insert id="SH_reviewWrite" parameterType="SHReviewModel">
+			INSERT INTO review(r_no, pno, id, title, r_title, r_content,r_img) 
+			values(REVIEW_R_NO_SEQ.nextval, #{pno}, #{id}, #{title}, #{r_title}, #{r_content}, #{r_img})
+	</insert>
+	
+	
+	<!-- 게시글 작성하기 - 영상제목 검색 -->    
+    <select id="SH_searchTitle" resultType="SHTitleModel">
+		SELECT DISTINCT title FROM product
+    </select>
+    
+    
+	<!-- 게시글 작성하기 - 영상제목 검색 -->    
+    <select id="SH_checkTitle" parameterType="String" resultType="int">
+		SELECT nvl(count(*),0) FROM product WHERE title=#{title}
+    </select>
+    
+    
+	
+	<!-- 게시글 수정 -->
+	<update id="SH_ReviewEdit" parameterType="SHReviewModel">
+		UPDATE review SET r_title=#{r_title}, r_content=#{r_content}, r_img=#{r_img} WHERE r_no = #{r_no}
+	</update>
+	
+	
+	
 	
 	<!-- 게시글 삭제 -->
 	<delete id="SH_reviewDelete" parameterType="int">
@@ -78,26 +177,7 @@
 	<update id="SH_imgDelete" parameterType="int">
 		UPDATE review SET r_img = '' WHERE r_no=#{r_no}
 	</update>
-	
-	
-	<update id="SH_ReviewEdit" parameterType="SHReviewModel">
-			UPDATE review SET r_title=#{r_title}, r_content=#{r_content}, r_img=#{r_img} WHERE r_no = #{r_no}
-	</update>
-	
-	
-	
-	
-	<!-- 상품페이지, 일반 리뷰 경로에서 글작성할 떄로.. -->
-	<insert id="SH_reviewWrite" parameterType="SHReviewModel">
-			INSERT INTO review(r_no, pno, id, title, r_title, r_content,r_img) 
-			values(REVIEW_R_NO_SEQ.nextval, #{pno}, #{id}, #{title}, #{r_title}, #{r_content}, #{r_img})
-	</insert>
-	
-	
-	<select id="SH_titleToPno" resultType="int">
-		SELECT pno FROM product WHERE title=#{title}
-	</select>
-	
+
 
 
 
@@ -126,10 +206,8 @@
 			
 	</select>
 	
-	<select id="SH_commentId" parameterType="SHCommentModel" resultType="SHCommentModel">
-    	SELECT * FROM comments WHERE r_no=#{r_no} AND cno=#{cno}
-    </select>
 	
+	<!-- 댓글 삭제 -->
 	<delete id="SH_commentDelete" parameterType="SHcommentModel">
 		DELETE FROM comments WHERE cno=#{cno}
 	</delete>
@@ -140,52 +218,5 @@
 		UPDATE comments SET c_content = #{c_content} WHERE cno=#{cno}
 	</update>
 	
-	
-	
-	
-	
-	
-	
-	
-	<!-- 게시글 좋아요 구현 -->
-	<select id="SH_totalGood" resultType="int">
-		SELECT count(*) FROM review_good WHERE r_no=#{r_no}
-	</select>
-	
-	<select id="SH_userGood" resultType="int">
-		SELECT count(*) FROM review_good WHERE r_no = #{r_no} AND id = #{id}
-	</select>
-	
-	<insert id="SH_InsertGood" parameterType="SHGoodModel">
-		INSERT INTO review_good(r_no, id, good) values(#{r_no},#{id}, 1)
-	</insert>
-	
-	<delete id="SH_deleteGood" parameterType="SHgoodModel">
-		DELETE FROM review_good WHERE r_no=#{r_no} and id=#{id}
-	</delete>
-	
-	
-	
-	<!-- 게시글 검색 구현 -->
-	<select id="SH_searchModel" resultType="SHReviewModel" parameterType="SHSearchModel">
-		SELECT r.*, m.nickname
-      			  ,(SELECT count(*) FROM comments WHERE r_no=r.r_no) commentCnt
-      			  ,(SELECT count(*) FROM review_good WHERE r_no=r.r_no) good
-		FROM review r LEFT OUTER JOIN member m ON r.id = m.id
-			<if test='search_option.equals("title")'>
-				where title like '%'||#{keyword, jdbcType=VARCHAR}||'%' 
-			</if> 
-			<if test='search_option.equals("r_title")'>
-				where r_title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
-			</if>
-		ORDER BY r_no DESC
-    </select>
-    
-    
-    <select id="SH_searchTitle" resultType="SHTitleModel">
-		SELECT DISTINCT title FROM product
-    </select>
-    
-    
 	
 </mapper>

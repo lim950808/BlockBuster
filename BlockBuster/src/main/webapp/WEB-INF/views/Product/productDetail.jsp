@@ -13,22 +13,24 @@
 <link rel="stylesheet" href="/resources/css/user/shop/default.css" />
 <!-- <link rel="stylesheet" href="/css/style.css"> -->
 	<style>
-		div.goods div.goodsImg { float:left; width:350px; }
-		div.goods div.goodsImg img { width:350px; height:auto; }
+		div.products div.p_img { float:left; width:350px; }
+		div.products div.p_img img { width:350px; height:auto; }
 		
-		div.goods div.goodsInfo { float:right; width:330px; font-size:22px; }
-		div.goods div.goodsInfo p { margin:0 0 20px 0; }
-		div.goods div.goodsInfo p span { display:inline-block; width:100px; margin-right:15px; } 
+		div.products div.info { float:right; width:330px; font-size:22px; }
+		div.products div.info p { margin:0 0 20px 0; }
+		div.products div.info p span { display:inline-block; width:100px; margin-right:15px; } 
 		
-		div.goods div.goodsInfo p.cartStock input { font-size:22px; width:50px; padding:5px; margin:0; border:1px solid #eee; }
-		div.goods div.goodsInfo p.cartStock button { font-size:26px; border:none; background:none; } 
-		div.goods div.goodsInfo p.addToCart { text-align:right; }
-		div.goods div.goodsInfo p.addToCart button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
-		div.goods div.gdsDes { font-size:18px; clear:both; padding-top:30px; }
+		div.products div.info p.cartStock input { font-size:22px; width:50px; padding:5px; margin:0; border:1px solid #eee; }
+		div.products div.info p.cartStock button { font-size:26px; border:none; background:none; } 
+		div.products div.info p.addToCart { text-align:right; }
+		div.products div.info p.addToCart button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+		div.products div.info p.reviewBbs { text-align:right; }
+		div.products div.info p.reviewBbs button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+		div.products div.description { font-size:18px; clear:both; padding-top:30px; }
 	</style>
 	
 
-	<style>
+	<!-- <style>
 		section.replyForm { padding:30px 0; }
 		section.replyForm div.input_area { margin:10px 0; }
 		section.replyForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px;; height:150px; }
@@ -45,7 +47,7 @@
 		
 		section.replyList div.replyFooter button { font-size:14px; border: 1px solid #999; background:none; margin-right:10px; }
 		
-	</style>
+	</style> -->
 	
 	<style>
 		div.replyModal { position:relative; z-index:1; display:none; }
@@ -106,7 +108,7 @@
 						</form> -->
 						<p class="addToCart">
 							<!-- <a href="/Cart/cartList" class="btn btn-success pull-right" id="btnOrder">주문하기</a> -->
-							<button type="button" class="addCart_btn">장바구니에 담기</button>
+							<button type="button" class="addCart_btn">장바구니</button>
 							<script>
 								$(".addCart_btn").click(function(){
 									

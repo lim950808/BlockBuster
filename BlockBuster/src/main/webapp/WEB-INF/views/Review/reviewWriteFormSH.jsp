@@ -7,39 +7,62 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>리뷰 작성하기</title>
-<style>
-
-iframe {
-	width: 0px;
-	height: 0px;
-	border: 0px;
-}
-</style>
 
 <script type="text/javascript">
 
-function getRecommendWords(){
-	var str="";
-	var str2="";
-	$.ajax({
-				url : "${pageContext.request.contextPath}/SHSearchWord",
-				dataType:'json',
-				success:function(data){
-					str += "<datalist id='searchingist'>";
-						$(data).each(
-							function(){
-								
-								str2 = "<option value='"+this.title+"'/>";
-								
-								str += str2;
-								}		
-						);
-					str += "</datalist>";
-					$('#words').append(str);
+	function getRecommendWords(){
+		var str="";
+		var str2="";
+		$.ajax({
+					url : "${pageContext.request.contextPath}/SearchWord",
+					dataType:'json',
+					success:function(data){
+						str += "<datalist id='searchingist'>";
+							$(data).each(
+								function(){
+									
+									str2 = "<option value='"+this.title+"'/>";
+									
+									str += str2;
+									}		
+							);
+						str += "</datalist>";
+						$('#words').append(str);
+					}
 				}
-			}
-		);
-}
+			);
+	}
+	
+	function insertCheck(){
+		
+		var title=$('#words').val();/* 영상제목 */
+		
+			$.ajax({
+				type : 'post',
+				data : {'title' : title},
+				url : "${pageContext.request.contextPath}/checkTitle",
+				dataType : 'text',
+				
+				success : function(data){
+					if(data==0){
+						alert("영상 제목을 확인해 주세요.");
+						title.value.focus();
+						return;
+					}
+					if(r_title.value.length == 0){
+						alert("제목을 입력해주세요.");
+						r_title.value.focus();
+						return;
+					}
+					if(r_content.value.length == 0){
+						alert("내용을 입력해주세요.");
+						r_content.value.focus();
+						return;
+					}
+					$('#frm').submit();
+				}
+			}); 
+	} 
 
 </script>
  
@@ -48,10 +71,10 @@ function getRecommendWords(){
 	
 	
 		<!-- 파일 등록을 위해 enctype="multipart/form-data" 을 선언 -->
-		<form action="<c:url value="reviewWrite"/>" class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data" target="SHFrame">
+		<form action="<c:url value="reviewWrite"/>" class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data">
 
 			<div class="form-group row">
-	 			<input name="id" value="${sessionScope.sessionId}">
+	 			<input name="id" value="${sessionScope.id}">
 			</div>
 
 
@@ -91,22 +114,14 @@ function getRecommendWords(){
 	
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<a class="btn btn-success" type="submit" onclick="boardIn();return false;" role="button" title="저장"><i class="fa fa-save"></i> 저장</a>
+					<a class="btn btn-success" type="submit" onclick="insertCheck();return false;" role="button" title="저장"><i class="fa fa-save"></i> 저장</a>
 					<a class="btn btn-primary" href="javascript:window.history.back();" role="button" title="리스트"><i class="fa fa-list-ul"></i> 리스트</a>
 				</div>
 			</div>
 	
 		</form>
-		<iframe name="SHFrame"></iframe> 
 	</div>
 
-
-	
-	<script type="text/javascript">
-		function boardIn(){
-			$('#frm').submit();
-		}
-	</script>
 
 </body>
 </html>

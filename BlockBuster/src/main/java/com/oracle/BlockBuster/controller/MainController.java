@@ -42,13 +42,13 @@ public class MainController {
 	// 조병훈님, header 끝 부분---------------------20220127 ver.------------
 
 
-	// 조병훈님, menu 시작
-	@GetMapping(value = "menu")
-	public String menu() {
-		logger.info("상단 menu");
-		return "menu";
+	// 조병훈님, navbar 시작
+	@GetMapping(value = "navbar")
+	public String navbar() {
+		logger.info("상단 navbar");
+		return "navbar";
 	}
-	// 조병훈님, menu 끝.	
+	// 조병훈님, navbar 끝.	
 		
 		
 	// 김성휘님, footer 시작 부분----------------------------------------------

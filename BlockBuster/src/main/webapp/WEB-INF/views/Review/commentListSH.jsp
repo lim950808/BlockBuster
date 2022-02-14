@@ -30,9 +30,6 @@
 				
 				var cnoNo = $('#cnoNo'+Vindex).val(); //cno값을 가져옴
 				
-				alert(cnoNo);
-				alert($('#cnoNo'+Vindex));
-				
 					$.ajax({
 						url : "<%=context%>/commentDelete",
 						data : {cno : cnoNo},
@@ -72,24 +69,19 @@
 		}
 		
 		
-		
-</script>
-		
-		
-<script type="text/javascript">
-	
 		function commentEdit(Vindex){
 			$('#cno2'+Vindex).hide();
 			$('#cno3'+Vindex).show();
 			$('#edit'+Vindex).hide();
 	}
-
+		
 </script>
+		
 
 		
 </head>
 <body>
-
+<h1>세션아이디 : ${sessionScope.sessionId}</h1> 
 	<!-- 댓글 리스트 -->
 	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 
@@ -152,7 +144,7 @@
 								</div>
 					
 								<div class="col-sm-2">
-									<a href="#" onclick="commentRealEdit(${status.index}); return false;">등록</a>
+									<a href="" onclick="commentRealEdit(${status.index}); return false;">등록</a>
 								</div>
 							</div>
 					    </c:when>
@@ -176,15 +168,15 @@
 
 	
 		<c:if test="${pg.startPage > pg.pageBlock }">
-			<a href="commentList?r_no=${r_no}&currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
+			<a href="" onclick="listComment(${pg.startPage-pg.pageBlock}); return false;">⬅︎</a>
 		</c:if>
 		
 		<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-			<a href="${pageContext.request.contextPath}/commentList?r_no=${r_no}&currentPage="${i}>[${i}]</a>
+			<a href="" onclick="listComment(${i}); return false;">[${i}]</a>
 		</c:forEach>
 		
 		<c:if test="${pg.endPage < pg.totalPage }">
-			<a href="commentList?r_no=${r_no}&currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
+			<a href="" onclick="listComment(${pg.startPage+pg.pageBlock}); return false;">➡︎︎</a>
 		</c:if>
  
  

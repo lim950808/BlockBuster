@@ -12,11 +12,13 @@
 
 <title>리뷰게시판</title></head>
 <body>
+
+  
   
 	<div align="center">
   	<h2>Review</h2>
   	<hr><br>
-		
+		 <h1>세션아이디 : ${sessionScope.sessionId}</h1> 
 		<!-- 게시글 리스트 출력 -->
 		<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 		
@@ -78,6 +80,19 @@
 					<a href="reviewList?currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
 				</c:if>
 		    </c:when>
+		   <%--  <c:when test="${searchPage eq 7}">
+				<c:if test="${pg.startPage > pg.pageBlock }">
+					<a href="search?keyword=#{keyword}&currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
+				</c:if>
+				
+				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+					<a href="search?keyword=#{keyword}&currentPage=${i}">[${i}]</a>
+				</c:forEach>
+				
+				<c:if test="${pg.endPage < pg.totalPage }">
+					<a href="search?keyword=#{keyword}&currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
+				</c:if>
+		    </c:when> --%>
 		    
 		    <c:otherwise>
 				<c:if test="${pg.startPage > pg.pageBlock }">

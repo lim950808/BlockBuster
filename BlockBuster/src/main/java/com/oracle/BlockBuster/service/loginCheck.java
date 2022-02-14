@@ -29,7 +29,7 @@ public class loginCheck {
 		logger.info("[*-2] loginCheck, sessionId boolean으로 반환");
 			HttpSession session  = request.getSession();
 	
-			return session.getAttribute("id")!=null;
+			return session.getAttribute("sessionId")!=null;
 		}
 	
 	
@@ -38,8 +38,8 @@ public class loginCheck {
 		logger.info("[*-2] loginCheck, sessionId String으로 반환");
 		
 			HttpSession session  = request.getSession();
-			String sessionId = (String)session.getAttribute("id");
-			
+			String sessionId = (String)session.getAttribute("sessionId");
+			System.out.println("logincheck : "+sessionId);
 			return sessionId;
 		}
 	

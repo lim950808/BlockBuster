@@ -13,5 +13,6 @@ public class SHSearchModel {
 	//조회용
 	private int commentCnt;
 	private int good;
-
+	private int start;
+	private int end;
 }

@@ -260,7 +260,7 @@ body {
 	  		<div class="dropdown-contentJE">
 	    		<a href="/member/myinfo">내 정보</a>
 	    		<a href="/Order/list">구매내역</a>
-	    		<a href="chat?id=${param.id}">1:1 문의</a>
+	    		<a href="${pageContext.request.contextPath}/chat?id=${param.id}">1:1 문의</a>
 	    		<a href="${pageContext.request.contextPath}/RestAPI">Rest API</a>
 	    		<a href="/Admin/productList">관리자 상품관리</a>
 	    		<a href="/Admin/viewallMember">관리자 회원관리</a>

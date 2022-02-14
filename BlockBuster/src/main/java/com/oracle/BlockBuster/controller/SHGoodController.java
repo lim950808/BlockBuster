@@ -46,12 +46,12 @@ private static final Logger logger = LoggerFactory.getLogger(SHGoodController.cl
 	@ResponseBody
 	public String totalGood(int r_no) {
 		logger.info("[STRAT] totalGood 시작--------------------");
+	
+		logger.info("[2-1-1] totalGood() 시작");
+		int goodInsertResult = SHservice.totalGood(r_no);
+		String goodInsert = String.valueOf(goodInsertResult);
 		
-			logger.info("[2-1-1] totalGood() 시작");
-			int goodInsertResult = SHservice.totalGood(r_no);
-			String goodInsert = String.valueOf(goodInsertResult);
-			
-			return goodInsert;
+		return goodInsert;
 	}
 
 	
@@ -63,11 +63,11 @@ private static final Logger logger = LoggerFactory.getLogger(SHGoodController.cl
 	public String insertGood(SHGoodModel SHgoodModel) {
 		logger.info("[STRAT] insertGood 시작--------------------");
 		
-			logger.info("[3-1-1] insertGood() 시작");
-			int goodInsertResult = SHservice.insertGood(SHgoodModel);
-			String goodInsert = String.valueOf(goodInsertResult);
-			
-			return goodInsert;
+		logger.info("[3-1-1] insertGood() 시작");
+		int goodInsertResult = SHservice.insertGood(SHgoodModel);
+		String goodInsert = String.valueOf(goodInsertResult);
+		
+		return goodInsert;
 	}
 
 	
@@ -79,14 +79,14 @@ private static final Logger logger = LoggerFactory.getLogger(SHGoodController.cl
 	public String deleteGood(SHGoodModel SHgoodModel) {
 		logger.info("[STRAT] deleteGood 시작--------------------");
 			
-			logger.info("[3-1-1] deleteGood() 시작");
-			int goodDeleteResult = SHservice.deleteGood(SHgoodModel);
-			
-			if(goodDeleteResult == 1) goodDeleteResult = 2;
-			String goodDelete = String.valueOf(goodDeleteResult);
-			
-			return goodDelete;
-		}	
+		logger.info("[3-1-1] deleteGood() 시작");
+		int goodDeleteResult = SHservice.deleteGood(SHgoodModel);
+		
+		if(goodDeleteResult == 1) goodDeleteResult = 2;
+		String goodDelete = String.valueOf(goodDeleteResult);
+		
+		return goodDelete;
+	}	
 	
 
 }

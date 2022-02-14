@@ -20,9 +20,9 @@ iframe {
 
 
   <div class="container">
-
-	<form action="<c:url value="edit"/>" class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data" enctype="multipart/form-data" target="SHFrame">
-
+<h1>세션아이디 : ${sessionScope.sessionId}</h1> 
+	<form action="<c:url value="edit"/>" class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data">
+			
 		<input type="hidden" name="r_no" value="${editWriteFrom.r_no}">
 		<input type="hidden" name="id" value="${editWriteFrom.id}">
 
@@ -61,17 +61,11 @@ iframe {
 		</div>
 	
 	</form>
-		<iframe name="SHFrame"></iframe>	
   </div>
   
 	<script type="text/javascript">
 		function boardIn(){
 			$('#frm').submit();
-		}
-		
-		function addFilePath(msg) {
-			alert(msg);
-			document.getElementById("frm").reset();/* 데이터 지우기 */
 		}
 	</script>
 
