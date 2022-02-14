@@ -157,5 +157,6 @@
 		WHERE o.insId = #{id} AND paymentCd in ('01', '02')
 		ORDER BY o.orderNo DESC;
 	</select>
+	
 </mapper>
 

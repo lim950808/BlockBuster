@@ -7,66 +7,50 @@
 %>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <title>Insert title here</title>
 <style>
-body {	font-family: 굴림체; text-align: center;	}
-table { border: 1px solid pink; width: 100%; 
-         }
-tr { height: 30px; background: yellow; }
-/* th {	background: #C9BFED;	} */
-th {	background: #b9b973;	}
-td {	background: #f9f3b3;	}
-
-
+	body {	font-family: 굴림체; text-align: center;	}
+	table { border: 1px solid pink; width: 100%; 
+	         }
+	tr { height: 30px; background: yellow; }
+	/* th {	background: #C9BFED;	} */
+	th {	background: #b9b973;	}
+	td {	background: #f9f3b3;	}
 </style>
 
 <script>
-function categoryChange(e) {
-    var movie = ["1100", "1200", "1300", "1400", "1500", "1600", "1700"];
-    var drama = ["2100", "2200", "2300"];
-    var enter = ["3100", "3200", "3300", "3400", "3500"];
-    var dacu = ["4100", "4200", "4300"];
-    var ani  = ["5100", "5200"];
-    var target = document.getElementById("genre");
-
-    if(e.value == "1000") var d = movie;
-    else if(e.value == "2000") var d = drama;
-    else if(e.value == "3000") var d = enter;
-    else if(e.value == "4000") var d = dacu;	
-    else if(e.value == "5000") var d = ani;
-
-    target.options.length = 0;
-
-    for (x in d) {
-        var opt = document.createElement("option");
-        opt.value = d[x];
-        opt.innerHTML = d[x];
-        target.appendChild(opt);
-    }   
-}
-
-
-
+	function categoryChange(e) {
+	    var movie = ["1100", "1200", "1300", "1400", "1500", "1600", "1700"];
+	    var drama = ["2100", "2200", "2300"];
+	    var enter = ["3100", "3200", "3300", "3400", "3500"];
+	    var dacu = ["4100", "4200", "4300"];
+	    var ani  = ["5100", "5200"];
+	    var target = document.getElementById("genre");
+	
+	    if(e.value == "1000") var d = movie;
+	    else if(e.value == "2000") var d = drama;
+	    else if(e.value == "3000") var d = enter;
+	    else if(e.value == "4000") var d = dacu;	
+	    else if(e.value == "5000") var d = ani;
+	
+	    target.options.length = 0;
+	
+	    for (x in d) {
+	        var opt = document.createElement("option");
+	        opt.value = d[x];
+	        opt.innerHTML = d[x];
+	        target.appendChild(opt);
+	    }   
+	}
 </script>
-
-
 
 </head>
 <body>
-	<h2>영상 등록</h2>
-    <%--  <c:if test="${msg != null}">${msg}</c:if> --%>
-    <!--  <form action="write" method="post" name="frm"> -->
-   <%--  <form action="<%=context%>/Admin/write" method="post" name="frm"> --%>
+    <h2>영상 등록</h2>
+    
     <form action="/Admin/write" method="post" id="frm" name="frm" enctype="multipart/form-data" target="myBatisFrame">
-    <input type="hidden" name="pno" value="${updateForm.pno}">
     <table>
-        <%-- <tr>
-            <th>품번</th>
-            <td>
-                <input type="number" name="pno" required="required" maxlength="4" value="${pno}">
-                <input type="button" value="중복확인" onclick="chk()">
-            </td>
-        </tr> --%>
         <tr>
             <th>영상제목</th>
             <td>
@@ -84,38 +68,14 @@ function categoryChange(e) {
 				<option value="4000">다큐</option>
 		        <option value="5000">애니</option>
             </select>
-		   </td>
-		   <td>
-          <!--  <label for="genre">소분류 선택</label> -->
+	   </td>
+
+	   <td>
            <select class="form-control" id="genre" name="genre">
              <option>선택해주세요</option>
            </select>
-  		   </td>
+  	   </td>
         </tr>
-        
-        
-        
-        
-        
-<%--         <tr>
-            <th>대분류</th>
-            <td>
-               <!--  <input type="text" name="category" required="required"> -->              
-				<select id="inputCat" class="form-control">
-				    <option selected>대분류</option>
-				    <c:forEach items="${getCatList}" var="product">
- 	 				 	<option><c:out value="${product.category}"/></option>
-  					 </c:forEach>
-				</select>
-            </td>
-        </tr>
-        <tr>
-            <th>소분류</th>
-            <td>
-                <input type="text" name="genre" required="required">
-            </td>
-        </tr> --%>
-        
         <tr>
             <th>제작연도</th>
             <td>
@@ -133,13 +93,6 @@ function categoryChange(e) {
             <td>
                 <input type="text" name="director">
             </td>
-            <%-- <td>
-                <select name="mgr">
-                    <c:forEach var="emp" items="${empMngList}">
-                        <option value="${emp.empno}">${emp.ename}</option>
-                    </c:forEach>
-                </select>
-            </td> --%>
         </tr>
         <tr>
             <th>출연진</th>
@@ -172,16 +125,7 @@ function categoryChange(e) {
                 <input type="text" name="p_video">
             </td>
         </tr>
-        <%-- <tr>
-        	<th>부서코드</th>
-        	<td>
-        		<select name="deptno">
-        			<c:forEach var="dept" items="${deptList }">
-        				<option value="${dept.deptno }">${dept.dname }</option>
-        			</c:forEach>
-        		</select>
-        	</td>
-        </tr> --%>
+
         <tr>
             <td colspan="2"><input type="submit" value="등록"></td>
         </tr>

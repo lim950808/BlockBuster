@@ -55,10 +55,10 @@ ${sessionScope.id }
 </table>
 </form>
 <script>
-		function addFilePath(msg) {
-			alert(msg);
-			document.getElementById("form1").reset();
-		}
+	function addFilePath(msg) {
+		alert(msg);
+		document.getElementById("form1").reset();
+	}
 </script>
 	
 <%@ include file="../footer.jsp" %>

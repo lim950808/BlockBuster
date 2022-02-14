@@ -20,7 +20,7 @@ public class BHDaoImpl implements BHDao {
 
 	@Override
 	public int delete(String id) {
-		System.out.println("BHDaoImpl delete id->"+id);
+		System.out.println("BHDaoImpl delete id->" + id);
 		int result = 0;
 		try {
 			result = session.update("memberrowDelete", id);		
@@ -33,14 +33,14 @@ public class BHDaoImpl implements BHDao {
 
 	@Override
 	public String chatName(String id) {
-		String rtnChatName ="";
+		String rtnChatName = "";
 		System.out.println("BHDaoImpl chatName Start..");
-		System.out.println("BHDaoImpl chatName id->"+id);
+		System.out.println("BHDaoImpl chatName id->" + id);
 		try {
 			rtnChatName = session.selectOne("chatName", id);
-			System.out.println("BHDaoImpl chatName rtnChatName->"+rtnChatName);
+			System.out.println("BHDaoImpl chatName rtnChatName->" + rtnChatName);
 		} catch (Exception e) {
-			System.out.println("BHDaoImpl chatName Exception->"+e.getMessage());
+			System.out.println("BHDaoImpl chatName Exception->" + e.getMessage());
 		}
 		return rtnChatName ;
 	}

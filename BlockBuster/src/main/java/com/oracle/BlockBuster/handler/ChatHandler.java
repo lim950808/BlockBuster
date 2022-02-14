@@ -57,6 +57,7 @@ public class ChatHandler extends TextWebSocketHandler {
 	    			// 상대방
 		    		System.out.println("개인 전송 대상자 상대방 sessionID-->"+yourName);
 					WebSocketSession wss1 = sessionMap.get(yourName);
+					
 					try {
 						wss1.sendMessage(new TextMessage(jsonObj.toJSONString()));
 					}catch(Exception e) {

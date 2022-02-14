@@ -47,14 +47,6 @@ public interface JEService {
 	//상품 상세 페이지
 	Product productDetail(int pno);
 
-	/*
-	 * //카트 담기 void addCart(CartList cart) throws Exception;
-	 * 
-	 * //카트 리스트 List<CartList> cartList(String id) throws Exception;
-	 * 
-	 * //카트 삭제 void deleteCart(Cart cart) throws Exception;
-	 */
-
 	//카트 담기
 	void addCart(Cart cart);
 

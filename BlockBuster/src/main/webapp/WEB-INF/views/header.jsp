@@ -173,9 +173,7 @@ body {
     background-color: #2f2f2f;
     border: 1px solid #2f2f2f;
     color: #a5a5a5;
-    margin-top: 5px;
-    
-    
+    margin-top: 5px;  
 }
 
 .exampleJE button{

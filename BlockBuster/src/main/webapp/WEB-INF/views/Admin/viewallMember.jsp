@@ -41,23 +41,21 @@
 	}
 </script>
 <style>
-table {
-  border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-td {
-  text-align: center;
-}
-tr {
-
-  hover background-color: #7ED2FF;
-}
-
+	table {
+	  border-collapse: collapse;
+	    margin: 25px 0;
+	    font-size: 0.9em;
+	    font-family: sans-serif;
+	    min-width: 400px;
+	    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	}
+	td {
+	  text-align: center;
+	}
+	tr {
+	
+	  hover background-color: #7ED2FF;
+	}
 </style>
 </head>
 

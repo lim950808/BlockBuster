@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <head>
 
-
 <style>
 /* A simple, css only, (some-what) responsive menu */
 
@@ -181,7 +180,6 @@ ul.primary li:hover > a{
   }
 }
 </style>
-
  
 <div class="wrap">
 <nav>

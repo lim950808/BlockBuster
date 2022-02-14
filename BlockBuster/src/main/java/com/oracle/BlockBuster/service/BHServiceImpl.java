@@ -17,7 +17,6 @@ public class BHServiceImpl implements BHService {
 	public List<BHDto> listMem(BHDto bhdto) {
 		System.out.println("BHServiceImpl listMem Start...");
 		return bh.listMem(bhdto);
-	
 	}
 
 	@Override

@@ -3,44 +3,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-		<meta http-euiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="resources/css/bootstrap.css">
-		<link rel="stylesheet" href="resources/css/custom.css">
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<script src="resources/js/bootstrap.js"></script>
+	<meta http-euiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="resources/css/bootstrap.css">
+	<link rel="stylesheet" href="resources/css/custom.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="resources/js/bootstrap.js"></script>
 <style>
-.chating{
-	overflow: auto;
-	border: 2px solid #dedede;
-    background-color: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
-}
-.chating .me{
-	color: #000000;
-	text-align: right;
-	border-color: #ccc;
-  	background-color: #ddd;
-}
-.chating .others{
-	color: #000000;
-	text-align: left;
-	border-color: #ccc;
-  	background-color: #C1F3FF;
-}
-#yourMsg{
-	display: none;
-}
-#yourNameDel{
-	display: none;
-}
-
+	.chating{
+		overflow: auto;
+		border: 2px solid #dedede;
+	    background-color: none;
+	    border-radius: 5px;
+	    padding: 10px;
+	    margin: 10px 0;
+	}
+	.chating .me{
+		color: #000000;
+		text-align: right;
+		border-color: #ccc;
+	  	background-color: #ddd;
+	}
+	.chating .others{
+		color: #000000;
+		text-align: left;
+		border-color: #ccc;
+	  	background-color: #C1F3FF;
+	}
+	#yourMsg{
+		display: none;
+	}
+	#yourNameDel{
+		display: none;
+	}
 </style>
-
-
 		
 <script type="text/javascript">
 	var ws;

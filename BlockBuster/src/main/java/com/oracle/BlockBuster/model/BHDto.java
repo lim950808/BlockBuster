@@ -12,5 +12,4 @@ public class BHDto {
 	private String 	  Password;
 	private String 	  Grade;
 	private String    Delstatus;
-	
 }
