@@ -5,38 +5,59 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style>
+	
+	hr{
+		background-color:white;
+	}
 	table{
-	width : 80%
+		width : 80%
+	}
+	body{
+		background-color : #333;
+	}
+	tr{
+		color : white;
+	}
+	a {
+  		color : white;
 	}
 </style>
 
 <title>리뷰게시판</title></head>
 <body>
+<pre>
+
+</pre>
+<div class="container">
  	    <input type="hidden" name="boardKind" value="$(boardKind)">
   
   
+  	<h1 style="color:white;"><b>Review</b></h1>
+<pre>
+
+</pre>
 	<div align="center">
-  	<h2>Review</h2>
-  	<hr><br>
-		 <h1>세션아이디 : ${sessionScope.sessionId}</h1> 
+  	
+		 <%-- <h1>세션아이디 : ${sessionScope.sessionId}</h1>  --%>
 		<!-- 게시글 리스트 출력 -->
 		<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 		
 		<table id="list" class="table table-hover">
 		
-				<tr><th>글번호</th>
-					<th>제 목</th>
-					<th>추천수</th>
-					<th>작성자</th>
-					<th>조회수</th>
-					<th>등록일</th>
+				<tr id = "headRow" style="text-align: center; background-color:#F5F5F5; color: black">
+					<th><b>글번호</b></th>
+					<th><b>제 목</b></th>
+					<th><b>추천수</b></th>
+					<th><b>작성자</b></th>
+					<th><b>조회수</b></th>
+					<th><b>등록일</b></th>
 				</tr>
 			
 			<c:forEach var="reviewList" items="${reviewList}">
 			
-				<tr>
+				<tr style="text-align: center;">
 					<td>${reviewList.r_no}</td>
-					<td><a href="reviewDetailSH?r_no=${reviewList.r_no}">[${reviewList.title}]&nbsp;${reviewList.r_title}&nbsp;[${reviewList.commentCnt}]</a></td>
+					<td style="text-align: left;"><a href="reviewDetailSH?r_no=${reviewList.r_no}">[${reviewList.title}]&nbsp;${reviewList.r_title}&nbsp;[${reviewList.commentCnt}]</a></td>
 					<td>${reviewList.good}</td>
 					<td>${reviewList.nickName}</td>
 					<td>${reviewList.r_hit}</td>
@@ -52,8 +73,8 @@
 	
 	<br>
 	
+		<hr><br>
 	<div align="center">	
-		
 	    <!-- 검색기능 -->
 		<form name="form1" method="post" action="search">
 			<select name="search_option">
@@ -127,7 +148,7 @@
 		<br>
 	  </div>
 	</div>
-	
+	</div>
 <br><br><%@include file="../footer.jsp" %>
 </body>
 </html>

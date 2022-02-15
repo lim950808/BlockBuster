@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.BlockBuster.model.JJMember;
 import com.oracle.BlockBuster.service.JJMemberService;
+import com.oracle.BlockBuster.service.loginCheck;
 
 @Controller
 public class JJMemberController {
@@ -31,6 +32,9 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private loginCheck loginCheck;
 	
 	@GetMapping(value = "welcome")
 	public String welcome() {
@@ -47,7 +51,7 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	}
 	
 	@GetMapping(value="login")
-	public String login(JJMember member,HttpServletRequest request) {
+	public String login(JJMember member, HttpServletRequest request) {
 		logger.info("login 시작");
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", member.getId());

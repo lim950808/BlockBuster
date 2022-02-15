@@ -212,7 +212,7 @@
 	String context = request.getContextPath();
 %>
 
-${ sessionScope.id}
+${ sessionScope.sessionId}
 
 <div class="container">
 <div class="titleCB">
@@ -228,7 +228,7 @@ ${ sessionScope.id}
 		<div class="panel">
   			<p>${faq.f_content } <br><br><br>		
   	<!-- ------------------------------ admin 권한 설정하기 --------------------------------------- -->
-		<c:if test="${sessionScope.id eq 'admin' }">	  			
+		<c:if test="${sessionScope.sessionId eq 'admin' }">	  			
 			<input type="button"  value="수정" onclick="location.href='updateFormCB?f_no=${faq.f_no}'">
 			<input type="button"  value="삭제" onclick="location.href='deleteCB?f_no=${faq.f_no}'">	
 		</c:if>	
@@ -249,7 +249,7 @@ ${ sessionScope.id}
  	<a href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage+pg.pageBlock }">[다음]</a>
  </c:if>
 <!-- ------------------------------ admin 권한 설정하기 --------------------------------------- --> 	
-<c:if test="${sessionScope.id eq 'admin' }"> 
+<c:if test="${sessionScope.sessionId eq 'admin' }"> 
 	<input type="button" value="입력" onclick="location.href='<%=context%>/FAQ/writeFormCB'" class="button">	
 	</c:if>
 	&nbsp; 

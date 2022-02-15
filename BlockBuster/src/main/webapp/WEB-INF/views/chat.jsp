@@ -1,41 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-euiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="resources/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/css/custom.css">
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="resources/js/bootstrap.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<meta http-euiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="resources/css/bootstrap.css">
+      <link rel="stylesheet" href="resources/css/custom.css">
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script src="resources/js/bootstrap.js"></script>
+           
 <style>
-	.chating{
-		overflow: auto;
-		border: 2px solid #dedede;
-	    background-color: none;
-	    border-radius: 5px;
-	    padding: 10px;
-	    margin: 10px 0;
-	}
-	.chating .me{
-		color: #000000;
-		text-align: right;
-		border-color: #ccc;
-	  	background-color: #ddd;
-	}
-	.chating .others{
-		color: #000000;
-		text-align: left;
-		border-color: #ccc;
-	  	background-color: #C1F3FF;
-	}
-	#yourMsg{
-		display: none;
-	}
-	#yourNameDel{
-		display: none;
-	}
+		
+.chating{
+	overflow: auto;
+	border: 2px solid #dedede;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.chating .me{
+	color: #000000;
+	text-align: right;
+	border-color: #ccc;
+  	background-color: #ddd;
+}
+.chating .others{
+	color: #000000;
+	text-align: left;
+	border-color: #ccc;
+  	background-color: #C1F3FF;
+}
+#yourMsg{
+	display: none;
+}
+#yourNameDel{
+	display: none;
+}
+
+.input_msg_write input {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: #4c4c4c;
+  font-size: 15px;
+  min-height: 48px;
+  width: 100%;
+}
+
+
+.type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+.msg_send_btn {
+  background: #05728f none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: 33px;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  width: 33px;
+}
+
+
+
 </style>
 		
 <script type="text/javascript">
@@ -191,12 +222,14 @@
 				    </div>
 		   
 		   <div id="chat" class="panel-collapse collapse in">
-				<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto; width: auto; height: 600px;"></div>
-	
+				<!-- <div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto; width: auto; height: 600px;"></div> -->
+				
+				<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto; width: auto; height: 600px;">
 				<input type="hidden" id="sessionId" value="">
-				<div id="chating" class="chating">
+				<div id="chating" class="chating"></div>
+				
 				</div>
-					
+				
 				<div class="portlet-footer">
 					<input type="hidden" id="sessionId" value="">	
 					<div id="meName" style="display: none"></div>
@@ -215,21 +248,33 @@
 					
 					<div class="row" style="height: 90px;">
 						
-							<div id="yourMsg">
-							<tr> -->
-								<div class="form-group col-xs-10">
-								<textarea style="height: 80px; maxlength: 100px;" id="chatting" name="userName" class="form-control" placeholder="보낼 메시지를 입력하세요" ></textarea>
-							   </div>
+					<div id="yourMsg">
+							<!-- <tr> -->
+							<!-- 	<div class="form-group col-xs-12"> -->
+							<!-- <div class="mb-3"> -->
+								<!-- <textarea style="height: 80px; maxlength: 300px;" id="chatting" name="userName" class="form-control" placeholder="보낼 메시지를 입력하세요" ></textarea> -->
+							  <!-- <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+  							  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+							</div>
 								<button onclick="send()" id="sendBtn">전송</button>
-							</div>	
+							</div>	 -->
+					
+					<div class="type_msg">
+			            <div class="input_msg_write">
+			              <input type="text" class="write_msg" placeholder="Type a message">
+			              <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+			            </div>
+					</div>
+
 					</div>	
 															
-		   			</div><!-- footer end -->
+		   			</div><!-- row end -->
 		   			
 					</div><!-- collapse end --> 
 		    </div> 
 		</div>	
 	  </div>
-  </div>				
+  </div>
+<%@include file="footer.jsp" %>				
 </body> 
 </html>

@@ -44,7 +44,7 @@ function checkIdPw(){
 </head>
 <body>
 	<h1 align="center">로그인</h1>
-	<form method="get" name="login" action="${pageContext.request.contextPath}/main" onsubmit="checkIdPw(); return false;">
+	<form method="get" name="login" action="${pageContext.request.contextPath}/login" onsubmit="checkIdPw(); return false;">
 		ID : <input type="text" id="id" name="id" placeholder="Enter ID" required autofocus><br>
 		PW : <input type="text" id="password" name="password" placeholder="Enter password"><br>
 		<div>
