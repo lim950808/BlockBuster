@@ -10,5 +10,10 @@ public interface DHService {
 
 	int memberDelete(String id);
 
+	int nickNameChk(String nickname);
+
+	int emailChk(String email);
+
+
 
 }

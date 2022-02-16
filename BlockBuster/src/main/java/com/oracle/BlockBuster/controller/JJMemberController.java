@@ -149,14 +149,23 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	 String result = ms.nicknameCheck(member);
 	 return result; 
 	 }
-	 
-
-	
+	 	
 	//회원가입 끝
 	
 	@GetMapping(value="findId")
 	public String findId() {
 		logger.info("findId 시작");
 		return "member/findId";
+	}
+	
+	/* 로그아웃 */
+	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
+	public String logoutMainGet(HttpServletRequest request) throws Exception{
+		logger.info("logOut 시작");
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "forward:welcome";
+		
 	}
 }

@@ -5,6 +5,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="bootswatch.com/_vendor/font-awesome/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">

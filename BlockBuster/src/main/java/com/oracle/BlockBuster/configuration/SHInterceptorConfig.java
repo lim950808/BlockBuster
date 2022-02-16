@@ -12,7 +12,8 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) { 
-		   registry.addInterceptor(new SHInterceptorService()).addPathPatterns("/reviewDetailSH") 		//김성휘
+		   registry.addInterceptor(new SHInterceptorService()).addPathPatterns("/main")
+		   													  .addPathPatterns("/reviewDetailSH") 		//김성휘
 		   													  .addPathPatterns("/reviewWrite")
 		   													  .addPathPatterns("/reviewProWrite")
 		   													  .addPathPatterns("/reviewEditFrom")
@@ -27,20 +28,20 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 		   													  .addPathPatterns("/Product/productDetail/addCart")
 		   													  .addPathPatterns("/Cart/cartList")
 		   													  .addPathPatterns("/Cart/deleteCart")
-		   													  .addPathPatterns("FAQ/listCB") 			//이창빈
-		   													  .addPathPatterns("FAQ/writeFormCB")
-		   													  .addPathPatterns("writeCB")
-		   													  .addPathPatterns("FAQ/updateFormCB")
-		   													  .addPathPatterns("FAQ/updateCB")
-		   													  .addPathPatterns("FAQ/deleteCB")
-		   													  .addPathPatterns("listCB.do")
-		   													  .addPathPatterns("FAQ/listCB2")
-		   													  .addPathPatterns("viewallMember") 		//조병훈
+		   													  .addPathPatterns("/FAQ/listCB") 			//이창빈
+		   													  .addPathPatterns("/FAQ/writeFormCB")
+		   													  .addPathPatterns("/writeCB")
+		   													  .addPathPatterns("/FAQ/updateFormCB")
+		   													  .addPathPatterns("/FAQ/updateCB")
+		   													  .addPathPatterns("/FAQ/deleteCB")
+		   													  .addPathPatterns("/listCB.do")
+		   													  .addPathPatterns("/FAQ/listCB2")
+		   													  .addPathPatterns("/viewallMember") 		//조병훈
 		   													  .addPathPatterns("/memberrowDelete")
 		   													  .addPathPatterns("/chat")
-		   													  .addPathPatterns("HTGetSearchResult")		//김흥태
-		   													  .addPathPatterns("HTGetPdtSearchResult")
-		   													  .addPathPatterns("RestAPI");
+		   													  .addPathPatterns("/HTGetSearchResult")		//김흥태
+		   													  .addPathPatterns("/HTGetPdtSearchResult")
+		   													  .addPathPatterns("/RestAPI");
 	}
 	
 	

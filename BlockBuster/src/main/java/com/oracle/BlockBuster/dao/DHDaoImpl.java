@@ -15,40 +15,73 @@ public class DHDaoImpl implements DHDao {
 
 	@Override
 	public Member memberDetail(String id) {
-		System.out.println("JKDaoImpl memberDetail start...");
+		System.out.println("DHDaoImpl memberDetail Start...");
 		Member member = new Member();
 		try {
 			member = session.selectOne("memberSelOne", id);
-			System.out.println("JKDaoImpl memberDetail getId->"+member.getId());
+			System.out.println("DHDaoImpl memberDetail getId->"+member.getId());
 		} catch (Exception e) {
-			System.out.println("JKDaoImpl memberDetail Exception->"+e.getMessage());
+			System.out.println("DHDaoImpl memberDetail Exception->"+e.getMessage());
 		}
 		return member;
 	}
+	
 
 	@Override
 	public int memberUpdate(Member member) {
-		System.out.println("JKDaoImpl memberUpdate start...");
+		System.out.println("DHDaoImpl memberUpdate Start...");
 		int kkk = 0;
 		try {
 			kkk = session.update("memberUpdate",member);
+			System.out.println("DHDaoImpl memberUpdate kkk->"+kkk);
 		} catch (Exception e) {
-			System.out.println("JKDaoImpl memberUpdate Exception->"+e.getMessage());
+			System.out.println("DHDaoImpl memberUpdate Exception->"+e.getMessage());
 		}
 		return kkk;
 	}
+	
 
 	@Override
 	public int memberDelete(String id) {
-		System.out.println("JKDaoImpl memberDelete start...");
+		System.out.println("DHDaoImpl memberDelete Start...");
 		int result = 0;
 		try {
 			result = session.update("memberDelete", id);
-			System.out.println("JKDaoImpl memberDelete result->"+result);
+			System.out.println("DHDaoImpl memberDelete result->"+result);
 		} catch (Exception e) {
-			System.out.println("JKDaoImpl memberDelete Exception"+e.getMessage());
+			System.out.println("DHDaoImpl memberDelete Exception"+e.getMessage());
 		}
 		return result;
 	}
+	
+
+	@Override
+	public int nickNameChk(String nickname) {
+		System.out.println("DHDaoImpl nickNameChk Start...");
+		int result = 0;
+		try {
+			System.out.println("DHDaoImpl nickNameChk nickname->"+nickname);
+			result = session.selectOne("nickNameChk", nickname);
+			System.out.println("DHDaoImpl nickNameChk result->"+result);
+		} catch (Exception e) {
+			System.out.println("DHDaoImpl nickNameChk Exception"+e.getMessage());
+		}
+		return result;
+	}
+	
+
+	@Override
+	public int emailChk(String email) {
+		System.out.println("DHDaoImpl emailChk Start...");
+		int result = 0;
+		try {
+			result = session.selectOne("emailChk", email);
+			System.out.println("DHDaoImpl emailChk result->"+result);
+		} catch (Exception e) {
+			System.out.println("DHDaoImpl emailChk Exception"+e.getMessage());
+		}
+		return result;
+	}
+
 	
 }

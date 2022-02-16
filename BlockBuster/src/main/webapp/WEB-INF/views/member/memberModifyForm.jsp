@@ -1,74 +1,196 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html>
-<%
-	String context = request.getContextPath();
-%>
+
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>회원수정</title>
-<script type="text/javascript" src="js/jquery.js"></script>
-
 <script type="text/javascript">
 
-<%-- /* EmpController */
-function getDeptName(vNickname) {
-	 console.log(vNickname);
-	 alert("vNickname->"+vNickname); 
-	 
+
+
+//닉네임 중복확인
+function nickNameFuncChk(){
+	//getElementById --> ID가 가지고 있는 객체 
+	var nickNameChk  = document.getElementById("nickNameChk");
+	var nickNameId   = document.getElementById("nickname");
+	
+	// 한글사용, 문자a~z, 알파벳A~Z, 숫자 0~9, 1자리에서 8자리까지
+	var regExpNickname = /^[가-힣a-zA-Z0-9]{1,8}$/;
+	
+	if (!regExpNickname.test(nickname.value)) {
+	    alert("닉네임은 특수문자 제외 8자이내로 입력해주세요"); 
+	    frm.nickname.focus();
+	    frm.nickname.value='';
+	    return false;
+	}
+	
+	//alert("nickNameId.value->"+nickNameId.value);
 	 $.ajax(
-		 {
-				url:"<%=context%>/getDeptName",  
-				data:{nickname : vNickname}, //칼럼값과 동일
+			{
+				type:'post',
+				url :"${pageContext.request.contextPath}/member/nickNameChk", //컨트롤러 url
+				data:{'nickname' : nickNameId.value}, 
 				dataType:'text',
 				success:function(data){
-					// alert("success ajax Data->"+data); 
-					// 1이면 존재 0이면 존재하지않음
-					$('#deptName').val(data);     /*  input Tag */
-					$('#msg').html(data);         /* span  id Tag */
+						//console.log(data);
+						//alert("data->"+data)
+					if(data == '1' ){
+						alert("중복된 닉네임입니다.");
+						frm.nickname.focus();
+						nickNameChk.value = '0';
+						return false;
+					}else{
+						alert("사용 가능한 닉네임입니다.");
+						nickNameChk.value = '1'; //중복 확인했을 때 1
+					}
 				}
 			}
-	 );
-} --%>
+	); 
+}
 
 
+//이메일 중복확인
+function emailFuncChk(){
+	//getElementById --> ID가 가지고 있는 객체 
+	var emailChk = document.getElementById("emailChk");
+	var emailId = document.getElementById("email");
+	
+	var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	//alert("emailId.value->"+emailId.value);
+	
+	if (!regExpEmail.test(email.value)) {
+	    alert("이메일 입력을 확인 해주세요"); 
+	    frm.email.focus();
+	    frm.email.value='';
+	    return false;
+	}
+	$.ajax(
+			{
+				type:'post',
+				url :"${pageContext.request.contextPath}/member/emailChk",
+				data:{'email':emailId.value},
+				dataType:'text',
+				success:function(data){
+						//console.log(data);
+						//alert("data->"+data)
+					if(data == '1'){
+						alert("중복된 이메일입니다.");
+						frm.email.focus();
+						emailChk.value = '0';
+						return false;
+					}else{
+						alert("사용 가능한 이메일입니다.");
+						emailChk.value = '1'; //중복 확인했을 때 1
+					}
+				}
+			}
+	);
+}
 
 
+function register(){
+	   var nickNameChk = $('#nickNameChk').val();
+	   var emailChk    = $('#emailChk').val();
+	   var nickName    = $('#nickname').val();
+	   var email = $('#email').val();
+	   var pw1   = $('#pw1').val();
+	   var pw2   = $('#pw2').val();
+	   
+	   if(nickName==''){//닉네임 입력 안 했을 시
+		   alert("닉네임을 입력해주세요");
+		   frm.nickName.focus();
+		   return false;
+	   }
+	   
+	   if(email==''){ //이메일 입력 안 했을 시 
+		   alert("이메일을 입력해주세요");
+		   frm.email.focus();
+		   return false;
+	   }
+	   
+	   if(pw1 =='' && pw2 == ''){ //비밀번호 입력 안 했을 시
+		   alert("비밀번호를 입력해주세요");
+		   return false;
+		   
+	   }else if(!/^[a-zA-Z0-9]{8,}$/.test(pw1)){ //
+		   alert("비밀번호는 숫자와 영문자 조합으로 8자리 이상을 사용해야 합니다.");	
+		   frm.pw1.focus();
+		   frm.pw1.value='';
+		   return false;
+		   
+	   }else if(pw1 != pw2){ //비밀번호 동일하지 않을 때
+		   alert("입력하신 비밀번호가 동일하지 않습니다");
+		   frm.pw2.focus();
+		   return false;
+	   }
+	   
+	   //alert("nickNameChk");
+	   //alert("emailChk");
+	   
+	   if(nickNameChk == '1' || emailChk == '1'){ //중복 확인 둘중 하나만 했을 때
+		   $('#frm').submit();
+	   /* if(nickNameChk == '1' && emailChk == '1'){ //중복 확인 둘 다 했을 때
+		   $('#frm').submit(); */
+	   
+	   }else{
+		   alert("중복확인절차를 완료해주세요");
+		   return false;
+	   } 
+}
 
 </script>
 </head>
 <body>
 <h2>회원수정</h2>
-<form action="memberUpdate" method="post">
-  <input type="hidden" name="id" value="${member.id}">
-         
-  <table>  
-	<tr><th>ID</th><td>${member.id}</td></tr>
-	<tr><th>닉네임</th><td>
-		<input type="text" name="nickname" required="required" placeholder="닉네임을 입력해주세요" value="${member.nickname}">
-		<input type="button" value="중복확인" onclick="getDeptName('${member.nickname}')"><br>
-		<c:if test="${msg!=null}">${msg}</c:if>
-	</td></tr>
-	<tr><th>이메일</th><td>
-		<input type="text" name="email" required="required" placeholder="이메일을 입력해주세요" value="${member.email}">
-		<input type="button" value="중복확인" onclick=""><br>
-	</td></tr>
-	<tr><th>비빌번호</th><td>
-		<input type="password" name="password" placeholder="비밀번호를 입력해주세요" required="required"> 
-	</td></tr>
-	<tr><th>비빌번호확인</th><td>
-		<input type="password" name="passwordCheck" placeholder="비밀번호 확인" required="required">
-	</td></tr>
+		<form action="/member/memberUpdate"  method="post" id="frm" >		
+			<div class="form-group row">
+				<input type="hidden" name="id" value="${member.id}">
+			</div>
+
+			<h2>ID : ${member.id}</h2>
+		    
+			<div class="form-group row">
+				<label class="col-sm-2 col-xs-12 col-form-label" for="nickname">닉네임</label>
+				<div class="col-sm-10 col-xs-12">
+				    <input type="hidden" id="nickNameChk"  value="0">
+				    <input type="text" id="nickname" name="nickname"  required="required" placeholder="닉네임을 입력해주세요" value="${member.nickname}">
+					<input type="button" value="중복확인" onclick="nickNameFuncChk()">
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-xs-12 col-form-label" for="email">이메일</label>
+				<div class="col-sm-10 col-xs-12">
+				    <input type="hidden" id="emailChk"  value="0">
+					<input type="text" id="email" name="email"   required="required" placeholder="이메일을 입력해주세요" value="${member.email}">
+					<input type="button" value="중복확인" onclick="emailFuncChk()">
+				</div>
+			</div>
 	
-	<tr><td colspan="2">
-	   <input type="submit" value="확인">
-	   </td>
-	</tr>
-  </table>
-</form>
+			<div class="form-group row">
+				<label class="col-sm-2 col-xs-12 col-form-label" for="content">비빌번호</label>
+				<div class="col-sm-10 col-xs-12">
+					<input type="password" id="pw1" name="password" placeholder="비밀번호를 입력해주세요" required="required"> 
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-sm-2 col-xs-12 col-form-label" for="content">비빌번호 확인</label>
+				<div class="col-sm-10 col-xs-12">
+					<input type="password" id="pw2" name="passwordCheck" placeholder="비밀번호 확인" required="required">
+				</div>
+			</div>
+	
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<a class="btn btn-success" type="submit" onclick="register()" role="button" title="저장"><i class="fa fa-save"></i> 확인</a>
+				</div>
+			</div>
+		</form>
 <%@ include file="../footer.jsp" %> 
 </body>
 </html>

@@ -3,7 +3,11 @@
 <%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>내정보</title></head><body>
+<div class="container">
 <table>
 	<tr><th>아이디</th><td>${member.id}</td></tr>
 	<tr><th>닉네임</th><td>${member.nickname}</td></tr>
@@ -16,6 +20,7 @@
 			onclick="location.href='/member/memberDelete?id=${member.id}'">
 	</td></tr>	
 </table>
+</div>
 <%@ include file="../footer.jsp" %> 
 </body>
 </html>

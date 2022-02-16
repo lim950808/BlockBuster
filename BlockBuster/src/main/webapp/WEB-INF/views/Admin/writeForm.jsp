@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="../header.jsp" %> 
 <html>
@@ -7,49 +8,84 @@
 %>
 <head>
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <title>Insert title here</title>
 <style>
-	body {	font-family: 굴림체; text-align: center;	}
-	table { border: 1px solid pink; width: 100%; 
-	         }
-	tr { height: 30px; background: yellow; }
-	/* th {	background: #C9BFED;	} */
-	th {	background: #b9b973;	}
-	td {	background: #f9f3b3;	}
+
+.bhtitle h1 {
+	font-size:48px;
+	font-weight:bold;
+	font-family: 'Montserrat', sans-serif;
+	text-align:center;
+	color: white;
+	letter-spacing:0px;
+  	transition:1s;
+  	-webkit-transition:1s;
+  	-ms-transition:1s;
+  	position: relative;
+  	padding:10px;
+}
+
+	hr{
+		background-color:white;
+	}
+	table{
+		width : 80%
+	}
+	body{
+		background-color : #333;
+		font-family: 'Montserrat', sans-serif;
+	}
+	tr{
+		color : white;
+	}
+	a {
+  		color : white;
+	}
+
 </style>
 
 <script>
-	function categoryChange(e) {
-	    var movie = ["1100", "1200", "1300", "1400", "1500", "1600", "1700"];
-	    var drama = ["2100", "2200", "2300"];
-	    var enter = ["3100", "3200", "3300", "3400", "3500"];
-	    var dacu = ["4100", "4200", "4300"];
-	    var ani  = ["5100", "5200"];
-	    var target = document.getElementById("genre");
-	
-	    if(e.value == "1000") var d = movie;
-	    else if(e.value == "2000") var d = drama;
-	    else if(e.value == "3000") var d = enter;
-	    else if(e.value == "4000") var d = dacu;	
-	    else if(e.value == "5000") var d = ani;
-	
-	    target.options.length = 0;
-	
-	    for (x in d) {
-	        var opt = document.createElement("option");
-	        opt.value = d[x];
-	        opt.innerHTML = d[x];
-	        target.appendChild(opt);
-	    }   
-	}
-</script>
+function categoryChange(e) {
+    var movie = ["1100", "1200", "1300", "1400", "1500", "1600", "1700"];
+    var drama = ["2100", "2200", "2300"];
+    var enter = ["3100", "3200", "3300", "3400", "3500"];
+    var dacu = ["4100", "4200", "4300"];
+    var ani  = ["5100", "5200"];
+    var target = document.getElementById("genre");
 
+    if(e.value == "1000") var d = movie;
+    else if(e.value == "2000") var d = drama;
+    else if(e.value == "3000") var d = enter;
+    else if(e.value == "4000") var d = dacu;	
+    else if(e.value == "5000") var d = ani;
+
+    target.options.length = 0;
+
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        target.appendChild(opt);
+    } 
+}
+
+</script>
 </head>
+
 <body>
-    <h2>영상 등록</h2>
+<pre>
+	
+</pre>
+
+<div class="container">
+ 	<div class=bhtitle>
+		<h1>영상 등록</h1>
+	</div>	
+
+   	<div align="center">
+	<form action="/Admin/write" method="post" id="frm" name="frm" enctype="multipart/form-data" target="myBatisFrame">
+   
     
-    <form action="/Admin/write" method="post" id="frm" name="frm" enctype="multipart/form-data" target="myBatisFrame">
     <table>
         <tr>
             <th>영상제목</th>
@@ -59,7 +95,7 @@
         </tr>
         <tr>
            <td>
-           <!-- <label for="category">대분류 선택</label> -->
+         
           	<select class="form-control" id="category" name="category" onchange="categoryChange(this)">
 	            <option>대분류 선택</option>
 	            <option value="1000">영화</option>
@@ -68,14 +104,14 @@
 				<option value="4000">다큐</option>
 		        <option value="5000">애니</option>
             </select>
-	   </td>
-
-	   <td>
+		   </td>
+		   <td>
+         
            <select class="form-control" id="genre" name="genre">
              <option>선택해주세요</option>
            </select>
-  	   </td>
-        </tr>
+  		   </td>
+        </tr>     
         <tr>
             <th>제작연도</th>
             <td>
@@ -116,7 +152,7 @@
             <th>이미지</th>
             <td>
             <input class="" id="imgFile" name="imgFile" type="file"/>
-            <!-- <input type="text" name="p_img"> -->
+          
             </td>
         </tr>
         <tr>
@@ -125,13 +161,14 @@
                 <input type="text" name="p_video">
             </td>
         </tr>
-
         <tr>
-            <td colspan="2"><input type="submit" value="등록"></td>
+           <th></th>
+           <td><input id="enroll" type="submit" value="등록"></td>
         </tr>
-    </table>
+	</table>
     </form>
-
+    </div> 
+    </div> <!-- container -->
 <script type="text/javascript">
 function boardIn(){
 	$('#frm').submit();
@@ -141,8 +178,7 @@ function boardIn(){
 		document.getElementById("frm").reset();
 	}
 </script>
-    
-    
-<%@ include file="../footer.jsp" %> 
+  
+<br><br><%@include file="../footer.jsp" %>
 </body>
 </html>
