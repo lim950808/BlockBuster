@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import com.oracle.BlockBuster.dao.JEDao;
 import com.oracle.BlockBuster.model.Cart;
 import com.oracle.BlockBuster.model.CartList;
+import com.oracle.BlockBuster.model.OrderList;
 import com.oracle.BlockBuster.model.Payment;
+import com.oracle.BlockBuster.model.PaymentDetails;
 import com.oracle.BlockBuster.model.Product;
 
 @Service
@@ -117,41 +119,56 @@ public class JEServiceImpl implements JEService {
 		jd.deleteCart(cart);
 	}
 
-	@Override
-	public List<Payment> orderCartList(String member) {
-		List<Payment> orderList = jd.orderCartList(member);
-		return orderList;
-	}
-
-	@Override
-	public Payment orderResultView(String orderNo) {
-		Payment orderList = jd.orderResultView(orderNo);
-		System.out.println("Service orderInfo orderNo -> " + orderNo);
-		return orderList;
-	}
-
-	@Override
-	public List<Payment> orderListAll(String member) {
-		
-		List<Payment> orderList = jd.orderListAll(member);
-		return orderList;
-	}
-
+//	@Override
+//	public List<Payment> orderCartList(String member) {
+//		List<Payment> orderList = jd.orderCartList(member);
+//		return orderList;
+//	}
+//
+//	@Override
+//	public Payment orderResultView(String orderNo) {
+//		Payment orderList = jd.orderResultView(orderNo);
+//		System.out.println("Service orderInfo orderNo -> " + orderNo);
+//		return orderList;
+//	}
+//
+//	@Override
+//	public List<Payment> orderListAll(String member) {
+//		
+//		List<Payment> orderList = jd.orderListAll(member);
+//		return orderList;
+//	}
+	
+	//주문 정보
 	@Override
 	public void orderInfo(Payment payment) {
-		System.out.println("Service orderInfo  payment.getId() -> " + payment.getId());
-		
 		jd.orderInfo(payment);
-		
+	}
+	
+	//주문 상세 정보
+	@Override
+	public void orderInfo_Details(PaymentDetails paymentDetails) {
+		jd.orderInfo_Details(paymentDetails);
 	}
 
-	//카트 비우기
+	//결제 후 카트 비우기
 	@Override
 	public void cartAllDelete(String id) {
 		jd.cartAllDelete(id);
-		
+	}
+	
+	//주문 목록
+	@Override
+	public List<Payment> orderList(Payment payment) {
+		return jd.orderList(payment);
 	}
 
+	//주문 상세 목록
+	@Override
+	public List<OrderList> orderView(Payment payment) {
+		return jd.orderView(payment);
+	}
+	
 	@Override
 	   public List<Product> categoryList(int c) {
 	      List<Product> list = jd.categoryList(c);
@@ -163,5 +180,10 @@ public class JEServiceImpl implements JEService {
 		List<Product> list = jd.genreList(g);
 	      return list;
 	}
+
+
+	
+
+	
 
 }

@@ -305,7 +305,7 @@ body {
 	  	<button class="dropbtnJE">마이페이지</button>
 	  		<div class="dropdown-contentJE">
 	    		<a href="/member/myinfo">내 정보</a>
-	    		<a href="/Order/list">구매내역</a>
+	    		<a href="/Order/orderList">구매내역</a>
 	    		<a href="${pageContext.request.contextPath}/chat?id=${param.id}">1:1 문의</a>
 	    		<a href="${pageContext.request.contextPath}/RestAPI">Rest API</a>
 	    		<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>

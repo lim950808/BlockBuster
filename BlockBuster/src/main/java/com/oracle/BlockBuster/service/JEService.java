@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.oracle.BlockBuster.model.Cart;
 import com.oracle.BlockBuster.model.CartList;
+import com.oracle.BlockBuster.model.OrderList;
 import com.oracle.BlockBuster.model.Payment;
+import com.oracle.BlockBuster.model.PaymentDetails;
 import com.oracle.BlockBuster.model.Product;
 
 public interface JEService {
@@ -60,17 +62,29 @@ public interface JEService {
 	void deleteCart(Cart cart);
 	//int cartDelete(int id);
 	
+	//주문 정보
 	void orderInfo(Payment payment);
+	//주문 상세 정보
+	void orderInfo_Details(PaymentDetails paymentDetails);
 	
-	// 카트 비우기
+	//결제 후 카트 비우기
 	public void cartAllDelete(String id);
+	
+	//주문 목록
+	List<Payment> orderList(Payment payment);
 
-	//구매내역
-	List<Payment> orderCartList(String member);
+	//주문 상세 내역
+	List<OrderList> orderView(Payment payment);
+	
+//	//구매내역
+//	List<Payment> orderCartList(String member);
+//	
+//
+//	Payment orderResultView(String orderNo);
+//
+//	List<Payment> orderListAll(String member);
 
-	Payment orderResultView(String orderNo);
-
-	List<Payment> orderListAll(String member);
+	
 
 
 

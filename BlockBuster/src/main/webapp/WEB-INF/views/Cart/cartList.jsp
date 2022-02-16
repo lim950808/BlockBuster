@@ -243,7 +243,7 @@
 										 *  https://docs.iamport.kr/implementation/payment
 										 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
 										 */
-										name: '주문명 : BlockBuster',
+										name: 'BlockBuster',
 										// 결제창에서 보여질 이름
 										// name: '주문명 : ${auction.a_title}',
 										// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
@@ -257,7 +257,7 @@
 											console.log(rsp);
 										if (rsp.success) {
 											var msg = '결제가 완료되었습니다.';
-											location.href='/Order/result/{orderNo}'
+											location.href='/Cart/cartList'
 											/* msg += '결제 금액 : ' + rsp.paid_amount; */
 											// success.submit();
 											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.

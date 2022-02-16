@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.oracle.BlockBuster.model.Cart;
 import com.oracle.BlockBuster.model.CartList;
+import com.oracle.BlockBuster.model.OrderList;
 import com.oracle.BlockBuster.model.Payment;
+import com.oracle.BlockBuster.model.PaymentDetails;
 import com.oracle.BlockBuster.model.Product;
 
 @Repository
@@ -190,52 +192,61 @@ public class JEDaoImpl implements JEDao {
 		session.delete("deleteCart", cart);
 	}
 
-	@Override
-	public List<Payment> orderCartList(String member) {
-		return session.selectList("orderCartList", member);
-	}
+//	@Override
+//	public List<Payment> orderCartList(String member) {
+//		return session.selectList("orderCartList", member);
+//	}
+//
+//	@Override
+//	public Payment orderResultView(String orderNo) {
+//		System.out.println("Dao orderResultView orderNo.getId() -> " + orderNo);
+//		
+//		System.out.println("JEDaoImpl orderResultView start..");
+//		try {
+//			int insertCount = session.insert("orderResultView", orderNo);
+//			System.out.println("JEDaoImpl orderInfo insertCount-->"+insertCount);
+//			
+//		} catch (Exception e) {
+//			System.out.println("JEDaoImpl orderResultView e.getMessage())->"+e.getMessage());
+//		}
+//		return session.selectOne("orderResultView", orderNo);
+//	}
+//
+//	@Override
+//	public List<Payment> orderListAll(String member) {
+//		return session.selectList("orderListAll", member);
+//	}
 
-	@Override
-	public Payment orderResultView(String orderNo) {
-		System.out.println("Dao orderResultView orderNo.getId() -> " + orderNo);
-		
-		System.out.println("JEDaoImpl orderResultView start..");
-		try {
-			int insertCount = session.insert("orderResultView", orderNo);
-			System.out.println("JEDaoImpl orderInfo insertCount-->"+insertCount);
-			
-		} catch (Exception e) {
-			System.out.println("JEDaoImpl orderResultView e.getMessage())->"+e.getMessage());
-		}
-		return session.selectOne("orderResultView", orderNo);
-	}
-
-	@Override
-	public List<Payment> orderListAll(String member) {
-		return session.selectList("orderListAll", member);
-	}
-
+	//주문 정보
 	@Override
 	public void orderInfo(Payment payment) {
-		System.out.println("Dao orderInfo payment.getId() -> " + payment.getId());
-
 		session.insert("orderInfo", payment);
-		
-		System.out.println("JEDaoImpl cartList start..");
-		try {
-			int insertCount = session.insert("orderInfo", payment);
-			System.out.println("JEDaoImpl orderInfo insertCount-->"+insertCount);
-		} catch (Exception e) {
-			System.out.println("JEDaoImpl orderInfo e.getMessage())->"+e.getMessage());
-		}
 	}
+	
+	//주문 상세 정보
+	@Override
+	public void orderInfo_Details(PaymentDetails paymentDetails) {
+		session.insert("orderInfo_Details", paymentDetails);
+	}	
 
-	//카트 비우기
+	//결제 후 카트 비우기
 	@Override
 	public void cartAllDelete(String id) {
 		session.delete("cartAllDelete", id);
 	}
+	
+	//주문 목록
+	@Override
+	public List<Payment> orderList(Payment payment) {
+		return session.selectList("orderList", payment);
+	}
 
+	//주문 상세 목록
+	@Override
+	public List<OrderList> orderView(Payment payment) {
+		return session.selectList("orderView", payment);
+	}
+	
 	//카테고리 별 영상
 	@Override
 	   public List<Product> categoryList(int c) {
@@ -249,8 +260,6 @@ public class JEDaoImpl implements JEDao {
 		List<Product> list = session.selectList("HTgenreList", g);
 	      return list;
 	}
-
-	
 
 
 	 

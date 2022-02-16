@@ -102,18 +102,47 @@
 		AND id = #{id}
 	</delete>
 	
+	
+	<!-- 주문 정보 -->
+	<insert id="orderInfo">
+		INSERT int payment(orderId, id, totalPrice)
+		VALUES(#{orderId}, #{id}, #{totalPrice})
+	</insert>
+	
+	<!-- 주문 상세 정보 --> <!-- insert select문 : select에 있는 다수의 데이터 입력 가능 -->
+	<insert id="orderInfo_Details">
+		INSERT INTO paymentDetails(orderDetailsNum, orderId, pno)
+			SELECT paymentDetails_seq.nextval, #{orderId}, pno
+			FROM cart
+	</insert>
+	
 	<!-- 결제 후 카트 비우기 -->
 	<delete id="cartAllDelete">
 		DELETE cart
 		WHERE id = #{id}
 	</delete>
 	
-	<!-- 주문 상세 정보 -->
-	<insert id="orderInfo_Details">
-		INSERT INTO payment(s_no, id, pno, price)
-			SELECT payment_s_no_seq.NEXTVAL, #{id}, #{pno}, #{price}
-			FROM cart
-	</insert>
+	<!-- 주문 목록 -->
+	<select id="orderList" resultType="Payment">
+		SELECT orderId, id, totalPrice, p_date
+		FROM payment
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 주문 상세 목록 -->
+	<select id="orderView" resultType="OrderList">
+		SELECT
+			o.orderId, o.id, o.totalPrice, o.p_date, 
+			d.orderDetailsNum, d.pno, 
+			p.title, p.p_img, p.price
+		FROM payment o
+			INNER JOIN paymentDetails d
+				ON o.orderId = d.orderId
+			INNER JOIN product p
+				ON d.pno = p.pno
+		WHERE o.id = #{id}
+		AND o.orderId = #{orderId}
+	</select>
  	
  	<!-- <insert id="save">
  		INSERT INTO cart (no, id, title, count, price)

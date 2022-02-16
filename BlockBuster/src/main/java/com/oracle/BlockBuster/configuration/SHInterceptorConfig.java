@@ -24,6 +24,9 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 		   													  .addPathPatterns("/Admin/writeForm")
 		   													  .addPathPatterns("/Admin/write")
 		   													  .addPathPatterns("/Admin/delete")
+		   													  .addPathPatterns("/Product/list")
+		   													  .addPathPatterns("/CategoryList")
+		   													  .addPathPatterns("/GenreList")
 		   													  .addPathPatterns("/Product/productDetail")
 		   													  .addPathPatterns("/Product/productDetail/addCart")
 		   													  .addPathPatterns("/Cart/cartList")
@@ -39,9 +42,15 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 		   													  .addPathPatterns("/viewallMember") 		//조병훈
 		   													  .addPathPatterns("/memberrowDelete")
 		   													  .addPathPatterns("/chat")
-		   													  .addPathPatterns("/HTGetSearchResult")		//김흥태
+		   													  .addPathPatterns("/HTGetSearchResult")	//김흥태
 		   													  .addPathPatterns("/HTGetPdtSearchResult")
-		   													  .addPathPatterns("/RestAPI");
+		   													  .addPathPatterns("/RestAPI")
+		   													  .addPathPatterns("/member/myinfo")		//김동현
+		   													  .addPathPatterns("/member/memberModifyForm")
+		   													  .addPathPatterns("/member/memberUpdate")
+		   													  .addPathPatterns("/member/memberDelete")
+		   													  .addPathPatterns("/member/nickNameChk")
+		   													  .addPathPatterns("/member/emailChk");
 	}
 	
 	
