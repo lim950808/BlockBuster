@@ -4,13 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>검색 결과</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통합 검색 결과</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<style>
+ body { margin:0; padding:0; font-family:'맑은 고딕', verdana;}
+ th, td {
+           color: #f5f5f5;
+        }
+</style>
 <script> 
 	//검색단어 bold처리
     $(document).ready(function(){
@@ -20,24 +26,26 @@
     function fnKeyWordHighlights(obj,keyword)
     {
         $(obj).each(function(){ 
-            $(this).html($(this).html().replace(eval("/"+keyword+"/gi"), "<span style='color:black;font-weight:bold;'>"+keyword+"</span>"));
+            $(this).html($(this).html().replace(eval("/"+keyword+"/gi"), "<span style='color:red;font-weight:bold;'>"+keyword+"</span>"));
         });
     }
 </script>
 <body>
 <%@ include file="../header.jsp" %>
-<div class="jumbotron">
-   <div class="container">
-      <h1 class="display-3">검색 결과</h1>
-   </div>
-</div>
-
+<div class="container">
 <c:set var="cnt" value="${searchCnt}"/>
+<pre>
+
+</pre>
+<c:choose>
+<c:when test="${not empty keyword}">
+<p align="right"><b>[${keyword}]</b>의 검색 결과는 총 <b>[${searchCnt}]</b>건 입니다.</p>	
+</c:when>
+</c:choose>
+</div>
 <c:choose>
 <c:when test="${not empty keyword && cnt gt '0'}"> <!-- gt는 > 비교 연산자임 즉 cnt > 0의미-->
-<div class="container" id="total">
-<p align="right"><b>[${keyword}]</b>의 검색결과는 총 <b>[${searchCnt}]</b>건 입니다.</p>
-													
+<div class="container" id="total">						
 <table class="table table-bordered">
 	<tr><td width="180"><b>제목</b></td><td width="120" align="center"><b>장르</b></td><td width="100" align="center"><b>개봉연도</b></td><td width="100" align="center"><b>국가</b></td><td width="190" align="center"><b>출연진</b></td><td width="80" align="center"><b>감독</b></td><td width="390"><b>줄거리</b></td></tr>
 </table>
@@ -49,7 +57,7 @@
 	<tr><th colspan="7">영화 (${mc})</th></tr>
 	<c:forEach items="${productsList}" var="media"> 
 		<c:if test="${media.category eq '1000'}"> <!--카테고리 1000번 => 영화-->
-			<tr id="highlight"><td width="180"><a href="/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td align="center" width="120">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td align="center" width="120">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if> 
 	</c:forEach>
 </table>
@@ -70,7 +78,7 @@
 	<tr><th colspan="7">드라마 (${dc})</th></tr>
 	<c:forEach items="${productsList}" var="media"> 
 		<c:if test="${media.category eq '2000'}"> <!--카테고리 2000번 => 드라마 -->
-			<tr id="highlight"><td width="180"><a href="/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if> 
 	</c:forEach>
 </table>
@@ -91,7 +99,7 @@
 	<tr><th colspan="7">예능 (${ec})</th></tr>
 	<c:forEach items="${productsList}" var="media"> 
 		<c:if test="${media.category eq '3000'}"> <!--카테고리 3000번 => 예능 -->
-			<tr id="highlight"><td width="180"><a href="/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if>
 	</c:forEach>
 </table>
@@ -113,7 +121,7 @@
 	<tr><th colspan="7">다큐멘터리 (${docuc})</th></tr>
 	<c:forEach items="${productsList}" var="media">
 		<c:if test="${media.category eq '4000'}"> <!--카테고리 4000번 => 다큐멘터리 -->
-			<tr id="highlight"><td width="180"><a href="/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if> 
 	</c:forEach>
 </table>
@@ -136,7 +144,7 @@
 	<tr><th colspan="7">애니메이션 (${ac})</th></tr>
 	<c:forEach items="${productsList}" var="media">
 		<c:if test="${media.category eq '5000'}"> <!--카테고리 5000번 => 애니메이션 -->
-			<tr id="highlight"><td width="180"><a href="/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if>
 	</c:forEach>
 </table>
@@ -175,6 +183,9 @@
 </div>
 </c:when>
 </c:choose>
+<pre>
+
+</pre>
 <%@ include file="../footer.jsp" %>
 </body>
 </html>

@@ -47,6 +47,7 @@ function checkIdPw(){
 	<form method="get" name="login" action="${pageContext.request.contextPath}/login" onsubmit="checkIdPw(); return false;">
 		ID : <input type="text" id="id" name="id" placeholder="Enter ID" required autofocus><br>
 		PW : <input type="text" id="password" name="password" placeholder="Enter password"><br>
+		<input type="hidden" name="requestURL" value="${param.requestURL}"/>
 		<div>
 		<a href="${pageContext.request.contextPath}/findId" class="txt1">아이디를 잊으셨나요?</a>
 		<a href="${pageContext.request.contextPath}/findPw" class="txt1" id="test">비밀번호를 잊으셨나요?</a>

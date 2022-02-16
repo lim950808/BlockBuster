@@ -22,26 +22,19 @@ public class HTController {
 	@Autowired
 	private HTService hts;
 	
-//	@GetMapping(value="/")
-//	public String test() {
-//		System.out.println("HTController의 test 시작.....");
-//		return "member/login";
-//	}
-	
-//	//검색창 구동 테스트용
-//	@GetMapping(value="/searchTest")
-//	public String searchTest() {
-//		System.out.println("HTController의 test 시작.....");
-//		return "searchTest";
-//	}
-
 	//검색어를 통해 결과 가져오는 메서드
 	@PostMapping(value="HTGetSearchResult")
 	public String HTGetSearchResult(String keyword, Model model) {
 		//검색어가 있을 때 
-		if(!keyword.equals("") || !keyword.equals(null)) {
+		
+		if(keyword.equals("") || keyword.equals(null)) {
+			int searchCnt = 0;
+			model.addAttribute("keyword",keyword);
+			model.addAttribute("searchCnt",searchCnt);
+			return "/search/searchResults";
+		}else{
 			System.out.println("HTController의 HTGetSearchResult 시작.....");	
-			System.out.println("HTController의 HTtotalSearch의  keyword : "+keyword);
+			System.out.println("HTController의 HTGetSearchResult의  keyword : "+keyword);
 			int searchCnt = hts.HTGetSearchCnt(keyword);  //product테이블의 모든정보 + 장르명 포함 리스트의 count(수) 정보
 			List<Product> productsList = hts.HTGetSearchResult(keyword); //product테이블의 모든정보 + 장르명 포함 리스트
 			
@@ -52,13 +45,13 @@ public class HTController {
 			int documentaryCnt = hts.HTGetDocumentaryCnt(keyword);
 			int animationCnt = hts.HTGetAnimationCnt(keyword);
 			
-			System.out.println("HTController의 HTtotalSearch의 searchCnt값  : "+searchCnt);	
-			System.out.println("HTController의 HTtotalSearch의  productsList.size() : "+productsList.size());
-			System.out.println("HTController의 HTtotalSearch의 movieCnt값  : "+movieCnt);	
-			System.out.println("HTController의 HTtotalSearch의 dramaCnt값  : "+dramaCnt);	
-			System.out.println("HTController의 HTtotalSearch의 entertainmentCnt값  : "+entertainmentCnt);	
-			System.out.println("HTController의 HTtotalSearch의 documentaryCnt값  : "+documentaryCnt);	
-			System.out.println("HTController의 HTtotalSearch의 animationCnt값  : "+animationCnt);	
+			System.out.println("HTController의 HTGetSearchResult의 searchCnt값  : "+searchCnt);	
+			System.out.println("HTController의 HTGetSearchResult의  productsList.size() : "+productsList.size());
+			System.out.println("HTController의 HTGetSearchResult의 movieCnt값  : "+movieCnt);	
+			System.out.println("HTController의 HTGetSearchResult의 dramaCnt값  : "+dramaCnt);	
+			System.out.println("HTController의 HTGetSearchResult의 entertainmentCnt값  : "+entertainmentCnt);	
+			System.out.println("HTController의 HTGetSearchResult의 documentaryCnt값  : "+documentaryCnt);	
+			System.out.println("HTController의 HTGetSearchResult의 animationCnt값  : "+animationCnt);	
 			
 			model.addAttribute("productsList",productsList);
 			model.addAttribute("searchCnt",searchCnt); 
@@ -70,11 +63,8 @@ public class HTController {
 			model.addAttribute("aCnt",animationCnt);		
 			return "/search/searchResults";
 			//검색어가 없을 때 
-			}else {		
-				model.addAttribute("keyword",keyword);
-				return "/search/searchResults";
 			}
-		}
+	}
 		
 	@RequestMapping(value="rcmdSearchWord")
 	@ResponseBody
@@ -105,7 +95,6 @@ public class HTController {
 		System.out.println("HTController의 rcmdSearchWord메서드 시작...");
 		//검색어가 있을 때
 		if(!pvo.getKeyword().equals("") || !pvo.getKeyword().equals(null)) {
-		 // 통합시 제거예정
 		int searchCnt = hts.GetPdtSearchCount(pvo); //검색어로 조회한 장르 구분없는 카테고리 검색 결과 갯수
 		List<Product> productsList = hts.GetPdtSearchResult(pvo); //검색어로 조회한 장르 구분없는 카테고리 검색 결과 리스트
 		System.out.println("HTController의 rcmdSearchWord메서드의 searchCnt : "+searchCnt);

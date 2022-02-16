@@ -37,7 +37,10 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 		   													  .addPathPatterns("FAQ/listCB2")
 		   													  .addPathPatterns("viewallMember") 		//조병훈
 		   													  .addPathPatterns("/memberrowDelete")
-		   													  .addPathPatterns("/chat");
+		   													  .addPathPatterns("/chat")
+		   													  .addPathPatterns("HTGetSearchResult")		//김흥태
+		   													  .addPathPatterns("HTGetPdtSearchResult")
+		   													  .addPathPatterns("RestAPI");
 	}
 	
 	

@@ -132,6 +132,7 @@
 											
 											if(result == 1) {
 												alert("장바구니에서 결제를 완료해주세요.");
+												location.href = "/Cart/cartList";
 											} else {
 												alert("로그인 해주세요.")
 											}

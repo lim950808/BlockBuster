@@ -76,7 +76,7 @@ body {
   overflow: hidden;
   background-color: #333;
   font-family: Arial, Helvetica, sans-serif;
-  border-bottom: 1px solid #fff;
+  /* border-bottom: 1px solid #fff; */
   height: 100px;
   padding-top: 25px;
 }

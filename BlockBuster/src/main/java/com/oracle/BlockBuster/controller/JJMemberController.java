@@ -50,12 +50,23 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		return "member/login";
 	}
 	
+//	@GetMapping(value="login")
+//	public String login(JJMember member, HttpServletRequest request) {
+//		logger.info("login 시작");
+//		HttpSession session = request.getSession();
+//		session.setAttribute("sessionId", member.getId());
+//		return	"/main";
+//	}
+	
 	@GetMapping(value="login")
-	public String login(JJMember member, HttpServletRequest request) {
+	public String login(JJMember member, String requestURL, HttpServletRequest request) {
 		logger.info("login 시작");
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", member.getId());
-		return	"/main";
+		
+		requestURL = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
+		
+		return	"redirect:"+requestURL;
 	}
 	
 	@RequestMapping("idpwCheck")

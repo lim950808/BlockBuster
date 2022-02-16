@@ -42,7 +42,7 @@
 		<!-- 게시글 리스트 출력 -->
 		<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 		
-		<table id="list" class="table table-hover">
+		<table id="list" class="table success">
 		
 				<tr id = "headRow" style="text-align: center; background-color:#F5F5F5; color: black">
 					<th><b>글번호</b></th>
@@ -80,6 +80,7 @@
 			<select name="search_option">
 		        <option value="title">영상제목</option>
 				<option value="r_title">글제목</option>
+				<option value="nickName">작성자</option>
 		    </select>
 		    <input name="keyword" value="">
 		    <input type="hidden" name="Search_option" value="$(Search_option)">
@@ -89,7 +90,7 @@
 		
 		<!-- 페이징처리 -->	
 		<c:choose>
-		    <c:when test="${boardKind eq '1'}">
+		    <c:when test="${boardKind eq '일반리뷰'}">
 				<c:if test="${pg.startPage > pg.pageBlock }">
 					<a href="reviewList?currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
 				</c:if>
@@ -102,7 +103,7 @@
 					<a href="reviewList?currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
 				</c:if>
 		    </c:when>
-		    <c:when test="${boardKind eq '2'}">
+		    <c:when test="${boardKind eq '상품페이지'}">
 				<c:if test="${pg.startPage > pg.pageBlock }">
 					<a href="reviewProductList?pno=${pno}&currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
 				</c:if>
@@ -115,7 +116,7 @@
 					<a href="reviewProductList?pno=${pno}&currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
 				</c:if>
 		    </c:when>
-		    <c:when test="${boardKind eq '3'}">
+		    <c:when test="${boardKind eq '검색'}">
 				<c:if test="${pg.startPage > pg.pageBlock }">
 					<a href="search?keyword=${keyword}&currentPage=${pg.startPage-pg.pageBlock}&search_option=${Search_option}">⬅︎</a>
 				</c:if>

@@ -63,10 +63,6 @@ span.carousel-control-next-icon {
   
 </head>
 <body>
-<%-- <%@ include file="menu.jsp" %> --%>
-<pre>
-
-</pre>
 <div class="container">
 <%-- ${sessionScope.id} --%>
 <%-- ${sessionScope.member} --%>

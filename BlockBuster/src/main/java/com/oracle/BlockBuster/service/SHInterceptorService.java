@@ -30,7 +30,8 @@ public class SHInterceptorService implements HandlerInterceptor {
 		
 			if(session.getAttribute("sessionId")==null) {
 				logger.info("[INTERCEPTOR_전] sessionId 확인 실패");
-				response.sendRedirect("/loginView");
+				
+				response.sendRedirect("/loginView?requestURL="+request.getRequestURL()+"?"+request.getQueryString());
 				return false;
 			}
 			

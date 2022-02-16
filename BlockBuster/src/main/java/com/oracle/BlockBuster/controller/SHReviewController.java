@@ -44,17 +44,17 @@ public class SHReviewController {
 		System.out.println("controller searchModel : "+searchModel.getSearch_option());
 
 		//Paging 호출
-		logger.info("[2-1-1] totalSearch() 시작");
+		logger.info("[1-1-1] totalSearch() 시작");
 		int total = SHservice.totalSearch(searchModel);
 		System.out.println("총 몇개? : "+total);
 		
-		logger.info("[2-2-1] paging 호출 시작");
+		logger.info("[1-2-1] paging 호출 시작");
 		Paging pg = new Paging(total, currentPage);
 		searchModel.setStart(pg.getStart());   // 시작시 1
 		searchModel.setEnd(pg.getEnd());       // 시작시 10
 		
 		
-		logger.info("[1-1-1] search() 시작");
+		logger.info("[1-3-1] search() 시작");
 		List<SHReviewModel> searchResult = SHservice.search(searchModel);
 		
 		model.addAttribute("pg",pg);
@@ -72,7 +72,7 @@ public class SHReviewController {
 			
 			model.addAttribute("reviewList",searchResult); // 심플
 			model.addAttribute("keyword",searchModel.getKeyword()); //쉬운방법
-			model.addAttribute("boardKind", "3");
+			model.addAttribute("boardKind", "검색");
 			model.addAttribute("Search_option",searchModel.getSearch_option()); //쉬운방법
 		}
 		return "Review/reviewListSH";
@@ -104,7 +104,7 @@ public class SHReviewController {
 		
 		model.addAttribute("pg",pg);
 		model.addAttribute("total", total);
-		model.addAttribute("boardKind", "1");
+		model.addAttribute("boardKind", "일반리뷰");
 		
 		
 		return "Review/reviewListSH";
@@ -122,10 +122,10 @@ public class SHReviewController {
 		
 		
 		//Paging 호출
-		logger.info("[P-1-1] totalPro() 시작");
+		logger.info("[3-1-1] totalPro() 시작");
 		int total = SHservice.totalPro(pno);
 		
-		logger.info("[P-2-1] paging 호출 시작");
+		logger.info("[3-2-1] paging 호출 시작");
 		Paging pg = new Paging(total, currentPage);
 		
 		SHReviewModel SHreviewModel = new SHReviewModel();
@@ -134,7 +134,7 @@ public class SHReviewController {
 		SHreviewModel.setEnd(pg.getEnd());       					// 시작시 10
 			
 		//list 호출
-		logger.info("[P-3-1] reviewProductList() 시작");
+		logger.info("[3-3-1] reviewProductList() 시작");
 		List<SHReviewModel> reviewList = SHservice.reviewProductList(SHreviewModel);
 		model.addAttribute("reviewList", reviewList);
 		
@@ -145,7 +145,7 @@ public class SHReviewController {
 		model.addAttribute("pno", pno); // 리스트에서 번호에 따라 리뷰남기는 방식이다름 
 		model.addAttribute("pg",pg);
 		model.addAttribute("total", total);
-		model.addAttribute("boardKind", "2");
+		model.addAttribute("boardKind", "상품페이지");
 		
 		
 		return "Review/reviewListSH";
@@ -159,12 +159,12 @@ public class SHReviewController {
 	public String reviewDetail(String currentPage, SHGoodModel SHgoodModel, HttpServletRequest request, Model model) {
 		logger.info("[STRAT] reviewDetail 시작--------------------");
 		
-		logger.info("[3-1-1] reviewHit 시작");
+		logger.info("[4-1-1] reviewHit 시작");
 		int r_no = SHgoodModel.getR_no();
 		SHservice.reviewHit(r_no);
 		
 		//게시판 상세페이지 불러오기 -----------------------------------------
-		logger.info("[3-2-1] reviewDetail 시작");
+		logger.info("[4-2-1] reviewDetail 시작");
 		SHReviewModel reviewDetail = SHservice.reviewDetail(r_no);
 		model.addAttribute("reviewDetail", reviewDetail);
 		
@@ -172,7 +172,7 @@ public class SHReviewController {
 		//게시판 좋아요 기능 -----------------------------------------
 		
 		//1. 상세보기 진입 시, 현재 게시글의 추천개수 확인
-		logger.info("[3-3-1] totalGood 시작--------------------");
+		logger.info("[4-3-1] totalGood 시작--------------------");
 		int totalGood = SHservice.totalGood(r_no);
 		model.addAttribute("totalGood", totalGood);
 		
@@ -181,7 +181,7 @@ public class SHReviewController {
 		SHgoodModel.setId(loginCheck.checkSessionId(request));
 		model.addAttribute("SHgoodModel", SHgoodModel);
 		
-		logger.info("[3-4-1] userGood 시작"+SHgoodModel.toString());
+		logger.info("[4-4-1] userGood 시작"+SHgoodModel.toString());
 		int userGood = SHservice.userGood(SHgoodModel);
 		model.addAttribute("userGood", userGood);
 		
@@ -200,7 +200,7 @@ public class SHReviewController {
 		model.addAttribute("pno", pno);
 		
 		if(pno > 0) {
-			logger.info("[4-1-1] pnoToTitle() 시작");
+			logger.info("[5-1-1] pnoToTitle() 시작");
 			String title = SHservice.pnoToTitle(pno); 
 			model.addAttribute("title", title);
 			SHreviewModel.setTitle(title);
@@ -241,7 +241,7 @@ public class SHReviewController {
 		int pno = SHservice.titleToPno(SHreviewModel.getTitle());
 		SHreviewModel.setPno(pno);
 		
-		logger.info("[5-1-1] reviewWrite() 시작");
+		logger.info("[6-1-1] reviewWrite() 시작");
 		int WriteResult = SHservice.reviewWrite(SHreviewModel);
 		System.out.println("게시글 작성 반영 결과 : "+WriteResult);
 		
@@ -277,7 +277,7 @@ public class SHReviewController {
 		}
 		
 		//게시글 작성
-		logger.info("[6-1-1] Product --> reviewWrite() 시작");
+		logger.info("[7-1-1] Product --> reviewWrite() 시작");
 		int WriteResult = SHservice.reviewWrite(SHreviewModel);
 		System.out.println("  게시글 작성 반영 결과 : "+WriteResult);
 		
@@ -322,7 +322,7 @@ public class SHReviewController {
 	public List<SHTitleModel> searchTitle() {
 		logger.info("[STRAT] searchTitle 글작성 제목 검색 시작--------------------");
 		
-		logger.info("[7-1-1] searchTitle() 시작");
+		logger.info("[8-1-1] searchTitle() 시작");
 		List<SHTitleModel> titleNTotalWd = SHservice.searchTitle(); //제목
 		
 		return titleNTotalWd;
@@ -335,7 +335,7 @@ public class SHReviewController {
 	public String checkTitle(String title, Model model) {
 		logger.info("[STRAT] checkTitle 시작--------------------");
 		
-		logger.info("[8-1-1] searchTitle() 시작");
+		logger.info("[9-1-1] searchTitle() 시작");
 		int checkTitle = SHservice.checkTitle(title); 
 		System.out.println("게시글 제목 검증 결과 : "+checkTitle);
 		
@@ -349,7 +349,7 @@ public class SHReviewController {
 	public String reviewEditFrom(int r_no, Model model) {
 		logger.info("[STRAT] reviewEditFrom 시작--------------------");
 		
-			logger.info("[9-1-1] reviewDetail 시작");
+			logger.info("[10-1-1] reviewDetail 시작");
 			model.addAttribute("editWriteFrom", SHservice.reviewDetail(r_no));
 			
 			return "Review/reviewEditFromSH";
@@ -375,7 +375,7 @@ public class SHReviewController {
 	    SHreviewModel.setR_img(r_img);
 		
 		
-		logger.info("[10-1-1] ReviewEdit() 시작");
+		logger.info("[11-1-1] ReviewEdit() 시작");
 		int editResult = SHservice.ReviewEdit(SHreviewModel);
 		System.out.println("  edit 게시글 수정 반영 결과 : "+editResult);
 		
@@ -389,7 +389,7 @@ public class SHReviewController {
 	public String reviewDelete(int r_no, Model model) {
 		logger.info("[STRAT] reviewDelete 시작--------------------");
 		
-		logger.info("11-1-1] reviewDelete() 시작");
+		logger.info("12-1-1] reviewDelete() 시작");
 		System.out.println("  게시글 삭제 반영 결과 : "+SHservice.reviewDelete(r_no));
 		
 		return "redirect:reviewList";
@@ -400,7 +400,7 @@ public class SHReviewController {
 	public String imgDelete(int r_no, Model model) {
 		logger.info("[STRAT] imgDelete 시작--------------------");
 		
-		logger.info("[12-1-1] imgDelete() 시작");
+		logger.info("[13-1-1] imgDelete() 시작");
 		System.out.println("  게시글 삭제 반영 결과 : "+SHservice.imgDelete(r_no));
 		
 		return "redirect:reviewList";

@@ -328,7 +328,9 @@ public class JEController {
 			js.addCart(cart);
 			result = 1;
 		}
-		return result;
+		//return result;
+	    return result;
+	    
 	}
 	
 //	//카트 목록
@@ -415,29 +417,39 @@ public class JEController {
 	
 	//주문
 	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.POST)
-	public String order(HttpSession session, Payment payment) {
+	public String order(HttpSession session, Payment payment, @RequestParam(value = "chk[]") List<String> chArr) {
 		System.out.println("order start...");
 		String id = (String)session.getAttribute("sessionId");
 		
-		// 캘린더 호출
+		// orderId(주문번호)생성 로직
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);  // 연도 추출
 		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);  // 월 추출
 		String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));  // 일 추출
 		String subNum = "";  // 랜덤 숫자를 저장할 문자열 변수
 		
-		for(int i = 1; i <= 6; i ++) {  // 6회 반복
+		for(int i=1; i<=6; i++) {  // 6회 반복
 			subNum += (int)(Math.random() * 10);  // 0~9까지의 숫자를 생성하여 subNum에 저장
 		}
 		
-		String orderId = ymd + "_" + subNum;  // [연월일]_[랜덤숫자] 로 구성된 문자
+		String orderId = ymd + "_" + subNum;  // [연월일]_[랜덤숫자] 로 구성된 문자 -> ex) 20220216_123456
 		System.out.println("Controller cartList orderId -> " + orderId);
 		payment.setOrderId(orderId);
 		payment.setId(id);
 		
 		js.orderInfo(payment);
 		
-		// 주문 테이블, 주문 상세 테이블에 데이터를 전송하고, 카트 비우기
+		//결제 후 테이블 비우기 작업 중..
+//		int cartNum = 0;
+//		for(String i : chArr) {
+//			cartNum = Integer.parseInt(i);
+//			System.out.println("checked cartNum -> " + cartNum);
+//			System.out.println("orderId -> " + orderId);
+//			js.orderInfoDetails(orderId, cartNum); //주문상세 테이블 insert
+//			js.cartDelete(cartNum); //체크되어 들어온 cartNum로 Cart테이블 비우기
+//		}
+		
+//		// 주문 테이블, 주문 상세 테이블에 데이터를 전송하고, 카트 비우기
 		js.cartAllDelete(id);
 		
 		return "redirect:/Order/result";

@@ -74,7 +74,7 @@
 		<form action="<c:url value="reviewWrite"/>" class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data">
 
 			<div class="form-group row">
-	 			<input name="id" value="${sessionScope.id}">
+	 			<input name="id" value="${sessionScope.sessionId}">
 			</div>
 
 

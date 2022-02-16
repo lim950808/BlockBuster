@@ -5,12 +5,16 @@
 
 	<!-- 게시판 리스트 검색창 페이지 total -->
 	<select id="SH_totalSearch" parameterType="SHSearchModel" resultType="int">
-			SELECT count(*) FROM review 
+			SELECT count(*) 
+			FROM review r LEFT OUTER JOIN member m ON r.id = m.id
 			<if test='search_option.equals("title")'>
 				where title like '%'||#{keyword, jdbcType=VARCHAR}||'%' 
 			</if> 
 			<if test='search_option.equals("r_title")'>
 				where r_title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+			</if>
+			<if test='search_option.equals("nickName")'>
+				where nickName like '%'||#{keyword, jdbcType=VARCHAR}||'%'
 			</if>
 	</select>
 	
@@ -32,6 +36,9 @@
 							</if> 
 							<if test='search_option.equals("r_title")'>
 								where r_title like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+							</if>
+							<if test='search_option.equals("nickName")'>
+								where nickName like '%'||#{keyword, jdbcType=VARCHAR}||'%'
 							</if>
 							ORDER BY r_no DESC
 							) a
