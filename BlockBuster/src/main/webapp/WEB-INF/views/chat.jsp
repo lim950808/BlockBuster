@@ -5,10 +5,10 @@
 <head>
 <meta http-euiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="resources/css/bootstrap.css">
-      <link rel="stylesheet" href="resources/css/custom.css">
+      <link rel="stylesheet" href="resources/css/bootstrapbh.css">
+      <link rel="stylesheet" href="resources/css/custombh.css">
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-      <script src="resources/js/bootstrap.js"></script>   
+      <script src="resources/js/bootstrapbh.js"></script>   
 <style>
 		
 .chating{

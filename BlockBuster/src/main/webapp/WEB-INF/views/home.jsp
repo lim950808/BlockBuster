@@ -180,14 +180,14 @@
         </div>
       </div>
       <div class="carousel-item">
-      	<img src="resources/img/communication2.jpg" class="d-block w-100" alt="communication">
+      	<img src="resources/img/coffee.jpg" class="d-block w-100" alt="communication">
         <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> -->
 
         <div class="container">
           <div class="carousel-caption text-end">
             <h1>당신의 리뷰를 기다립니다.</h1>
-            <p>자유로운 리뷰 작성!! 리뷰게시판에서 다른 사람들과 함께 생각을 공유해 보세요.</p>
-            <p><a class="btn btn-lg btn-danger" href="${pageContext.request.contextPath}/reviewList">글 남기러 가기</a></p>
+            <p>언제 어디서든 다른 사람들과 함께 생각을 공유해 보세요.</p>
+            <p><a class="btn btn-lg btn-secondary" href="${pageContext.request.contextPath}/reviewList">글 남기러 가기</a></p>
           </div>
         </div>
       </div>
