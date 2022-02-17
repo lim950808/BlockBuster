@@ -6,7 +6,7 @@
     <select id="viewallMember" resultType="BHDto">
  			select id, nickname, email
 			from member
-			where grade = '0'
+			where delstatus = '0' and grade = '0'
     </select>
    
     <update id="memberrowDelete" parameterType="BHDto">
@@ -21,6 +21,5 @@
 			from member 
 			where id= #{id}
     </select>
-    
 </mapper>
 

@@ -38,7 +38,7 @@
 		
 		aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
 		aside#aside li { font-size:16px; text-align:center; }
-		aside#aside li a { color:#000; display:block; padding:10px 0; }
+		aside#aside li a { color:white; display:block; padding:10px 0; }
 		aside#aside li a:hover { text-decoration:none; background:#eee; }
 		
 		aside#aside li { position:relative; }
@@ -66,9 +66,14 @@
 	
 </head>
 <body>
+<pre>
+
+</pre>
 <div id="root">
 	
 	<section id="container">
+		<h1 style="color:white;"><b>구매 목록</b></h1>
+		<hr color="white">
 		<div id="container_box">
 		
 			<section id="content">
@@ -79,7 +84,7 @@
 							<div>
 								<p><span>주문번호</span><a href="/Order/orderView?n=${orderList.orderId}">${orderList.orderId}</a></p>
 								<p><span>아이디</span>${orderList.id}</p>
-								<p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderList.totalPrice}" /> 원</p>
+								<p><span>총 가격</span><fmt:formatNumber pattern="###,###,###" value="${orderList.totalPrice}" /> 원</p>
 							</div>
 						</li>
 					</c:forEach>
@@ -95,6 +100,9 @@
 	</section>
 
 </div>
+<pre>
+
+</pre>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

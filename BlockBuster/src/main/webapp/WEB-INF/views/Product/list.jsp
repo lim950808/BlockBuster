@@ -51,7 +51,7 @@
  
  aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
  aside#aside li { font-size:16px; text-align:center; }
- aside#aside li a { color:#000; display:block; padding:10px 0; }
+ aside#aside li a { color:white; display:block; padding:10px 0; }
  aside#aside li a:hover { text-decoration:none; background:#eee; }
  
  footer#footer { margin-top:100px; border-radius:50px 50px 0 0; }
@@ -119,20 +119,23 @@ function RecommendTitleWords(){
 <pre>
 
 </pre>
-<aside id="aside">
-				<%@ include file="../aside.jsp" %>
-			</aside>
 <div id="root">
-	
 	<section id="container">
 		<div id="container_box">
 			<!-- 해당 카테고리 내에서만 제목으로 검색 -->
-			<form action="${pageContext.request.contextPath}/HTGetPdtSearchResult">
-				<input type="hidden" id="sCategory" name="category"> <!-- el로 값 넣는게 불가함으로 제이쿼리로 반영 -->
-	          	<input class="form-control" type="search" name="keyword" id="words" list="searchingist2" onfocus="RecommendTitleWords()" placeholder="Search" aria-label="Search">
-	          	<button type="submit"><i class="fa fa-search"></i></button>
-      		</form>
-		
+			<c:set var="s" value="${s}"/><!-- genre말고 category에서만 검색창이 나타남 -->
+	      		<c:choose>
+	      			<c:when test="${not empty s}">
+	         			<form class="exampleJE" action="${pageContext.request.contextPath}/HTGetPdtSearchResult">
+		            		<input type="hidden" id="sCategory" name="category"> 
+		         			<input type="text" name="keyword" id="words" list="searchingist2" onfocus="RecommendTitleWords()" placeholder="제목을 입력하세요.">
+		         			<button type="submit"><i class="fa fa-search"></i></button>
+	      				</form>   
+	      			</c:when>
+	      		</c:choose>
+	      	<pre>
+	      	
+	      	</pre>
 			<section id="content">	
 				<ul>
  					<c:forEach items="${list}" var="product">
@@ -153,24 +156,9 @@ function RecommendTitleWords(){
  					</c:forEach>
 				</ul>
 			</section>
-			
-			
-			
-			<%-- <form>
-          		<input class="form-control" type="hidden" value="${product.pno }" placeholder="Search" aria-label="Search">
-          		<button type="submit"><i class="fa fa-search"></i></button>
-      		</form> --%>
-      		<%-- <form name="form" class="example" id="search" action="${pageContext.request.contextPath}/HTGetPdtSearchResult" onfocus="RecommendTitleWords()" method="post" style="margin:20px; max-width:200px">
-         		<input type="text" placeholder="제목을 입력 하세요" name="keyword" id="words2" list="searchingist2">
-         		<input type="hidden" id="category">
-         		<button type="submit"><i class="fa fa-search"></i></button>
-      		</form> --%>
-      		<%-- <form action="${pageContext.request.contextPath}/HTGetPdtSearchResult">
-				<input type="hidden" id="sCategory" name="category"> <!-- el로 값 넣는게 불가함으로 제이쿼리로 반영 -->
-	          	<input class="form-control" type="search" name="keyword" id="words" list="searchingist2" onfocus="RecommendTitleWords()" placeholder="Search" aria-label="Search">
-	          	<button type="submit"><i class="fa fa-search"></i></button>
-      		</form>	 --%>
-      		
+			<aside id="aside">
+				<%@ include file="../aside.jsp" %>
+			</aside>
 		</div>
 	</section>
 </div>

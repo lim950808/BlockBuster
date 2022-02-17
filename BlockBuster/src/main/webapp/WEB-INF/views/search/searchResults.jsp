@@ -12,10 +12,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
- body { margin:0; padding:0; font-family:'맑은 고딕', verdana;}
+ body { margin:0; padding:0; font-family:'sans-serif', verdana;}
  th, td {
            color: #f5f5f5;
         }
+ #noneKeyword, #mainkeyword, #headPart>td, #ctgr, #kwd {color: #ff7f00;}
+ #link {color: #ffd600; font-weight:bold;}
 </style>
 <script> 
 	//검색단어 bold처리
@@ -26,7 +28,7 @@
     function fnKeyWordHighlights(obj,keyword)
     {
         $(obj).each(function(){ 
-            $(this).html($(this).html().replace(eval("/"+keyword+"/gi"), "<span style='color:red;font-weight:bold;'>"+keyword+"</span>"));
+            $(this).html($(this).html().replace(eval("/"+keyword+"/gi"), "<span style='color:#ff7f00;font-weight:bold;'>"+keyword+"</span>"));
         });
     }
 </script>
@@ -39,7 +41,7 @@
 </pre>
 <c:choose>
 <c:when test="${not empty keyword}">
-<p align="right"><b>[${keyword}]</b>의 검색 결과는 총 <b>[${searchCnt}]</b>건 입니다.</p>	
+<p align="right"><span id="kwd"><b>[${keyword}]</b></span>의 통합 검색 결과는 총<span id="kwd"><b>[${searchCnt}]</b></span>건 입니다.</p>	
 </c:when>
 </c:choose>
 </div>
@@ -47,25 +49,25 @@
 <c:when test="${not empty keyword && cnt gt '0'}"> <!-- gt는 > 비교 연산자임 즉 cnt > 0의미-->
 <div class="container" id="total">						
 <table class="table table-bordered">
-	<tr><td width="180"><b>제목</b></td><td width="120" align="center"><b>장르</b></td><td width="100" align="center"><b>개봉연도</b></td><td width="100" align="center"><b>국가</b></td><td width="190" align="center"><b>출연진</b></td><td width="80" align="center"><b>감독</b></td><td width="390"><b>줄거리</b></td></tr>
+	<tr id="headPart"><td width="180"><b>제목</b></td><td width="120" align="center"><b>장르</b></td><td width="100" align="center"><b>개봉연도</b></td><td width="100" align="center"><b>국가</b></td><td width="190" align="center"><b>출연진</b></td><td width="80" align="center"><b>감독</b></td><td width="390"><b>줄거리</b></td></tr>
 </table>
 <br>
 <c:set var="mc" value="${mCnt}"/>
 <c:choose>
 <c:when test="${mc gt '0'}">
 <table class="table table-bordered">
-	<tr><th colspan="7">영화 (${mc})</th></tr>
+	<tr><th colspan="7" id="ctgr">영화 (${mc})</th></tr>
 	<c:forEach items="${productsList}" var="media"> 
 		<c:if test="${media.category eq '1000'}"> <!--카테고리 1000번 => 영화-->
-			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td align="center" width="120">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a id="link" href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td align="center" width="120">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if> 
 	</c:forEach>
 </table>
 </c:when>
 <c:when test="${mc eq '0'}">
 <table class="table table-bordered">
-<tr><th colspan="7"><b>영화 (${mc})</b></th></tr>
-<tr><td colspan="7"><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</td></tr>
+<tr><th id="ctgr" colspan="7"><b >영화 (${mc})</b></th></tr>
+<tr><td colspan="7"><span id="kwd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</td></tr>
 </table>
 </c:when>
 </c:choose>
@@ -75,18 +77,18 @@
 <c:choose>
 <c:when test="${dc gt '0'}">
 <table class="table table-bordered">	
-	<tr><th colspan="7">드라마 (${dc})</th></tr>
+	<tr><th colspan="7"  id="ctgr">드라마 (${dc})</th></tr>
 	<c:forEach items="${productsList}" var="media"> 
 		<c:if test="${media.category eq '2000'}"> <!--카테고리 2000번 => 드라마 -->
-			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a id="link" href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if> 
 	</c:forEach>
 </table>
 </c:when>
 <c:when test="${dc eq '0'}">
 <table class="table table-bordered">
-<tr><th colspan="7"><b>드라마 (${dc})</b></th></tr>
-<tr><td colspan="7"><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</td></tr>
+<tr><th id="ctgr" colspan="7"><b>드라마 (${dc})</b></th></tr>
+<tr><td colspan="7"><span id="kwd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</td></tr>
 </table>
 </c:when>
 </c:choose>
@@ -96,18 +98,18 @@
 <c:choose>
 <c:when test="${ec gt '0'}">
 <table class="table table-bordered">	
-	<tr><th colspan="7">예능 (${ec})</th></tr>
+	<tr><th colspan="7" id="ctgr">예능 (${ec})</th></tr>
 	<c:forEach items="${productsList}" var="media"> 
 		<c:if test="${media.category eq '3000'}"> <!--카테고리 3000번 => 예능 -->
-			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a id="link" href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if>
 	</c:forEach>
 </table>
 </c:when>
 <c:when test="${ec eq '0'}">
 <table class="table table-bordered">
-<tr><th colspan="7"><b>예능 (${ec})</b></th></tr>
-<tr><td colspan="7"><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</td></tr>
+<tr><th id="ctgr" colspan="7"><b>예능 (${ec})</b></th></tr>
+<tr><td colspan="7"><span id="kwd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</td></tr>
 </table>
 </c:when>
 </c:choose>
@@ -118,10 +120,10 @@
 <c:choose>
 <c:when test="${docuc gt '0'}">
 <table class="table table-bordered">	
-	<tr><th colspan="7">다큐멘터리 (${docuc})</th></tr>
+	<tr><th colspan="7" id="ctgr">다큐멘터리 (${docuc})</th></tr>
 	<c:forEach items="${productsList}" var="media">
 		<c:if test="${media.category eq '4000'}"> <!--카테고리 4000번 => 다큐멘터리 -->
-			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a id="link" href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if> 
 	</c:forEach>
 </table>
@@ -129,8 +131,8 @@
 
 <c:when test="${docuc eq '0'}">
 <table class="table table-bordered">
-<tr><th colspan="7"><b>다큐멘터리 (${docuc})</b></th></tr>
-<tr><td colspan="7"><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</td></tr>
+<tr><th id="ctgr" colspan="7"><b>다큐멘터리 (${docuc})</b></th></tr>
+<tr><td colspan="7"><span id="kwd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</td></tr>
 </table>
 </c:when>
 </c:choose>
@@ -141,18 +143,18 @@
 <c:choose>
 <c:when test="${ac gt '0'}">
 <table class="table table-bordered">	
-	<tr><th colspan="7">애니메이션 (${ac})</th></tr>
+	<tr><th id="ctgr" colspan="7">애니메이션 (${ac})</th></tr>
 	<c:forEach items="${productsList}" var="media">
 		<c:if test="${media.category eq '5000'}"> <!--카테고리 5000번 => 애니메이션 -->
-			<tr id="highlight"><td width="180"><a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
+			<tr id="highlight"><td width="180"><a id="link" href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}">${media.title}</a></td><td width="120" align="center">${media.gen_name}</td><td width="100" align="center">${media.year}</td><td width="100" align="center">${media.country}</td><td width="190" align="center">${media.casting}</td><td width="80" align="center">${media.director}</td><td width="390">${media.description}</td></tr>
 		</c:if>
 	</c:forEach>
 </table>
 </c:when>
 <c:when test="${ac eq '0'}">
 <table class="table table-bordered">
-<tr><th colspan="7"><b>애니메이션 (${ac})</b></th></tr>
-<tr><td colspan="7"><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</td></tr>
+<tr><th id="ctgr" colspan="7"><b>애니메이션 (${ac})</b></th></tr>
+<tr><td colspan="7"><span id="kwd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</td></tr>
 </table>
 </c:when>
 </c:choose>
@@ -162,7 +164,7 @@
 <c:when test="${not empty keyword && cnt eq '0'}">
 <div class="container">
 <table class="table table-bordered">
-<tr><th>'${keyword}'에 대한 검색결과가 없습니다.</th></tr>
+<tr><th><span id="noneKeyword">'${keyword}'</span>에 대한 검색결과가 없습니다.</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br>
 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.<br>
@@ -174,7 +176,7 @@
 <c:when test="${keyword eq ''}">
 <div class="container">
 <table class="table table-bordered">
-<tr><th>검색어가 입력되지 않았습니다!</th></tr>
+<tr><th  id="noneKeyword">검색어가 입력되지 않았습니다!</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br>
 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.<br>

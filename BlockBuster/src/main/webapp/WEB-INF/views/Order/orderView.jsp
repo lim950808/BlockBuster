@@ -38,7 +38,7 @@
 		
 		aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
 		aside#aside li { font-size:16px; text-align:center; }
-		aside#aside li a { color:#000; display:block; padding:10px 0; }
+		aside#aside li a { color:white; display:block; padding:10px 0; }
 		aside#aside li a:hover { text-decoration:none; background:#eee; }
 		
 		aside#aside li { position:relative; }
@@ -74,9 +74,14 @@
 
 </head>
 <body>
+<pre>
+
+</pre>
 <div id="root">
 	
 	<section id="container">
+		<h1 style="color:white;"><b>구매 상세 목록</b></h1>
+		<hr color="white">
 		<div id="container_box">
 		
 			<section id="content">
@@ -87,7 +92,7 @@
 						<%-- 첫번째 요소만 출력. 주문 상세 페이지에서 중복되는 부분이므로 모두 출력할 필요 없음 --%>
 						<c:if test="${status.first}">
 							<p><span>아이디</span>${orderView.id}</p>
-							<p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.totalPrice}" /> 원</p>
+							<p><span>총 가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.totalPrice}" /> 원</p>
 							
 						</c:if>
 						
@@ -119,6 +124,9 @@
 	</section>
 
 </div>
+<pre>
+
+</pre>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

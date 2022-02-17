@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <meta http-euiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="resources/css/bootstrap.css">
       <link rel="stylesheet" href="resources/css/custom.css">
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-      <script src="resources/js/bootstrap.js"></script>
-           
+      <script src="resources/js/bootstrap.js"></script>   
 <style>
 		
 .chating{
@@ -40,32 +38,48 @@
 	display: none;
 }
 
-.input_msg_write input {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: medium none;
-  color: #4c4c4c;
-  font-size: 15px;
-  min-height: 48px;
-  width: 100%;
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-
-.type_msg {border-top: 1px solid #c4c4c4;position: relative;}
-.msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
-  border: medium none;
-  border-radius: 50%;
-  color: #fff;
-  cursor: pointer;
-  font-size: 17px;
-  height: 33px;
-  position: absolute;
-  right: 0;
-  top: 11px;
-  width: 33px;
+button{	
+	background-color: #ff7f00;
+	font: 12px sans-serif;
+	/* font-weight: bold; */
+  	text-align: center;
+  	text-decoration: none;
+	color: black;
+	width: 130;
+	height: 30;
+  	padding: 10px 20px;
+  	border: none;
+  	border-radius: 8px;
+  	/* margin: 4px 2px; */
+  	display: inline-block;
+  	cursor: pointer;
+  	float: right;
+}
+button:hover {
+  	background-color: #F5F5F5;
 }
 
+::-webkit-scrollbar
+{
+  width: 0.65em;  /* for vertical scrollbars */
+  height: 0.65em; /* for horizontal scrollbars */
+}
 
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.3);
+}
 
 </style>
 		
@@ -83,15 +97,13 @@
 	}  
 		
 	function wsEvt() {
-		console.log("wsEvt  start... ");
+		console.log("wsEvt start... ");
 		
 		//소켓이 열리면 동작
 		ws.onopen = function(data){
 			console.log("wsEvt  소켓이 열리면 초기화 세팅하기..");
 			}
-		
-		
-		
+			
 		//메시지를 받으면 동작
 		ws.onmessage = function(data) {
 			
@@ -180,7 +192,7 @@
 		
 	}
 	
-	// User 등록  Message 전송 
+	// User 등록 Message 전송 
 	function sendUser() {
 		var userOption ={
 				type: "userSave",
@@ -208,6 +220,9 @@
 	}
 </script>
 </head>
+<br>
+<br>
+
 <body onload="chatName()">
 	<div class="container bootstrap snippet">
 		<div class="row">
@@ -215,66 +230,50 @@
 				<div class="portlet portlet-default">
 					<div class="portlet-heading">
 						<div class="portlet-title">
-							<h4><i class="fa fa-circle text-green"></i>실시간 채팅</h4>	
-							<!-- <input type="hidden" id="sessionId" value="">	 -->
-								</div>
+							<h4><i class="fa fa-circle text-green">&nbsp;</i>실시간 채팅</h4>	
+						</div>
 						<div class="clearfix"></div>
 				    </div>
 		   
-		   <div id="chat" class="panel-collapse collapse in">
-				<!-- <div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto; width: auto; height: 600px;"></div> -->
-				
+		   <div id="chat" class="panel-collapse collapse in">		
 				<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto; width: auto; height: 600px;">
 				<input type="hidden" id="sessionId" value="">
 				<div id="chating" class="chating"></div>
-				
 				</div>
 				
 				<div class="portlet-footer">
 					<input type="hidden" id="sessionId" value="">	
 					<div id="meName" style="display: none"></div>
 					<div id="member" class="member"></div>
-					<div class="row">
-					
+					<div class="row">		
 						<div style="display: none">
 							<div id="yourName">
-							<input type="hidden" class="userName" id="userName" value="${chatNameNickname}">									
-									<!-- <th><button onclick="chatName()" id="startBtn">닉네임 등록</button></th> -->						
+							<input type="hidden" class="userName" id="userName" value="${chatNameNickname}">													
 							</div>
-						</div> <!-- hidden class 끝 -->
-	
-						
-					</div>  <!-- row 닫는 -->	
+						</div> <!-- hidden class 끝 -->			
+					</div>  <!-- row 끝 -->	
 					
-					<div class="row" style="height: 90px;">
-						
-					<div id="yourMsg">
-							<!-- <tr> -->
-							<!-- 	<div class="form-group col-xs-12"> -->
-							<!-- <div class="mb-3"> -->
-								<!-- <textarea style="height: 80px; maxlength: 300px;" id="chatting" name="userName" class="form-control" placeholder="보낼 메시지를 입력하세요" ></textarea> -->
-							  <!-- <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-  							  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-							</div>
-								<button onclick="send()" id="sendBtn">전송</button>
-							</div>	 -->
-					
-					<div class="type_msg">
-			            <div class="input_msg_write">
-			              <input type="text" class="write_msg" placeholder="Type a message">
-			              <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-			            </div>
-					</div>
-
-					</div>	
-															
-		   			</div><!-- row end -->
-		   			
-					</div><!-- collapse end --> 
-		    </div> 
-		</div>	
+				   <div id="yourMsg">
+		   		   
+		   		   <div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+					<div class="row">
+						<div class="col-sm-10">
+							<textarea mexlength="300" id="chatting" class="form-control" rows="3" placeholder="메시지를 입력하세요"></textarea>
+						</div>
+			
+						<div class="col-sm-2">
+							<button type="button" id="btnReplySave" onclick="send()" style="width: 100%; margin-top: 0px">전송</button>
+						</div>					
+					</div> <!-- 채팅내용 입력,전송 row 끝 -->
+		   		   </div>
+		   		   
+				   </div> <!-- yourMsg end -->				   
+		    	   </div> <!-- portlet-footer end -->	    	   
+		   </div> <!-- collapse in 끝 -->
 	  </div>
-  </div>
-<%@include file="footer.jsp" %>				
-</body> 
+<%@include file="footer.jsp" %>
+			</div> <!-- col-xs-12 끝 -->
+		</div> <!-- 큰 row 끝 -->
+	</div> <!-- container 끝 -->
+</body>
 </html>

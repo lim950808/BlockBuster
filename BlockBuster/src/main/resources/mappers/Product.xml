@@ -104,15 +104,15 @@
 	
 	
 	<!-- 주문 정보 -->
-	<insert id="orderInfo">
-		INSERT int payment(orderId, id, totalPrice)
-		VALUES(#{orderId}, #{id}, #{totalPrice})
+	<insert id="orderInfo" parameterType="Payment">
+		INSERT INTO payment(orderId, id, pno, totalPrice)
+		VALUES(#{orderId}, #{id}, #{pno}, #{totalPrice} )
 	</insert>
 	
 	<!-- 주문 상세 정보 --> <!-- insert select문 : select에 있는 다수의 데이터 입력 가능 -->
-	<insert id="orderInfo_Details">
-		INSERT INTO paymentDetails(orderDetailsNum, orderId, pno)
-			SELECT paymentDetails_seq.nextval, #{orderId}, pno
+	<insert id="orderInfo_Details" parameterType="PaymentDetails">
+		INSERT INTO paymentDetails(detailNo, orderId, pno)
+			SELECT paymentDetails_detailNo_seq.nextval, #{orderId}, pno
 			FROM cart
 	</insert>
 	
@@ -122,18 +122,19 @@
 		WHERE id = #{id}
 	</delete>
 	
-	<!-- 주문 목록 -->
+	<!-- 결제 후 주문 목록 -->
 	<select id="orderList" resultType="Payment">
 		SELECT orderId, id, totalPrice, p_date
 		FROM payment
 		WHERE id = #{id}
+		ORDER BY p_date DESC
 	</select>
 	
-	<!-- 주문 상세 목록 -->
+	<!-- 결제 후 주문 상세 목록 -->
 	<select id="orderView" resultType="OrderList">
 		SELECT
 			o.orderId, o.id, o.totalPrice, o.p_date, 
-			d.orderDetailsNum, d.pno, 
+			d.detailNo, d.pno, 
 			p.title, p.p_img, p.price
 		FROM payment o
 			INNER JOIN paymentDetails d
@@ -142,49 +143,6 @@
 				ON d.pno = p.pno
 		WHERE o.id = #{id}
 		AND o.orderId = #{orderId}
-	</select>
- 	
- 	<!-- <insert id="save">
- 		INSERT INTO cart (no, id, title, count, price)
- 		VALUES (cart_no_seq, #{id}, #{title}, #{count}, #{price})
- 	</insert>
- 	
- 	<select id="findAll" resultType="Cart">
- 		SELECT row_number() over(order by c.no desc) as no, c.no, c.id, c.pno, p.title, p.price, p.p_img
-		FROM cart c
-		INNER JOIN product p
-		ON c.pno = p.pno
-		WHERE c.id = #{id}
- 	</select> -->
- 	
- 	<update id="cartUpdate">
- 		UPDATE cart SET count=#{count} WHERE id=#{id}
- 	</update>
- 	
- 	<select id="orderCartList" resultType="Payment">
-		SELECT c.*, p.pno, p.price, p.p_img
-		FROM cart c
-		INNER JOIN product p ON c.pno = p.pno
-		LEFT OUTER JOIN member m ON c.id = m.id
-		WHERE c.id = #{id}
-	</select>
-	
-	<select id="orderResultView" resultType="Payment">
-		SELECT o.*, c1.codeNm as 'deliveryNm', c2.codeNm as 'paymentNm', p.productNm, p.p_img
-		FROM orderInfo o
-		INNER JOIN code c1 ON o.deliveryCd = c1.code AND c1.codeGbn = 'DELIVERY'
-		INNER JOIN code c2 ON o.paymentCd = c2.code AND c2.codeGbn = 'PAYMENT'
-		INNER JOIN product p ON o.pno = p.pno
-		WHERE orderNo = #{orderNo};
-	</select>
-	
-	<select id="orderListAll" resultType="Payment">
-		SELECT distinct o.orderNo, c.codeNm as 'deliveryNm'
-		FROM orderInfo o
-		LEFT OUTER JOIN user u ON o.insId = u.id
-		INNER JOIN code c ON o.deliveryCd = c.code AND c.codeGbn = 'DELIVERY'
-		WHERE o.insId = #{id} AND paymentCd in ('01', '02')
-		ORDER BY o.orderNo DESC;
 	</select>
 	
 </mapper>

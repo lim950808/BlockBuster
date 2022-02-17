@@ -220,13 +220,34 @@ public class JEDaoImpl implements JEDao {
 	//주문 정보
 	@Override
 	public void orderInfo(Payment payment) {
-		session.insert("orderInfo", payment);
+		int tot = 0;
+		try { 
+			System.out.println("JEDaoImpl total orderInfo tot->" + payment.getP_date()); //insert 결과 
+			tot = session.insert("orderInfo", payment); //orderInfo 테이블의 total
+			System.out.println("JEDaoImpl total orderInfo tot->" + tot); //insert 결과 
+		}catch (Exception e) {
+			System.out.println("JEDaoImpl total Exception->" + e.getMessage());
+		}
+
+		
 	}
 	
 	//주문 상세 정보
 	@Override
 	public void orderInfo_Details(PaymentDetails paymentDetails) {
-		session.insert("orderInfo_Details", paymentDetails);
+		int tot = 0;
+		try { 
+			System.out.println("JEDaoImpl total orderInfo detailNo->" + paymentDetails.getDetailNo()); //insert 결과 
+			System.out.println("JEDaoImpl total orderInfo orderId->" + paymentDetails.getOrderId()); //insert 결과 
+			System.out.println("JEDaoImpl total orderInfo pno->" + paymentDetails.getPno()); //insert 결과 
+			tot = session.insert("orderInfo_Details", paymentDetails); //orderInfo_Details 테이블의 total
+			System.out.println("JEDaoImpl total orderInfo tot->" + tot); //insert 결과 
+		}catch (Exception e) {
+			System.out.println("JEDaoImpl total Exception->" + e.getMessage());
+		}
+
+
+		
 	}	
 
 	//결제 후 카트 비우기

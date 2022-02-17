@@ -8,12 +8,13 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- searchbox -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <title>API 제공</title>
 <style>
- body { margin:0; padding:0; font-family:'맑은 고딕', verdana;}
+ body { margin:0; padding:0; font-family:'sans-serif', verdana;}
+ h2 {color:#ff7f00}
 </style>
 <script>
 function getAllListByGenre(){
@@ -21,7 +22,7 @@ function getAllListByGenre(){
 	var genreNo = $('#genre').val();
 		$.ajax({
 			type : "GET",
-			url :"${pageContext.request.contextPath}/getAllListByGenre",
+			url :"${pageContext.request.contextPath}/listbygenre",
 			data:{genre:genreNo, title:"", casting:"", country:"", year:"", director:""},
 			dataType:'json',
 			success:function(data){
@@ -41,7 +42,7 @@ function getAllListByGenre(){
 <h2 data-v-514545ea="" class="tit">장르별 영상 정보 조회 API</h2>
 <hr>
 <h2 style="font-size:15px;font-weight:bold;">1.URL (GET)</h2>
-<div style="padding:20px 15px;font-size:14px;color:#555;line-height:20px;border:1px solid #ddd; background:#f5f5f5"><b>http://localhost:8181/BlockBuster/getAllListByGenre</b></div>
+<div style="padding:20px 15px;font-size:14px;color:#555;line-height:20px;border:1px solid #ddd; background:#f5f5f5"><b>http://localhost:8181/BlockBuster/listbygenre</b></div>
 <br>
 <br>
 <h2 style="font-size:15px;font-weight:bold;">2.Request Parameters</h2>

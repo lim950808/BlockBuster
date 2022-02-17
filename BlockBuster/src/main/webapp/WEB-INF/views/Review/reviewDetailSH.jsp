@@ -7,17 +7,7 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <%@ include file="../header.jsp" %>
-
-<style>
-	table{
-		margin :15px;
-		border-top: 1px #dee2e6;
-	}
-	h2{
-		margin :15px;
-	}
-	
-</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sandstone/bootstrap.min.css" integrity="sha384-zEpdAL7W11eTKeoBJK1g79kgl9qjP7g84KfK3AZsuonx38n8ad+f5ZgXtoSDxPOh" crossorigin="anonymous">
 
 <script type="text/javascript">
 
@@ -172,26 +162,48 @@
 		
 </script>
 
+<style>
+	.col-sm-2 button{
+		background-color: #ff7f00;
+		font: 12px sans-serif;
+	  	text-align: center;
+	  	text-decoration: none;
+		color: black;
+	  	border: none;
+	  	border-radius: 8px;
+	  	margin: 4px 2px;
+	  	display: inline-block;
+	  	float: right; 	
+	}
+	.col-sm-2 button:hover{
+		background-color: #F5F5F5;
+		color:black;
+	}	
+		
+</style>
+
 <title>리뷰상세보기</title></head>
 <body>
+<pre>
 
+
+
+</pre>
   <div class="container">
   
-  <h1>세션아이디 : ${sessionScope.sessionId}</h1> 
-	<h2>[${reviewDetail.title}]&nbsp;${reviewDetail.r_title}</h2> 
-	
+	<%-- <h2>[${reviewDetail.title}]&nbsp;${reviewDetail.r_title}</h2> 
 	<table id="table1" class="table">
 		<!-- 작성자 -->
 		<tr>
 			<td>
 				작성자 : ${reviewDetail.nickName}&emsp;|&emsp;${reviewDetail.r_hit}&emsp;|&emsp;${reviewDetail.r_date}
 			</td>
-			<td>
+			<td style="text-align: right;">
 				
 				<c:choose>
 				    <c:when test="${sessionScope.sessionId==reviewDetail.id}">
-						<a href="reviewEditFrom?r_no=${reviewDetail.r_no}">수정</a>
-						<a href="" onclick="chk(); return false;">삭제</a>
+						<a href="reviewEditForm?r_no=${reviewDetail.r_no}">수정</a>&emsp;
+						<a href="" onclick="chk(); return false;">삭제</a>&emsp;
 						<a href="" onclick="imgchk(); return false;">이미지삭제</a>
 				    </c:when>
 				</c:choose>
@@ -204,8 +216,8 @@
 		</tr>
 		
 		<tr>
-			<td><input type="button" value="같은리뷰보기" onclick="location.href='reviewProductList?pno=${reviewDetail.pno}'">
-				<input type="button" value="다른리뷰보기" onclick="location.href='reviewList'"></td>
+			<td><input type="button" class="btn btn-outline-secondary" value="같은리뷰보기" onclick="location.href='reviewProductList?pno=${reviewDetail.pno}'">
+				<input type="button" class="btn btn-outline-secondary" value="다른리뷰보기" onclick="location.href='reviewList'"></td>
 			
 			<!-- 추천기능 -->
 			<td>
@@ -218,28 +230,63 @@
 				</div>
 			</td>
 		</tr>
-	</table>
-	
-	
-	
-	  <!-- 댓글 작성 폼 -->
-	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
-		<div class="row">
-		
-			<div class="col-sm-10">
-				<textarea mexlength="300" id="c_content" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></textarea>
-			</div>
+	</table> --%>
 
-			<div class="col-sm-2">
-				<button type="button" class="btn btn-sm btn-primary" id="btnReplySave" onclick="insertComment()" style="width: 100%; margin-top: 10px"> 댓글등록 </button>
+	<div class="card border-light mb-3">
+		<h3 class="card-header" style="color: black;">[${reviewDetail.title}]&nbsp;${reviewDetail.r_title}</h3><br>
+		<h6 class="card-subtitle text-muted">&emsp;작성자 : ${reviewDetail.nickName}&emsp;|&emsp;${reviewDetail.r_hit}&emsp;|&emsp;${reviewDetail.r_date}</h6>
+	  
+		<div class="card-body" style="color: black;">
+			<img class="img-fluid" src="${pageContext.request.contextPath}/upload/${reviewDetail.r_img}" width ="280px" height="400px"onerror="this.src='/resources/img/logo2.png'">&nbsp;${reviewDetail.r_content}
+		</div>
+		
+		
+		
+		<div class="card-footer text-muted col-sm-12">
+			<div class="row">
+				<div class="col-sm-4" >
+					<input type="button" class="btn btn-outline-secondary" value="같은리뷰보기" onclick="location.href='reviewProductList?pno=${reviewDetail.pno}'">
+					<input type="button" class="btn btn-outline-secondary" value="다른리뷰보기" onclick="location.href='reviewList'">
+				</div>
+				
+				<div class="col-sm-4" style="text-align : center; vertical-align: middle;">
+					<a class="text-dark heart" style="text-decoration-line: none;">
+						<label  id="goodClick"><img id="heart" src="/resources/icon/heart.svg"></label>
+						<!-- <input type="submit" id="goodClick" value="추천" > -->
+					<span id="totalGoodId">${totalGood}</span>
+					</a>
+				</div>
+				
+				<div style="text-align : right; vertical-align: middle;" class="col-sm-4">
+					<c:choose>
+						<c:when test="${sessionScope.sessionId==reviewDetail.id}">
+							<a href="reviewEditForm?r_no=${reviewDetail.r_no}" class="text-muted" >수정</a>&emsp;
+							<a href="" class="text-muted" onclick="chk(); return false;">삭제</a>&emsp;
+							<a href="" class="text-muted" onclick="imgchk(); return false;">이미지삭제</a>&emsp;
+						</c:when>
+					</c:choose>
+				</div>
 			</div>
-			
 		</div>
 	</div>
+	  <!-- 댓글 작성 폼 -->
+		<div class="card-body col-sm-12" style="padding-left: 0px;">
+		
+		  <div class="form-group">
+			<div class="col-sm-10" style="float: left; padding-left: 0px;">
+				<textarea mexlength="300" id="c_content" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></textarea>
+			</div> 
+		  </div> 
 
-	 
-	 
-	 
+
+			 <div class="col-sm-2" style="float: left;">
+				<button type="button" class="btn btn-warning" id="commentSubmit" onclick="insertComment()" style="width: 100%; margin-top: 10px"> 댓글등록 </button>
+			</div>
+
+			
+		</div><br><br><br><br>
+
+
 	<!-- 등록된 댓글 리스트 -->
 	<div id="Commentlist">
 		<%@ include file="commentListSH.jsp" %>

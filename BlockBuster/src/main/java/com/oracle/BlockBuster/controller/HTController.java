@@ -169,7 +169,7 @@ public class HTController {
 	}
 	
 	// 각 장르 전체 영화 정보 리스트 출력
-	@RequestMapping(value="getAllListByGenre", method = RequestMethod.GET)
+	@RequestMapping(value="listbygenre", method = RequestMethod.GET)
 	@ResponseBody
 	public List<ProductVo> getAllListByGenre(ProductApiVo productApiVo) {
 		System.out.println("HTController의 getAllListByGenre메서드 시작...");

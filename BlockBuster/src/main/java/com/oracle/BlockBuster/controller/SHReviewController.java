@@ -139,8 +139,10 @@ public class SHReviewController {
 		model.addAttribute("reviewList", reviewList);
 		
 		String title = null;
-		if (reviewList.size() > 0 ) title = reviewList.get(0).getTitle();
-		model.addAttribute("title", title);
+		if (reviewList.size() > 0 ) {
+			title = reviewList.get(0).getTitle();
+			model.addAttribute("title", title);
+		}
 		
 		model.addAttribute("pno", pno); // 리스트에서 번호에 따라 리뷰남기는 방식이다름 
 		model.addAttribute("pg",pg);
@@ -193,8 +195,8 @@ public class SHReviewController {
 	
 	//게시글 작성하기1 - 작성 view로 이동
 	@GetMapping(value="reviewWriteForm")
-	public String reviewWriteFrom(SHReviewModel SHreviewModel, Model model) {
-		logger.info("[STRAT] reviewWriteFrom 글작성 양식_전 시작--------------------");
+	public String reviewWriteForm(SHReviewModel SHreviewModel, Model model) {
+		logger.info("[STRAT] reviewWriteForm 글작성 양식_전 시작--------------------");
 		
 		int pno = SHreviewModel.getPno();
 		model.addAttribute("pno", pno);
@@ -345,14 +347,14 @@ public class SHReviewController {
 	}	
 
 	//게시글 수정1
-	@GetMapping(value="reviewEditFrom")
-	public String reviewEditFrom(int r_no, Model model) {
-		logger.info("[STRAT] reviewEditFrom 시작--------------------");
+	@GetMapping(value="reviewEditForm")
+	public String reviewEditForm(int r_no, Model model) {
+		logger.info("[STRAT] reviewEditForm 시작--------------------");
 		
 			logger.info("[10-1-1] reviewDetail 시작");
-			model.addAttribute("editWriteFrom", SHservice.reviewDetail(r_no));
+			model.addAttribute("editWriteForm", SHservice.reviewDetail(r_no));
 			
-			return "Review/reviewEditFromSH";
+			return "Review/reviewEditFormSH";
 	}
 	//게시글 수정2
 	@RequestMapping(value="edit")

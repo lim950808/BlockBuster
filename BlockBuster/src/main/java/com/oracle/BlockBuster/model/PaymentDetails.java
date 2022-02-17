@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class PaymentDetails {
 
-	private int orderDetailsNum;
-	private String orderId;
-	private int pno;
+	private int detailNo; //주문상세 번호 (pk, seq)
+	private String orderId; //주문번호
+	private int pno; //품번
 	
 }

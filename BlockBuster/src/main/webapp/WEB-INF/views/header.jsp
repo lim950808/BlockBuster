@@ -79,8 +79,10 @@ body {
 	background-color: #000;
 	font-family: Arial, Helvetica, sans-serif;
 	border-bottom: 1px solid #ff7f00;
-	height: 100px;
-	padding-top: 40px;
+	height: 150px;
+	/* padding-top: 40px; */
+	
+	
 }
 .navbarJE a {
 	float: left;
@@ -92,21 +94,20 @@ body {
 }
 
 .logo a {
-	float: left;
-	font-size: 16px;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
 	text-decoration: none;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 .logo span{
+	text-align: center;
 	color: #ff7f00;
-	font-size: 35px;
+	font-size: 80px;
 }
 
 
 .navbarJE h5{
-	margin-left: 300px;
+	margin-left: 30px;
 	margin-bottom: 0px;
 	width: 300px;
 	height: 52px;
@@ -115,16 +116,19 @@ body {
 	float: right;
 	padding: 14px 16px;
 }
-
+.menuJE {
+	float: left;
+	margin-top: 50px;
+	padding-left: 10px;
+}
 .dropdownJE {
 	float: left;
 	overflow: hidden;
 	display: inline;
 	margin: 0;
 	padding-top: 40px;
+	
 }
-
-
 .dropdownJE .dropbtnJE {
 	font-size: 16px;  
 	border: none;
@@ -141,14 +145,21 @@ body {
 }
 
 .dropdown-contentJE {
-	display: none;
-	top: 100px;
-	position: absolute;
 	background-color: gray;
-	width: 100%;
+	display: none;
+	position: absolute;
+	top: 100px;
 	left: 0;
+	width: 100%;
+	height: auto;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
+	margin-top: 35px;
+	/* -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease; */
 }
 
 .dropdown-contentJE .headerJE {
@@ -165,9 +176,9 @@ body {
 .columnJE {
 	float: left;
 	width: 20%;
-	padding: 10px;
+	padding: 15px;
 	background-color: #ccc;
-	height: 450px;
+	height: 500px;
 }
 
 .columnJE a {
@@ -189,6 +200,7 @@ body {
 	content: "";
 	display: table;
 	clear: both;
+	margin-top: 20px;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -198,22 +210,29 @@ body {
 	height: auto;
   }
 }
+
+.searchJE {
+	float: right;
+	margin-top: 80px;
+	padding-right: 30px;
+}
 .exampleJE{
 	display: inline;
 	margin-left: 50px;
 } 
 
 .exampleJE input{
-	float: center;
+	
 	width: 450px;
-    height: 30x;
-    padding-left: 20px;
+/*     height: 30x; */
+    padding-left: 5px;
     padding-top : 14px;
     border-radius: 6px;
     background-color: #2f2f2f;
     border: 1px solid #2f2f2f;
     color: #a5a5a5;
     margin-top: 5px;
+    maegin-bottom: 10px;
     
     
     
@@ -227,6 +246,9 @@ body {
   	display: inline-block;
   	cursor: pointer;
   	border-radius: 10px;
+  	/* border-radius: 8px;
+  	color: #ff7f00;
+  	text-align: center; */
 } 
 .exampleJE fa fa-search :hover{
 	background-color: #D5D5D5;
@@ -236,12 +258,32 @@ body {
 </head>
 <body>
 	<div class="navbarJE">
-<div class="logo">
-	  <a href="../main"><b><span>BlockBuster</span></b></a>
-</div>
+
+	
+<!-- ------------------------------ 검색기능 --------------------------------------- --> 	      
+      	<div class="searchJE">	
+      	<form name="form" class="exampleJE" id="search" action="${pageContext.request.contextPath}/HTGetSearchResult" method="post">
+			<input type="text" placeholder="키워드를 입력하세요" name="keyword" id="words1" list="searchingist1" onfocus="getRecommendWords()" autofocus="autofocus">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+		</div>
+
+<!-- ------------------------------ logo --------------------------------------- --> 	
+		<div class="logo">
+			  <a href="../main" style="margin-top: 30px;"><b><span>BlockBuster</span></b></a>
+			  <!-- <a href="../main" style="padding-bottom: 0px;"><img src="resources/img/logo02.png"></a> -->
+		</div>
 	
 	<%--   <a href="${pageContext.request.contextPath}/login" type="hidden"></a> --%>
 	<input type="hidden" value="${pageContext.request.contextPath}/login" />  
+	
+<!-- ------------------------------ 아이디 표시 --------------------------------------- -->	
+ <div class="menuJE">	
+	<div class="dropdownJE">
+			<h5>${sessionScope.sessionId}님 환영합니다</h5>
+	  	</div>
+	  	
+<!-- ------------------------------ 카테고리 --------------------------------------- -->	
 	  <div class="dropdownJE">
 	    <button class="dropbtnJE">카테고리 
 	      <!-- <i class="fa fa-caret-down"></i> -->
@@ -306,20 +348,20 @@ body {
 	  		<div class="dropdown-contentJE">
 	    		<a href="/member/myinfo">내 정보</a>
 	    		<a href="/Order/orderList">구매내역</a>
-	    		<a href="${pageContext.request.contextPath}/chat?id=${ sessionScope.sessionId}">1:1 문의</a>
-	    		<a href="${pageContext.request.contextPath}/RestAPI">Rest API</a>
-	    		<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+	    		<a href="chat?id=${sessionScope.sessionId}">1:1 문의</a>
+	    		<a href="${pageContext.request.contextPath}/RestAPI">API 제공</a>
+	    		<a href="logout.do">로그아웃</a>
 	  		</div>
 	  	</c:when>
 
 	  	<c:when test="${sessionScope.sessionId eq 'admin' }">
-	  	<button class="dropbtnJE">관리자</button>
+	  	<button class="dropbtnJE">admin</button>
 	  		<div class="dropdown-contentJE">
-	    		<a href="${pageContext.request.contextPath}/chat?id=${ sessionScope.sessionId}">1:1 문의</a>
-	    		<a href="${pageContext.request.contextPath}/RestAPI">Rest API</a>
+	    		<a href="chat?id=${sessionScope.sessionId}">1:1 문의</a>
+	    		<a href="${pageContext.request.contextPath}/RestAPI">API 제공</a>
 	    		<a href="/Admin/productList">관리자 상품관리</a>
 	    		<a href="/Admin/viewallMember">관리자 회원관리</a>
-	    		<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+	    		<a href="logout.do">로그아웃</a>
 	  		</div>
 	  	</c:when>
 	</c:choose>
@@ -353,22 +395,29 @@ body {
 	    		<a href="#">로그아웃</a>
 	  		</div>
 	  </div> -->
+	  
+<!-- ------------------------------ cart --------------------------------------- --> 		  
 	 <div class="dropdownJE"> 
 	  <a href="/Cart/cartList"><i class="fa fa-shopping-cart"></i></a>
 	 </div> 
+	 
 	  <!-- <form>
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">
           <button type="submit"><i class="fa fa-search"></i></button>
       </form> -->
-      	<div class="dropdownJE">	
+<!-- ------------------------------ 검색기능 --------------------------------------- --> 	      
+      	<%-- <div class="dropdownJE">	
       	<form name="form" class="exampleJE" id="search" action="${pageContext.request.contextPath}/HTGetSearchResult" method="post">
 			<input type="text" placeholder="키워드를 입력하세요" name="keyword" id="words1" list="searchingist1" onfocus="getRecommendWords()" autofocus="autofocus">
 			<button type="submit"><i class="fa fa-search"></i></button>
 		</form>
-		</div>
-		<div class="dropdownJE">
+		</div> --%>
+		
+<!-- ------------------------------ 아이디 표시 --------------------------------------- -->		
+		<%-- <div class="dropdownJE">
 			<h5>${ sessionScope.sessionId}님 환영합니다</h5>
-	  	</div>
+	  	</div> --%>
 	</div>
+</div>
 </body>
 </html>

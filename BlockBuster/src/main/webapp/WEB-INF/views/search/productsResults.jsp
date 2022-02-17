@@ -11,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
- 	body { margin:0; padding:0; font-family:'맑은 고딕', verdana;}
+ 	body { margin:0; padding:0; font-family:'sans-serif', verdana;}
 	 
 	#pic{
 		width: 200px;
@@ -19,9 +19,12 @@
 	}
 	#titleHeader{
 		background: rgba(0, 0, 0, 0.4); /* 0.5  */
-		color:#f5f5f5;
-		font-size:20px;
+		color:#ff7f00;
+		font-size:23px;
+		width: 100%;
 	}
+	#keywd{color:#ff7f00;}
+	
 	 th, td, P {color: #f5f5f5;}
 	 
      #poster{
@@ -65,9 +68,9 @@
 	}
 	.hover_text {
  	  position: absolute;
-	  top: 220px;
+	  top: 180px;
 	  left: 5px;
-	  color: #fff;
+	  color: #ff7f00;
 	  z-index: 20;
 	  font-weight: 600;
 	  font-size: 20px;
@@ -82,7 +85,7 @@
 <div class="container" id="total"> <!-- 전체 블록 시작 -->
 <c:choose>
 <c:when test="${not empty keyword}">
-<p align="right"><b>[${keyword}]</b>의 제목 검색 결과는 총 <b>[${searchCnt}]</b>건 입니다.</p>
+<p align="right"><span id="keywd"><b>[${keyword}]</b></span>의 제목 검색 결과는 총 <b><span id="keywd">[${searchCnt}]</span></b>건 입니다.</p>
 <div class="container" id="movie"> 
 <!-- 영화 전체 블록 시작 -->
 <c:choose>
@@ -97,7 +100,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div>  	
 </c:if>	
@@ -105,7 +108,7 @@
 </div> <!-- 영화:공포 부분 종료-->
 </c:when>
 <c:when test="${mHorrorCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -123,7 +126,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -131,7 +134,7 @@
 </div> <!-- 영화:액션 부분 종료-->
 </c:when>
 <c:when test="${mActionCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -149,7 +152,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -157,7 +160,7 @@
 </div> <!-- 영화:범죄/스릴러 부분 종료-->
 </c:when>
 <c:when test="${mCrimeCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -175,7 +178,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -183,7 +186,7 @@
 </div> <!-- 영화:전쟁 부분 종료-->
 </c:when>
 <c:when test="${mWarCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -201,7 +204,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -209,7 +212,7 @@
 </div> <!-- 영화:판타지/SF 부분 종료-->
 </c:when>
 <c:when test="${mSFCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -227,7 +230,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -235,7 +238,7 @@
 </div> <!-- 영화:코미디 부분 종료-->
 </c:when>
 <c:when test="${mComedyCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -253,7 +256,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -264,13 +267,13 @@
 </pre>
 </c:when>
 <c:when test="${mRomanceCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 </c:when>
 <c:when test="${mc eq '0'}">
 <table>
-<tr><th>'${keyword}'에 대한 검색결과가 없습니다.</th></tr>
+<tr><th><span id="keywd">'${keyword}'</span>에 대한 검색결과가 없습니다.</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br>
 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.<br>
@@ -301,7 +304,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -309,7 +312,7 @@
 </div> <!-- 드라마:미국 부분 종료-->
 </c:when>
 <c:when test="${dUsCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -327,7 +330,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -335,7 +338,7 @@
 </div> <!-- 드라마:일본 부분 종료-->
 </c:when>
 <c:when test="${dJpnCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -353,7 +356,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -364,14 +367,14 @@
 </pre>
 </c:when>
 <c:when test="${dKorCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 </c:when>
 <c:when test="${dc eq '0'}">
 <div class="container">
 <table class="table table-bordered">
-<tr><th>'${keyword}'에 대한 검색결과가 없습니다.</th></tr>
+<tr><th><span id="keywd">'${keyword}'</span>에 대한 검색결과가 없습니다.</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br>
 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.<br>
@@ -403,7 +406,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -411,7 +414,7 @@
 </div> <!-- 예능:KBS 부분 종료-->
 </c:when>
 <c:when test="${eKbsCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -429,7 +432,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -437,7 +440,7 @@
 </div> <!-- 예능:SBS 부분 종료-->
 </c:when>
 <c:when test="${eSbsCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -455,7 +458,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -463,7 +466,7 @@
 </div> <!-- 예능:MBC 부분 종료-->
 </c:when>
 <c:when test="${eMbcCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -481,7 +484,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -489,7 +492,7 @@
 </div> <!-- 예능:TVN 부분 종료-->
 </c:when>
 <c:when test="${eTvnCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -507,7 +510,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -518,13 +521,13 @@
 </pre>
 </c:when>
 <c:when test="${eJtbcCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 </c:when>
 <c:when test="${ec eq '0'}">
 <table class="table table-bordered">
-<tr><th>'${keyword}'에 대한 검색결과가 없습니다.</th></tr>
+<tr><th><span id="keywd">'${keyword}'</span>에 대한 검색결과가 없습니다.</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br>
 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.<br>
@@ -555,7 +558,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -563,7 +566,7 @@
 </div> <!-- 다큐멘터리:히스토리 부분 종료-->
 </c:when>
 <c:when test="${dHisCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -581,7 +584,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -589,7 +592,7 @@
 </div> <!-- 다큐멘터리:디스커버리 부분 종료-->
 </c:when>
 <c:when test="${dDscvCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -608,7 +611,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -619,13 +622,13 @@
 </pre>
 </c:when>
 <c:when test="${dNgpCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 </c:when>
 <c:when test="${doc eq '0'}">
 <table class="table table-bordered">
-<tr><th>'${keyword}'에 대한 검색결과가 없습니다.</th></tr>
+<tr><th><span id="keywd">'${keyword}'</span>에 대한 검색결과가 없습니다.</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br>
 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.<br>
@@ -656,7 +659,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -664,7 +667,7 @@
 </div> <!-- 애니:디즈니 부분 종료-->
 </c:when>
 <c:when test="${aDCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 
@@ -682,7 +685,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='https://epasskorea.com/Public_html/Images/common/noimage.jpg'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -693,14 +696,14 @@
 </pre>
 </c:when>
 <c:when test="${aJCnt eq '0'}">
-<p><b>[${keyword}]</b>에 대한 검색결과가 없습니다.</p>
+<p><span id="keywd"><b>[${keyword}]</b></span>에 대한 검색결과가 없습니다.</p>
 </c:when>
 </c:choose>
 <br>
 </c:when>
 <c:when test="${ac eq '0'}">
 <table class="table table-bordered">
-<tr><th>'${keyword}'에 대한 검색결과가 없습니다.</th></tr>
+<tr><th><span id="keywd">'${keyword}'</span>에 대한 검색결과가 없습니다.</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br>
 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.<br>
@@ -712,11 +715,10 @@
 </c:when>
 </c:choose>
 </div> <!-- 애니 전체 블록  종료 -->
-
 </c:when>
 <c:when test="${empty keyword}">
 <table class="table table-bordered">
-<tr><th>검색어가 입력되지 않았습니다!</th></tr>
+<tr><th id="keywd">검색어가 입력되지 않았습니다!</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br>
 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.<br>

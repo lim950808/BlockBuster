@@ -16,7 +16,7 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 		   													  .addPathPatterns("/reviewDetailSH") 		//김성휘
 		   													  .addPathPatterns("/reviewWrite")
 		   													  .addPathPatterns("/reviewProWrite")
-		   													  .addPathPatterns("/reviewEditFrom")
+		   													  .addPathPatterns("/reviewEditForm")
 		   													  .addPathPatterns("/Admin/productList") 	//임재억
 		   													  .addPathPatterns("/Admin/detail")
 		   													  .addPathPatterns("/Admin/updateForm")
@@ -31,6 +31,9 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 		   													  .addPathPatterns("/Product/productDetail/addCart")
 		   													  .addPathPatterns("/Cart/cartList")
 		   													  .addPathPatterns("/Cart/deleteCart")
+		   													  .addPathPatterns("/Cart/cartList/order")
+		   													  .addPathPatterns("/Order/orderList")
+		   													  .addPathPatterns("/Order/orderView")
 		   													  .addPathPatterns("/FAQ/listCB") 			//이창빈
 		   													  .addPathPatterns("/FAQ/writeFormCB")
 		   													  .addPathPatterns("/writeCB")

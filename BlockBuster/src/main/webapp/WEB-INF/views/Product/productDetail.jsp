@@ -27,27 +27,13 @@
 		div.products div.info p.reviewBbs { text-align:right; }
 		div.products div.info p.reviewBbs button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
 		div.products div.description { font-size:18px; clear:both; padding-top:30px; }
+		
+		aside#aside { float:left; width:180px; }
+		aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
+ 		aside#aside li { font-size:16px; text-align:center; }
+ 		aside#aside li a { color:white; display:block; padding:10px 0; }
+ 		aside#aside li a:hover { text-decoration:none; background:#eee; }
 	</style>
-	
-
-	<!-- <style>
-		section.replyForm { padding:30px 0; }
-		section.replyForm div.input_area { margin:10px 0; }
-		section.replyForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px;; height:150px; }
-		section.replyForm button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
-		
-		section.replyList { padding:30px 0; }
-		section.replyList ol { padding:0; margin:0; }
-		section.replyList ol li { padding:10px 0; border-bottom:2px solid #eee; }
-		section.replyList div.userInfo { }
-		section.replyList div.userInfo .userName { font-size:24px; font-weight:bold; }
-		section.replyList div.userInfo .date { color:#999; display:inline-block; margin-left:10px; }
-		section.replyList div.replyContent { padding:10px; margin:20px 0; }
-		section.replyList div.replyFooter { margin-bottom:10px; }
-		
-		section.replyList div.replyFooter button { font-size:14px; border: 1px solid #999; background:none; margin-right:10px; }
-		
-	</style> -->
 	
 	<style>
 		div.replyModal { position:relative; z-index:1; display:none; }
@@ -59,18 +45,10 @@
 	</style>
 </head>
 <body>
-
-
 <pre>
 
 </pre>
-
-<aside id="aside">
-	<%@ include file="../aside.jsp" %>
-</aside>
-
 <div id="root">
-	${sessionScope.sessionId}
 	<section id="container">
 		<div id="container_box">
 		
@@ -152,96 +130,15 @@
 					<div class="description">${product.description}</div>
 				</div>
 			</section>
-			
-			
-			
+			<aside id="aside">
+				<%@ include file="../aside.jsp" %>
+			</aside>
 		</div>
 	</section>
 </div>
-				
-<%-- <div class="wrapper">
-<div class="wrap">
-<h1 id="company"><b>영상 정보</b></h1>
-<div class="line"></div>
 <pre>
 
 </pre>
-<div class="content_top">
-     <div class="ct_left_area">
-        <div class="image_wrap">
-        	<img src="${product.p_img}" alt="image_wrap">
-        </div>
-     </div>
-     <div class="ct_right_area">
-		<div class="title">
-       		<h1>${product.title}</h1>
-       	</div>
-       	<div class="line"></div>
-        <div class="content">
-        	${product.year }<br>
-       		${product.country }<br>
-       		${product.genre}<br>
-       		${product.description}
-	       	<div class="button">
-	          	<a href="/Review/reviewListSH.jsp?pno=${product.pno}" class="btn btn-danger">리뷰게시판</a>
-	       		<p class="addToCart">
-	       			<!-- <button type="button" class="addCart_btn">주문하기</button> -->
-	       			<input type="button" value="주문하기" onclick="location.href='/Cart/cartList'">
-	       			<script>
-	       				$(".addCart_btn").click(function(){
-	       					var pno = $("#pno").val();
-	       					console.log("pno : " + pno);
-	       					var data = {pno : pno};
-	       					
-	       					$.ajax({
-	       						url : "/Product/productDetail/addCart",
-	       						type : "post",
-	       						data : data,
-	       						success : function(result){
-	       							if(result == 1) {
-	       								alert("카트 담기 성공");
-	       							}else {
-	       								alert("회원만 사용가능")
-	       							}
-	       						},
-	       						error : function(){
-	       							alert("카트 담기 실패");
-	       						}
-	       					});
-	       				});
-	       			</script>
-	       		</p>
-	       	</div>
-       	</div>
-     </div>
-</div>
-<div class="line"></div>
-<div class="content_middle">
-	<div class="description">
-		${product.description}
-	</div>
-</div>
-</div>
-</div>
-       <p><form name="addForm" action="./addCart.jsp?pno=${product.pno}" method="post">
-          <div class="col-md-2">
-          <input type="hidden" name="rate"  id="rate" value="<%=rate%>">
-          <input type="number" name="qty" value="0" class="form-control input-md">
-          <br>
-          </div>
-          	<a href="BookListAction.do?category=<%=rs.getString("category")%>" 
-                 class="btn btn-secondary" role="button">&laquo; 이전</a>
-            <button onclick="history.back()">뒤로가기 &raquo;</button>
-          	<a href="/Cart/cart.jsp" class="btn btn-success" onclick="addToCart()">주문하기</a>
-          	<a href="/Review/reviewListSH.jsp" class="btn btn-danger">리뷰게시판</a>
-          </form>
-     </div>
-  </div>
-</div> --%>
-<pre>
-
-</pre>
-
 <%@ include file="../footer.jsp" %>
 </body>
 </html>

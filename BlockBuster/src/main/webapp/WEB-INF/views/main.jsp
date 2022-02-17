@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
-<%-- <%@ include file="navbar.jsp" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,19 +54,15 @@ span.carousel-control-next-icon {
  bottom: 40px;
 }
   	
-  	
-  	
-  </style>
-  
-  
+  </style> 
   
 </head>
 <body>
+<pre>
+
+
+</pre>
 <div class="container">
-<%-- ${sessionScope.id} --%>
-<%-- ${sessionScope.member} --%>
-${sessionScope.sessionId}
-<%--${member.id} --%>
 <!-- <div class="container" id="body">
 <div class="row">
 <div class="col-sm-1"></div>

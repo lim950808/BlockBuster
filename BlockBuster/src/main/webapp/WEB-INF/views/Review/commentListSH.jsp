@@ -77,20 +77,24 @@
 		
 </script>
 		
+<style>
+a{
+color:#fdfcfb;
+}
 
+</style>
 		
 </head>
 <body>
-<h1>세션아이디 : ${sessionScope.sessionId}</h1> 
 	<!-- 댓글 리스트 -->
-	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 
-		<h6 class="border-bottom pb-2 mb-0">Reply list</h6>
+	<div class="card-body col-sm-12" style="opacity:0.8; padding: 0px;">
+		<h3 class="border-bottom pb-2 mb-0">Reply list</h3>
 		<div id="replyList"></div>
 	
 
 	<!-- 댓글 출력부 -->
-	<div class="template-box template-box-1">
+	<div>
 	<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 	
 	
@@ -162,7 +166,6 @@
 	
 	</div>
 		
-	</div> <!-- reply list 끝 -->
 	
 
 
@@ -179,7 +182,7 @@
 			<a href="" onclick="listComment(${pg.startPage+pg.pageBlock}); return false;">➡︎︎</a>
 		</c:if>
  
- 
+ </div>
 
 
  
