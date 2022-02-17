@@ -164,7 +164,7 @@
           <div class="carousel-caption text-start">
             <h1>La La Land 라라랜드</h1>
             <p>황홀한 사랑, 순수한 희망, 격렬한 열정…이 곳에서 모든 감정이 폭발한다!</p>
-            <p><a class="btn btn-lg btn-danger" href="/Product/productDetail?pno=71">상세보기</a></p>
+            <p><a class="btn btn-lg btn-warning" href="/Product/productDetail?pno=71">상세보기</a></p>
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@
           <div class="carousel-caption text-start">
             <h1>Zootopia 주토피아</h1>
             <p>교양 있고 세련된 라이프 스타일을 주도하는 도시 주토피아. 이 곳을 단숨에 혼란에 빠트린 연쇄 실종사건이 발생한다!</p>
-            <p><a class="btn btn-lg btn-secondary" href="/Product/productDetail?pno=147">지금 바로 보러가기</a></p>
+            <p><a class="btn btn-lg btn-dark" href="/Product/productDetail?pno=147">지금 바로 보러가기</a></p>
           </div>
         </div>
       </div>

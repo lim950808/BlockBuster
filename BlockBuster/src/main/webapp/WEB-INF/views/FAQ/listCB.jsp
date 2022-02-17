@@ -12,112 +12,119 @@
 <title>Insert title here</title>
 <!-- <link href="/css/faqCB.css" rel="stylesheet" > -->
 <style type="text/css">
-/* body{
-	background-color: #333;
-} */
+body{
+	background-color: #000;
+}
 
 .titleCB h2{
 	font-size:60px;
 	font-weight:bold;
 	font-family: 'Montserrat', sans-serif;
-	text-align:center;
+	text-align:left;
 	color:#fff;
-	letter-spacing:0px;
-  	transition:1s;
-  	-webkit-transition:1s;
-  	-ms-transition:1s;
   	position: relative;
   	padding:20px;
+	/* letter-spacing:0px;
+  	transition:1s;
+  	-webkit-transition:1s;
+  	-ms-transition:1s; */
  
 }
 
-.titleCB h2:before,
+/* .titleCB h2:before,
 .titleCB h2:after{
   	content:"";
   	position: absolute;
   	height: 3px;
   	width: 0px;
-  	background:#ffd800;
+  	background: #F5F5F5;
   	transition:300ms;
   	-webkit-transition:1s;
   	-ms-transition:1s;
   	opacity:0.3;
-  	left:50%;
-  
+  	left:50%;  
 }
-
 .titleCB h2:before{
-  	bottom:0px;
+bottom:0px;
 }
-
-/* .titleCB h2:after{
+.titleCB h2:after{
   	top:0;  
-} */
-
+}
 .titleCB h2:hover{
 	letter-spacing:30px;
 }
-
 .titleCB h2:hover:before,
 .titleCB h2:hover:after{
 	width: 95%;
 	opacity:1;
 	left:0;
-  }
+} */
 
 .b{
-	border:	none;
-	width: 100%;
+	background: #ff7f00;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 900;
-	background: #ffd800;
+	width: 100%;
 	padding: 18px;
+	border:	none;
+}
+.b th{
+	padding: 12px;
 }
 
 .accordion {
-	
-  	background-color: #333;
+  	background-color: #000;
+  	font-family: 'Montserrat', sans-serif;
+  	text-align: left;
   	color: #fff;
   	cursor: pointer;
-  	padding: 18px;
   	width: 100%;
-  	text-align: left;
-  	border-bottom: 1px solid #fff;
+  	padding: 18px;
+  	border-bottom: 1px solid #F5F5F5;
   	border-left: 0;
   	border-right: 0;
+  	border-top: 0;
   	outline: none;
-  	transition: 0.4s;
-  	
+  	transition: 0.4s;  	
 }
 .active, .accordion:hover {
-  	background-color: #ffd800;
+  	background-color: #F5F5F5;
+  	font-weight: bold;
+  	font-family: 'Montserrat', sans-serif;
   	color: #000;
 }
 .panel {
-  	padding: 18px;
-  	background-color: #4d4d4d;
+  	background-color: #000;
   	font-family: 'Montserrat', sans-serif;
+	color: #fff;
+  	padding: 18px;
   	display: none;
   	overflow: hidden;
-	font-weight: bold;
-	color: #fff;
 }
-
-.panel input{
-	
-	background-color: #ffd600;
-	font: 12px 굴림;
+.panel input{	
+	background-color: #ff7f00;
+	font: 12px sans-serif;
 	font-weight: bold;
+  	text-align: center;
+  	text-decoration: none;
 	color: #000;
 	width: 130;
 	height: 30;
-  	border: none;
   	padding: 10px 20px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
+  	border: none;
+  	border-radius: 8px;
   	margin: 4px 2px;
+  	display: inline-block;
   	cursor: pointer;
-  	border-radius: 16px;
+}
+.panel input:hover{
+	background-color: #F5F5F5;
+  	font-family: 'Montserrat', sans-serif;
+  	color: #000;
+}
+.panel p{
+	text-align: left;
+	padding-left: 40px;
 }
 
 .accordion:after {
@@ -127,87 +134,93 @@
   	float: right;
   	margin-left: 5px;
 }
-
 .active:after {
 	content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
-.button{
-	
-	background-color: #ffd600;
-	font: 12px 굴림;
-	font-weight: bold;
+.button{	
+	background-color: #ff7f00;
+	font: 12px sans-serif;
+	/* font-weight: bold; */
+  	text-align: center;
+  	text-decoration: none;
 	color: black;
 	width: 130;
 	height: 30;
-  	border: none;
   	padding: 10px 20px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
+  	border: none;
+  	border-radius: 8px;
   	margin: 4px 2px;
+  	display: inline-block;
   	cursor: pointer;
-  	border-radius: 16px;
   	float: right;
 }
-
 .button:hover {
-  	background-color: #f1f1f1;
+  	background-color: #F5F5F5;
 }
 
 .search-input input{
-	float: center;
+    background-color: #2f2f2f;
+    color: #a5a5a5;
     width: 400px;
     height: 35px;
     padding-left: 20px;
-    border-radius: 6px;
-    background-color: #2f2f2f;
+    border-radius: 8px;
     border: 1px solid #2f2f2f;
-    color: #a5a5a5;
+	float: center;
 }
 .search-input select{
-	float: center;
+    background-color: #2f2f2f;
+    color: #a5a5a5;
     width: 130px;
     height: 35px;
     padding-left: 20px;
-    border-radius: 6px;
-    background-color: #2f2f2f;
+    border-radius: 8px;
     border: 1px solid #2f2f2f;
-    color: #a5a5a5;
+	float: center;
 }
 .search-input option{
-	float: center;
+    background-color: #2f2f2f;
+    color: #a5a5a5;
     width: 130px;
     height: 35px;
     padding-left: 20px;
-    border-radius: 6px;
-    background-color: #2f2f2f;
+    border-radius: 8px;
     border: 1px solid #2f2f2f;
-    color: #a5a5a5;
+	float: center;
 }
 
 .cs-search-btn{
 	background-color: #747474;
-	font: 12px 굴림;
-	font-weight: bold;
+	font: 12px sans-serif;
+	/* font-weight: bold; */
+  	text-align: center;
+  	text-decoration: none;
 	color: black;
 	width: 130;
 	height: 30;
   	border: none;
+  	border-radius: 8px;
   	padding: 10px 20px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
   	margin: 4px 2px;
+  	display: inline-block;
   	cursor: pointer;
-  	border-radius: 16px;
+  	
+  	/* border-radius: 8px;
+  	color: #ff7f00;
+  	text-align: center; */
 }
 .cs-search-btn:hover{
-	background-color: #D5D5D5;
+	background-color: #F5F5F5;
 }
+
+
 </style>
 </head>
 <body>
+<pre>
+
+</pre>
 <%
 	String context = request.getContextPath();
 %>
@@ -216,8 +229,8 @@ ${ sessionScope.sessionId}
 
 <div class="container">
 <div class="titleCB">
-<h2>FAQ</h2></div>
- <c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
+<b><h2>FAQ</h2></b>
+</div>
  <table class="b">
  	<tr><th>No</th><th>제목</th></tr>
  </table>
@@ -235,19 +248,24 @@ ${ sessionScope.sessionId}
   			</p>
 		</div><br>
 	
-
-<c:set var="num" value="${num - 1 }"></c:set>
 </c:forEach>
 </table>
+
+<!-- ------------------------------ 페이징처리 --------------------------------------- -->
+<ul class="pagination justify-content-center">
+<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
+<c:set var="num" value="${num - 1 }"></c:set>
 <c:if test="${pg.startPage > pg.pageBlock }">
- 	<a href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage-pg.pageBlock }">[이전]</a>
+ 	<li class="page-item"><a href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage-pg.pageBlock }">[이전]</a>
  </c:if>
  <c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
  	<a href="<%=context%>/FAQ/listCB?currentPage=${i }"> [${i}]</a>
  </c:forEach>
  <c:if test="${pg.endPage < pg.totalPage }">
- 	<a href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage+pg.pageBlock }">[다음]</a>
+ 	<a href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage+pg.pageBlock }">[다음]</a></li>
  </c:if>
+</ul> 
+ 
 <!-- ------------------------------ admin 권한 설정하기 --------------------------------------- --> 	
 <c:if test="${sessionScope.sessionId eq 'admin' }"> 
 	<input type="button" value="입력" onclick="location.href='<%=context%>/FAQ/writeFormCB'" class="button">	
@@ -284,6 +302,9 @@ for (i = 0; i < acc.length; i++) {
 </form>
 
 </div>
+<pre>
+
+</pre>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

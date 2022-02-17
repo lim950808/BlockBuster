@@ -57,9 +57,19 @@ public class BHController{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("chatNameNickname", chatName);
 		mv.setViewName("chat");
-		return mv;
-				
+		return mv;			
 	}
+//	@RequestMapping("/chat")
+//	public ModelAndView chat(HttpSession session) {
+//		System.out.println("BHController Socket Start...");	
+//		// member의 nickName을 Get --> chatName
+//		String id = (String)session.getAttribute("sessionId");
+//		String chatName = bh.chatName(id);
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("chatNameNickname", chatName);
+//		mv.setViewName("chat");
+//		return mv;			
+//	}
 	
 //	@RequestMapping("/Chat/chat")
 //	public ModelAndView chat(HttpSession session) {

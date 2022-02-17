@@ -423,6 +423,7 @@ public class JEController {
 	public String order(HttpSession session, Payment payment, PaymentDetails paymentDetails) {
 		System.out.println("order start...");
 		String id = (String)session.getAttribute("sessionId");
+		System.out.println("controoller Cart/cartList id-->"+id);
 		
 		// orderId(주문번호)생성 로직 - 캘린더 메서드로 랜덤숫자(subNum) 만들기
 		Calendar cal = Calendar.getInstance();
@@ -466,14 +467,15 @@ public class JEController {
 	// 결제 payment
 	
 	//주문 목록
-	@RequestMapping(value = "Order/orderList", method = RequestMethod.GET)
-	public void getOrderList(HttpSession session, Payment payment, Model model) {
+	@RequestMapping(value = "/Order/orderList", method = RequestMethod.GET)
+	public String getOrderList(HttpSession session, Payment payment, Model model) {
 		logger.info("get orderList");
 		
 		String id = (String)session.getAttribute("sessionId");
 		payment.setId(id);
 		List<Payment> orderList = js.orderList(payment);
 		model.addAttribute("orderList", orderList);
+		return "Order/orderList";
 	}
 	
 	//주문 상세 목록
