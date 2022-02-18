@@ -31,6 +31,11 @@ public class MainController {
 		logger.info("home 시작");
 		return "home";
 	}
+	@RequestMapping(value = "home2")
+	public String home2() {
+		logger.info("home2 시작");
+		return "home2";
+	}
 	
 	
 	// 조병훈님, header 시작 부분---------------------------------------------

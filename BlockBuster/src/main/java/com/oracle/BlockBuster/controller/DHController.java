@@ -36,7 +36,7 @@ public class DHController {
 	}
 	
 	
-	//회원수정
+	//회원수정페이지
 	@GetMapping(value = "/member/memberModifyForm")
 	public String modifyForm(HttpSession session, Model model) {
 		System.out.println("DHController modifyForm Start...");
@@ -45,6 +45,17 @@ public class DHController {
 		Member member = ds.memberDetail(id);
 		model.addAttribute("member", member);
 		return "/member/memberModifyForm";
+	}
+	
+	//비밀번호만 변경
+	@GetMapping(value = "/member/passwordModifyForm")
+	public String passwordModifyForm(HttpSession session, Model model) {
+		System.out.println("DHController passwordModifyForm Start...");
+		String id = (String) session.getAttribute("sessionId");
+		System.out.println("DHController passwordModifyForm id->"+id);
+		Member member = ds.memberDetail(id);
+		model.addAttribute("member", member);
+		return "/member/passwordModifyForm";
 	}
 	
 	

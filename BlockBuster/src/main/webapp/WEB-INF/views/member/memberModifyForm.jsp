@@ -18,8 +18,13 @@ function nickNameFuncChk(){
 	var nickNameChk  = document.getElementById("nickNameChk");
 	var nickNameId   = document.getElementById("nickname");
 	
-	// 한글사용, 문자a~z, 알파벳A~Z, 숫자 0~9, 1자리에서 8자리까지
-	var regExpNickname = /^[가-힣a-zA-Z0-9]{1,8}$/;
+	//alert("nickNameChk"+nickNameChk.value);
+	//alert("nickNameId"+nickNameId.value);
+	
+	// 한글사용, 소문자a~z, 대문자A~Z, 숫자 0~9, 1자리에서 8자리까지
+	var regExpNickname = /^[0-9a-z]+$/;
+	//  /^[0-9a-z]+$/;
+	//  /^[가-힣a-zA-Z0-9]{1,8}$/;
 	
 	if (!regExpNickname.test(nickname.value)) {
 	    alert("닉네임은 특수문자 제외 8자이내로 입력해주세요"); 
@@ -59,10 +64,13 @@ function emailFuncChk(){
 	var emailChk = document.getElementById("emailChk");
 	var emailId = document.getElementById("email");
 	
+	//alert("emailChk->"+emailChk.value);
+	//alert("emailId->"+emailId.value);
+	
 	var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	//alert("emailId.value->"+emailId.value);
 	
-	if (!regExpEmail.test(email.value)) {
+	if (!regExpEmail.test(email.value)) {//정규식 유효성검사
 	    alert("이메일 입력을 확인 해주세요"); 
 	    frm.email.focus();
 	    frm.email.value='';
@@ -71,7 +79,7 @@ function emailFuncChk(){
 	$.ajax(
 			{
 				type:'post',
-				url :"${pageContext.request.contextPath}/member/emailChk",
+				url :"${pageContext.request.contextPath}/member/emailChk", //컨트롤러 url
 				data:{'email':emailId.value},
 				dataType:'text',
 				success:function(data){
@@ -116,7 +124,7 @@ function register(){
 		   alert("비밀번호를 입력해주세요");
 		   return false;
 		   
-	   }else if(!/^[a-zA-Z0-9]{8,}$/.test(pw1)){ //
+	   }else if(!/^[a-zA-Z0-9]{8,}$/.test(pw1)){ //소문자 a~z 대문자 A~Z 숫자 0~9 8자리이상
 		   alert("비밀번호는 숫자와 영문자 조합으로 8자리 이상을 사용해야 합니다.");	
 		   frm.pw1.focus();
 		   frm.pw1.value='';
@@ -131,10 +139,8 @@ function register(){
 	   //alert("nickNameChk");
 	   //alert("emailChk");
 	   
-	   if(nickNameChk == '1' || emailChk == '1'){ //중복 확인 둘중 하나만 했을 때
+	   if(nickNameChk == '1' && emailChk == '1'){ //중복 확인 둘 다 했을 때
 		   $('#frm').submit();
-	   /* if(nickNameChk == '1' && emailChk == '1'){ //중복 확인 둘 다 했을 때
-		   $('#frm').submit(); */
 	   
 	   }else{
 		   alert("중복확인절차를 완료해주세요");
@@ -145,14 +151,21 @@ function register(){
 </script>
 </head>
 <body>
-<h2>회원수정</h2>
+<pre>
+
+</pre>
+<div class="container">
+<h2><b>회원정보 수정</b></h2>
+<hr color="white">
 		<form action="/member/memberUpdate"  method="post" id="frm" >		
 			<div class="form-group row">
 				<input type="hidden" name="id" value="${member.id}">
 			</div>
 
 			<h2>ID : ${member.id}</h2>
-		    
+<pre>
+
+</pre>		    
 			<div class="form-group row">
 				<label class="col-sm-2 col-xs-12 col-form-label" for="nickname">닉네임</label>
 				<div class="col-sm-10 col-xs-12">
@@ -184,13 +197,24 @@ function register(){
 					<input type="password" id="pw2" name="passwordCheck" placeholder="비밀번호 확인" required="required">
 				</div>
 			</div>
-	
+<pre>
+
+</pre>	
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<a class="btn btn-success" type="submit" onclick="register()" role="button" title="저장"><i class="fa fa-save"></i> 확인</a>
+					<a class="btn btn-success" type="submit" onclick="register()" role="button" title="확인"><i class="fa fa-save"></i> 확인</a>
+					<a class="btn btn-danger" type="submit" onclick="location.href='/member/myinfo?id=${member.id}'" role="button" title="취소"><i class="fa fa-save"></i> 취소</a>
+					<a class="btn btn-secondary" type="submit" onclick="location.href='/member/passwordModifyForm?id=${member.id}'" role="button" title="비밀번호변경"><i class="fa fa-save"></i> 비밀번호변경</a>
+					<%-- <input type="button" value="취소"
+					onclick="location.href='/member/myinfo?id=${member.id}'"> --%>
+					
 				</div>
 			</div>
 		</form>
+</div>
+<pre>
+
+</pre>
 <%@ include file="../footer.jsp" %> 
 </body>
 </html>

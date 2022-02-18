@@ -5,11 +5,11 @@
 <title>Insert title here</title>
 <style type="text/css">
 body{
-  background-color: #333;
+  background-color: #000;
   color: #fff;
 }
 .foot {
-	background-color: #333
+	background-color: #000
 }
 .foot span{
 	color: #fff;

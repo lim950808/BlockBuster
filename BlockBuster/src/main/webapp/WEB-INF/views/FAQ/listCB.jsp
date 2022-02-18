@@ -224,9 +224,6 @@ bottom:0px;
 <%
 	String context = request.getContextPath();
 %>
-
-${ sessionScope.sessionId}
-
 <div class="container">
 <div class="titleCB">
 <b><h2>FAQ</h2></b>
