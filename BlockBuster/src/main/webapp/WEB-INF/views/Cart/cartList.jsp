@@ -117,7 +117,9 @@
 	<section id="container">
 		<h1 style="color:white;"><b>장바구니</b></h1>
 		<hr color="white">
-		
+		<aside id="aside">
+			<%@ include file="../aside.jsp" %>
+		</aside>
 		<div id="container_box">
 			<section id="content">
 				<ul>
@@ -254,7 +256,7 @@
 										console.log(rsp);
 										if (rsp.success) {
 											var msg = '결제가 완료되었습니다.';
-											location.href='/Cart/cartList/order'
+											location.href='/Cart/cartList/order?totalPrice=${sum}'
 											/* msg += '결제 금액 : ' + rsp.paid_amount; */
 											// success.submit();
 											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
@@ -269,9 +271,7 @@
 					</div>
 				</div>
 			</section>
-			<aside id="aside">
-				<%@ include file="../aside.jsp" %>
-			</aside>
+			
 		</div>
 	</section>
 </div>

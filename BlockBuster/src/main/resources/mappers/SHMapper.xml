@@ -123,7 +123,7 @@
 	
 	<!-- 게시글 좋아요 - 추가 -->
 	<insert id="SH_InsertGood" parameterType="SHGoodModel">
-		INSERT INTO review_good(r_no, id, good) values(#{r_no},#{id}, 1)
+		INSERT INTO review_good(g_no, r_no, id, good) values(review_good_SEQ.nextval, #{r_no},#{id}, 1)
 	</insert>
 	
 	<!-- 게시글 좋아요 - 해제 -->

@@ -70,7 +70,7 @@
 		/* Since positioning the image, we need to help out the caption */
 		.carousel-caption {
 		  bottom: 3rem;
-		  z-index: 10;
+		  z-index: 9;
 		}
 		
 		/* Declare heights because of positioning of img element */
@@ -206,7 +206,7 @@
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
- 
+  
   <div class="container marketing">
 <!--
     Three columns of text below the carousel

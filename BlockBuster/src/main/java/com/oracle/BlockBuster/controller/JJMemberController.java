@@ -64,7 +64,7 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", member.getId());
 		
-		requestURL = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
+		requestURL = requestURL==null || requestURL.equals("") ? "/home" : requestURL;
 		
 		return	"redirect:"+requestURL;
 	}
@@ -159,7 +159,7 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	}
 	
 	/* 로그아웃 */
-	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutMainGet(HttpServletRequest request) throws Exception{
 		logger.info("logOut 시작");
 		

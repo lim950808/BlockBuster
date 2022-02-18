@@ -33,6 +33,14 @@ function getAllListByGenre(){
 			}
 		);
 }
+
+var url = location.protocol + '//' + location.host;
+url = url+'/listbygenre';
+$(document).ready(function(){
+	$('#url').append(url);
+});
+
+
 </script>
 <body>
 <div class="container">
@@ -42,7 +50,7 @@ function getAllListByGenre(){
 <h2 data-v-514545ea="" class="tit">장르별 영상 정보 조회 API</h2>
 <hr>
 <h2 style="font-size:15px;font-weight:bold;">1.URL (GET)</h2>
-<div style="padding:20px 15px;font-size:14px;color:#555;line-height:20px;border:1px solid #ddd; background:#f5f5f5"><b>http://localhost:8181/BlockBuster/listbygenre</b></div>
+<div style="padding:20px 15px;font-size:14px;color:#555;line-height:20px;border:1px solid #ddd; background:#f5f5f5; font-weight:bold;" id="url"></div> <!-- http://localhost:8181/BlockBuster/listbygenre  -->
 <br>
 <br>
 <h2 style="font-size:15px;font-weight:bold;">2.Request Parameters</h2>

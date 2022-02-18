@@ -411,10 +411,10 @@ span.carousel-control-next-icon {
 	  </a>
 
   </div>
+<%@ include file="footer.jsp" %> 
 </div>
 <pre>
 
 </pre>
-<%@ include file="footer.jsp" %> 
 </body>
 </html>

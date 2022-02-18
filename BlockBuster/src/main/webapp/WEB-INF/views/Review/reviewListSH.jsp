@@ -16,6 +16,7 @@
 	}
 	body{
 		background-color : #333;
+		font-family: 'Montserrat', sans-serif;
 	}
 	tr{
 		color : white;
@@ -26,60 +27,76 @@
 	
 	
 	.search-input input{
-    background-color: #2f2f2f;
-    color: #a5a5a5;
-    width: 400px;
-    height: 35px;
-    padding-left: 20px;
-    border-radius: 8px;
-    border: 1px solid #2f2f2f;
-	float: center;
+	    background-color: #2f2f2f;
+	    color: #a5a5a5;
+	    width: 400px;
+	    height: 35px;
+	    padding-left: 20px;
+	    border-radius: 8px;
+	    border: 1px solid #2f2f2f;
+		float: center;
+	}
+	.search-input select{
+	    background-color: #2f2f2f;
+	    color: #a5a5a5;
+	    width: 130px;
+	    height: 35px;
+	    padding-left: 20px;
+	    border-radius: 8px;
+	    border: 1px solid #2f2f2f;
+		float: center;
+	}
+	.search-input option{
+	    background-color: #2f2f2f;
+	    color: #a5a5a5;
+	    width: 130px;
+	    height: 35px;
+	    padding-left: 20px;
+	    border-radius: 8px;
+	    border: 1px solid #2f2f2f;
+		float: center;
+	}
+	
+	.cs-search-btn{
+		background-color: #747474;
+		font: 12px sans-serif;
+		/* font-weight: bold; */
+	  	text-align: center;
+	  	text-decoration: none;
+		color: black;
+		width: 130;
+		height: 30;
+	  	border: none;
+	  	border-radius: 8px;
+	  	padding: 10px 20px;
+	  	margin: 4px 2px;
+	  	display: inline-block;
+	  	cursor: pointer;
+	  	
+	  	/* border-radius: 8px;
+	  	color: #ff7f00;
+	  	text-align: center; */
+	}
+	.cs-search-btn:hover{
+		background-color: #F5F5F5;
+	}
+	
+	a:hover {
+	color:black;
+	}
+	 
+	#list:hover tr:hover td{
+    background: #F5F5F5;
+    color: black;
 }
-.search-input select{
-    background-color: #2f2f2f;
-    color: #a5a5a5;
-    width: 130px;
-    height: 35px;
-    padding-left: 20px;
-    border-radius: 8px;
-    border: 1px solid #2f2f2f;
-	float: center;
-}
-.search-input option{
-    background-color: #2f2f2f;
-    color: #a5a5a5;
-    width: 130px;
-    height: 35px;
-    padding-left: 20px;
-    border-radius: 8px;
-    border: 1px solid #2f2f2f;
-	float: center;
-}
+	
+	.thChange th{
+		border:0px;
+	}
 
-.cs-search-btn{
-	background-color: #747474;
-	font: 12px sans-serif;
-	/* font-weight: bold; */
-  	text-align: center;
-  	text-decoration: none;
-	color: black;
-	width: 130;
-	height: 30;
-  	border: none;
-  	border-radius: 8px;
-  	padding: 10px 20px;
-  	margin: 4px 2px;
-  	display: inline-block;
-  	cursor: pointer;
-  	
-  	/* border-radius: 8px;
-  	color: #ff7f00;
-  	text-align: center; */
-}
-.cs-search-btn:hover{
-	background-color: #F5F5F5;
-}
 </style>
+
+
 
 <title>리뷰게시판</title></head>
 <body>
@@ -100,10 +117,9 @@
 		<!-- 게시글 리스트 출력 -->
 		<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 		
+		<table id="list" class="table table-hover thChange" style="width:100%;">
 		
-		<table id="list" class="table success">
-		
-				<tr	class = "table-active" style="text-align: center; background-color:#ff7f00; color: black">
+				<tr	class = "table-active" style="text-align: center; background-color:#ff7f00; color: white">
 					<th scope="row"><b>글번호</b></th>
 					<th scope="row"><b>제 목</b></th>
 					<th scope="row"><b>추천수</b></th>
@@ -114,13 +130,13 @@
 			
 			<c:forEach var="reviewList" items="${reviewList}">
 			
-				<tr style="text-align: center;">
-					<td>${reviewList.r_no}</td>
-					<td style="text-align: left;"><a href="reviewDetailSH?r_no=${reviewList.r_no}">[${reviewList.title}]&nbsp;${reviewList.r_title}&nbsp;[${reviewList.commentCnt}]</a></td>
-					<td>${reviewList.good}</td>
-					<td>${reviewList.nickName}</td>
-					<td>${reviewList.r_hit}</td>
-					<td>${reviewList.r_date}</td>
+				<tr class="list2" style="text-align: center;">
+						<td>${reviewList.r_no}</td>
+						<td style="text-align: left;" onclick="location.href='reviewDetailSH?r_no=${reviewList.r_no}'">[${reviewList.title}]&nbsp;${reviewList.r_title}&nbsp;[${reviewList.commentCnt}]</td>
+						<td>${reviewList.good}</td>
+						<td>${reviewList.nickName}</td>
+						<td>${reviewList.r_hit}</td>
+						<td>${reviewList.r_date}</td>
 				</tr>
 				
 				<c:set var="num" value="${num - 1}"></c:set>

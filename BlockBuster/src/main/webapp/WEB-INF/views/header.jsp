@@ -94,11 +94,14 @@ body {
 }
 
 .logo a {
-	text-decoration: none;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 }
+.logo a:hover{
+	text-decoration:none !important
+}
+
 .logo span{
 	text-align: center;
 	color: #ff7f00;
@@ -107,19 +110,19 @@ body {
 
 
 .navbarJE h5{
-	margin-left: 30px;
+	/* margin-left: 30px; */
 	margin-bottom: 0px;
 	width: 300px;
 	height: 52px;
 	color: #fff;
 	text-align: center;
 	float: right;
-	padding: 14px 16px;
+	/* padding: 14px; */
 }
 .menuJE {
 	float: left;
 	margin-top: 50px;
-	padding-left: 10px;
+	z-index: 10;
 }
 .dropdownJE {
 	float: left;
@@ -127,6 +130,7 @@ body {
 	display: inline;
 	margin: 0;
 	padding-top: 40px;
+	z-index:10;
 	
 }
 .dropdownJE .dropbtnJE {
@@ -138,10 +142,13 @@ body {
 	background-color: inherit;
 	font: inherit;
 	margin: 0;
+	z-index: 10;
+	 
 }
 
 .navbarJE a:hover, .dropdownJE:hover .dropbtnJE {
 	background-color: black;
+	z-index: 10;
 }
 
 .dropdown-contentJE {
@@ -153,7 +160,7 @@ body {
 	width: 100%;
 	height: auto;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
+	z-index: 10;
 	margin-top: 35px;
 	/* -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
@@ -166,10 +173,12 @@ body {
 	background: gray;
 	padding: 16px;
 	color: white;
+	z-index: 10;
 }
 
 .dropdownJE:hover .dropdown-contentJE {
 	display: block;
+	z-index: 10;
 }
 
 /* Create three equal columns that floats next to each other */
@@ -179,6 +188,7 @@ body {
 	padding: 15px;
 	background-color: #ccc;
 	height: 500px;
+	z-index: 10;
 }
 
 .columnJE a {
@@ -188,11 +198,13 @@ body {
 	text-decoration: none;
 	display: block;
 	text-align: left;
+	z-index: 10;
 }
 
 .columnJE a:hover {
 	background-color: #ff7f00;
 	color: #fff;
+	z-index: 10;
 }
 
 /* Clear floats after the columns */
@@ -208,6 +220,7 @@ body {
   .columnJE {
 	width: 100%;
 	height: auto;
+	z-index: 10;
   }
 }
 
@@ -270,7 +283,7 @@ body {
 
 <!-- ------------------------------ logo --------------------------------------- --> 	
 		<div class="logo">
-			  <a href="../main" style="margin-top: 30px;"><b><span>BlockBuster</span></b></a>
+			  <a href="../main" style="margin-top: 15px; padding-bottom: 0px;"><b><span>BlockBuster</span></b></a>
 			  <!-- <a href="../main" style="padding-bottom: 0px;"><img src="resources/img/logo02.png"></a> -->
 		</div>
 	
@@ -280,7 +293,7 @@ body {
 <!-- ------------------------------ 아이디 표시 --------------------------------------- -->	
  <div class="menuJE">	
 	<div class="dropdownJE">
-			<h5>${sessionScope.sessionId}님 환영합니다</h5>
+			<h5>${ sessionScope.sessionId}님 환영합니다</h5>
 	  	</div>
 	  	
 <!-- ------------------------------ 카테고리 --------------------------------------- -->	
@@ -347,21 +360,21 @@ body {
 	  	<button class="dropbtnJE">마이페이지</button>
 	  		<div class="dropdown-contentJE">
 	    		<a href="/member/myinfo">내 정보</a>
-	    		<a href="/Order/orderList">구매내역</a>
-	    		<a href="chat?id=${sessionScope.sessionId}">1:1 문의</a>
+	    		<a href="/Order/list">구매내역</a>
+	    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}">실시간 채팅</a>
 	    		<a href="${pageContext.request.contextPath}/RestAPI">API 제공</a>
-	    		<a href="logout.do">로그아웃</a>
+	    		<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
 	  		</div>
 	  	</c:when>
 
 	  	<c:when test="${sessionScope.sessionId eq 'admin' }">
 	  	<button class="dropbtnJE">admin</button>
 	  		<div class="dropdown-contentJE">
-	    		<a href="chat?id=${sessionScope.sessionId}">1:1 문의</a>
+	    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}">고객 채팅</a> 
 	    		<a href="${pageContext.request.contextPath}/RestAPI">API 제공</a>
 	    		<a href="/Admin/productList">관리자 상품관리</a>
 	    		<a href="/Admin/viewallMember">관리자 회원관리</a>
-	    		<a href="logout.do">로그아웃</a>
+	    		<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
 	  		</div>
 	  	</c:when>
 	</c:choose>

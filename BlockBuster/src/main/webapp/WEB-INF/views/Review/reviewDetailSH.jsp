@@ -233,10 +233,10 @@
 	</table> --%>
 
 	<div class="card border-light mb-3">
-		<h3 class="card-header" style="color: black;">[${reviewDetail.title}]&nbsp;${reviewDetail.r_title}</h3><br>
-		<h6 class="card-subtitle text-muted">&emsp;작성자 : ${reviewDetail.nickName}&emsp;|&emsp;${reviewDetail.r_hit}&emsp;|&emsp;${reviewDetail.r_date}</h6>
+		<h3 class="card-header" style="color: black; background-color: #F7F7F7;">[${reviewDetail.title}]&nbsp;${reviewDetail.r_title}</h3>
+		<h6 class="card-subtitle text-muted" style="margin-top:1px; background-color: #F7F7F7;">&emsp;작성자 : ${reviewDetail.nickName}&emsp;|&emsp;${reviewDetail.r_hit}&emsp;|&emsp;${reviewDetail.r_date}</h6>
 	  
-		<div class="card-body" style="color: black;">
+		<div class="card-body" style="color: black; background-color: #F7F7F7;">
 			<img class="img-fluid" src="${pageContext.request.contextPath}/upload/${reviewDetail.r_img}" width ="280px" height="400px"onerror="this.src='/resources/img/logo2.png'">&nbsp;${reviewDetail.r_content}
 		</div>
 		
@@ -252,7 +252,6 @@
 				<div class="col-sm-4" style="text-align : center; vertical-align: middle;">
 					<a class="text-dark heart" style="text-decoration-line: none;">
 						<label  id="goodClick"><img id="heart" src="/resources/icon/heart.svg"></label>
-						<!-- <input type="submit" id="goodClick" value="추천" > -->
 					<span id="totalGoodId">${totalGood}</span>
 					</a>
 				</div>

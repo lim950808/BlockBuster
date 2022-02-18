@@ -50,6 +50,7 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 		   													  .addPathPatterns("/RestAPI")
 		   													  .addPathPatterns("/member/myinfo")		//김동현
 		   													  .addPathPatterns("/member/memberModifyForm")
+		   													  .addPathPatterns("/member/passwordModifyForm")
 		   													  .addPathPatterns("/member/memberUpdate")
 		   													  .addPathPatterns("/member/memberDelete")
 		   													  .addPathPatterns("/member/nickNameChk")

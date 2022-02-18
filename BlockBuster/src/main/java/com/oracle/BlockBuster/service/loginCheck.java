@@ -27,21 +27,21 @@ public class loginCheck {
 	//세션에 저장된 Id값을 true, false로 반환
 	public boolean checkSessionIdB(HttpServletRequest request) {
 		logger.info("[*-2] loginCheck, sessionId boolean으로 반환");
-			HttpSession session  = request.getSession();
-	
-			return session.getAttribute("sessionId")!=null;
-		}
+		HttpSession session  = request.getSession();
+
+		return session.getAttribute("sessionId")!=null;
+	}
 	
 	
 	//세션에 저장된 Id값을 String으로 반환
 	public String checkSessionId(HttpServletRequest request) {
 		logger.info("[*-2] loginCheck, sessionId String으로 반환");
-		
-			HttpSession session  = request.getSession();
-			String sessionId = (String)session.getAttribute("sessionId");
-			System.out.println("logincheck : "+sessionId);
-			return sessionId;
-		}
+	
+		HttpSession session  = request.getSession();
+		String sessionId = (String)session.getAttribute("sessionId");
+		System.out.println("logincheck : "+sessionId);
+		return sessionId;
+	}
 	
 	
 }
