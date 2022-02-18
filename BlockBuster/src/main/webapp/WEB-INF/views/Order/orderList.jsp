@@ -39,14 +39,14 @@
 		aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
 		aside#aside li { font-size:16px; text-align:center; }
 		aside#aside li a { color:white; display:block; padding:10px 0; }
-		aside#aside li a:hover { text-decoration:none; background:#eee; }
+		aside#aside li a:hover { text-decoration:none; background:#ff7f00; }
 		
 		aside#aside li { position:relative; }
-		aside#aside li:hover { background:#eee; } 		
+		aside#aside li:hover { background:#ff7f00; } 		
 		aside#aside li > ul.low { display:none; position:absolute; top:0; left:180px;  }
 		aside#aside li:hover > ul.low { display:block; }
-		aside#aside li:hover > ul.low li a { background:#eee; border:1px solid #eee; }
-		aside#aside li:hover > ul.low li a:hover { background:#fff;}
+		aside#aside li:hover > ul.low li a { background:#ff7f00; border:1px solid #ff7f00; }
+		aside#aside li:hover > ul.low li a:hover { background:#ff7f00;}
 		aside#aside li > ul.low li { width:180px; }
 		
 		footer#footer { margin-top:100px; border-radius:50px 50px 0 0; }
@@ -72,7 +72,7 @@
 <div id="root">
 	
 	<section id="container">
-		<h1 style="color:white;"><b>구매 목록</b></h1>
+		<h1 style="color:white;"><b>구매 내역</b></h1>
 		<hr color="white">
 		<div id="container_box">
 		
@@ -103,6 +103,6 @@
 <pre>
 
 </pre>
-</body>
 <%@ include file="../footer.jsp" %>
+</body>
 </html>

@@ -44,7 +44,7 @@
  aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
  aside#aside li { font-size:16px; text-align:center; }
  aside#aside li a { color:white; display:block; padding:10px 0; }
- aside#aside li a:hover { text-decoration:none; background:#eee; }
+ aside#aside li a:hover { text-decoration:none; background:#ff7f00; }
  
  footer#footer { margin-top:100px; border-radius:50px 50px 0 0; }
  footer#footer div#footer_box { padding:0 20px; }
@@ -58,10 +58,10 @@
  section#content div.goodsName { padding:10px 0; text-align:center; }
  section#content div.goodsName a { color:#000; }
  */
- section#content ul li { margin:10px 0; }
- section#content ul li img { width:250px; height:250px; }
+ section#content ul li { margin:10px 0; border-bottom:1px solid #999;}
+ section#content ul li img { width:200px; height:300px; }
  section#content ul li::after { content:""; display:block; clear:both; }
- section#content div.p_img { float:left; width:250px; }
+ section#content div.p_img { float:left; width:200px; }
  section#content div.info { float:right; width:calc(100% - 270px); }
  section#content div.info { font-size:20px; line-height:2; }
  section#content div.info span { display:inline-block; width:100px; font-weight:bold; margin-right:10px; }
@@ -179,8 +179,8 @@
 								</script>
   							</div>
 	  						<div class="p_img">
-	   							<a href="/Product/productDetail?pno=${product.pno}">
-	   								<img src="${product.p_img}">
+	   							<a href="/Product/productDetail?pno=${cart.pno}">
+	   								<img src="${cart.p_img}">
 	   							</a>
 	  						</div>
 	  						<div class="info">
@@ -221,6 +221,9 @@
 	 				<c:set var="sum" value="${sum + cart.price}" />
  					</c:forEach>
 				</ul>
+				<pre>
+				
+				</pre>
 				<div class="listResult">
 					<div class="sum">
 				  		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
@@ -278,6 +281,6 @@
 <pre>
 
 </pre>
-</body>
 <%@ include file="../footer.jsp" %>
+</body>
 </html>

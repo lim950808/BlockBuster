@@ -105,8 +105,8 @@
 	
 	<!-- 주문 정보 -->
 	<insert id="orderInfo" parameterType="Payment">
-		INSERT INTO payment(orderId, id, pno, totalPrice)
-		VALUES(#{orderId}, #{id}, #{pno}, #{totalPrice} )
+		INSERT INTO payment(orderId, id, totalPrice)
+		VALUES(#{orderId}, #{id}, #{totalPrice} )
 	</insert>
 	
 	<!-- 주문 상세 정보 --> <!-- insert select문 : select에 있는 다수의 데이터 입력 가능 -->

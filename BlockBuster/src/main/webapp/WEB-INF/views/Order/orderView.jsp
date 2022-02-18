@@ -39,14 +39,14 @@
 		aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
 		aside#aside li { font-size:16px; text-align:center; }
 		aside#aside li a { color:white; display:block; padding:10px 0; }
-		aside#aside li a:hover { text-decoration:none; background:#eee; }
+		aside#aside li a:hover { text-decoration:none; background:#ff7f00; }
 		
 		aside#aside li { position:relative; }
-		aside#aside li:hover { background:#eee; } 		
+		aside#aside li:hover { background:#ff7f00; } 		
 		aside#aside li > ul.low { display:none; position:absolute; top:0; left:180px;  }
 		aside#aside li:hover > ul.low { display:block; }
-		aside#aside li:hover > ul.low li a { background:#eee; border:1px solid #eee; }
-		aside#aside li:hover > ul.low li a:hover { background:#fff;}
+		aside#aside li:hover > ul.low li a { background:#ff7f00; border:1px solid #ff7f00; }
+		aside#aside li:hover > ul.low li a:hover { background:#ff7f00;}
 		aside#aside li > ul.low li { width:180px; }
 		
 		footer#footer { margin-top:100px; border-radius:50px 50px 0 0; }
@@ -67,7 +67,7 @@
 	.orderView li::after { content:""; display:block; clear:both; }
 	
 	.thumb { float:left; width:200px; }
-	.thumb img { width:200px; height:200px; }
+	.thumb img { width:200px; height:300px; }
 	.gdsInfo { float:right; width:calc(100% - 220px); line-height:2; }
 	.gdsInfo span { font-size:20px; font-weight:bold; display:inline-block; width:100px; margin-right:10px; }
 </style>
@@ -127,6 +127,6 @@
 <pre>
 
 </pre>
-</body>
 <%@ include file="../footer.jsp" %>
+</body>
 </html>

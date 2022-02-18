@@ -152,7 +152,7 @@ body {
 }
 
 .dropdown-contentJE {
-	background-color: gray;
+	background-color: #ff7f00;
 	display: none;
 	position: absolute;
 	top: 100px;
@@ -170,7 +170,7 @@ body {
 }
 
 .dropdown-contentJE .headerJE {
-	background: gray;
+	background: #ff7f00;
 	padding: 16px;
 	color: white;
 	z-index: 10;
@@ -318,15 +318,15 @@ body {
 	        </div>
 	        <div class="columnJE">
 	          <a href="${pageContext.request.contextPath}/CategoryList?c=2000"><h3>드라마</h3></a>
-	          <a href="/GenreList?g=2100">한드</a>
-	          <a href="/GenreList?g=2200">미드</a>
-	          <a href="/GenreList?g=2300">일드</a>
+	          <a href="/GenreList?g=2100">미드</a>
+	          <a href="/GenreList?g=2200">일드</a>
+	          <a href="/GenreList?g=2300">한드</a>
 	        </div>
 	        <div class="columnJE">
 	          <a href="${pageContext.request.contextPath}/CategoryList?c=3000"><h3>예능</h3></a>
 	          <a href="/GenreList?g=3100">KBS</a>
-	          <a href="/GenreList?g=3200">MBC</a>
-	          <a href="/GenreList?g=3300">SBS</a>
+	          <a href="/GenreList?g=3200">SBS</a>
+	          <a href="/GenreList?g=3300">MBC</a>
 	          <a href="/GenreList?g=3400">TVN</a>
 	          <a href="/GenreList?g=3500">JTBC</a>
 	        </div>
@@ -360,7 +360,7 @@ body {
 	  	<button class="dropbtnJE">마이페이지</button>
 	  		<div class="dropdown-contentJE">
 	    		<a href="/member/myinfo">내 정보</a>
-	    		<a href="/Order/list">구매내역</a>
+	    		<a href="/Order/orderList">구매내역</a>
 	    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}">실시간 채팅</a>
 	    		<a href="${pageContext.request.contextPath}/RestAPI">API 제공</a>
 	    		<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>

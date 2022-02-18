@@ -32,7 +32,7 @@
 		aside#aside h3 { font-size:22px; margin-bottom:20px; text-align:center; }
  		aside#aside li { font-size:16px; text-align:center; }
  		aside#aside li a { color:white; display:block; padding:10px 0; }
- 		aside#aside li a:hover { text-decoration:none; background:#eee; }
+ 		aside#aside li a:hover { text-decoration:none; background:#ff7f00; }
 	</style>
 	
 	<style>

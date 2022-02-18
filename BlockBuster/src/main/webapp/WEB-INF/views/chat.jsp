@@ -5,10 +5,10 @@
 <head>
 <meta http-euiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="resources/css/bootstrapbh.css">
-      <link rel="stylesheet" href="resources/css/custombh.css">
+      <link rel="stylesheet" href="resources/css/bootstrapbh.css"> <!--  이부분이 없으면 아예 채팅이 안뜸 -->
+      <link rel="stylesheet" href="resources/css/custombh.css"> <!--  이부분이 없으면 아예 채팅이 안뜸 -->
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-      <script src="resources/js/bootstrapbh.js"></script>   
+	  <script src="resources/js/bootstrapbh.js"></script> 
 <style>
 		
 .chating{
@@ -31,6 +31,13 @@
 	border-color: #ccc;
   	background-color: #C1F3FF;
 }
+#member_sub{
+	background-color: #686868;
+	font: 12px sans-serif;
+	color: white;
+	
+}
+
 #yourMsg{
 	display: none;
 }
