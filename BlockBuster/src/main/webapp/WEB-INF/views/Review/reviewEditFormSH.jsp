@@ -28,7 +28,7 @@
 				<h2 style="text-align: center; color: black;">[${editWriteForm.title}]</h2>
 			</div>
 			<div class="col-sm-9 col-xs-12">
-				<input class="form-control" id="r_title" name="r_title" placeholder="제목" type="text" value="${editWriteForm.r_title}" />
+				<input class="form-control" id="r_title" name="r_title" placeholder="제목을 입력하세요." type="text" value="${editWriteForm.r_title}" />
 			</div>
 		</div>
 		
@@ -37,7 +37,7 @@
 				<img class="img-fluid" src="${pageContext.request.contextPath}/upload/${editWriteForm.r_img}" width ="280px" height="400px"onerror="this.src='/resources/img/logo2.png'">
 			</div>
 			<div class="col-sm-9 col-xs-12">
-				<textarea rows="15" class="form-control" id="r_content" name="r_content">${editWriteForm.r_content}</textarea>
+				<textarea rows="15" class="form-control" id="r_content" name="r_content" placeholder="내용을 입력하세요.">${editWriteForm.r_content}</textarea>
 			</div>
 		</div>
 		
@@ -51,7 +51,7 @@
 		
 		<div class="card-footer text-muted col-sm-12">
 			<div class="col-sm-12" style="text-align : right;">
-				<input type="button" type="submit" class="btn btn-outline-warning" value="저장"  onclick="boardIn();return false;">&emsp;
+				<input type="button" type="submit" class="btn btn-outline-warning" value="저장"  onclick="insertCheck();return false;">&emsp;
 				<input type="button" class="btn btn-outline-secondary" value="뒤로가기" onclick="location.href='javascript:window.history.back();'">
 			</div>
 		</div>
@@ -60,9 +60,19 @@
   </div>
   
 	<script type="text/javascript">
-		function boardIn(){
-			$('#frm').submit();
+	function insertCheck(){
+		if(r_title.value.length == 0){
+			alert("제목을 입력해주세요.");
+			r_title.value.focus();
+			return;
 		}
+		if(r_content.value.length == 0){
+			alert("내용을 입력해주세요.");
+			r_content.value.focus();
+			return;
+		}
+		$('#frm').submit();
+	}
 	</script>
 
 <%@ include file="../footer.jsp" %>

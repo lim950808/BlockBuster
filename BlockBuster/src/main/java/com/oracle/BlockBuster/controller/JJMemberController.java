@@ -67,6 +67,7 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		requestURL = requestURL==null || requestURL.equals("") ? "/home" : requestURL;
 		
 		return	"redirect:"+requestURL;
+		//return "redirect:/loginView";
 	}
 	
 	@RequestMapping("idpwCheck")

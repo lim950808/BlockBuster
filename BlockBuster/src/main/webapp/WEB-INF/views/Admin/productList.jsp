@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <%@ include file="../header.jsp" %>
 <%
 	String context = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
-<head>   
+<head>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <title>영상 목록</title>
 
@@ -34,7 +33,7 @@
 	font-size:48px;
 	font-weight:bold;
 	font-family: 'Montserrat', sans-serif;
-	text-align:center;
+	text-align:left;
 	color: white;
 	letter-spacing:0px;
   	transition:1s;
@@ -139,7 +138,7 @@
 </pre> 
 <div class="container">
   <div class="bhtitle">
-	<h1>영상 목록</h1>
+	<h1><b>영상 목록</b></h1>
   </div>
   
 
@@ -190,7 +189,7 @@
 	<button type="button" onclick="location.href='/Admin/writeForm';" class="button" id="btn">등록</button>
 	</div>
 	</div>
-	
+</div>	
 <br><br><%@include file="../footer.jsp" %>
 </body>
 </html>

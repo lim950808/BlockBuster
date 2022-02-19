@@ -65,10 +65,7 @@
 </pre>
 <div class="container">
 
-	<h1 style="color:white;"><b>회원 목록</b></h2>
-<pre>
-
-</pre>
+	<h1 style="color:white;"><b>회원 목록</b></h1>
 
 	<div align="center">
 

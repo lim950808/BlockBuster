@@ -12,30 +12,30 @@
 <title>writeForm</title>
 <style type="text/css">
 body {	
-	font-family: 굴림체; 
-	text-align: center;	
+	font-family: sans-serif; 
+	/* text-align: center;	 */
 }
-table { 
+.writeFormCB { 
 	width: 100%; 
 	border: 3px ridge #ff7f00; 
 }
-tr { 
+.writeFormCB tr { 
 	background: #333; 
 	height: 30px; 
 }
-th {	
+.writeFormCB th {	
 	background: #333; 
 	text-align: center; 
 	color: #fff; 
 	padding-right: 40px;
 	padding-left: 20px;
 }
-td {
+.writeFormCB td {
 	background: #333; 
 	text-align : left;
 	color: #ff7f00;	
 }
-h2{
+.container h2{
 	font-size:60px;
 	font-weight:bold;
 	font-family: 'Montserrat', sans-serif;
@@ -89,7 +89,9 @@ h2{
 </style>
 </head>
 <body>
+<pre>
 
+</pre>
 <div class="container">
  <h2>FAQ 등록</h2>
 <!--FAQ/writeCB를 제대로 못찾아가서 context 사용  -->
@@ -111,12 +113,15 @@ h2{
     <tr>
     	<td colspan="2">
     	<button type="submit" value="확인">확인</button> &nbsp; 
-    	<button type="button" value="목록" onclick="location.href='listCB'">목록</button>
+    	<button type="button" value="취소" onclick="location.href='listCB'">취소</button>
     	</td>
     </tr> 
   </table>
   </form>
  </div>
+ <pre>
+
+</pre>
 </body>
 <%@ include file="../footer.jsp" %>
 </html>

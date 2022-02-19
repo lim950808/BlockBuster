@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
 <%@ include file="../header.jsp" %>
 
 <!DOCTYPE html>
@@ -14,6 +15,7 @@
 <style type="text/css">
 body{
 	background-color: #000;
+	/* text-align: center; */
 }
 
 .titleCB h2{
@@ -213,8 +215,62 @@ bottom:0px;
 .cs-search-btn:hover{
 	background-color: #F5F5F5;
 }
+.pag{
+	text-align: center;
+}
+.pag a{
+	color: #F5F5F5;
+	text-decoration: none;
+}
 
+.pag a:hover{
+	color: #ff7f00;
+}
 
+/* 	
+.page_wrap {
+	text-align:center;
+	align: center;
+	font-size:0;
+ }
+.page_nation {
+	display:inline-block;	
+}
+.page_nation .none {
+	display:none;
+}
+.page_nation a {
+	display:block;
+	margin-left: 100px;
+	margin:0 3px;
+	float: left;
+	border:1px solid #e6e6e6;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fff;
+	font-size:13px;
+	color:#999999;
+	text-decoration:none;
+}
+.page_nation .arrow {
+	border:1px solid #ccc;
+}
+.page_nation .prev {
+	background:#f8f8f8 no-repeat center center;
+	margin-right:7px;
+}
+.page_nation .next {
+	background:#f8f8f8 no-repeat center center;
+	margin-left:7px;
+}
+.page_nation a.active {
+	background-color:#42454c;
+	color:#fff;
+	border:1px solid #42454c;
+}
+ */
 </style>
 </head>
 <body>
@@ -224,6 +280,8 @@ bottom:0px;
 <%
 	String context = request.getContextPath();
 %>
+
+
 <div class="container">
 <div class="titleCB">
 <b><h2>FAQ</h2></b>
@@ -247,9 +305,12 @@ bottom:0px;
 	
 </c:forEach>
 </table>
+<pre>
 
+</pre>
 <!-- ------------------------------ 페이징처리 --------------------------------------- -->
-<ul class="pagination justify-content-center">
+<!-- <ul class="pagination justify-content-center"> -->
+<ul class="pag">
 <c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
 <c:set var="num" value="${num - 1 }"></c:set>
 <c:if test="${pg.startPage > pg.pageBlock }">
@@ -262,7 +323,23 @@ bottom:0px;
  	<a href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage+pg.pageBlock }">[다음]</a></li>
  </c:if>
 </ul> 
- 
+ <%-- 
+<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
+<c:set var="num" value="${num - 1 }"></c:set>
+
+<div class="page_wrap">
+   	<div class="page_nation">
+<c:if test="${pg.startPage > pg.pageBlock }">
+ 	<a class="arrow prev" href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage-pg.pageBlock }">⬅︎</a>
+ </c:if>
+ <c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
+ 	<a class="active" href="<%=context%>/FAQ/listCB?currentPage=${i }"> ${i}</a>
+ </c:forEach>
+ <c:if test="${pg.endPage < pg.totalPage }">
+ 	<a class="arrow next" href="<%=context%>/FAQ/listCB?currentPage=${pg.startPage+pg.pageBlock }">➡︎</a></li>
+ </c:if>
+</div>
+	</div> --%>
 <!-- ------------------------------ admin 권한 설정하기 --------------------------------------- --> 	
 <c:if test="${sessionScope.sessionId eq 'admin' }"> 
 	<input type="button" value="입력" onclick="location.href='<%=context%>/FAQ/writeFormCB'" class="button">	
@@ -302,6 +379,6 @@ for (i = 0; i < acc.length; i++) {
 <pre>
 
 </pre>
-</body>
 <%@ include file="../footer.jsp" %>
+</body>
 </html>

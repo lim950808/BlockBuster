@@ -63,7 +63,7 @@
  section#content ul li { display:inline-block; margin:10px; }
  section#content div.p_img img { width:200px; height:300px; }
  section#content div.title { padding:10px 0; text-align:center; }
- section#content div.title a { color:#000; }
+ section#content div.title a { color:white; }
 </style>
 
 </head>

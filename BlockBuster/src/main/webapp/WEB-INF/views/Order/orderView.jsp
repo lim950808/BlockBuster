@@ -108,7 +108,7 @@
 						<div class="gdsInfo">
 							<p>
 								<span>상품명</span>${orderView.title}<br />
-								<span>개당 가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.price}" /> 원<br />                
+								<span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.price}" /> 원<br />                
 							</p>
 						</div>
 					</li>					

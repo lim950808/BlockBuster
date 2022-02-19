@@ -74,6 +74,7 @@ body {
 }
 
 
+
 .navbarJE {
 	overflow: hidden;
 	background-color: #000;
@@ -92,32 +93,42 @@ body {
 	padding: 14px 16px;
 	text-decoration: none;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Noto+Sans+KR:wght@100;500&display=swap');
+@font-face{
+	font-family: "Bangers";
+	src:url("resources/fonts/Bangers-Regular.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+}
 .logo a {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 }
 .logo a:hover{
-	text-decoration:none !important
+	text-decoration:none !important;
+}
+.logo img{
+	margin-top: 50px;
 }
 
 .logo span{
 	text-align: center;
 	color: #ff7f00;
 	font-size: 80px;
+	font-family: Bangers-Regular;
 }
 
 
-.navbarJE h5{
+.navbarJE h6{
 	/* margin-left: 30px; */
 	margin-bottom: 0px;
-	width: 300px;
+	width: auto;
 	height: 52px;
 	color: #fff;
 	text-align: center;
 	float: right;
-	/* padding: 14px; */
+	padding: 14px 19px;
 }
 .menuJE {
 	float: left;
@@ -146,13 +157,27 @@ body {
 	 
 }
 
-.navbarJE a:hover, .dropdownJE:hover .dropbtnJE {
+.navbarJE a:hover{
 	background-color: black;
 	z-index: 10;
 }
+.dropdownJE:hover .dropbtnJE {
+	z-index: 10;
+}
+.dropdownJE a:hover,
+.dropdownJE i:hover{
+	color: #ff7f00;
+}
+
+.dropdown-contentJE a:hover{
+	background-color: #262626;
+	color: #ff7f00;
+	z-index: 10;
+	text-decoration:none !important;
+}
 
 .dropdown-contentJE {
-	background-color: #ff7f00;
+	background-color: #262626;
 	display: none;
 	position: absolute;
 	top: 100px;
@@ -162,6 +187,7 @@ body {
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 10;
 	margin-top: 35px;
+	border-top: 1px solid #ff7f00;
 	/* -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     -o-transition: all .3s ease;
@@ -170,9 +196,13 @@ body {
 }
 
 .dropdown-contentJE .headerJE {
-	background: #ff7f00;
+	background: #262626;
 	padding: 16px;
 	color: white;
+	z-index: 10;
+}
+.headerJE h2:hover{
+	color: #ff7f00;
 	z-index: 10;
 }
 
@@ -186,14 +216,14 @@ body {
 	float: left;
 	width: 20%;
 	padding: 15px;
-	background-color: #ccc;
+	background-color: #262626;
 	height: 500px;
 	z-index: 10;
 }
 
 .columnJE a {
 	float: none;
-	color: black;
+	color: #999999;
 	padding: 16px;
 	text-decoration: none;
 	display: block;
@@ -202,9 +232,18 @@ body {
 }
 
 .columnJE a:hover {
+	font-weight: bold;
 	background-color: #ff7f00;
 	color: #fff;
 	z-index: 10;
+}
+.columnJE h3{
+	color: #cccccc;
+	font-weight: bold;
+}
+.columnJE h3:hover{
+	color: #000;
+	font-weight: bold;
 }
 
 /* Clear floats after the columns */
@@ -236,32 +275,43 @@ body {
 
 .exampleJE input{
 	
-	width: 450px;
 /*     height: 30x; */
+ 	width: 450px;
     padding-left: 5px;
     padding-top : 14px;
-    border-radius: 6px;
-    background-color: #2f2f2f;
-    border: 1px solid #2f2f2f;
+    border-radius: 30px;
+    background-color: #333;
+    border: 1px solid #333;
     color: #a5a5a5;
     margin-top: 5px;
     maegin-bottom: 10px;
-    
+
+ 	/* width: 100%;
+ 	height: 46px;
+ 	line-height: 46px;
+ 	font-size: 1.1em;
+ 	color: rgba(0,0,0,0.5);
+ 	border: none;
+ 	border-radius: 30px;
+ 	padding: 10px 20px;
+ 	     */
     
     
 }
 .exampleJE button{
 	background-color: #F5F5F5;
-	color: black;
-  	border: none;
+	color: #fff;
   	text-align: center;
   	text-decoration: none;
   	display: inline-block;
-  	cursor: pointer;
-  	border-radius: 10px;
-  	/* border-radius: 8px;
-  	color: #ff7f00;
-  	text-align: center; */
+  	height: 46px;
+  	border: none;
+  	border-radius: 30px;
+  	position: absolute;
+  	background: linear-gradient(to right, rgba(var(--tmdbLightGreen), 1) 0%, rgba(var(--tmdbLightBlue), 1) 100%);
+  	
+  	
+  	
 } 
 .exampleJE fa fa-search :hover{
 	background-color: #D5D5D5;
@@ -276,15 +326,15 @@ body {
 <!-- ------------------------------ 검색기능 --------------------------------------- --> 	      
       	<div class="searchJE">	
       	<form name="form" class="exampleJE" id="search" action="${pageContext.request.contextPath}/HTGetSearchResult" method="post">
-			<input type="text" placeholder="키워드를 입력하세요" name="keyword" id="words1" list="searchingist1" onfocus="getRecommendWords()" autofocus="autofocus">
-			<button type="submit"><i class="fa fa-search"></i></button>
+			<input dir="auto" type="text" placeholder="  키워드를 입력하세요" name="keyword" id="words1" list="searchingist1" onfocus="getRecommendWords()" autofocus="autofocus" tabindex="1" autocorrect="off" autofill="off" autocomplete="off" spellcheck="false">
+			<button type="submit" value="fa fa-search"><i class="fa fa-search"></i></button>
 		</form>
 		</div>
 
 <!-- ------------------------------ logo --------------------------------------- --> 	
 		<div class="logo">
-			  <a href="../main" style="margin-top: 15px; padding-bottom: 0px;"><b><span>BlockBuster</span></b></a>
-			  <!-- <a href="../main" style="padding-bottom: 0px;"><img src="resources/img/logo02.png"></a> -->
+			  <!-- <a href="../main" style="margin-top: 15px; padding-bottom: 0px;"><b><span>BlockBuster</span></b></a> -->
+			  <a href="../main" style="padding-bottom: 0px;"><img src="${pageContext.request.contextPath}/resources/img/logoBangers.jpg" width="450" height="60"></a>
 		</div>
 	
 	<%--   <a href="${pageContext.request.contextPath}/login" type="hidden"></a> --%>
@@ -293,10 +343,12 @@ body {
 <!-- ------------------------------ 아이디 표시 --------------------------------------- -->	
  <div class="menuJE">	
 	<div class="dropdownJE">
-			<h5>${ sessionScope.sessionId}님 환영합니다</h5>
+			<h6>${ sessionScope.sessionId}님 환영합니다</h6>
 	  	</div>
 	  	
-<!-- ------------------------------ 카테고리 --------------------------------------- -->	
+<!-- ------------------------------ 카테고리 --------------------------------------- -->		  	
+ 
+	
 	  <div class="dropdownJE">
 	    <button class="dropbtnJE">카테고리 
 	      <!-- <i class="fa fa-caret-down"></i> -->
@@ -344,40 +396,45 @@ body {
 	      </div>
 	    </div>
 	  </div>
-	  
-	  <div class="dropdownJE">
+  
+	<div class="dropdownJE">
 	  	<button class="dropbtnJE">게시판</button>
 	  		<div class="dropdown-contentJE">
-	    		<a href="${pageContext.request.contextPath}/reviewList">Review</a>
-	    		<a href="/FAQ/listCB">FAQ</a>
+	    		<a href="${pageContext.request.contextPath}/reviewList"><h2>Review</h2></a>
+	    		<a href="/FAQ/listCB"><h2>FAQ</h2></a>
 	  		</div>
-	  </div>
+	</div>
+	  
+	  
+	  
+	  
 	  
 	  <div class="dropdownJE">
 <!-- ------------------------------ 마이페이지 & admin 권한 설정하기 --------------------------------------- --> 
-	<c:choose>
-		<c:when test="${sessionScope.sessionId != 'admin' }">
-	  	<button class="dropbtnJE">마이페이지</button>
-	  		<div class="dropdown-contentJE">
-	    		<a href="/member/myinfo">내 정보</a>
-	    		<a href="/Order/orderList">구매내역</a>
-	    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}">실시간 채팅</a>
-	    		<a href="${pageContext.request.contextPath}/RestAPI">API 제공</a>
-	    		<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
-	  		</div>
-	  	</c:when>
-
-	  	<c:when test="${sessionScope.sessionId eq 'admin' }">
-	  	<button class="dropbtnJE">admin</button>
-	  		<div class="dropdown-contentJE">
-	    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}">고객 채팅</a> 
-	    		<a href="${pageContext.request.contextPath}/RestAPI">API 제공</a>
-	    		<a href="/Admin/productList">관리자 상품관리</a>
-	    		<a href="/Admin/viewallMember">관리자 회원관리</a>
-	    		<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
-	  		</div>
-	  	</c:when>
-	</c:choose>
+		<c:choose>
+			<c:when test="${sessionScope.sessionId != 'admin' }">
+		  	<button class="dropbtnJE">마이페이지</button>
+		  		<div class="dropdown-contentJE">
+		    		<a href="/member/myinfo" style="margin-top: 10px;""><h5>내 정보</h5></a>
+		    		<a href="/Order/orderList" style="margin-top: 10px;"><h5>구매내역</h5></a>
+		    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}"style="margin-top: 10px;"><h5>실시간 채팅</h5></a>
+		    		<a href="${pageContext.request.contextPath}/RestAPI" style="margin-top: 10px;"><h5>API 제공</h5></a>
+		    		<a href="${pageContext.request.contextPath}/logout.do" style="margin-top: 10px;"><h5>로그아웃</h5></a>
+		  		</div>
+		  	</c:when>
+	
+		  	<c:when test="${sessionScope.sessionId eq 'admin' }">
+		  	<button class="dropbtnJE">admin</button>
+		  		<div class="dropdown-contentJE">
+		    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}" style="margin-top: 10px;"><h5>고객 채팅</h5></a> 
+		    		<a href="${pageContext.request.contextPath}/RestAPI" style="margin-top: 10px;"><h5>API 제공</h5></a>
+		    		<a href="/Admin/productList" style="margin-top: 10px;"><h5>관리자 상품관리</h5></a>
+		    		<a href="/Admin/viewallMember" style="margin-top: 10px;"><h5>관리자 회원관리</h5></a>
+		    		<a href="${pageContext.request.contextPath}/logout.do" style="margin-top: 10px;"><h5>로그아웃</h5></a>
+		  		</div>
+		  	</c:when>
+		</c:choose>
+	</div>
 	  		
 	  <%-- 
 	  		<button class="dropbtnJE">마이페이지</button>
@@ -385,8 +442,8 @@ body {
 	    		<a href="/member/myinfo">내 정보</a>
 	    		<a href="/Order/list">구매내역</a>
 	    		<a href="chat?id=${param.id}">1:1 문의</a>
-	    		<a href="${pageContext.request.contextPath}/RestAPI">Rest API</a>
-	   --%>
+	    		<a href="${pageContext.request.contextPath}/RestAPI">Rest API</a> --%>
+	  
 <!-- ------------------------------ admin 권한 설정하기 --------------------------------------- --> 	
 		<%-- 
 			<c:if test="${sessionScope.sessionId eq 'admin' }"> 
@@ -396,7 +453,6 @@ body {
 	    		<a href="#">로그아웃</a>
 	  		</div> 
 	  	--%>
-	</div>
 	
 	 <%-- <c:if test="${sessionId == 'admin' }"> 써서 admin 처리 --%>
 	  <!-- <div class="dropdown">

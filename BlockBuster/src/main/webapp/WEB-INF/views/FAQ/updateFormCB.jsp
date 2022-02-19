@@ -10,31 +10,31 @@
 
 <style type="text/css">
 body {	
-	font-family: 굴림체; 
-	text-align: center;	
+	font: sans-serif; 
+	/* text-align: center;	 */
 }
-table { 
+.updateFormCB { 
 	width: 100%; 
 	border: 3px ridge #ff7f00; 
 }
-tr { 
+.updateFormCB tr { 
 	background: #333; 
 	height: 30px; 
 }
-th {	
+.updateFormCB th {	
 	background: #333; 
 	text-align: center; 
 	color: #fff; 
 	padding-right: 40px;
 	padding-left: 20px;
 }
-td {
+.updateFormCB td {
 	background: #333; 
 	text-align : left;
 	font-weight: bold;
 	color: #ff7f00;	
 }
-h2{
+.container h2{
 	font-size:60px;
 	font-weight:bold;
 	font-family: 'Montserrat', sans-serif;
@@ -106,6 +106,7 @@ h2{
 	    	<textarea class="f_content" name="f_content" required="required" value="${cbFaqdto.f_content }" >${cbFaqdto.f_content }</textarea></td></tr>
 		<tr><td colspan="2">
 	   		<button type="submit" value="확인">확인</button>
+			<button type="button" value="취소" onclick="location.href='listCB'">취소</button>
 	   		</td>
 		</tr>
 	</table>

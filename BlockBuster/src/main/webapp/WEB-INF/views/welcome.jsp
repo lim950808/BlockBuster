@@ -20,8 +20,24 @@
 
   <!-- Template Main CSS File -->
   <link href="/css/style.css" rel="stylesheet">
+  
+<style type="text/css">
+	 
+.vid-bg {
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   min-width: 100%;
+   min-height: 100%;
+   
+}
+</style>
 </head>
 <body>
+
+<!-- ---------- background video ---------- -->
+	<video src="/resources/video/IronMan_last.mp4" class="vid-bg" autoplay loop muted></video>
+
 
   <!-- ======= Hero Section ======= -->
   

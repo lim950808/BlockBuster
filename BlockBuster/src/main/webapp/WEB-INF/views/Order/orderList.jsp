@@ -61,6 +61,7 @@
 	section#content div.goodsName a { color:#000; }
 */
 	section#content ul li { border:5px solid #eee; padding:10px 20px; margin-bottom:20px; }
+	section#content ul li a { color:#ff7f00; }
 	section#content .orderList span { font-size:20px; font-weight:bold; display:inline-block; width:90px; margin-right:10px; }
 </style>
 	
