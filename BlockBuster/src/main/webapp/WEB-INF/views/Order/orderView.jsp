@@ -91,6 +91,7 @@
 						
 						<%-- 첫번째 요소만 출력. 주문 상세 페이지에서 중복되는 부분이므로 모두 출력할 필요 없음 --%>
 						<c:if test="${status.first}">
+							<p><span>주문번호</span>${orderView.orderId}</p>
 							<p><span>아이디</span>${orderView.id}</p>
 							<p><span>총 가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.totalPrice}" /> 원</p>
 							

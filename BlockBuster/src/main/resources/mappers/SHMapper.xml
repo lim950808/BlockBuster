@@ -137,7 +137,7 @@
 	
 	<!-- 게시글 작성하기(상품페이지) - pno로 title 확인 -->
 	<select id="SH_pnoToTitle" parameterType="int" resultType="String">
-		SELECT DISTINCT title FROM review WHERE pno=#{pno}
+		SELECT title FROM product WHERE pno=#{pno}
 	</select>
 
 

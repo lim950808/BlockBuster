@@ -217,9 +217,6 @@
 		    <c:when test="${pno eq null}">
 				<a href="reviewWriteForm">리뷰남기기</a>
 		    </c:when>
-		    <c:when test="${title eq null}">
-				<a href="reviewWriteForm">리뷰남기기</a>
-		    </c:when>
 		    <c:otherwise>
 				<a href="javascript:window.history.back();">뒤로가기</a> &nbsp;|&nbsp;
 				<a href="reviewWriteForm?pno=${pno}">${title} 리뷰남기기</a>

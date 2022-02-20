@@ -138,11 +138,10 @@ public class SHReviewController {
 		List<SHReviewModel> reviewList = SHservice.reviewProductList(SHreviewModel);
 		model.addAttribute("reviewList", reviewList);
 		
-		String title = null;
-		if (reviewList.size() > 0 ) {
-			title = reviewList.get(0).getTitle();
-			model.addAttribute("title", title);
-		}
+		logger.info("[3-4-1] pnoToTitle() 시작");
+		String title = SHservice.pnoToTitle(pno);
+		System.out.println("title 가지고왔잖아? "+title);
+		model.addAttribute("title", title);
 		
 		model.addAttribute("pno", pno); // 리스트에서 번호에 따라 리뷰남기는 방식이다름 
 		model.addAttribute("pg",pg);
