@@ -264,8 +264,9 @@
 											// success.submit();
 											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
 										}else {
-											var msg = '결제에 실패하였습니다.';
-											msg += '에러내용 : ' + rsp.error_msg;
+											var msg = '장바구니가 비어있습니다. 상품을 추가해주세요.';
+											//var msg = '결제에 실패하였습니다.';
+											//msg += '에러내용 : ' + rsp.error_msg;
 										}
 										alert(msg);
 									});

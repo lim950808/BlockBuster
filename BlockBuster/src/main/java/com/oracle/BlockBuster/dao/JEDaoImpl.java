@@ -282,6 +282,18 @@ public class JEDaoImpl implements JEDao {
 	      return list;
 	}
 
+	//카트 중복담기 금지
+	@Override
+	public int orderCheck(Product orderProduct) {
+		int orderCheck = 0;
+		try {
+			orderCheck = session.selectOne("orderCheck", orderProduct);
+		}catch(Exception e) {
+			System.out.println("orderCheck Exception: " + e.getMessage());
+		}
+		return orderCheck;
+	}
+
 
 	 
 }

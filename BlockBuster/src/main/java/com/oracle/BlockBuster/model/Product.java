@@ -21,6 +21,7 @@ public class Product {
 	private int price;
 	private String p_video;
 	
+	
 
 	//장르 조인용
 	private String cat_name;
@@ -33,4 +34,6 @@ public class Product {
 	private int level;
 	
 
+	//카트에 중복담기 금지
+	private String id;
 }

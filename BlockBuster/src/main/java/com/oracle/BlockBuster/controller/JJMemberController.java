@@ -64,7 +64,7 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", member.getId());
 		
-		requestURL = requestURL==null || requestURL.equals("") ? "/home" : requestURL;
+		requestURL = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
 		
 		return	"redirect:"+requestURL;
 		//return "redirect:/loginView";
@@ -131,7 +131,7 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		 request.setAttribute("nickname", member);
 		 request.setAttribute("email", member);
 		 ms.regSubmit(member);
-		return "member/login";
+		 return "member/regSuccess";
 	 }
 	 
 	
@@ -153,11 +153,11 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	 	
 	//회원가입 끝
 	
-	@GetMapping(value="findId")
-	public String findId() {
-		logger.info("findId 시작");
-		return "member/findId";
-	}
+	 @GetMapping("findPwView.do")
+	 	public String findPwView() {
+		logger.info("findPwView 시작...");
+		return "member/findPw";
+	 }
 	
 	/* 로그아웃 */
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)

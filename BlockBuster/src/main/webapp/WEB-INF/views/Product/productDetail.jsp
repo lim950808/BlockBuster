@@ -74,54 +74,47 @@
 						<p class="price">
 							<fmt:formatNumber pattern="###,###,###" value="${product.price}" /> 원
 						</p>
-						<!-- <form action="/Cart/list" method="post" onsubmit="return cartAlert();">
-						<script>
-						function cartAlert(){
-							var cartAlert = confirm("장바구니에 담으시겠습니까?");
-							if(cartAlert){
-								return true;
-							}else{
-								return false;
-							}						
-						}
-						</script>
-						<div class="add_to_cart">
-		              		<input type="submit" value="장바구니" class="btn_3">
-		              	</div>
-						</form> -->
-						<p class="addToCart">
-							<!-- <a href="/Cart/cartList" class="btn btn-success pull-right" id="btnOrder">주문하기</a> -->
-							<button type="button" class="addCart_btn">장바구니</button>
-							<script>
-								$(".addCart_btn").click(function(){
-									
-									var pno = $("#pno").val();
-									var price = $("#price").val();
-									var title = $("#title").val();
-									var data = {pno : pno,
-												price : price,
-												title : title};
-									
-									$.ajax({
-										url : "/Product/productDetail/addCart",
-										type : "post",
-										data : data,
-										success : function(result){
+						
+						<!-- admin일때는 장바구니 안보임 -->
+						<c:choose>
+							<c:when test="${sessionScope.sessionId != 'admin' }">
+								<p class="addToCart">
+									<!-- <a href="/Cart/cartList" class="btn btn-success pull-right" id="btnOrder">주문하기</a> -->
+									<button type="button" class="addCart_btn">장바구니</button>
+									<script>
+										$(".addCart_btn").click(function(){
 											
-											if(result == 1) {
-												alert("장바구니에서 결제를 완료해주세요.");
-												location.href = "/Cart/cartList";
-											} else {
-												alert("로그인 해주세요.")
-											}
-										},
-										error : function(){
-											alert("카트 담기 실패!!");
-										}
-									});
-								});
-							</script>
-						</p>
+											var pno = $("#pno").val();
+											var price = $("#price").val();
+											var title = $("#title").val();
+											var data = {pno : pno,
+														price : price,
+														title : title};
+											
+											$.ajax({
+												url : "/Product/productDetail/addCart",
+												type : "post",
+												data : data,
+												success : function(result){
+													
+													if(result == 1) {
+														alert("장바구니에서 결제를 완료해주세요.");
+														location.href = "/Cart/cartList";
+													}else {
+														alert("로그인 해주세요.")
+													}
+												},
+												error : function(){
+													alert("카트 담기 실패!!");
+												}
+											});
+										});
+									</script>
+								</p>
+							</c:when>
+						</c:choose>
+						
+						<!-- 리뷰게시판 -->
 						<p class="reviewBbs">
 							<button type="button" onclick="location.href='${pageContext.request.contextPath}/reviewProductList?pno=${product.pno}' ">리뷰게시판</button>
 						</p>

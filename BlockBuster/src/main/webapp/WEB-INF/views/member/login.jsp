@@ -216,11 +216,11 @@ function checkIdPw(){
 			<button id="btn" type="submit">LOGIN</button>
 		</div>
 		
-		<div class="caption">
+<!-- 		<div class="caption">
 			<a href="findId.jsp" class="txt1">아이디를 잊으셨나요?</a>
-		</div>
+		</div> -->
 		<div class="caption">
-			<a href="findPw.jsp" class="txt1" id="test">비밀번호를 잊으셨나요?</a>
+			<a href="findPwView.do" class="txt1" id="test">비밀번호를 잊으셨나요?</a>
 		</div>
 		<div class="caption">
 			<p class="text-muted text-center mt-2 ml-2 mb-0">회원이 아니신가요?<a href="${pageContext.request.contextPath}/registrationView" class="text-primary ml-1">회원가입</a></p>

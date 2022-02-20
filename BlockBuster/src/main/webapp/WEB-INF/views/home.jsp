@@ -149,28 +149,17 @@
 <main>
 
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+  
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+    
     <div class="carousel-inner">
+    
       <div class="carousel-item active">
-      	<img src="resources/img/lalaLand2.jpg" class="d-block w-100" alt="lalaLand">
-        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> -->
-
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1><b>La La Land 라라랜드</b></h1>
-            <p>황홀한 사랑, 순수한 희망, 격렬한 열정…이 곳에서 모든 감정이 폭발한다!</p>
-            <p><a class="btn btn-lg btn-warning" href="/Product/productDetail?pno=71">상세보기</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
       	<img src="resources/img/zootopia4.jpg" class="d-block w-100" alt="zootopia">
-        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> -->
-
         <div class="container">
           <div class="carousel-caption text-start">
             <h1><b>Zootopia 주토피아</b></h1>
@@ -179,10 +168,20 @@
           </div>
         </div>
       </div>
+      
+      <div class="carousel-item">
+      	<img src="resources/img/lalaLand2.jpg" class="d-block w-100" alt="lalaLand">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1><b>La La Land 라라랜드</b></h1>
+            <p>황홀한 사랑, 순수한 희망, 격렬한 열정…이 곳에서 모든 감정이 폭발한다!</p>
+            <p><a class="btn btn-lg btn-warning" href="/Product/productDetail?pno=71">상세보기</a></p>
+          </div>
+        </div>
+      </div>    
+      
       <div class="carousel-item">
       	<img src="resources/img/coffee.jpg" class="d-block w-100" alt="reviewBBS">
-        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> -->
-
         <div class="container">
           <div class="carousel-caption text-end">
             <h1><b>당신의 리뷰를 기다립니다.</b></h1>
@@ -191,15 +190,19 @@
           </div>
         </div>
       </div>
+      
     </div>
+    
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
+    
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+    
   </div>
 
 

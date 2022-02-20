@@ -4,7 +4,7 @@
 <mapper namespace="JEDao">
 
 	<select id="JEProductTotal" resultType="int">
-		SELECT count(*) FROM product
+		SELECT count(*) FROM product p
 	</select>
 	
 	<select id="JEProductListAll" parameterType="Product" resultType="Product">
@@ -75,8 +75,12 @@
    </select>
 	
 	<!-- 상품 상세정보 -->
-	<select id="JEProductDetail" parameterType="int" resultType="Product">
+	<!-- <select id="JEProductDetail" parameterType="int" resultType="Product">
 		SELECT * FROM product WHERE pno = #{pno}
+	</select> -->
+	<select id="JEProductDetail" parameterType="int" resultType="Product">
+		SELECT * FROM product
+		WHERE pno = #{pno}
 	</select>
 	
  	<!-- 카트 담기 -->
@@ -84,6 +88,14 @@
  		INSERT INTO cart (no, id, pno, title, price)
  		VALUES (cart_no_seq.NEXTVAL, #{id}, #{pno}, #{title}, #{price})
 	</insert>
+	
+	<!-- 카트 중복담기 금지 -->
+	<select id="orderCheck" parameterType="Product" resultType="int">
+		SELECT count(*)
+		FROM cart
+		WHERE pno = #{pno}
+		AND id = #{id}
+	</select>
 	
 	<!-- 카트 리스트 -->
 	<select id="cartList" resultType="Cart">
@@ -101,7 +113,6 @@
 		WHERE no = #{no}
 		AND id = #{id}
 	</delete>
-	
 	
 	<!-- 주문 정보 -->
 	<insert id="orderInfo" parameterType="Payment">

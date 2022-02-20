@@ -169,16 +169,25 @@ public class JEServiceImpl implements JEService {
 		return jd.orderView(payment);
 	}
 	
+	//카테고리별 영상리스트
 	@Override
 	   public List<Product> categoryList(int c) {
 	      List<Product> list = jd.categoryList(c);
 	      return list;
 	   }
 
+	//장르별 영상리스트
 	@Override
 	public List<Product> genreList(int g) {
 		List<Product> list = jd.genreList(g);
 	      return list;
+	}
+
+	//카트 중복담기 금지
+	@Override
+	public int orderCheck(Product orderProduct) {
+		int orderCheck = jd.orderCheck(orderProduct);
+		return orderCheck;
 	}
 
 

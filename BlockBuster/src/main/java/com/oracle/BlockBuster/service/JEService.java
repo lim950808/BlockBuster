@@ -75,6 +75,9 @@ public interface JEService {
 
 	//주문 상세 내역
 	List<OrderList> orderView(Payment payment);
+
+	//중복 카트담기 금지
+	int orderCheck(Product orderProduct);
 	
 //	//구매내역
 //	List<Payment> orderCartList(String member);

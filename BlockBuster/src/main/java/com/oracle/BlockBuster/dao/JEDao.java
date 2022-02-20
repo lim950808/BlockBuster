@@ -78,6 +78,9 @@ public interface JEDao {
 
 	List<Product> genreList(int g);
 
+	//카트 중복담기 금지
+	int orderCheck(Product orderProduct);
+
 
 
 }

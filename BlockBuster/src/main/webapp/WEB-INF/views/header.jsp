@@ -465,10 +465,15 @@ body {
 	  		</div>
 	  </div> -->
 	  
-<!-- ------------------------------ cart --------------------------------------- --> 		  
-	 <div class="dropdownJE"> 
-	  <a href="/Cart/cartList"><i class="fa fa-shopping-cart"></i></a>
-	 </div> 
+<!-- ------------------------------ cart --------------------------------------- -->
+	<!-- admin일땐 장바구니 이모티콘 안보임 -->  
+	<c:choose>
+		<c:when test="${sessionScope.sessionId != 'admin' }">
+		 <div class="dropdownJE"> 
+		 	<a href="/Cart/cartList"><i class="fa fa-shopping-cart"></i></a>
+		 </div>
+		</c:when>
+	</c:choose>
 	 
 	  <!-- <form>
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">

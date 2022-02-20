@@ -74,6 +74,7 @@ public class JEController {
 		
 		return "/Admin/productList";
 	}
+	
 	//영상 상세 페이지
 	@GetMapping(value = "/Admin/detail")
 	public String detail(int pno, Model model) {
@@ -82,6 +83,7 @@ public class JEController {
 		
 		return "/Admin/detail";
 	}
+	
 	// 영상 수정 폼으로 이동시키는 역할
 	@GetMapping(value = "/Admin/updateForm")
 	public String updateForm(int pno, Model model) {
@@ -91,6 +93,7 @@ public class JEController {
 		
 		return "/Admin/updateForm";
 	}
+	
 	// 영상 수정
 	@PostMapping(value = "/Admin/update")
 	public String update(HttpServletRequest request, MultipartFile imgFile, Product product, Model model) throws Exception {
@@ -119,12 +122,14 @@ public class JEController {
 		
 		return "forward:productList";
 	}
+	
 	//영상 등록버튼 누르면 등록 Form 으로 이동하게 해주는 역할
 	@RequestMapping(value = "/Admin/writeForm", method=RequestMethod.GET )
 	public String writeForm() {
 		System.out.println("JEController insertProduct start...");	
 		return "/Admin/writeForm";
 	}
+	
 	// 영상등록 Form에 입력한 값을 DB에 입력시키는 역할
 	@RequestMapping(value="/Admin/write",  method=RequestMethod.POST)
 	public String write(HttpServletRequest request, MultipartFile imgFile, Product product, Model model) throws Exception {
@@ -187,7 +192,6 @@ public class JEController {
 	}
 	
 	
-	
 /////////////////////////////////////////
 // 상품 페이지
 /////////////////////////////////////////
@@ -200,11 +204,10 @@ public class JEController {
 		//model.addAttribute("c", category);
 		model.addAttribute("list", list);
 	}
+	
 	//상품 상세 -> productDetail페이지
 	@GetMapping(value = "/Product/productDetail")
 	public String product(Model model, int pno) {
-	//@GetMapping("/Product/productDetail/{pno}")
-	//public String product(Model model, @PathVariable("pno") int pno) {
 		Product product = js.productDetail(pno);
 		product.setPno(pno);
 		model.addAttribute("product", product);
@@ -212,6 +215,7 @@ public class JEController {
 		return "/Product/productDetail";
 	}
 	
+	//카테고리 별 영상리스트
 	@GetMapping(value = "CategoryList")
     public String CategoryList(Model model, HttpServletRequest request) {
        int c = Integer.parseInt(request.getParameter("c"));
@@ -224,6 +228,7 @@ public class JEController {
        return "/Product/list";
     }
 	
+	//장르 별 영상리스트
 	@GetMapping(value = "GenreList")
 	   public String GenreList(Model model, HttpServletRequest request) {
 	      int g = Integer.parseInt(request.getParameter("g"));
@@ -235,112 +240,35 @@ public class JEController {
 	      return "/Product/list";
 	   }
 	
-	/*
-	 * //카트담기
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/Product/productDetail/addCart", method =
-	 * RequestMethod.POST) public int addCart(CartList cart, HttpSession session)
-	 * throws Exception {
-	 * 
-	 * int result = 0; Member member = (Member)session.getAttribute("member");
-	 * if(member != null) { cart.setId(member.getId()); js.addCart(cart); result =
-	 * 1; } return result; }
-	 * 
-	 * //카트 목록
-	 * 
-	 * @RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET) public
-	 * void getCartList(HttpSession session, Model model) throws Exception {
-	 * logger.info("get cart list"); Member member =
-	 * (Member)session.getAttribute("member"); String id = member.getId();
-	 * List<CartList> cartList = js.cartList(id); model.addAttribute("cartList",
-	 * cartList); }
-	 * 
-	 * //카트 삭제
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/Cart/deleteCart", method = RequestMethod.POST)
-	 * public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]")
-	 * List<String> chArr, Cart cart) throws Exception { logger.info("delete cart");
-	 * Member member = (Member)session.getAttribute("member"); String id =
-	 * member.getId(); int result = 0; int no = 0; if(member != null) {
-	 * cart.setId(id); for(String i : chArr) { no = Integer.parseInt(i);
-	 * cart.setNo(no); js.deleteCart(cart); } result = 1; } return result; }
-	 */
-	
-	///////////////////////////////////
-	
-	//카트 controller
-	/*
-	 * @RequestMapping("/Cart/count") public @ResponseBody String cartCount(Cart
-	 * cart, HttpSession session) { int count =
-	 * js.cartCount(member.getMember().getId());
-	 * 
-	 * Gson gson = new Gson(); String countToJson=gson.toJson(count);
-	 * 
-	 * return countToJson; }
-	 */
-	
-	//카트 담기
-//	@RequestMapping(value = "/Cart/add", method = RequestMethod.POST)
-//	public String cartAdd(Cart cart, Model model, HttpSession session) {
-//		Member id = (Member)session.getAttribute("id");
-//		cart.setId(member.getId());		
-//		js.cartAdd(cart);		
-//		return "redirect:/Cart/list";
-//	}
-//	@PostMapping("/Cart/add")
-//	@RequestMapping(value = "/Cart/add")
-//	public String cartAdd(Cart cart, Model model, HttpSession session) {
-//		Member member = (Member)session.getAttribute("member");
-//		String id = member.getId();
-//		model.addAttribute("id", id);
-//		
-//		js.cartAdd(cart);
-//		return "redirect:list";
-//	}
-	
-//	//카트에 담기(최종)
-//	@ResponseBody
-//	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
-//	public int addCart(Cart cart, HttpSession session) throws Exception {
-//		int result = 0;
-//		System.out.println("addCart start...");
-//		String member = (String)session.getAttribute("member");
-//		System.out.println("addCart member->"+member);
-//	    if(member != null) {
-//			cart.setId(member);
-//			js.addCart(cart);
-//			result = 1;
-//		}
-//		return result;
-//	}
-	
-	//카트에 담기(최종)
+	//카트에 담기
 	@ResponseBody
 	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
-	public int addCart(Cart cart, HttpSession session) throws Exception {
+	public int addCart(Cart cart, HttpSession session, int pno, Model model) throws Exception {
 		int result = 0;
 		System.out.println("addCart start...");
+		
 		String id = (String)session.getAttribute("sessionId");
 		System.out.println("addCart id->"+id);
+		//로그인 여부 구분
 	    if(id != null) {
 			cart.setId(id);
 			js.addCart(cart);
 			result = 1;
 		}
-		//return result;
+	    
+	    //중복 구매 불가
+	    Product orderProduct = new Product();
+	    orderProduct.setPno(pno);
+	    orderProduct.setId(id);
+	    int orderCheck = js.orderCheck(orderProduct);
+	    System.out.println("orderCheck: " + orderCheck);
+	    model.addAttribute("orderCheck", orderCheck);
+	    
+	    
+	    
 	    return result;
 	    
 	}
-	
-//	//카트 목록
-//	@GetMapping(value = "/Cart/list")
-//	public String cartList() {
-//		return "/Cart/list";
-//	}
 	
 	//카트 리스트
 	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET)
@@ -349,52 +277,12 @@ public class JEController {
 		// Login member
 		String id = (String)session.getAttribute("sessionId");
 		System.out.println("get cartList id->"+id);
-		// Login member
-//		Member member = (Member)session.getAttribute("member");
-//		String id = member.getId();
+		
 		List<Cart> cartList = js.cartList(id);
 		System.out.println("get cartList cartList.size()->"+cartList.size());
 		model.addAttribute("cartList", cartList);
 		return "/Cart/cartList";
 	}
-	
-//	//카트 리스트
-//	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET)
-//	public String getCartList(HttpSession session, Model model) throws Exception {
-//		System.out.println("get cartList started...");
-//		// Login member
-//		String member = (String)session.getAttribute("member");
-//		System.out.println("get cartList member->"+member);
-//		// Login member
-////		Member member = (Member)session.getAttribute("member");
-////		String id = member.getId();
-//		List<Cart> cartList = js.cartList(member);
-//		System.out.println("get cartList cartList.size()->"+cartList.size());
-//		model.addAttribute("cartList", cartList);
-//		return "/Cart/cartList";
-//
-//	}
-	
-	/*
-	 * @RequestMapping(value={"/cartList","/amountTotal"}) public @ResponseBody
-	 * String addedCartList(@AuthenticationPrincipal UserDetail user) {
-	 * SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd"); String today =
-	 * format.format(System.currentTimeMillis());
-	 * 
-	 * int userId = user.getUser().getId();
-	 * 
-	 * List<Cart> list =cartSvc.cartList(userId, today);
-	 * 
-	 * Gson gson = new Gson(); String listToJson=gson.toJson(list);
-	 * 
-	 * return listToJson; }
-	 */
-	
-//	@RequestMapping("/Cart/update")
-//	public @ResponseBody int cartUpdate(Cart cart) {
-//		int result = js.cartUpdate(cart);
-//		return result;
-//	}
 	
 	//카트 삭제
 	@ResponseBody
@@ -417,10 +305,14 @@ public class JEController {
 		}
 		return result;
 	}
+
+	
+/////////////////////////////////////////
+//payment 결제
+/////////////////////////////////////////
 	
 	//주문
 	@RequestMapping(value = "/Cart/cartList/order")
-//	public String order(HttpSession session, Payment payment, @RequestParam(value = "chk[]") List<String> chArr) {
 	public String order(HttpSession session, Payment payment, PaymentDetails paymentDetails) {
 		System.out.println("order start...");
 		String id = (String)session.getAttribute("sessionId");
@@ -452,11 +344,6 @@ public class JEController {
 		
 		return "redirect:/Order/orderList";
 	}
-	
-	/////////////////////////////////
-	
-	
-	// payment (결제 후)
 	
 	//결제 후 주문 목록
 	@RequestMapping(value = "/Order/orderList", method = RequestMethod.GET)
