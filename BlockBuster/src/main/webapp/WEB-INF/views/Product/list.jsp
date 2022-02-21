@@ -66,6 +66,73 @@
  section#content div.title a { color:white; }
 </style>
 
+<!-- hover 시작. -->
+<style>
+#pic{
+		width: 200px;
+		height: 300px;
+	}
+	#titleHeader{
+		background: rgba(0, 0, 0, 0.4); /* 0.5  */
+		color:#ff7f00;
+		font-size:23px;
+		width: 100%;
+	}
+	#keywd{color:#ff7f00;}
+	
+	 th, td, P {color: #f5f5f5;}
+	 
+     #poster{
+     	display:inline-block; 
+     	margin:10px;
+     }
+     
+     img {
+	  vertical-align: top;
+	}
+	.postpic{
+	  display:inline-block;
+	  position: relative;
+	}
+	.postpic:hover:after,
+	.postpic:hover > .hover_text,
+	.postpic:hover:after,
+	.postpic:hover > .hover_text
+	{
+	  display:block;
+	}
+	.postpic:after,.hover_text{
+	  display:none;
+	}
+	.postpic:after{
+	  content:'';
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  background: rgba(0, 0, 0, 0.7);
+	  z-index: 10;
+	}
+	.postpic {
+	  overflow: hidden;
+	}
+	.postpic:hover img{
+	transform: scale(1.2);
+	  transition: 0.7s;
+	}
+	.hover_text {
+ 	  position: absolute;
+	  top: 180px;
+	  left: 5px;
+	  color: #ff7f00;
+	  z-index: 20;
+	  font-weight: 600;
+	  font-size: 20px;
+	}
+</style>
+<!-- hover 끝. -->
+
 </head>
 <script>
 function RecommendTitleWords(){
@@ -140,18 +207,25 @@ function RecommendTitleWords(){
 				<ul>
  					<c:forEach items="${list}" var="product">
 	 					<li>
-	  						<div class="p_img">
+	  						<%-- <div class="p_img">
 								<input type="hidden" id="category" value="${product.category}">
 	   							<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${product.pno}">
 	   								<img src="${product.p_img}">
-
 	   							</a>
 	  						</div> 
 	  						<div class="title">
 	   							<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${product.pno}">
 	   								${product.title}
 	   							</a>
+	  						</div> --%>
+	  						<!-- hover 시작. -->
+	  						<div id="poster">
+	  							<input type="hidden" id="category" value="${product.category}">
+	   							<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${product.pno}" class="postpic">
+	   								<img id="pic" src="${product.p_img}" class="img-responsive img-rounded" onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"><p class="hover_text"><b>${product.title}</b></p>
+	   							</a>
 	  						</div>
+	  						<!-- hover 끝. -->
 	 					</li>
  					</c:forEach>
 				</ul>

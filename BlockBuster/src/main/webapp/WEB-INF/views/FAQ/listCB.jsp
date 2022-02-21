@@ -297,8 +297,8 @@ bottom:0px;
   			<p>${faq.f_content } <br><br><br>		
   	<!-- ------------------------------ admin 권한 설정하기 --------------------------------------- -->
 		<c:if test="${sessionScope.sessionId eq 'admin' }">	  			
-			<input type="button"  value="수정" onclick="location.href='${pageContext.request.contextPath}/updateFormCB?f_no=${faq.f_no}'">
-			<input type="button"  value="삭제" onclick="location.href='${pageContext.request.contextPath}/deleteCB?f_no=${faq.f_no}'">	
+			<input type="button"  value="수정" onclick="location.href='${pageContext.request.contextPath}/FAQ/updateFormCB?f_no=${faq.f_no}'">
+			<input type="button"  value="삭제" onclick="location.href='${pageContext.request.contextPath}/FAQ/deleteCB?f_no=${faq.f_no}'">	
 		</c:if>	
   			</p>
 		</div><br>

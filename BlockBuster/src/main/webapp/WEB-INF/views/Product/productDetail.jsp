@@ -66,7 +66,7 @@
 					</div>
 					
 					<div class="info">
-						<p class="title">${product.title}</p>
+						<p class="title"><h2><b>${product.title}</b></h2></p>
 						<p class="genre">${product.genre}</p>
 						<p class="year">${product.year}</p>
 						<p class="director">${product.director}</p>
