@@ -5,10 +5,10 @@
 <head>
 <meta http-euiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="resources/css/bootstrapbh.css"> <!--  이부분이 없으면 아예 채팅이 안뜸 -->
-      <link rel="stylesheet" href="resources/css/custombh.css"> <!--  이부분이 없으면 아예 채팅이 안뜸 -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrapbh.css"> <!--  이부분이 없으면 아예 채팅이 안뜸 -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custombh.css"> <!--  이부분이 없으면 아예 채팅이 안뜸 -->
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	  <script src="resources/js/bootstrapbh.js"></script> 
+	  <script src="${pageContext.request.contextPath}/resources/js/bootstrapbh.js"></script> 
 <style>
 		
 .chating{

@@ -92,7 +92,7 @@
 														title : title};
 											
 											$.ajax({
-												url : "/Product/productDetail/addCart",
+												url : "${pageContext.request.contextPath}/Product/productDetail/addCart",
 												type : "post",
 												data : data,
 												success : function(result){

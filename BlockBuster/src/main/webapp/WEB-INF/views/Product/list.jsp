@@ -142,13 +142,13 @@ function RecommendTitleWords(){
 	 					<li>
 	  						<div class="p_img">
 								<input type="hidden" id="category" value="${product.category}">
-	   							<a href="/Product/productDetail?pno=${product.pno}">
+	   							<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${product.pno}">
 	   								<img src="${product.p_img}">
 
 	   							</a>
 	  						</div> 
 	  						<div class="title">
-	   							<a href="/Product/productDetail?pno=${product.pno}">
+	   							<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${product.pno}">
 	   								${product.title}
 	   							</a>
 	  						</div>

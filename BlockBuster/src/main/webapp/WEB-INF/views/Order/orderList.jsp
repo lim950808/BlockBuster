@@ -83,7 +83,7 @@
 					<c:forEach items="${orderList}" var="orderList">
 						<li>
 							<div>
-								<p><span>주문번호</span><a href="/Order/orderView?n=${orderList.orderId}">${orderList.orderId}</a></p>
+								<p><span>주문번호</span><a href="${pageContext.request.contextPath}/Order/orderView?n=${orderList.orderId}">${orderList.orderId}</a></p>
 								<p><span>아이디</span>${orderList.id}</p>
 								<p><span>총 가격</span><fmt:formatNumber pattern="###,###,###" value="${orderList.totalPrice}" /> 원</p>
 							</div>

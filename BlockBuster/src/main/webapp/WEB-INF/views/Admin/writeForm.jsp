@@ -83,7 +83,7 @@ function categoryChange(e) {
 	</div>	
 
    	<div align="center">
-	<form action="/Admin/write" method="post" id="frm" name="frm" enctype="multipart/form-data" target="myBatisFrame">
+	<form action="${pageContext.request.contextPath}/Admin/write" method="post" id="frm" name="frm" enctype="multipart/form-data" target="myBatisFrame">
    
     
     <table>

@@ -11,15 +11,15 @@
   <meta content="" name="keywords">
   
   <!-- Vendor CSS Files -->
-  <link href="/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="/css/style.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 </head>
 <body>
 		<div class="carousel-item">
@@ -56,10 +56,10 @@
   </section><!-- End Hero -->
   
   <!-- Vendor JS Files -->
-  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="/js/main.js"></script>
+  <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>
 

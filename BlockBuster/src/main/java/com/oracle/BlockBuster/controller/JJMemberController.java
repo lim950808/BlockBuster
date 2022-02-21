@@ -59,7 +59,8 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 //	}
 	
 	@GetMapping(value="login")
-	public String login(JJMember member, String requestURL, HttpServletRequest request) {
+	public String login(JJMember member, HttpServletRequest request) {
+		String requestURL = null;
 		logger.info("login 시작");
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", member.getId());

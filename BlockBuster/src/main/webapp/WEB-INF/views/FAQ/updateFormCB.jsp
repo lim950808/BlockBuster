@@ -106,7 +106,7 @@ body {
 	    	<textarea class="f_content" name="f_content" required="required" value="${cbFaqdto.f_content }" >${cbFaqdto.f_content }</textarea></td></tr>
 		<tr><td colspan="2">
 	   		<button type="submit" value="확인">확인</button>
-			<button type="button" value="취소" onclick="location.href='listCB'">취소</button>
+			<button type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/listCB'">취소</button>
 	   		</td>
 		</tr>
 	</table>

@@ -9,10 +9,10 @@
 
 
 <title>Insert title here</title>
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 
 
-<script type="text/javascript" src="js/httpRequest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/httpRequest.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

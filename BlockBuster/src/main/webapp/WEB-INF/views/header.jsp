@@ -96,7 +96,7 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Noto+Sans+KR:wght@100;500&display=swap');
 @font-face{
 	font-family: "Bangers";
-	src:url("resources/fonts/Bangers-Regular.ttf") format("truetype");
+	src:url("${pageContext.request.contextPath}/resources/fonts/Bangers-Regular.ttf") format("truetype");
 	font-style: normal;
 	font-weight: normal;
 }

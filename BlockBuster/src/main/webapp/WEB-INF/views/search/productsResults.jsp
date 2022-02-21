@@ -100,7 +100,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div>  	
 </c:if>	
@@ -126,7 +126,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -152,7 +152,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -178,7 +178,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -204,7 +204,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -230,7 +230,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -256,7 +256,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -304,7 +304,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -330,7 +330,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -356,7 +356,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -406,7 +406,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -432,7 +432,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -458,7 +458,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -484,7 +484,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -510,7 +510,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -558,7 +558,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -584,7 +584,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -611,7 +611,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -659,7 +659,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	
@@ -685,7 +685,7 @@
     <div>
 		<div id=poster>
 			<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${media.pno}" class="postpic">
-			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
+			<img id="pic" src="${media.p_img}" class="img-responsive img-rounded"  onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'"/><p class="hover_text"><b>${media.title}</b></p></a>
 		</div>
 	</div> 
 </c:if>	

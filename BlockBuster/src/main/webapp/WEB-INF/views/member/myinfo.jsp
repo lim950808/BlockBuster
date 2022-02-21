@@ -16,7 +16,7 @@
 <script type="text/javascript">
 function confirmChk(){
 	if(confirm("정말 탈퇴하시겠습니까?") == true){ //확인
-		location.href='/member/memberDelete?id=${member.id}';
+		location.href='${pageContext.request.contextPath}/member/memberDelete?id=${member.id}';
 	}else{//취소
 		return false;
 	}
@@ -87,7 +87,7 @@ function confirmChk(){
 <pre>
 
 </pre>
-		<a class="btn btn-success" type="submit" onclick="location.href='/member/memberModifyForm?id=${member.id}'" role="button" title="수정"><i class="fa fa-save"></i>수정</a>
+		<a class="btn btn-success" type="submit" onclick="location.href='${pageContext.request.contextPath}/member/memberModifyForm?id=${member.id}'" role="button" title="수정"><i class="fa fa-save"></i>수정</a>
 		<a class="btn btn-danger" type="submit" onclick="confirmChk();" role="button" title="탈퇴"><i class="fa fa-save"></i>탈퇴</a>	
 </div>
 <pre>

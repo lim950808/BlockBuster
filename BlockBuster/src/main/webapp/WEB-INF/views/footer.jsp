@@ -26,10 +26,10 @@ body{
 <body>
 
 <footer class="foot">
-<p align="center"><a href="/introduce"><span>회사 소개</span></a>&emsp;
-                  <a href="/serviceInt"><span>서비스 소개</span></a>&emsp;
-				  <a href="/policy"><span>이용약관</span></a>&emsp;
-                  <a href="/privacy"><span>개인정보보호정책</span></a>&emsp;</p>
+<p align="center"><a href="${pageContext.request.contextPath}/introduce"><span>회사 소개</span></a>&emsp;
+                  <a href="${pageContext.request.contextPath}/serviceInt"><span>서비스 소개</span></a>&emsp;
+				  <a href="${pageContext.request.contextPath}/policy"><span>이용약관</span></a>&emsp;
+                  <a href="${pageContext.request.contextPath}/privacy"><span>개인정보보호정책</span></a>&emsp;</p>
                 
 <hr>
 <!-- <p style="padding-left:30%">BlockBuster 1st Project 프로젝트<br>

@@ -157,7 +157,7 @@ function register(){
 <div class="container">
 <h2><b>회원정보 수정</b></h2>
 <hr color="white">
-		<form action="/member/memberUpdate"  method="post" id="frm" >		
+		<form action="${pageContext.request.contextPath}/member/memberUpdate"  method="post" id="frm" >		
 			<div class="form-group row">
 				<input type="hidden" name="id" value="${member.id}">
 			</div>
@@ -203,8 +203,8 @@ function register(){
 			<div class="form-group row">
 				<div class="col-sm-12">
 					<a class="btn btn-success" type="submit" onclick="register()" role="button" title="확인"><i class="fa fa-save"></i> 확인</a>
-					<a class="btn btn-danger" type="submit" onclick="location.href='/member/myinfo?id=${member.id}'" role="button" title="취소"><i class="fa fa-save"></i> 취소</a>
-					<a class="btn btn-secondary" type="submit" onclick="location.href='/member/passwordModifyForm?id=${member.id}'" role="button" title="비밀번호변경"><i class="fa fa-save"></i> 비밀번호변경</a>
+					<a class="btn btn-danger" type="submit" onclick="location.href='${pageContext.request.contextPath}/member/myinfo?id=${member.id}'" role="button" title="취소"><i class="fa fa-save"></i> 취소</a>
+					<a class="btn btn-secondary" type="submit" onclick="location.href='${pageContext.request.contextPath}/member/passwordModifyForm?id=${member.id}'" role="button" title="비밀번호변경"><i class="fa fa-save"></i> 비밀번호변경</a>
 					<%-- <input type="button" value="취소"
 					onclick="location.href='/member/myinfo?id=${member.id}'"> --%>
 					

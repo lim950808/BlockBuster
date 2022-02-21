@@ -101,7 +101,7 @@
 
 </style>
 
-<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.3.1.min.js"></script>
 
 <!-- kakaoPay -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -149,12 +149,12 @@
 								   	});
 								    
 								   	$.ajax({
-								    	url : "/Cart/deleteCart",
+								    	url : "${pageContext.request.contextPath}/Cart/deleteCart",
 								    	type : "post",
 								    	data : { chbox : checkArr },
 								    	success : function(result){
 								    		if(result == 1) {
-								    			location.href = "/Cart/cartList";
+								    			location.href = "${pageContext.request.contextPath}/Cart/cartList";
 								    		}else {
 								    			alert("삭제 실패");
 								    		}
@@ -179,7 +179,7 @@
 								</script>
   							</div>
 	  						<div class="p_img">
-	   							<a href="/Product/productDetail?pno=${cart.pno}">
+	   							<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${cart.pno}">
 	   								<img src="${cart.p_img}">
 	   							</a>
 	  						</div>
@@ -201,12 +201,12 @@
 									   		checkArr.push($(this).attr("data-no"));
 									              
 										   	$.ajax({
-										    	url : "/Cart/deleteCart",
+										    	url : "${pageContext.request.contextPath}/Cart/deleteCart",
 										    	type : "post",
 										    	data : { chbox : checkArr },
 										    	success : function(result){
 											     	if(result == 1) {            
-											      		location.href = "/Cart/cartList";
+											      		location.href = "${pageContext.request.contextPath}/Cart/cartList";
 											     	} else {
 											      		alert("삭제 실패");
 											     	}
@@ -259,7 +259,7 @@
 										console.log(rsp);
 										if (rsp.success) {
 											var msg = '결제가 완료되었습니다.';
-											location.href='/Cart/cartList/order?totalPrice=${sum}'
+											location.href='${pageContext.request.contextPath}/Cart/cartList/order?totalPrice=${sum}'
 											/* msg += '결제 금액 : ' + rsp.paid_amount; */
 											// success.submit();
 											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.

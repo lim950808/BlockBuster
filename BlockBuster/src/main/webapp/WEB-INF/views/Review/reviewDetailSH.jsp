@@ -104,10 +104,10 @@
         // userGood이 1이면 좋아요가 이미 되있는것이므로 heart-fill.svg를 출력하는 코드
         if(userGood>0) {
             console.log(userGood);
-            $("#heart").attr("src", "/resources/icon/heart-fill.svg");
+            $("#heart").attr("src", "${pageContext.request.contextPath}/resources/icon/heart-fill.svg");
         } else {
             console.log(userGood);
-            $("#heart").attr("src", "/resources/icon/heart.svg");
+            $("#heart").attr("src", "${pageContext.request.contextPath}/resources/icon/heart.svg");
         }
 
 			// 좋아요 버튼을 클릭 시 실행되는 코드
@@ -123,11 +123,11 @@
 			    	success : function(data){
 				    		if(data == 1){
 								/* alert("insert 성공"); */
-								$('#heart').prop("src","/resources/icon/heart-fill.svg");
+								$('#heart').prop("src","${pageContext.request.contextPath}/resources/icon/heart-fill.svg");
 								totalChange();
 							} else if (data == 2){
 								/* alert("delete 성공"); */
-								$('#heart').prop("src","/resources/icon/heart.svg");
+								$('#heart').prop("src","${pageContext.request.contextPath}/resources/icon/heart.svg");
 								totalChange();
 							} else {
 								alert("실패");

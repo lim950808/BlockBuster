@@ -10,7 +10,7 @@
 
 <div align="center">
 <!-- 블록버스터 로고 -->
-<p><a href="/main"><img src="resources/img/logo.png"/></a></p>
+<p><a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/resources/img/logo.png"/></a></p>
 <h2>당신의 삶을 블록버스터로 만들어 줄 당신의 영웅을 소개 합니다.</h2><br><br><br><br>
 
 

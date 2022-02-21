@@ -70,7 +70,7 @@
 			<div class="card-footer text-muted col-sm-12">
 				<div class="col-sm-12" style="text-align : right;">
 					<input type="button" type="submit" class="btn btn-outline-warning" value="저장"  onclick="insertCheck();return false;">&emsp;
-					<input type="button" class="btn btn-outline-secondary" value="리스트" onclick="location.href='/reviewList'">
+					<input type="button" class="btn btn-outline-secondary" value="리스트" onclick="location.href='${pageContext.request.contextPath}/reviewList'">
 				</div>
 			</div>
 		</form>

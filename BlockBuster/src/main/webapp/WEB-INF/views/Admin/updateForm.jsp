@@ -50,7 +50,7 @@ ${sessionScope.id }
 <hr>
 
    	<div align="center">
-	<form action="/Admin/update" method="post" id=form1 enctype="multipart/form-data" target="myBatisFrame">
+	<form action="${pageContext.request.contextPath}/Admin/update" method="post" id=form1 enctype="multipart/form-data" target="myBatisFrame">
   	<input type="hidden" name="pno" value="${product.pno}">
           
   <table>  

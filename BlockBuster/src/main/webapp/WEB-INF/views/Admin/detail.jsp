@@ -94,7 +94,7 @@ a {
 		</tr>
 	</table>
 	
-		<div class=btn-area">
+		<div class=btn-area>
 			<button type="button" value="목록" onclick="location.href='productList'">목록</button>
 			<button type="button" value="수정" onclick="location.href='updateForm?pno=${product.pno}'">수정</button>
 			<button type="button" value="삭제" onclick="location.href='delete?pno=${product.pno}'">삭제</button>
@@ -106,5 +106,6 @@ a {
 			
 </div> <!-- container 끝 -->
 <br><br><%@include file="../footer.jsp" %>
+</div>
 </body>
 </html>

@@ -160,7 +160,7 @@
 		<tr style="text-align: center;">
 			<td>${num }</td>
 			<td>${product.pno }</td>
-			<td><a href="detail?pno=${product.pno }">${product.title }</a></td>
+			<td><a href="${pageContext.request.contextPath}/detail?pno=${product.pno }">${product.title }</a></td>
 			<td>${product.category }</td>
 			<td>${product.genre }</td>
 			<td>${product.price }</td>
@@ -178,15 +178,15 @@
 
    	<div class="page_nation">
 	<c:if test="${pg.startPage > pg.pageBlock}">
-		<a class="arrow prev" href="/Admin/productList?currentPage=${pg.startPage - pg.pageBlock}">⬅︎</a>
+		<a class="arrow prev" href="${pageContext.request.contextPath}/Admin/productList?currentPage=${pg.startPage - pg.pageBlock}">⬅︎</a>
 	</c:if>
 	<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-		<a class="active" href="/Admin/productList?currentPage=${i }">${i }</a>
+		<a class="active" href="${pageContext.request.contextPath}/Admin/productList?currentPage=${i }">${i }</a>
 	</c:forEach>
 	<c:if test="${pg.endPage < pg.totalPage}">
-		<a class="arrow next" href="/Admin/productList?currentPage=${pg.startPage + pg.pageBlock}">➡︎</a>
+		<a class="arrow next" href="${pageContext.request.contextPath}/Admin/productList?currentPage=${pg.startPage + pg.pageBlock}">➡︎</a>
 	</c:if>
-	<button type="button" onclick="location.href='/Admin/writeForm';" class="button" id="btn">등록</button>
+	<button type="button" onclick="location.href='${pageContext.request.contextPath}/Admin/writeForm';" class="button" id="btn">등록</button>
 	</div>
 	</div>
 </div>	

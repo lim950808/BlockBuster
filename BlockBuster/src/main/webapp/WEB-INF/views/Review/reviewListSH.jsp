@@ -134,7 +134,7 @@
 			
 				<tr class="list2" style="text-align: center;">
 						<td>${reviewList.r_no}</td>
-						<td style="text-align: left;" onclick="location.href='reviewDetailSH?r_no=${reviewList.r_no}'">[${reviewList.title}]&nbsp;${reviewList.r_title}&nbsp;[${reviewList.commentCnt}]</td>
+						<td style="text-align: left;" onclick="location.href='${pageContext.request.contextPath}/reviewDetailSH?r_no=${reviewList.r_no}'">[${reviewList.title}]&nbsp;${reviewList.r_title}&nbsp;[${reviewList.commentCnt}]</td>
 						<td>${reviewList.good}</td>
 						<td>${reviewList.nickName}</td>
 						<td>${reviewList.r_hit}</td>
@@ -170,41 +170,41 @@
 		<c:choose>
 		    <c:when test="${boardKind eq '일반리뷰'}">
 				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="reviewList?currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
+					<a href="${pageContext.request.contextPath}/reviewList?currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
 				</c:if>
 				
 				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-					<a  href="reviewList?currentPage=${i}">[${i}]</a>
+					<a  href="${pageContext.request.contextPath}/reviewList?currentPage=${i}">[${i}]</a>
 				</c:forEach>
 				
 				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="reviewList?currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
+					<a href="${pageContext.request.contextPath}/reviewList?currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
 				</c:if>
 		    </c:when>
 		    <c:when test="${boardKind eq '상품페이지'}">
 				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="reviewProductList?pno=${pno}&currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
+					<a href="${pageContext.request.contextPath}/reviewProductList?pno=${pno}&currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
 				</c:if>
 				
 				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-					<a href="reviewProductList?pno=${pno}&currentPage=${i}">[${i}]</a>
+					<a href="${pageContext.request.contextPath}/reviewProductList?pno=${pno}&currentPage=${i}">[${i}]</a>
 				</c:forEach>
 				
 				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="reviewProductList?pno=${pno}&currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
+					<a href="${pageContext.request.contextPath}/reviewProductList?pno=${pno}&currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
 				</c:if>
 		    </c:when>
 		    <c:when test="${boardKind eq '검색'}">
 				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="search?keyword=${keyword}&currentPage=${pg.startPage-pg.pageBlock}&search_option=${Search_option}">⬅︎</a>
+					<a href="${pageContext.request.contextPath}/search?keyword=${keyword}&currentPage=${pg.startPage-pg.pageBlock}&search_option=${Search_option}">⬅︎</a>
 				</c:if>
 				
 				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-					<a href="search?keyword=${keyword}&currentPage=${i}&search_option=${Search_option}">[${i}]</a>
+					<a href="${pageContext.request.contextPath}/search?keyword=${keyword}&currentPage=${i}&search_option=${Search_option}">[${i}]</a>
 				</c:forEach>
 				
 				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="search?keyword=${keyword}&currentPage=${pg.startPage+pg.pageBlock}&search_option=${Search_option}">➡︎︎</a>
+					<a href="${pageContext.request.contextPath}/search?keyword=${keyword}&currentPage=${pg.startPage+pg.pageBlock}&search_option=${Search_option}">➡︎︎</a>
 				</c:if>
 		    </c:when>
 		    
