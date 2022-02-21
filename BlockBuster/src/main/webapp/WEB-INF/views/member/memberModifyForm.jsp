@@ -27,7 +27,7 @@ function nickNameFuncChk(){
 	//  /^[가-힣a-zA-Z0-9]{1,8}$/;
 	
 	if (!regExpNickname.test(nickname.value)) {
-	    alert("닉네임은 특수문자 제외 8자이내로 입력해주세요"); 
+	    alert("닉네임은 숫자나 영문자로 입력해 주세요!"); 
 	    frm.nickname.focus();
 	    frm.nickname.value='';
 	    return false;

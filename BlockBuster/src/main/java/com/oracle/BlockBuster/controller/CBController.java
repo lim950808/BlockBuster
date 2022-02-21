@@ -125,7 +125,7 @@ public class CBController {
 				model.addAttribute("keyword",cbSearchVO.getKeyword()); //쉬운방법
 				
 			}
-			return "FAQ/listCB"; 
+			return "FAQ/listCB2";
 		} 
 		 
 		 
