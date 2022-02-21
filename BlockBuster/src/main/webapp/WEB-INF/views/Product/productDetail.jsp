@@ -100,6 +100,8 @@
 													if(result == 1) {
 														alert("장바구니에서 결제를 완료해주세요.");
 														location.href = "/Cart/cartList";
+													}else if(result == 2){
+														alert("장바구니에 담긴 중복된 영상입니다.");
 													}else {
 														alert("로그인 해주세요.")
 													}
@@ -128,10 +130,10 @@
 			</aside>
 		</div>
 	</section>
-</div>
 <pre>
 
 </pre>
 <%@ include file="../footer.jsp" %>
+</div>
 </body>
 </html>

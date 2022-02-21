@@ -161,10 +161,10 @@ function RecommendTitleWords(){
 			</aside>
 		</div>
 	</section>
-</div>
-</body>
 <pre>
 
 </pre>
 <%@ include file="../footer.jsp" %>
+</div>
+</body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,20 +8,21 @@
 <title>개인정보보호정책</title>
 <style>
 
-body{	
+/* body{	
 	width :   85%;
 	padding : 15px;
 	align :   center;
-}
+} */
 table{
-	background-color: #F6F6F6;
+	background-color: #333333;
 	opacity:		  0.6;
 	border:			  1;
 	cellpadding :	  5;
+	color: #dfd7ca;
 }
 
 h1{	
-	color :		  #000093; 
+	color :		  #dfd7ca;
 	text-align :  center;	
 }
 div{ text-align : center;}
@@ -28,9 +30,13 @@ div{ text-align : center;}
 </style>
 </head>
 <body>
-	<div>
-		<img src="resources/img/logo.png">
-	</div>
+<pre>
+
+</pre>
+<pre>
+
+</pre>
+<div>
 	<table align="center">
 		<tr>
 		<h1>개인정보보호정책</h1></p>
@@ -158,6 +164,10 @@ div{ text-align : center;}
 	</tr>
 </table>
 
+<pre>
+
+</pre>
 <%@ include file="footer.jsp" %>
+</div>
 </body>
 </html>

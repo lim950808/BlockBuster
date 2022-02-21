@@ -21,7 +21,7 @@
 	tr{
 		color : white;
 	}
-	a {
+	a:hover {
   		color : white;
 	}
 	
@@ -80,9 +80,11 @@
 	.cs-search-btn:hover{
 		background-color: #F5F5F5;
 	}
-	
+	a{
+	color : white;
+	}
 	a:hover {
-	color:black;
+	color:#ff7f00;
 	}
 	 
 	#list:hover tr:hover td{

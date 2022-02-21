@@ -4,7 +4,7 @@
 <mapper namespace="JEDao">
 
 	<select id="JEProductTotal" resultType="int">
-		SELECT count(*) FROM product p
+		SELECT count(*) FROM product
 	</select>
 	
 	<select id="JEProductListAll" parameterType="Product" resultType="Product">
@@ -155,6 +155,12 @@
 		WHERE o.id = #{id}
 		AND o.orderId = #{orderId}
 	</select>
+
+	<select id="cartCheck" resultType="int" parameterType="Cart">
+		select count(*) from cart where pno = #{pno}
+	</select>
 	
 </mapper>
+
+
 

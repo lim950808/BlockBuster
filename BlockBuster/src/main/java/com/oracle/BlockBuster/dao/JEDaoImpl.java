@@ -294,6 +294,16 @@ public class JEDaoImpl implements JEDao {
 		return orderCheck;
 	}
 
-
-	 
+	@Override
+	public int checkRepetition(Cart cart) {
+			int checkRepetition = 0;
+			try {
+				checkRepetition = session.selectOne("cartCheck", cart);
+				//orderCheck 1이상 일 때 중복으로 판단
+				//0일때 카드 담기 가능
+			}catch(Exception e) {
+				System.out.println("checkRepetition Exception: " + e.getMessage());
+			}
+			return checkRepetition;
+		}
 }

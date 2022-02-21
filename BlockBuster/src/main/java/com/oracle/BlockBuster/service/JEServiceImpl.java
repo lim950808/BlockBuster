@@ -190,6 +190,12 @@ public class JEServiceImpl implements JEService {
 		return orderCheck;
 	}
 
+	@Override
+	public int checkRepetition(Cart cart) {
+		int checkNum = jd.checkRepetition(cart);
+		return checkNum;
+	}
+
 
 	
 

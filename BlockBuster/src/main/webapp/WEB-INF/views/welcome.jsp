@@ -11,15 +11,15 @@
   <meta content="" name="keywords">
 
   <!-- Vendor CSS Files -->
-  <link href="/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="/css/style.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
   
 <style type="text/css">
 	 
@@ -99,7 +99,7 @@
      
           <!-- Slide 1 -->
           <div class="carousel-item active">
-            <div class="carousel-background"><video src="/resources/video/IronMan_last.mp4" class="vid-bg" autoplay loop muted></video>    <!-- <img src="" alt=""> --></div>
+            <div class="carousel-background"><video src="${pageContext.request.contextPath}/resources/video/IronMan_last.mp4" class="vid-bg" autoplay loop muted></video>    <!-- <img src="" alt=""> --></div>
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to<br><span>BLOCKBUSTER</span></h2><br>
@@ -112,7 +112,7 @@
 <!--             <div class="logo"><b><h1>BLOCKBUSTER</h1></b></div> -->
           <!-- Slide 2 -->
           <div class="carousel-item">
-            <div class="carousel-background"><video src="/resources/video/Zootopia.mp4" class="vid-bg" autoplay loop muted></video><!-- <img src="" alt=""> --></div>
+            <div class="carousel-background"><video src="${pageContext.request.contextPath}/resources/video/Zootopia.mp4" class="vid-bg" autoplay loop muted></video><!-- <img src="" alt=""> --></div>
             <div class="carousel-container">
               <div class="carousel-content">
                  <h2 class="animate__animated animate__fadeInDown">환영합니다!</h2>
@@ -124,7 +124,7 @@
 
           <!-- Slide 3 -->
           <div class="carousel-item">
-            <div class="carousel-background"><video src="/resources/video/Transformers05.mp4" class="vid-bg" autoplay loop muted></video><!-- <img src="" alt=""> --></div>
+            <div class="carousel-background"><video src="${pageContext.request.contextPath}/resources/video/Transformers05.mp4" class="vid-bg" autoplay loop muted></video><!-- <img src="" alt=""> --></div>
             <!-- <div class="logo"><b><h1>BLOCKBUSTER</h1></b></div> -->
             <div class="carousel-container">
               <div class="carousel-content">
@@ -150,10 +150,10 @@
   </section><!-- End Hero -->
   
     <!-- Vendor JS Files -->
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="/js/main.js"></script>
+  <script src="${pageContext.request.contextPath}/js/main.js"></script>
   
 </body>
 </html>

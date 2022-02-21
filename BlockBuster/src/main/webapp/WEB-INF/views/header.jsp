@@ -334,7 +334,7 @@ body {
 <!-- ------------------------------ logo --------------------------------------- --> 	
 		<div class="logo">
 			  <!-- <a href="../main" style="margin-top: 15px; padding-bottom: 0px;"><b><span>BlockBuster</span></b></a> -->
-			  <a href="../main" style="padding-bottom: 0px;"><img src="${pageContext.request.contextPath}/resources/img/logoBangers.jpg" width="450" height="60"></a>
+			  <a href="${pageContext.request.contextPath}/main" style="padding-bottom: 0px;"><img src="${pageContext.request.contextPath}/resources/img/logoBangers.jpg" width="450" height="60"></a>
 		</div>
 	
 	<%--   <a href="${pageContext.request.contextPath}/login" type="hidden"></a> --%>
@@ -360,38 +360,38 @@ body {
 	      <div class="rowJE">
 	        <div class="columnJE">
 	          <a href="${pageContext.request.contextPath}/CategoryList?c=1000"><h3>영화</h3></a>
-	          <a href="/GenreList?g=1100">공포</a>
-	          <a href="/GenreList?g=1200">액션</a>
-	          <a href="/GenreList?g=1300">범죄/스릴러</a>
-	          <a href="/GenreList?g=1400">전쟁</a>
-	          <a href="/GenreList?g=1500">판타지/SF</a>
-	          <a href="/GenreList?g=1600">코미디</a>
-	          <a href="/GenreList?g=1700">멜로/로멘스</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=1100">공포</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=1200">액션</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=1300">범죄/스릴러</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=1400">전쟁</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=1500">판타지/SF</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=1600">코미디</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=1700">멜로/로멘스</a>
 	        </div>
 	        <div class="columnJE">
 	          <a href="${pageContext.request.contextPath}/CategoryList?c=2000"><h3>드라마</h3></a>
-	          <a href="/GenreList?g=2100">미드</a>
-	          <a href="/GenreList?g=2200">일드</a>
-	          <a href="/GenreList?g=2300">한드</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=2100">미드</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=2200">일드</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=2300">한드</a>
 	        </div>
 	        <div class="columnJE">
 	          <a href="${pageContext.request.contextPath}/CategoryList?c=3000"><h3>예능</h3></a>
-	          <a href="/GenreList?g=3100">KBS</a>
-	          <a href="/GenreList?g=3200">SBS</a>
-	          <a href="/GenreList?g=3300">MBC</a>
-	          <a href="/GenreList?g=3400">TVN</a>
-	          <a href="/GenreList?g=3500">JTBC</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=3100">KBS</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=3200">SBS</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=3300">MBC</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=3400">TVN</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=3500">JTBC</a>
 	        </div>
 	        <div class="columnJE">
 	          <a href="${pageContext.request.contextPath}/CategoryList?c=4000"><h3>다큐</h3></a>
-	          <a href="/GenreList?g=4100">The History Channel</a>
-	          <a href="/GenreList?g=4200">Discovery Channel</a>
-	          <a href="/GenreList?g=4300">National Geographic</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=4100">The History Channel</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=4200">Discovery Channel</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=4300">National Geographic</a>
 	        </div>
 	        <div class="columnJE">
 	          <a href="${pageContext.request.contextPath}/CategoryList?c=5000"><h3>애니</h3></a>
-	          <a href="/GenreList?g=5100">디즈니</a>
-	          <a href="/GenreList?g=5200">지브리</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=5100">디즈니</a>
+	          <a href="${pageContext.request.contextPath}/GenreList?g=5200">지브리</a>
 	        </div>
 	      </div>
 	    </div>
@@ -401,7 +401,7 @@ body {
 	  	<button class="dropbtnJE">게시판</button>
 	  		<div class="dropdown-contentJE">
 	    		<a href="${pageContext.request.contextPath}/reviewList"><h2>Review</h2></a>
-	    		<a href="/FAQ/listCB"><h2>FAQ</h2></a>
+	    		<a href="${pageContext.request.contextPath}/FAQ/listCB"><h2>FAQ</h2></a>
 	  		</div>
 	</div>
 	  
@@ -415,8 +415,8 @@ body {
 			<c:when test="${sessionScope.sessionId != 'admin' }">
 		  	<button class="dropbtnJE">마이페이지</button>
 		  		<div class="dropdown-contentJE">
-		    		<a href="/member/myinfo" style="margin-top: 10px;""><h5>내 정보</h5></a>
-		    		<a href="/Order/orderList" style="margin-top: 10px;"><h5>구매내역</h5></a>
+		    		<a href="${pageContext.request.contextPath}/member/myinfo" style="margin-top: 10px;""><h5>내 정보</h5></a>
+		    		<a href="${pageContext.request.contextPath}/Order/orderList" style="margin-top: 10px;"><h5>구매내역</h5></a>
 		    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}"style="margin-top: 10px;"><h5>실시간 채팅</h5></a>
 		    		<a href="${pageContext.request.contextPath}/RestAPI" style="margin-top: 10px;"><h5>API 제공</h5></a>
 		    		<a href="${pageContext.request.contextPath}/logout.do" style="margin-top: 10px;"><h5>로그아웃</h5></a>
@@ -428,8 +428,8 @@ body {
 		  		<div class="dropdown-contentJE">
 		    		<a href="${pageContext.request.contextPath}/chat?id=${sessionScope.sessionId}" style="margin-top: 10px;"><h5>고객 채팅</h5></a> 
 		    		<a href="${pageContext.request.contextPath}/RestAPI" style="margin-top: 10px;"><h5>API 제공</h5></a>
-		    		<a href="/Admin/productList" style="margin-top: 10px;"><h5>관리자 상품관리</h5></a>
-		    		<a href="/Admin/viewallMember" style="margin-top: 10px;"><h5>관리자 회원관리</h5></a>
+		    		<a href="${pageContext.request.contextPath}/Admin/productList" style="margin-top: 10px;"><h5>관리자 상품관리</h5></a>
+		    		<a href="${pageContext.request.contextPath}/Admin/viewallMember" style="margin-top: 10px;"><h5>관리자 회원관리</h5></a>
 		    		<a href="${pageContext.request.contextPath}/logout.do" style="margin-top: 10px;"><h5>로그아웃</h5></a>
 		  		</div>
 		  	</c:when>
@@ -470,7 +470,7 @@ body {
 	<c:choose>
 		<c:when test="${sessionScope.sessionId != 'admin' }">
 		 <div class="dropdownJE"> 
-		 	<a href="/Cart/cartList"><i class="fa fa-shopping-cart"></i></a>
+		 	<a href="${pageContext.request.contextPath}/Cart/cartList"><i class="fa fa-shopping-cart"></i></a>
 		 </div>
 		</c:when>
 	</c:choose>

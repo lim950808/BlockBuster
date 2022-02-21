@@ -78,6 +78,10 @@ public interface JEService {
 
 	//중복 카트담기 금지
 	int orderCheck(Product orderProduct);
+
+	int checkRepetition(Cart cart);
+
+
 	
 //	//구매내역
 //	List<Payment> orderCartList(String member);

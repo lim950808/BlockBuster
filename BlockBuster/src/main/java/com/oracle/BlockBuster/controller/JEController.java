@@ -245,24 +245,30 @@ public class JEController {
 	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
 	public int addCart(Cart cart, HttpSession session, int pno, Model model) throws Exception {
 		int result = 0;
-		System.out.println("addCart start...");
-		
-		String id = (String)session.getAttribute("sessionId");
-		System.out.println("addCart id->"+id);
-		//로그인 여부 구분
-	    if(id != null) {
-			cart.setId(id);
-			js.addCart(cart);
-			result = 1;
+		//카트에 중복된 영상 예외처리
+		System.out.println("cart.pno => "+cart.getPno());
+		int checkRepetition = js.checkRepetition(cart);
+		System.out.println("checkNum => " +checkRepetition);
+		if(checkRepetition == 0) { //카트 테이블에 중복된 영상 없을때
+			System.out.println("addCart start...");
+			String id = (String)session.getAttribute("sessionId");
+			System.out.println("addCart id->"+id);
+			//로그인 여부 구분
+		    if(id != null) {
+				cart.setId(id);
+				js.addCart(cart);
+				result = 1;
+			}
+		}else if(checkRepetition >= 1){ //카트 테이블에 중복된 영상 있을때 
+			result = 2; //
 		}
 	    
-	    //중복 구매 불가
-	    Product orderProduct = new Product();
-	    orderProduct.setPno(pno);
-	    orderProduct.setId(id);
-	    int orderCheck = js.orderCheck(orderProduct);
-	    System.out.println("orderCheck: " + orderCheck);
-	    model.addAttribute("orderCheck", orderCheck);
+		/*
+		 * //중복 구매 불가 Product orderProduct = new Product(); orderProduct.setPno(pno);
+		 * orderProduct.setId(id); int orderCheck = js.orderCheck(orderProduct);
+		 * System.out.println("orderCheck: " + orderCheck);
+		 * model.addAttribute("orderCheck", orderCheck);
+		 */
 	    
 	    
 	    

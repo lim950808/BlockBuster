@@ -20,7 +20,6 @@ body{
 	justify-content: center;
 	align-items: center;
 	height: 100vh;	
-
 }
 body::before{
 	content: "";
@@ -38,7 +37,6 @@ body::before{
 	min-width: 100%;
 	min-height: 100%;
 }
-
 .img-bg{
 	position: absolute;
 	right: 0;
@@ -46,10 +44,7 @@ body::before{
 	min-width: 100%;
 	min-height: 100%;
 }
-
 /* login-form  */
-
-
 .login-form{
 	position: relative;
 	z-index: 2;
@@ -63,12 +58,10 @@ body::before{
 	text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff7f00,
     0 0 82px #ff7f00, 0 0 92px #ff7f00, 0 0 102px #ff7f00, 0 0 151px #ff7f00;
 }
-
 /* .login-form span {
 	color: red;
 	font-size: 38px;
 } */
-
 .int-area{
 	width: 400px;
 	position: relative;
@@ -112,7 +105,6 @@ body::before{
 	font-size: 13px; 
 	color: #ff7f00;
 }
-
 .btn-area{
 	margin-top: 30px;	
 }
@@ -135,7 +127,6 @@ body::before{
 	color: #999;
 	text-decoration: none;
 }
-
 p {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -144,7 +135,6 @@ p {
 .text-primary {
     color: #ff7f00!important;
 }
-
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -199,7 +189,7 @@ function checkIdPw(){
 	<!-- <video src="/resources/video/IronManBattle.mp4" class="vid-bg" autoplay loop muted></video> -->
 
 <!-- background img -->
-	<img alt="background img" class="img-bg" src="/resources/img/벽돌배경02.jpg" />
+	<img alt="background img" class="img-bg" src="${pageContext.request.contextPath}/resources/img/벽돌배경02.jpg" />
 	 
 <section class="login-form">
 	<h1 align="center">LOGIN</h1>

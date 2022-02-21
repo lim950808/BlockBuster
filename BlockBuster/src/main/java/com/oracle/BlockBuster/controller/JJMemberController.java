@@ -36,7 +36,7 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	@Autowired
 	private loginCheck loginCheck;
 	
-	@GetMapping(value = "welcome")
+	@GetMapping(value = "/")
 	public String welcome() {
 		logger.info("welcome 시작");
 		return "welcome";

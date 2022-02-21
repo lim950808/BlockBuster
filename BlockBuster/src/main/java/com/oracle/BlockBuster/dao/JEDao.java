@@ -81,6 +81,8 @@ public interface JEDao {
 	//카트 중복담기 금지
 	int orderCheck(Product orderProduct);
 
+	int checkRepetition(Cart cart);
+
 
 
 }
