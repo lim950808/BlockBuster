@@ -8,9 +8,6 @@
 
 <style>
 	
-	hr{
-		background-color: #ff7f00; 
-	}
 	table{
 		width : 80%
 	}
@@ -25,6 +22,17 @@
   		color : white;
 	}
 	
+	.thChange th{
+	border:0px;
+	}
+	
+	.table th, .table td{
+		vertical-align:middle;
+		font-size:1rem;
+	}
+	.table td{
+		height:60px;
+	}
 	
 	.search-input input{
 	    background-color: #2f2f2f;
@@ -60,7 +68,6 @@
 	.cs-search-btn{
 		background-color: #747474;
 		font: 12px sans-serif;
-		/* font-weight: bold; */
 	  	text-align: center;
 	  	text-decoration: none;
 		color: black;
@@ -72,10 +79,6 @@
 	  	margin: 4px 2px;
 	  	display: inline-block;
 	  	cursor: pointer;
-	  	
-	  	/* border-radius: 8px;
-	  	color: #ff7f00;
-	  	text-align: center; */
 	}
 	.cs-search-btn:hover{
 		background-color: #F5F5F5;
@@ -90,14 +93,50 @@
 	#list:hover tr:hover td{
     background: #F5F5F5;
     color: black;
-}
-	
-	.thChange th{
-		border:0px;
+    }
+    
+    h2 {
+	    font-size: 60px;
+	    font-weight: bold;
+	    font-family: 'Montserrat', sans-serif;
+	    text-align: left;
+	    color: #fff;
+	    position: relative;
+	    padding: 20px;
+    }
+
+	#rev a{
+		text-decoration: none;
 	}
+	#rev a:hover{
+		color:#000;
+	}
+
+	#rev{
+	    min-width: 100%;
+	    min-height: 100%;
+		color: #b3b3b3;
+		font-size: 20px;
+		font-weight: bold;
+		text-align: center;
+		text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff7f00,
+	    0 0 82px #ff7f00, 0 0 92px #ff7f00, 0 0 102px #ff7f00, 0 0 151px #ff7f00;   
+	}	
 
 </style>
 
+<script type="text/javascript">
+
+	function searchCheck(){
+		
+		if(keyword.value.length == 0){
+			alert("검색어를 입력해주세요.");
+			keyword.focus();
+			return;
+		} 
+		$('#form1').submit();
+	}
+	</script>
 
 
 <title>리뷰게시판</title></head>
@@ -109,13 +148,10 @@
  	    <input type="hidden" name="boardKind" value="$(boardKind)">
   
   
-  	<h1 style="color:white;"><b>Review</b></h1>
-<pre>
+  	<h2 style="color:white;"><b>Review</b></h2>
 
-</pre>
 	<div align="center">
   	
-		 <%-- <h1>세션아이디 : ${sessionScope.sessionId}</h1>  --%>
 		<!-- 게시글 리스트 출력 -->
 		<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 		
@@ -129,39 +165,44 @@
 					<th scope="row"><b>조회수</b></th>
 					<th scope="row"><b>등록일</b></th>
 				</tr>
-			
-			<c:forEach var="reviewList" items="${reviewList}">
-			
-				<tr class="list2" style="text-align: center;">
-						<td>${reviewList.r_no}</td>
-						<td style="text-align: left;" onclick="location.href='${pageContext.request.contextPath}/reviewDetailSH?r_no=${reviewList.r_no}'">[${reviewList.title}]&nbsp;${reviewList.r_title}&nbsp;[${reviewList.commentCnt}]</td>
-						<td>${reviewList.good}</td>
-						<td>${reviewList.nickName}</td>
-						<td>${reviewList.r_hit}</td>
-						<td>${reviewList.r_date}</td>
-				</tr>
-				
-				<c:set var="num" value="${num - 1}"></c:set>
-				
-			</c:forEach>
-			
+			<c:choose>
+				<c:when test="${searchResult eq 0 || reviewProListResult eq 0 || reviewListResult eq 0}">
+					<tr>
+						<td colspan="6" style="text-align: center;">검색 결과가 없습니다.  첫 번째 리뷰의 주인공이 되어 주세요.</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="reviewList" items="${reviewList}">
+					
+						<tr class="list2" style="text-align: center;">
+								<td>${reviewList.r_no}</td>
+								<td style="text-align: left;" onclick="location.href='${pageContext.request.contextPath}/reviewDetailSH?r_no=${reviewList.r_no}'">[${reviewList.title}]&nbsp;${reviewList.r_title}&nbsp;[${reviewList.commentCnt}]</td>
+								<td>${reviewList.good}</td>
+								<td>${reviewList.nickName}</td>
+								<td>${reviewList.r_hit}</td>
+								<td>${reviewList.r_date}</td>
+						</tr>
+						
+						<c:set var="num" value="${num - 1}"></c:set>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</table>
 	</div>
 	
 	<br>
 	
-		<hr><br>
 	<div align="center">	
 	    <!-- 검색기능 -->
-		<form class="search-input" name="form1" method="post" action="search">
+		<form class="search-input" id="form1" name="form1" method="post" action="search">
 			<select name="search_option">
 		        <option value="title">영상제목</option>
 				<option value="r_title">글제목</option>
 				<option value="nickName">작성자</option>
 		    </select>
-		    <input name="keyword" value="">
+		    <input id="keyword" name="keyword" value="">
 		    <input type="hidden" name="Search_option" value="$(Search_option)">
-		    <button type="submit" class="cs-search-btn" value="검색">검색</button>
+		    <button type="button"  onclick="searchCheck(); return false;" class="cs-search-btn" value="검색">검색</button>
 		</form>
 		
 		
@@ -211,12 +252,13 @@
 				
 		</c:choose>
 		
-		
+	<br><br>
 		
 	  <!-- 기타버튼 -->
-	  <div>	
+	  <div id="rev">	
 		<c:choose>
 		    <c:when test="${pno eq null}">
+		    	<a href="javascript:window.history.back();">뒤로가기</a> &nbsp;|&nbsp;
 				<a href="reviewWriteForm">리뷰남기기</a>
 		    </c:when>
 		    <c:otherwise>
@@ -227,7 +269,7 @@
 		<br>
 	  </div>
 	</div>
+	<br><br><%@include file="../footer.jsp" %>
 	</div>
-<br><br><%@include file="../footer.jsp" %>
 </body>
 </html>

@@ -47,18 +47,18 @@
 				
 				success : function(data){
 					if(data==0){
-						alert("영상 제목을 확인해 주세요.");
-						title.value.focus();
+						alert("영상 제목을 정확히 입력해주세요.");
+						words.focus();
 						return;
 					}
 					if(r_title.value.length == 0){
 						alert("제목을 입력해주세요.");
-						r_title.value.focus();
+						r_title.focus();
 						return;
 					}
 					if(r_content.value.length == 0){
 						alert("내용을 입력해주세요.");
-						r_content.value.focus();
+						r_content.focus();
 						return;
 					}
 					$('#frm').submit();
@@ -101,7 +101,7 @@
 			
 			<div class="row card-body" style="text-align: left;" >
 				<div class="col-sm-12 col-xs-12">
-					<input id="imgFile" name="imgFile" type="file"/>
+					<input style="height: 42px;" class="form-control" id="imgFile" name="imgFile" type="file"/>
 				</div>
 			</div>
 	

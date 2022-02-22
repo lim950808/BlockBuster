@@ -13,16 +13,16 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
 
 <script type="text/javascript">
 function getRecommendWords(){
 	$('#searchingist1').remove();
+	$('#lengthCheck').remove();
 	var str="";
 	var str2="";
-	var i= 1;
 	$.ajax({
 				url : "${pageContext.request.contextPath}/rcmdSearchWord",
 				dataType:'json',
@@ -30,8 +30,6 @@ function getRecommendWords(){
 					str += "<datalist id='searchingist1'>"
 					$(data).each( 
 							function(){
-								console.log(i);
-								i += 1;
                                 if  (this.title  != null ) {
                                 	str2 = str2 + "<option value='"+this.title+"'/>"
                                 }
@@ -63,6 +61,19 @@ function getRecommendWords(){
 			}
 		);
 }
+function wordlengthCheck(){
+	$(document).ready(function(){
+	var searchWord = $('#words1').val();
+	if(searchWord.length == 1){
+		 var result = "<p id='lengthCheck' align='center' style='color: #ff7f00;'>&ensp;&emsp;&emsp;&emsp;두 글자 이상 입력하셔야 검색이 가능합니다.</p>";
+		  $(result).insertAfter("#lengthChecker");
+	}else{
+		var form = document.form;
+		form.submit();
+	} 
+	});
+	return true;
+}
 </script>
 <style>
 * {
@@ -72,8 +83,6 @@ function getRecommendWords(){
 body {
 	margin: 0;
 }
-
-
 
 .navbarJE {
 	overflow: hidden;
@@ -188,11 +197,6 @@ body {
 	z-index: 10;
 	margin-top: 35px;
 	border-top: 1px solid #ff7f00;
-	/* -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    transition: all .3s ease; */
 }
 
 .dropdown-contentJE .headerJE {
@@ -325,10 +329,11 @@ body {
 	
 <!-- ------------------------------ 검색기능 --------------------------------------- --> 	      
       	<div class="searchJE">	
-      	<form name="form" class="exampleJE" id="search" action="${pageContext.request.contextPath}/HTGetSearchResult" method="post">
-			<input dir="auto" type="text" placeholder="  키워드를 입력하세요" name="keyword" id="words1" list="searchingist1" onfocus="getRecommendWords()" autofocus="autofocus" tabindex="1" autocorrect="off" autofill="off" autocomplete="off" spellcheck="false">
-			<button type="submit" value="fa fa-search"><i class="fa fa-search"></i></button>
+      	<form name="form" class="exampleJE" id="search" action="${pageContext.request.contextPath}/HTGetSearchResult" method="get" onsubmit="wordlengthCheck(); return false;">
+			<input type="text" placeholder="  키워드를 입력(두 글자 이상)" name="keyword" id="words1" list="searchingist1" onfocus="getRecommendWords()" autofocus="autofocus">
+			<button type="submit" value="fa fa-search" id="lengthChecker"><i class="fa fa-search"></i></button>
 		</form>
+			
 		</div>
 
 <!-- ------------------------------ logo --------------------------------------- --> 	
@@ -405,10 +410,7 @@ body {
 	  		</div>
 	</div>
 	  
-	  
-	  
-	  
-	  
+
 	  <div class="dropdownJE">
 <!-- ------------------------------ 마이페이지 & admin 권한 설정하기 --------------------------------------- --> 
 		<c:choose>
@@ -436,37 +438,6 @@ body {
 		</c:choose>
 	</div>
 	  		
-	  <%-- 
-	  		<button class="dropbtnJE">마이페이지</button>
-	  		<div class="dropdown-contentJE">
-	    		<a href="/member/myinfo">내 정보</a>
-	    		<a href="/Order/list">구매내역</a>
-	    		<a href="chat?id=${param.id}">1:1 문의</a>
-	    		<a href="${pageContext.request.contextPath}/RestAPI">Rest API</a> --%>
-	  
-<!-- ------------------------------ admin 권한 설정하기 --------------------------------------- --> 	
-		<%-- 
-			<c:if test="${sessionScope.sessionId eq 'admin' }"> 
-	    		<a href="/Admin/productList">관리자 상품관리</a>
-	    		<a href="/Admin/viewallMember">관리자 회원관리</a>
-	    	</c:if>
-	    		<a href="#">로그아웃</a>
-	  		</div> 
-	  	--%>
-	
-	 <%-- <c:if test="${sessionId == 'admin' }"> 써서 admin 처리 --%>
-	  <!-- <div class="dropdown">
-	  	<button class="dropbtn">Admin</button>
-	  		<div class="dropdown-content">
-	    		<a href="#">회원관리</a>
-	    		<a href="/Admin/productList">영상관리</a>
-	    		<a href="#">1:1 문의</a>
-	    		<a href="#">로그아웃</a>
-	  		</div>
-	  </div> -->
-	  
-<!-- ------------------------------ cart --------------------------------------- -->
-	<!-- admin일땐 장바구니 이모티콘 안보임 -->  
 	<c:choose>
 		<c:when test="${sessionScope.sessionId != 'admin' }">
 		 <div class="dropdownJE"> 
@@ -474,23 +445,7 @@ body {
 		 </div>
 		</c:when>
 	</c:choose>
-	 
-	  <!-- <form>
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-      </form> -->
-<!-- ------------------------------ 검색기능 --------------------------------------- --> 	      
-      	<%-- <div class="dropdownJE">	
-      	<form name="form" class="exampleJE" id="search" action="${pageContext.request.contextPath}/HTGetSearchResult" method="post">
-			<input type="text" placeholder="키워드를 입력하세요" name="keyword" id="words1" list="searchingist1" onfocus="getRecommendWords()" autofocus="autofocus">
-			<button type="submit"><i class="fa fa-search"></i></button>
-		</form>
-		</div> --%>
-		
-<!-- ------------------------------ 아이디 표시 --------------------------------------- -->		
-		<%-- <div class="dropdownJE">
-			<h5>${ sessionScope.sessionId}님 환영합니다</h5>
-	  	</div> --%>
+
 	</div>
 </div>
 </body>

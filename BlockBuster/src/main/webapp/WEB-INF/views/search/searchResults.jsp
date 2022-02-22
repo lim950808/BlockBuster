@@ -161,7 +161,7 @@
 </div>
 </c:when>
 
-<c:when test="${not empty keyword && cnt eq '0'}">
+<c:when test="${not empty keyword && cnt eq '0' && keyword != ''}">
 <div class="container">
 <table class="table table-bordered">
 <tr><th><span id="noneKeyword">'${keyword}'</span>에 대한 검색결과가 없습니다.</th></tr>
@@ -188,6 +188,8 @@
 <pre>
 
 </pre>
+<div class="container">
 <%@ include file="../footer.jsp" %>
+</div>
 </body>
 </html>

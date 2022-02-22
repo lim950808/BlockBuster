@@ -167,7 +167,7 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "forward:welcome";
+		return "forward:/";
 		
 	}
 }

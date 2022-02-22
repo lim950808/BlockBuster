@@ -60,22 +60,17 @@ public class SHReviewController {
 		model.addAttribute("pg",pg);
 		model.addAttribute("total", total);
 		
-		if(searchModel.getKeyword() == null) {
-			System.out.println("search 결과 : null");
-			model.addAttribute("keyword",searchModel.getKeyword());
-			
-		}else {
-			System.out.println("searchModel.getSearch_option() : " +searchModel.getSearch_option() );
-			System.out.println("searchModel.getKeyword() : "+ searchModel.getKeyword() );
-			System.out.println("searchResult.size() : "+searchResult.size());
-			model.addAttribute("list", "정상 검색되었습니다..");
-			
-			model.addAttribute("reviewList",searchResult); // 심플
-			model.addAttribute("keyword",searchModel.getKeyword()); //쉬운방법
-			model.addAttribute("boardKind", "검색");
-			model.addAttribute("Search_option",searchModel.getSearch_option()); //쉬운방법
-		}
-		return "Review/reviewListSH";
+		logger.info("searchModel.getSearch_option() : " +searchModel.getSearch_option());
+		logger.info("searchModel.getKeyword() : "+ searchModel.getKeyword() );
+		logger.info("searchResult.size() : "+searchResult.size());
+		
+		model.addAttribute("searchResult", searchResult.size());
+		model.addAttribute("reviewList",searchResult); // 심플
+		model.addAttribute("keyword",searchModel.getKeyword()); //쉬운방법
+		model.addAttribute("boardKind", "검색");
+		model.addAttribute("Search_option",searchModel.getSearch_option()); //쉬운방법
+
+			return "Review/reviewListSH";
 	}
 	
 	
@@ -99,7 +94,9 @@ public class SHReviewController {
 		logger.info("[2-3-1] reviewList() 시작");
 		
 		List<SHReviewModel> reviewList = SHservice.reviewList(SHreviewModel);
-	    System.out.println("SHReviewController reviewList reviewList.size()->"+reviewList.size());
+	    System.out.println("reviewList.size()->"+reviewList.size());
+	    
+	    model.addAttribute("reviewListResult", reviewList.size());
 		model.addAttribute("reviewList", reviewList);
 		
 		model.addAttribute("pg",pg);
@@ -120,7 +117,6 @@ public class SHReviewController {
 		
 		System.out.println("상품페이지로부터 온 pno : "+pno);
 		
-		
 		//Paging 호출
 		logger.info("[3-1-1] totalPro() 시작");
 		int total = SHservice.totalPro(pno);
@@ -135,8 +131,10 @@ public class SHReviewController {
 			
 		//list 호출
 		logger.info("[3-3-1] reviewProductList() 시작");
-		List<SHReviewModel> reviewList = SHservice.reviewProductList(SHreviewModel);
-		model.addAttribute("reviewList", reviewList);
+		List<SHReviewModel> reviewProList = SHservice.reviewProductList(SHreviewModel);
+		model.addAttribute("reviewList", reviewProList);
+		System.out.println("reviewProList.size()->"+reviewProList.size());
+		model.addAttribute("reviewProListResult", reviewProList.size());
 		
 		logger.info("[3-4-1] pnoToTitle() 시작");
 		String title = SHservice.pnoToTitle(pno);

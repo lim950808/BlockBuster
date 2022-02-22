@@ -23,12 +23,14 @@ public class HTController {
 	private HTService hts;
 	
 	//검색어를 통해 결과 가져오는 메서드
-	@PostMapping(value="HTGetSearchResult")
+	@RequestMapping(value="HTGetSearchResult")
 	public String HTGetSearchResult(String keyword, Model model) {
 		//검색어가 있을 때 
-		
-		if(keyword.equals("") || keyword.equals(null)) {
+		String keyword2 = keyword;
+		keyword2 = keyword2.replaceAll(" ", ""); //공백 제거를 통해 띄어쓰기만 들어 오는지 확인 절차
+		if(keyword.equals("") || keyword.equals(null) ||  keyword2.equals("") || keyword2.equals(null)) {
 			int searchCnt = 0;
+			keyword = keyword.replaceAll(" ", "");
 			model.addAttribute("keyword",keyword);
 			model.addAttribute("searchCnt",searchCnt);
 			return "/search/searchResults";
@@ -93,59 +95,62 @@ public class HTController {
 	@RequestMapping(value="HTGetPdtSearchResult") 
 	public String GetPdtSearchResult(PdtSearchVo pvo, Model model) {
 		System.out.println("HTController의 rcmdSearchWord메서드 시작...");
-		//검색어가 있을 때
-		if(!pvo.getKeyword().equals("") || !pvo.getKeyword().equals(null)) {
-		int searchCnt = hts.GetPdtSearchCount(pvo); //검색어로 조회한 장르 구분없는 카테고리 검색 결과 갯수
-		List<Product> productsList = hts.GetPdtSearchResult(pvo); //검색어로 조회한 장르 구분없는 카테고리 검색 결과 리스트
-		System.out.println("HTController의 rcmdSearchWord메서드의 searchCnt : "+searchCnt);
-		System.out.println("HTController의 rcmdSearchWord메서드의 productsList.size() : "+productsList.size());
+
+		String keyword = pvo.getKeyword();
+		keyword = keyword.replaceAll(" ", ""); //공백 제거를 통해 띄어쓰기만 들어 오는지 확인 절차
 		
-		//조건별
-		if(pvo.getCategory().equals("1000")) { 
-			//검색어를 통한 영화 모든 장르별 결과 갯수 받아올 map객체
-			HashMap<String, String> mTotalCnt = hts.mTotalCnt(pvo);
-				model.addAttribute("mHorrorCnt",mTotalCnt.get("1100"));
-				model.addAttribute("mActionCnt",mTotalCnt.get("1200"));
-				model.addAttribute("mCrimeCnt",mTotalCnt.get("1300"));
-				model.addAttribute("mWarCnt",mTotalCnt.get("1400")); 
-				model.addAttribute("mSFCnt",mTotalCnt.get("1500"));
-				model.addAttribute("mComedyCnt",mTotalCnt.get("1600"));
-				model.addAttribute("mRomanceCnt",mTotalCnt.get("1700")); 
-				model.addAttribute("mc",hts.GetPdtSearchCount(pvo));
-		 }else if(pvo.getCategory().equals("2000")) { 
-			HashMap<String, String> dTotalCnt = hts.dTotalCnt(pvo);
-				model.addAttribute("dUsCnt",dTotalCnt.get("2100"));
-				model.addAttribute("dJpnCnt",dTotalCnt.get("2200"));
-				model.addAttribute("dKorCnt",dTotalCnt.get("2300"));
-				model.addAttribute("dc",hts.GetPdtSearchCount(pvo));
-		 }else if(pvo.getCategory().equals("3000")) { 
-			HashMap<String, String> eTotalCnt = hts.eTotalCnt(pvo);
-				model.addAttribute("eKbsCnt",eTotalCnt.get("3100"));
-				model.addAttribute("eSbsCnt",eTotalCnt.get("3200"));
-				model.addAttribute("eMbcCnt",eTotalCnt.get("3300"));
-				model.addAttribute("eTvnCnt",eTotalCnt.get("3400"));
-				model.addAttribute("eJtbcCnt",eTotalCnt.get("3500"));
-				model.addAttribute("ec",hts.GetPdtSearchCount(pvo));
-		 }else if(pvo.getCategory().equals("4000")) { 
-			HashMap<String, String> dcTotalCnt = hts.dcTotalCnt(pvo);
-				model.addAttribute("dHisCnt",dcTotalCnt.get("4100"));
-				model.addAttribute("dDscvCnt",dcTotalCnt.get("4200"));
-				model.addAttribute("dNgpCnt",dcTotalCnt.get("4300"));
-				model.addAttribute("doc",hts.GetPdtSearchCount(pvo));
-		 }else if(pvo.getCategory().equals("5000")) { 
-			HashMap<String, String> aTotalCnt = hts.aTotalCnt(pvo); 
-				model.addAttribute("aDCnt",aTotalCnt.get("5100"));
-				model.addAttribute("aJCnt",aTotalCnt.get("5200"));
-				model.addAttribute("ac",hts.GetPdtSearchCount(pvo));
-		}
-		//필수
-		model.addAttribute("productsList", productsList);
-		model.addAttribute("searchCnt", searchCnt);
-		model.addAttribute("keyword", pvo.getKeyword());
-		return "/search/productsResults";		
-	}else {//검색어가 null  일때
-		model.addAttribute("keyword",pvo.getKeyword());
-		return "/search/productsResults";			
+		if(keyword.equals("") || keyword.equals(null)) {//검색어가 null  일때
+			model.addAttribute("keyword","");
+			return "/search/productsResults";
+		}else{// 검색어가 있을 때 
+			int searchCnt = hts.GetPdtSearchCount(pvo); //검색어로 조회한 장르 구분없는 카테고리 검색 결과 갯수
+			List<Product> productsList = hts.GetPdtSearchResult(pvo); //검색어로 조회한 장르 구분없는 카테고리 검색 결과 리스트
+			System.out.println("HTController의 rcmdSearchWord메서드의 searchCnt : "+searchCnt);
+			System.out.println("HTController의 rcmdSearchWord메서드의 productsList.size() : "+productsList.size());
+			
+			//조건별
+			if(pvo.getCategory().equals("1000")) { 
+				//검색어를 통한 영화 모든 장르별 결과 갯수 받아올 map객체
+				HashMap<String, String> mTotalCnt = hts.mTotalCnt(pvo);
+					model.addAttribute("mHorrorCnt",mTotalCnt.get("1100"));
+					model.addAttribute("mActionCnt",mTotalCnt.get("1200"));
+					model.addAttribute("mCrimeCnt",mTotalCnt.get("1300"));
+					model.addAttribute("mWarCnt",mTotalCnt.get("1400")); 
+					model.addAttribute("mSFCnt",mTotalCnt.get("1500"));
+					model.addAttribute("mComedyCnt",mTotalCnt.get("1600"));
+					model.addAttribute("mRomanceCnt",mTotalCnt.get("1700")); 
+					model.addAttribute("mc",hts.GetPdtSearchCount(pvo));
+			 }else if(pvo.getCategory().equals("2000")) { 
+				HashMap<String, String> dTotalCnt = hts.dTotalCnt(pvo);
+					model.addAttribute("dUsCnt",dTotalCnt.get("2100"));
+					model.addAttribute("dJpnCnt",dTotalCnt.get("2200"));
+					model.addAttribute("dKorCnt",dTotalCnt.get("2300"));
+					model.addAttribute("dc",hts.GetPdtSearchCount(pvo));
+			 }else if(pvo.getCategory().equals("3000")) { 
+				HashMap<String, String> eTotalCnt = hts.eTotalCnt(pvo);
+					model.addAttribute("eKbsCnt",eTotalCnt.get("3100"));
+					model.addAttribute("eSbsCnt",eTotalCnt.get("3200"));
+					model.addAttribute("eMbcCnt",eTotalCnt.get("3300"));
+					model.addAttribute("eTvnCnt",eTotalCnt.get("3400"));
+					model.addAttribute("eJtbcCnt",eTotalCnt.get("3500"));
+					model.addAttribute("ec",hts.GetPdtSearchCount(pvo));
+			 }else if(pvo.getCategory().equals("4000")) { 
+				HashMap<String, String> dcTotalCnt = hts.dcTotalCnt(pvo);
+					model.addAttribute("dHisCnt",dcTotalCnt.get("4100"));
+					model.addAttribute("dDscvCnt",dcTotalCnt.get("4200"));
+					model.addAttribute("dNgpCnt",dcTotalCnt.get("4300"));
+					model.addAttribute("doc",hts.GetPdtSearchCount(pvo));
+			 }else if(pvo.getCategory().equals("5000")) { 
+				HashMap<String, String> aTotalCnt = hts.aTotalCnt(pvo); 
+					model.addAttribute("aDCnt",aTotalCnt.get("5100"));
+					model.addAttribute("aJCnt",aTotalCnt.get("5200"));
+					model.addAttribute("ac",hts.GetPdtSearchCount(pvo));
+			}
+
+			model.addAttribute("productsList", productsList);
+			model.addAttribute("searchCnt", searchCnt);
+			model.addAttribute("keyword", pvo.getKeyword());
+			return "/search/productsResults";
 		}
 	}
 	

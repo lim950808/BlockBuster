@@ -18,15 +18,19 @@
 		height: 300px;
 	}
 	#titleHeader{
-		background: rgba(0, 0, 0, 0.4); /* 0.5  */
-		color:#ff7f00;
+		color:#f5f5f5;
 		font-size:23px;
 		width: 100%;
+		border-bottom: 1px solid rgba(255, 127, 0, 1.0);
 	}
-	#keywd{color:#ff7f00;}
+	#keywd {color:#ff7f00;}
 	
+	#titleCtgry {background: rgba(255, 127, 0, 1.0);
+				font-size:30px;
+				}
+				
 	 th, td, P {color: #f5f5f5;}
-	 
+
      #poster{
      	display:inline-block; 
      	margin:10px;
@@ -90,6 +94,8 @@
 <!-- 영화 전체 블록 시작 -->
 <c:choose>
 <c:when test="${mc gt '0'}">
+<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/CategoryList?c=1000'" style="align-content:center; background:#ff7f00; font-size:25px; color:#f5f5f5; font-weight: bold;" type="button">영화</button>
+<br><br>
 <p id="titleHeader"><b>공포(${mHorrorCnt})</b></p> <!-- 장르명(검색결과 갯 수)-->
 <c:choose>
 <c:when test="${mHorrorCnt gt '0'}">
@@ -290,10 +296,9 @@
 <div class="container" id="drama"> 
 <c:choose>
 <c:when test="${dc gt '0'}">
+<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/CategoryList?c=2000'" style="align-content:center; background:#ff7f00; font-size:25px; color:#f5f5f5; font-weight: bold;" type="button">드라마</button>
+<br><br>
 <!-- 드라마:미국 부분 -->
-<pre>
-
-</pre>
 <p id="titleHeader"><b>미국(${dUsCnt})</b></p> <!-- 장르명(검색 갯 수)-->
 <c:choose>
 <c:when test="${dUsCnt gt '0'}">
@@ -392,10 +397,9 @@
 <div class="container" id="entertain"> 
 <c:choose>
 <c:when test="${ec gt '0'}">
+<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/CategoryList?c=3000'" style="align-content:center; background:#ff7f00; font-size:25px; color:#f5f5f5; font-weight: bold;" type="button">예능</button>
+<br><br>
 <!-- 예능:KBS 부분 -->
-<pre>
-
-</pre>
 <p id="titleHeader"><b>KBS(${eKbsCnt})</b></p> <!-- 장르명(검색 갯 수)-->
 <c:choose>
 <c:when test="${eKbsCnt gt '0'}">
@@ -545,9 +549,8 @@
 <div class="container" id="documetary"> 
 <c:choose>
 <c:when test="${doc gt '0'}">
-<pre>
-
-</pre>
+<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/CategoryList?c=4000'" style="align-content:center; background:#ff7f00; font-size:25px; color:#f5f5f5; font-weight: bold;" type="button">다큐멘터리</button>
+<br><br>
 <p id="titleHeader"><b>히스토리(${dHisCnt})</b></p> <!-- 장르명(검색 갯 수)-->
 <c:choose>
 <c:when test="${dHisCnt gt '0'}">
@@ -645,10 +648,9 @@
 <div class="container" id="animation"> 
 <c:choose>
 <c:when test="${ac gt '0'}">
+<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/CategoryList?c=5000'" style="align-content:center; background:#ff7f00; font-size:25px; color:#f5f5f5; font-weight: bold;" type="button">애니메이션</button>
+<br><br>
 <!-- 애니:디즈니 부분 -->
-<pre>
-
-</pre>
 <p id="titleHeader"><b>디즈니(${aDCnt})</b></p> <!-- 장르명(검색 갯 수)-->
 <c:choose>
 <c:when test="${aDCnt gt '0'}">
@@ -701,7 +703,7 @@
 </c:choose>
 <br>
 </c:when>
-<c:when test="${ac eq '0'}">
+<c:when test="${not empty keyword && ac eq '0' && keyword != ''}">
 <table class="table table-bordered">
 <tr><th><span id="keywd">'${keyword}'</span>에 대한 검색결과가 없습니다.</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
@@ -716,7 +718,7 @@
 </c:choose>
 </div> <!-- 애니 전체 블록  종료 -->
 </c:when>
-<c:when test="${empty keyword}">
+<c:when test="${empty keyword || keyword eq ''}">
 <table class="table table-bordered">
 <tr><th id="keywd">검색어가 입력되지 않았습니다!</th></tr>
 <tr><td>단어의 철자가 정확한지 확인해 보세요.<br>
@@ -729,7 +731,7 @@
 </pre>
 </c:when>
 </c:choose>
-</div> <!-- 전체 블록 종료 -->
 <%@ include file="../footer.jsp" %>
+</div> <!-- 전체 블록 종료 -->
 </body>
 </html>

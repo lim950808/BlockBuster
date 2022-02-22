@@ -12,11 +12,11 @@
 	function insertCheck(){
 		if(r_title.value.length == 0){
 			alert("제목을 입력해주세요.");
-			r_title.value.focus();
+			r_title.focus();
 			return;
 		}else if(r_content.value.length == 0){
 			alert("내용을 입력해주세요.");
-			r_content.value.focus();
+			r_content.focus();
 			return;
 		}else{
 			$('#frm').submit();
@@ -63,7 +63,7 @@
 			
 			<div class="row card-body" style="text-align: left;" >
 				<div class="col-sm-12 col-xs-12">
-					<input id="imgFile" name="imgFile" type="file"/>
+					<input style="height: 42px;" class="form-control" id="imgFile" name="imgFile" type="file"/>
 				</div>
 			</div>
 	
