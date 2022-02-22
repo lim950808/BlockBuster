@@ -111,10 +111,11 @@ body {
 		</tr>
 	</table>
 	</form>
-</div>
+	
 <pre>
 
 </pre>
-</body>
 <%@ include file="../footer.jsp" %>
+</div>
+</body>
 </html>

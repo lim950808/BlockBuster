@@ -6,18 +6,27 @@
 	<select id="JEProductTotal" resultType="int">
 		SELECT count(*) FROM product
 	</select>
-	
+
 	<select id="JEProductListAll" parameterType="Product" resultType="Product">
 		SELECT *
 		FROM (
         		SELECT rownum rn, a.*
-        		FROM (SELECT * FROM product ORDER BY pno) a
+        		FROM (
+        		SELECT a.*, b.cat_name cat_name, b.gen_name gen_name
+				FROM PRODUCT a  LEFT OUTER JOIN  CATEGORY b 
+				ON a.category = b.category AND a.GENRE = b.GENRE
+				ORDER BY pno
+        		) a
      		 )
 		WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 	
+	
 	<select id="JEProductSelOne" parameterType="int" resultType="Product">
-		SELECT * FROM product WHERE pno = #{pno}
+		SELECT a.*, b.cat_name cat_name, b.gen_name gen_name
+		FROM PRODUCT a  LEFT OUTER JOIN  CATEGORY b 
+		ON a.category = b.category AND a.GENRE = b.GENRE
+		WHERE pno = #{pno}
 	</select>
 	
 	<update id="JEProductUpdate" parameterType="Product">
@@ -78,8 +87,11 @@
 	<!-- <select id="JEProductDetail" parameterType="int" resultType="Product">
 		SELECT * FROM product WHERE pno = #{pno}
 	</select> -->
+	
 	<select id="JEProductDetail" parameterType="int" resultType="Product">
-		SELECT * FROM product
+		SELECT a.*, b.gen_name gen_name
+		FROM PRODUCT a  LEFT OUTER JOIN  CATEGORY b 
+		ON a.GENRE = b.GENRE
 		WHERE pno = #{pno}
 	</select>
 	
@@ -146,7 +158,7 @@
 		SELECT
 			o.orderId, o.id, o.totalPrice, o.p_date, 
 			d.detailNo, d.pno, 
-			p.title, p.p_img, p.price
+			p.title, p.p_img, p.price, p.p_video
 		FROM payment o
 			INNER JOIN paymentDetails d
 				ON o.orderId = d.orderId

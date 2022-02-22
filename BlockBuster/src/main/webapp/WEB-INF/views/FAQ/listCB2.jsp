@@ -310,6 +310,9 @@ for (i = 0; i < acc.length; i++) {
     <button type="submit" class="cs-search-btn" value="검색">검색</button>
 </form>
 
+<pre>
+
+</pre>
 <%@ include file="../footer.jsp" %>
 </div>
 <pre>

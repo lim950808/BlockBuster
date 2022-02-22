@@ -95,8 +95,8 @@ button:hover {
 
 	function wsOpen(){
 		console.log("wsOpen  location.host: " + location.host);
-		 var wsUri  = "ws://" + location.host + "/chating";
-        // var wsUri  = "ws://" + location.host + "/BlockBuster/chating";
+		 var wsUri  = "ws://" + location.host + "/chating"; //내장용 톰캣
+        // var wsUri  = "ws://" + location.host + "/BlockBuster/chating"; 외장용 톰캣. 내장용은 /Blockbuster 없이 /chating 만 
         // WebSocket 프로토콜을 사용하여 통신하기 위해서는 WebSocket객체를 생성. 
         // 객체는 자동으로 서버로의 연결
  		ws = new WebSocket(wsUri);
@@ -265,7 +265,7 @@ button:hover {
 		   		   <div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 					<div class="row">
 						<div class="col-sm-10">
-							<textarea mexlength="300" id="chatting" class="form-control" rows="3" placeholder="메시지를 입력하세요"></textarea>
+							<textarea maxlength="300" id="chatting" class="form-control" rows="3" placeholder="메시지를 입력하세요"></textarea>
 						</div>
 			
 						<div class="col-sm-2">

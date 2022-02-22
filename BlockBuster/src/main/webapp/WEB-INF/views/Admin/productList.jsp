@@ -1,18 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
 <%@ include file="../header.jsp" %>
 <%
 	String context = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<head> 
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">  
+<pre>
+
+</pre>
 <title>영상 목록</title>
 
-<style>
-	hr{
+<style type="text/css">
+/* 	hr{
 		background-color:white;
 	}
 	table{
@@ -27,125 +32,121 @@
 	}
 	a {
   		color : white;
-	}
+	} */
 
-.bhtitle h1 {
-	font-size:48px;
-	font-weight:bold;
+.bhtitle h2 {
+	font-size: 60px;
+	font-weight: bold;
 	font-family: 'Montserrat', sans-serif;
-	text-align:left;
-	color: white;
-	letter-spacing:0px;
-  	transition:1s;
-  	-webkit-transition:1s;
-  	-ms-transition:1s;
+	text-align: left;
+	color: #fff;
   	position: relative;
-  	padding:10px;
+  	padding: 20px; 
 }
 
-.bhtitle h1:before
-.bhtitle h1:after {
-	  	content:"";
-  	position: absolute;
-  	height: 7px;
-  	width: 0px;
-  	background:#79ABFF;
-  	transition:300ms;
-  	-webkit-transition:1s;
-  	-ms-transition:1s;
-  	opacity:0.3;
-  	left:50%;
+.b{
+/* 	background: #ff7f00; */
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 900;
+	width: 100%;
+	padding: 18px;
+	border:	none;
+} 
+.b tr{
+  	font-family: 'Montserrat', sans-serif;
+  	text-align: left;
+  	color: #fff;
+  	cursor: pointer;
+  	width: 100%;
+  	padding: 18px;
+} 
+
+.b th{
+	background: #ff7f00;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 900;
+    height: 110px;
+	border:	none;
+	color: black;
 }
 
-.bhtitle h1:before {
-  	bottom:0;
+.b td {
+	border-bottom: 1px solid #F5F5F5;
+    height: 50px;
 }
 
-.bhtitle h1:after {
-  	top:0;  
-}
-
-.bhtitle h1:hover{
-	color: #5D5D5D;
-}
-.bhtitle h1:hover:before,
-.bhtitle h1:hover:after{
-	width: 95%;
-	opacity:1;
-	left:0;
-  }
-	
 .page_wrap {
 	text-align:center;
 	align: center;
 	font-size:0;
  }
-.page_nation {
-	display:inline-block;	
-}
-.page_nation .none {
-	display:none;
-}
-.page_nation a {
-	display:block;
-	margin-left: 100px;
-	margin:0 3px;
-	float: left;
-	border:1px solid #e6e6e6;
-	width:28px;
-	height:28px;
-	line-height:28px;
-	text-align:center;
-	background-color:#fff;
-	font-size:13px;
-	color:#999999;
-	text-decoration:none;
-}
-.page_nation .arrow {
-	border:1px solid #ccc;
-}
-.page_nation .prev {
-	background:#f8f8f8 no-repeat center center;
-	margin-right:7px;
-}
-.page_nation .next {
-	background:#f8f8f8 no-repeat center center;
-	margin-left:7px;
-}
-.page_nation a.active {
-	background-color:#42454c;
-	color:#fff;
-	border:1px solid #42454c;
+ 
+.table th, .table td{
+	vertical-align:middle;
+	font-size:1rem;
+	}
+
+.table td{
+	height:60px;
 }
 
-.page_nation button{
-	width: 70px;
-	margin-left: 100px;
-	height: 28px;
-	background: #166cea;
-	color: #fff;
-	font-size: 15px;
-	border: none;
-	border-radius: 12px;
-	cursor: pointer;
-	align: right;
+#list:hover tr:hover td{
+    background: #F5F5F5;
+    color: black;
 }
+	
+.button{
+	background-color: #ff7f00;
+	font: 12px sans-serif;
+  	text-align: center;
+  	text-decoration: none;
+	color: black;
+	width: 100;
+	height: 30;
+  	padding: 10px 20px;
+  	border: none;
+  	border-radius: 8px;
+  	margin: 4px 2px;
+  	display: inline-block;
+  	cursor: pointer;
+  	float: right;
+}
+button:hover{
+	background-color: #F5F5F5;
+}
+
+a:link { color: #FFFFFF; }
+a:visited { color: #FFFFFF; }
+ 
+.pag{
+	text-align: center;
+}
+.pag a{
+	color: #F5F5F5;
+	text-decoration: none;
+}
+
+.pag a:hover{
+	color: #ff7f00;
+}
+	
 </style>
 </head>
 <body>
+
+<div class="container">
+  <div class="bhtitle">
+  <b><h2>영상 목록</h2></b>
+  </div>
+  
 <pre>
 
 </pre> 
-<div class="container">
-  <div class="bhtitle">
-	<h1><b>영상 목록</b></h1>
-  </div>
-  
-
+<c:if test="${sessionScope.sessionId eq 'admin' }"> 
 	   <div align="center">
 	   <c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
 	
-		<table id="list" class="table table-hover">
+		<table id="list" class="b">
 		
 		<tr id = "headRow" style="text-align: center; background-color:#F5F5F5; color: black">
 			<th><b>No</b></th>
@@ -160,9 +161,9 @@
 		<tr style="text-align: center;">
 			<td>${num }</td>
 			<td>${product.pno }</td>
-			<td><a href="${pageContext.request.contextPath}/detail?pno=${product.pno }">${product.title }</a></td>
-			<td>${product.category }</td>
-			<td>${product.genre }</td>
+			<td><span style="color: white"><a href="${pageContext.request.contextPath}/Admin/detail?pno=${product.pno }">${product.title }</a></span></td>
+			<td>${product.cat_name }</td>
+			<td>${product.gen_name }</td>
 			<td>${product.price }</td>
 		</tr>
 			<c:set var="num" value="${num - 1 }"></c:set>
@@ -170,26 +171,57 @@
 
 		</table>
 
-	</div> <!-- 전체 감싸는 container -->
 
+
+	<%-- 	<tr><th>No</th><th>품번</th><th>제목</th><th>대분류</th><th>소분류</th><th>가격(원)</th></tr>
+		<c:forEach var="product" items="${listProduct }">
+			<tr><td>${num }</td><td>${product.pno }</td>
+			<td><a href="detail?pno=${product.pno }">${product.title }</a></td>
+				<td>${product.category }</td><td>${product.genre }</td><td>${product.price }</td></tr>
+			<c:set var="num" value="${num - 1 }"></c:set>
+		</c:forEach> --%>
+		
+
+	
 	<br>
 	
-	<div class="page_wrap">
+<!-- 	<div class="page_wrap"> -->
 
-   	<div class="page_nation">
+<!--    	<div class="page_nation"> -->
+	
+	<ul class="pag">
 	<c:if test="${pg.startPage > pg.pageBlock}">
 		<a class="arrow prev" href="${pageContext.request.contextPath}/Admin/productList?currentPage=${pg.startPage - pg.pageBlock}">⬅︎</a>
 	</c:if>
 	<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-		<a class="active" href="${pageContext.request.contextPath}/Admin/productList?currentPage=${i }">${i }</a>
+		<a class="active" href="${pageContext.request.contextPath}/Admin/productList?currentPage=${i }">[${i}]</a>
 	</c:forEach>
 	<c:if test="${pg.endPage < pg.totalPage}">
-		<a class="arrow next" href="${pageContext.request.contextPath}/Admin/productList?currentPage=${pg.startPage + pg.pageBlock}">➡︎</a>
+		<a class="arrow next" href="${pageContext.request.contextPath}/Admin/productList?currentPage=${pg.startPage + pg.pageBlock}">➡︎︎</a>
 	</c:if>
-	<button type="button" onclick="location.href='${pageContext.request.contextPath}/Admin/writeForm';" class="button" id="btn">등록</button>
-	</div>
-	</div>
-</div>	
+	</ul>
+	
+<!-- 	</div> -->
+<!-- 	</div> -->
+	
+<%-- 	<c:if test="${pg.startPage > pg.pageBlock}">
+		<a href="/Admin/productList?currentPage=${pg.startPage - pg.pageBlock}">[이전]</a>
+	</c:if>
+	<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+		<a href="/Admin/productList?currentPage=${i }">[${i }]</a>
+	</c:forEach>
+	<c:if test="${pg.endPage < pg.totalPage}">
+		<a href="/Admin/productList?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
+	</c:if>
+	
+	<button type="button" onclick="location.href='/Admin/writeForm';" class="button">등록</button> --%>
+	
+	<input type="button" value="등록" onclick="location.href='${pageContext.request.contextPath}/Admin/writeForm'" class="button"><p>
+	
+	   </div> <!-- align center 끝  -->
+</c:if>
+
 <br><br><%@include file="../footer.jsp" %>
+</div> <!-- 전체 container 끝 -->
 </body>
 </html>

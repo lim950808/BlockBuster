@@ -16,16 +16,20 @@
 		div.products div.p_img { float:left; width:350px; }
 		div.products div.p_img img { width:350px; height:auto; }
 		
-		div.products div.info { float:right; width:330px; font-size:22px; }
+		div.products div.info { float:right; width:330px; font-size:12px; }
 		div.products div.info p { margin:0 0 20px 0; }
 		div.products div.info p span { display:inline-block; width:100px; margin-right:15px; } 
 		
 		div.products div.info p.cartStock input { font-size:22px; width:50px; padding:5px; margin:0; border:1px solid #eee; }
 		div.products div.info p.cartStock button { font-size:26px; border:none; background:none; } 
 		div.products div.info p.addToCart { text-align:right; }
-		div.products div.info p.addToCart button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+		/* div.products div.info p.addToCart button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+ */		div.products div.info p.addToCart button { font-size:22px; padding:5px 10px; border:none; background:#ff7f00; border-radius:8px; }
+ 		div.products div.info p.addToCart button:hover { background-color: #F5F5F5; }
 		div.products div.info p.reviewBbs { text-align:right; }
-		div.products div.info p.reviewBbs button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+/* 		div.products div.info p.reviewBbs button { font-size:22px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+ */		div.products div.info p.reviewBbs button { font-size:22px; padding:5px 10px; border:none; background:#ff7f00; display: inline-block; cursor: pointer; border-radius:8px; }
+ 		div.products div.info p.reviewBbs button:hover { background-color: #F5F5F5; }
 		div.products div.description { font-size:18px; clear:both; padding-top:30px; }
 		
 		aside#aside { float:left; width:180px; }
@@ -66,19 +70,18 @@
 					</div>
 					
 					<div class="info">
-						<p class="title"><h2><b>${product.title}</b></h2></p>
-						<p class="genre">${product.genre}</p>
+						<p class="title"><h4><b>${product.title}</b></h4></p>
+						<p class="genre">${product.gen_name}</p>
 						<p class="year">${product.year}</p>
 						<p class="director">${product.director}</p>
 						<p class="casting">${product.casting}</p>					
-						<p class="price">
-							<fmt:formatNumber pattern="###,###,###" value="${product.price}" /> 원
-						</p>
+						<p class="price"><fmt:formatNumber pattern="###,###,###" value="${product.price}" /> 원</p>
+						<p class="description">${product.description}</p>
 						
 						<!-- admin일때는 장바구니 안보임 -->
 						<c:choose>
-							<c:when test="${sessionScope.sessionId != 'admin' }">
-								<p class="addToCart">
+							<c:when test="${sessionScope.sessionId != 'admin'}">
+								<p class="addToCart" style="float:left; margin-right:10px;">
 									<!-- <a href="/Cart/cartList" class="btn btn-success pull-right" id="btnOrder">주문하기</a> -->
 									<button type="button" class="addCart_btn">장바구니</button>
 									<script>
@@ -117,12 +120,14 @@
 						</c:choose>
 						
 						<!-- 리뷰게시판 -->
-						<p class="reviewBbs">
-							<button type="button" onclick="location.href='${pageContext.request.contextPath}/reviewProductList?pno=${product.pno}' ">리뷰게시판</button>
+						<p class="reviewBbs" style="float:left;">
+							<button type="button" onclick="location.href='${pageContext.request.contextPath}/reviewProductList?pno=${product.pno}'">리뷰게시판</button>
 						</p>
+						
+						
 					</div>
 					
-					<div class="description">${product.description}</div>
+					<%-- <div class="description">${product.description}</div> --%>
 				</div>
 			</section>
 			<aside id="aside">

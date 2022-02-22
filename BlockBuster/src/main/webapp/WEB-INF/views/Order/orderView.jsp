@@ -70,6 +70,8 @@
 	.thumb img { width:200px; height:300px; }
 	.gdsInfo { float:right; width:calc(100% - 220px); line-height:2; }
 	.gdsInfo span { font-size:20px; font-weight:bold; display:inline-block; width:100px; margin-right:10px; }
+	.gdsInfo input.button { font-size:15px; border:none; padding:5px 10px; background:#F5F5F5; border-radius:8px; margin-right:20px;}
+	.gdsInfo input.button:hover { background-color: #ff7f00; }
 </style>
 
 </head>
@@ -87,16 +89,13 @@
 			<section id="content">
 			
 				<div class="orderInfo">
-					<c:forEach items="${orderView}" var="orderView" varStatus="status">
-						
+					<c:forEach items="${orderView}" var="orderView" varStatus="status">	
 						<%-- 첫번째 요소만 출력. 주문 상세 페이지에서 중복되는 부분이므로 모두 출력할 필요 없음 --%>
 						<c:if test="${status.first}">
 							<p><span>주문번호</span>${orderView.orderId}</p>
 							<p><span>아이디</span>${orderView.id}</p>
-							<p><span>총 가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.totalPrice}" /> 원</p>
-							
-						</c:if>
-						
+							<p><span>총 가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.totalPrice}" /> 원</p>						
+						</c:if>			
 					</c:forEach>
 				</div>
 				
@@ -111,6 +110,7 @@
 								<span>상품명</span>${orderView.title}<br />
 								<span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.price}" /> 원<br />                
 							</p>
+							<input type="button" value="재생 ▶" onclick="window.open('${orderView.p_video }')" class="button">
 						</div>
 					</li>					
 					</c:forEach>

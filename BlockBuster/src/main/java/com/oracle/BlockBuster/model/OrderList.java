@@ -20,5 +20,5 @@ public class OrderList {
 	private String title;
 	private String p_img;
 	private int price;
-	
+	private String p_video;
 }

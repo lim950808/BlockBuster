@@ -15,7 +15,6 @@
 <style type="text/css">
 body{
 	background-color: #000;
-	/* text-align: center; */
 }
 
 .titleCB h2{
@@ -26,42 +25,8 @@ body{
 	color:#fff;
   	position: relative;
   	padding:20px;
-	/* letter-spacing:0px;
-  	transition:1s;
-  	-webkit-transition:1s;
-  	-ms-transition:1s; */
- 
-}
 
-/* .titleCB h2:before,
-.titleCB h2:after{
-  	content:"";
-  	position: absolute;
-  	height: 3px;
-  	width: 0px;
-  	background: #F5F5F5;
-  	transition:300ms;
-  	-webkit-transition:1s;
-  	-ms-transition:1s;
-  	opacity:0.3;
-  	left:50%;  
 }
-.titleCB h2:before{
-bottom:0px;
-}
-.titleCB h2:after{
-  	top:0;  
-}
-.titleCB h2:hover{
-	letter-spacing:30px;
-}
-.titleCB h2:hover:before,
-.titleCB h2:hover:after{
-	width: 95%;
-	opacity:1;
-	left:0;
-} */
-
 .b{
 	background: #ff7f00;
 	font-family: 'Montserrat', sans-serif;
@@ -207,10 +172,7 @@ bottom:0px;
   	margin: 4px 2px;
   	display: inline-block;
   	cursor: pointer;
-  	
-  	/* border-radius: 8px;
-  	color: #ff7f00;
-  	text-align: center; */
+
 }
 .cs-search-btn:hover{
 	background-color: #F5F5F5;
@@ -227,50 +189,7 @@ bottom:0px;
 	color: #ff7f00;
 }
 
-/* 	
-.page_wrap {
-	text-align:center;
-	align: center;
-	font-size:0;
- }
-.page_nation {
-	display:inline-block;	
-}
-.page_nation .none {
-	display:none;
-}
-.page_nation a {
-	display:block;
-	margin-left: 100px;
-	margin:0 3px;
-	float: left;
-	border:1px solid #e6e6e6;
-	width:28px;
-	height:28px;
-	line-height:28px;
-	text-align:center;
-	background-color:#fff;
-	font-size:13px;
-	color:#999999;
-	text-decoration:none;
-}
-.page_nation .arrow {
-	border:1px solid #ccc;
-}
-.page_nation .prev {
-	background:#f8f8f8 no-repeat center center;
-	margin-right:7px;
-}
-.page_nation .next {
-	background:#f8f8f8 no-repeat center center;
-	margin-left:7px;
-}
-.page_nation a.active {
-	background-color:#42454c;
-	color:#fff;
-	border:1px solid #42454c;
-}
- */
+
 </style>
 </head>
 <body>
@@ -290,8 +209,7 @@ bottom:0px;
  	<tr><th>No</th><th>제목</th></tr>
  </table>
 <table>
-	<c:forEach var="faq" items="${listFaq }">
-		
+	<c:forEach var="faq" items="${listFaq }">		
 	<button class="accordion"> ${faq.f_no}&emsp;&emsp;&emsp;&emsp;&emsp;${faq.f_title }</button>
 		<div class="panel">
   			<p>${faq.f_content } <br><br><br>		
@@ -301,10 +219,11 @@ bottom:0px;
 			<input type="button"  value="삭제" onclick="location.href='${pageContext.request.contextPath}/FAQ/deleteCB?f_no=${faq.f_no}'">	
 		</c:if>	
   			</p>
-		</div><br>
-	
-</c:forEach>
+		</div>
+		<br>	
+	</c:forEach>
 </table>
+
 <pre>
 
 </pre>
@@ -314,13 +233,13 @@ bottom:0px;
 <c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
 <c:set var="num" value="${num - 1 }"></c:set>
 <c:if test="${pg.startPage > pg.pageBlock }">
- 	<li class="page-item"><a href="${pageContext.request.contextPath}/FAQ/listCB?currentPage=${pg.startPage-pg.pageBlock }">[이전]</a>
+ 	<li class="page-item"><a href="${pageContext.request.contextPath}/FAQ/listCB?currentPage=${pg.startPage-pg.pageBlock }&search_option=${Search_option}">⬅︎</a>
  </c:if>
  <c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
- 	<a href="${pageContext.request.contextPath}/FAQ/listCB?currentPage=${i }"> [${i}]</a>
+ 	<a href="${pageContext.request.contextPath}/FAQ/listCB?currentPage=${i }&search_option=${Search_option}"> [${i}]</a>
  </c:forEach>
  <c:if test="${pg.endPage < pg.totalPage }">
- 	<a href="${pageContext.request.contextPath}/FAQ/listCB?currentPage=${pg.startPage+pg.pageBlock }">[다음]</a></li>
+ 	<a href="${pageContext.request.contextPath}/FAQ/listCB?currentPage=${pg.startPage+pg.pageBlock }&search_option=${Search_option}">➡︎︎</a></li>
  </c:if>
 </ul> 
  <%-- 
@@ -375,10 +294,13 @@ for (i = 0; i < acc.length; i++) {
     <button type="submit" class="cs-search-btn" value="검색">검색</button>
 </form>
 
+<%@ include file="../footer.jsp" %>
 </div>
 <pre>
 
 </pre>
-<%@ include file="../footer.jsp" %>
+<pre>
+
+</pre>
 </body>
 </html>

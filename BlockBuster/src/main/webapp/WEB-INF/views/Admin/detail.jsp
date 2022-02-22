@@ -6,45 +6,74 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <style type="text/css">
 @CHARSET "UTF-8";
-h1 {
-	font-size:48px;
-	font-weight:bold;
+
+.bhtitle h2 {
+	font-size: 60px;
+	font-weight: bold;
 	font-family: 'Montserrat', sans-serif;
-	text-align:center;
-	color:#0000DB;
-	letter-spacing:0px;
-  	transition:1s;
-  	-webkit-transition:1s;
-  	-ms-transition:1s;
+	text-align: left;
+	color: #fff;
   	position: relative;
-  	padding:10px;
+  	padding: 20px; 
 }
 
 hr{
 	background-color:white;
 }
-table{
-	width : 80%
-}
+
 body{
 	background-color : #333;
 }
-tr{
-	color : white;
-}
+
 a {
 	color : white;
 }
 	
 .b{
-	border:	none;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
 	width: 100%;
-	font-weight: 900;
-	background: #ffd800;
-	padding: 18px;
+	padding: 17px;
+	border-color: black;
+	
+}
+.b tr{
+  	font-family: 'Montserrat', sans-serif;
+  	text-align: center;
+  	color: #fff;
+  	cursor: pointer;
+    /* width: 100%;  */
+  	padding: 18px;
+} 
+
+.b th{
+	background: #ff7f00;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	font-weight: 800; 
+	width: 25%;
+	height: 50px;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	color: black;
 }
 
-.btn-area button {
+.b td {
+	font-size: 16px;
+	border-bottom: 1px solid #F5F5F5;
+	border-top: 1px solid #F5F5F5; 
+	border-right: 1px solid #F5F5F5;
+	width: 75%;
+    height: 50px;
+    text-align: center;
+}
+
+#list:hover tr:hover td{
+    background: #F5F5F5;
+    color: black;
+}
+
+/* .btn-area button {
 	width: 70px;
 	margin-left: 300px;
 	height: 28px;
@@ -55,32 +84,37 @@ a {
 	border-radius: 12px;
 	cursor: pointer;
 	align: right;
-}
+} */
 
 </style>
 
-<title>상세보기</title>
+<title>Detail</title>
 </head>
+
 <body>
 <pre>
 
 </pre>
 
+<c:if test="${sessionScope.sessionId eq 'admin' }"> 
 <div class="container">
-
-	<h1 style="color:white;"><b>영상 세부정보</b></h1>
+	<div class="bhtitle">
+	<h2><b>영상 세부정보</b></h2>
+	</div>
 	
+<pre>
+
+</pre>
 	<div align="center">
 	
-	<table id="list" class="table table-hover">
+	<table id="list" class="b">
 	
 		<tr id = "headRow" style="text-align: center; background-color:#F5F5F5; color: black">	
-		<tr style="text-align: center;">
-		
+
 		<tr><th>품번</th><td>${product.pno }</td></tr>
 		<tr><th>영상제목</th><td>${product.title }</td></tr>
-		<tr><th>대분류</th><td>${product.category }</td></tr>
-		<tr><th>소분류</th><td>${product.genre }</td></tr>
+		<tr><th>대분류</th><td>${product.cat_name  }</td></tr>
+		<tr><th>소분류</th><td>${product.gen_name }</td></tr>
 		<tr><th>제작연도</th><td>${product.year }</td></tr>
 		<tr><th>제작국가</th><td>${product.country }</td></tr>
 		<tr><th>감독</th><td>${product.director }</td></tr>
@@ -91,21 +125,31 @@ a {
 		<tr><th>영상 URL</th><td>${product.p_video }</td></tr>
 		
 		</tr>
-		</tr>
+		
 	</table>
 	
-		<div class=btn-area>
+		<br>
+		<br>
+		
+		<div class=btn-area">
+			<button type="button" class="btn btn-outline-secondary" value="목록" onclick="location.href='${pageContext.request.contextPath}/Admin/productList'">목록</button>
+			<button type="button" class="btn btn-outline-primary" value="수정" onclick="location.href='${pageContext.request.contextPath}/Admin/updateForm?pno=${product.pno}'">수정</button>
+			<button type="button" class="btn btn-outline-danger" value="삭제" onclick="location.href='${pageContext.request.contextPath}/Admin/delete?pno=${product.pno}'">삭제</button>
+		</div>
+		
+		<%-- <div class=btn-area">
 			<button type="button" value="목록" onclick="location.href='productList'">목록</button>
 			<button type="button" value="수정" onclick="location.href='updateForm?pno=${product.pno}'">수정</button>
 			<button type="button" value="삭제" onclick="location.href='delete?pno=${product.pno}'">삭제</button>
-		</div>	
+		</div>	20220201 11:29 --%>
 		
 			<%-- <input type="button" value="목록" onclick="location.href='productList'">
 			<input type="button" value="수정" onclick="location.href='updateForm?pno=${product.pno}'">
 			<input type="button" value="삭제" onclick="location.href='delete?pno=${product.pno}'"></td></tr> --%>
 			
-</div> <!-- container 끝 -->
 <br><br><%@include file="../footer.jsp" %>
-</div>
+</div> <!-- container 끝 -->
+</c:if>
+
 </body>
 </html>

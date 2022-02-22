@@ -59,29 +59,36 @@
  section#content div.goodsName a { color:#000; }
  */
  section#content ul li { margin:10px 0; border-bottom:1px solid #999;}
- section#content ul li img { width:200px; height:300px; }
+ section#content ul li img { width:200px; height:300px; margin:10px 0; }
  section#content ul li::after { content:""; display:block; clear:both; }
  section#content div.p_img { float:left; width:200px; }
  section#content div.info { float:right; width:calc(100% - 270px); }
  section#content div.info { font-size:20px; line-height:2; }
  section#content div.info span { display:inline-block; width:100px; font-weight:bold; margin-right:10px; }
  section#content div.info .delete { text-align:right; }
- section#content div.info .delete button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+ /* section#content div.info .delete button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;} */
+ section#content div.info .delete button { font-size:18px; padding:5px 10px; border:none; background:#F5F5F5; border-radius:8px; }
+ section#content div.info .delete button:hover { background-color: #ff7f00; }
  
 .allCheck { float:left; width:200px; }
 .allCheck input { width:16px; height:16px; }
 .allCheck label { margin-left:10px; }
-.delBtn { float:right; width:300px; text-align:right; }
-.delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+.delBtn { float:right; width:300px; text-align:right; margin:10px 0; }
+/* .delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;} */
+.delBtn button { font-size:18px; padding:5px 10px; border:none; background:#F5F5F5; border-radius:8px; }
+.delBtn button:hover { background-color: #ff7f00; }
 
 .checkBox { float:left; width:30px; }
 .checkBox input { width:16px; height:16px; }
 
-.listResult { padding:20px; background:#eee; }
-.listResult .sum { color:#000; float:left; width:45%; font-size:22px; }
+/* .listResult { padding:20px; background:#eee; } */
+.listResult { padding:20px; background:#000; border:2px solid #eee;}
+.listResult .sum { color:#eee; float:left; width:45%; font-size:22px; }
 
 .listResult .orderOpne { float:right; width:45%; text-align:right; }
-.listResult .orderOpne button { font-size:18px; padding:5px 10px; border:1px solid #999; background:#fff;}
+/* .listResult .orderOpne button { font-size:18px; padding:5px 10px; border:1px solid #999; background:#fff;} */
+.listResult .orderOpne button { font-size:18px; padding:5px 10px; border:none; background:#F5F5F5; border-radius:8px;}
+.listResult .orderOpne button:hover { background-color: #ff7f00; color: #000; }
 .listResult::after { content:""; display:block; clear:both; } 
 
 /* .orderInfo { border:5px solid #eee; padding:20px; display:none; } */
@@ -92,7 +99,9 @@
 #userAddr2, #userAddr3 { width:250px; }
 
 .orderInfo .inputArea:last-child { margin-top:30px; }
-.orderInfo .inputArea button { font-size:20px; border:2px solid #ccc; padding:5px 10px; background:#fff; margin-right:20px;}
+/* .orderInfo .inputArea button { font-size:20px; border:2px solid #ccc; padding:5px 10px; background:#fff; margin-right:20px;} */
+.orderInfo .inputArea button { font-size:20px; border:none; padding:5px 10px; background:#F5F5F5; border-radius:8px; margin-right:20px;}
+.orderInfo .inputArea button:hover { background-color: #ff7f00; }
 
 .orderInfo .inputArea #sample2_address { width:230px; }
 .orderInfo .inputArea #sample2_detailAddress { width:280px; }
@@ -221,9 +230,9 @@
 	 				<c:set var="sum" value="${sum + cart.price}" />
  					</c:forEach>
 				</ul>
-				<pre>
+<!-- 				<pre>
 				
-				</pre>
+				</pre> -->
 				<div class="listResult">
 					<div class="sum">
 				  		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
@@ -278,10 +287,10 @@
 			
 		</div>
 	</section>
-</div>
 <pre>
 
 </pre>
 <%@ include file="../footer.jsp" %>
+</div>
 </body>
 </html>

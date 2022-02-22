@@ -194,6 +194,7 @@ function checkIdPw(){
 <section class="login-form">
 	<h1 align="center">LOGIN</h1>
 	<form method="get" name="login" action="${pageContext.request.contextPath}/login" onsubmit="checkIdPw(); return false;">
+		<input type="hidden" name="requestURL" value="${param.requestURL}"/>
 		<div class="int-area">	
 			<input type="text" name="id" id="id" autocomplete="off" required autofocus>
 			<label for="id">USER ID</label>

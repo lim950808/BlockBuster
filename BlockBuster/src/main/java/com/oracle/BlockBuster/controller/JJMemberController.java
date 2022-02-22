@@ -50,26 +50,31 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		return "member/login";
 	}
 	
-//	@GetMapping(value="login")
-//	public String login(JJMember member, HttpServletRequest request) {
-//		logger.info("login 시작");
-//		HttpSession session = request.getSession();
-//		session.setAttribute("sessionId", member.getId());
-//		return	"/main";
-//	}
-	
+	//로그인 수행
 	@GetMapping(value="login")
-	public String login(JJMember member, HttpServletRequest request) {
-		String requestURL = null;
+	public String login(JJMember member, String requestURL, HttpServletRequest request) {
 		logger.info("login 시작");
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", member.getId());
 		
-		requestURL = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
+		String requestURLrst = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
 		
-		return	"redirect:"+requestURL;
+		return	"redirect:"+requestURLrst;
 		//return "redirect:/loginView";
 	}
+	
+//	@GetMapping(value="login")
+//	public String login(JJMember member, HttpServletRequest request) {
+//		String requestURL = null;
+//		logger.info("login 시작");
+//		HttpSession session = request.getSession();
+//		session.setAttribute("sessionId", member.getId());
+//		
+//		requestURL = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
+//		
+//		return	"redirect:"+requestURL;
+//		//return "redirect:/loginView";
+//	}
 	
 	@RequestMapping("idpwCheck")
 	@ResponseBody

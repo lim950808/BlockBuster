@@ -9,10 +9,9 @@
 %>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원 목록</title>
 
 <script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	              
 <script type="text/javascript">    
 
@@ -23,7 +22,6 @@
 
 	function memberDelete(Vindex){
 	console.log(Vindex);
-
 	var selId = $("#id"+Vindex).val();
 
     $.ajax(
@@ -32,30 +30,93 @@
     	 	data:{Id : selId },
     	 	dataType:'text',
     	 	success:function(data){
-    	 		if (data == '1') {
-      	 			$('#memberDelete'+Vindex).remove(); 
-      	 		    	 		}
+    	 		if (confirm("정말 탈퇴시키겠습니까?") == true) {
+    	 			if (data == '1') {
+          	 			$('#memberDelete'+Vindex).remove(); 
+    	 			}
+    	 		} else {
+    	 			return false;
+    	 		}
+    	 	
     	 	}
          }
        );
 	}
 </script>
 <style>
-	hr{
-		background-color:white;
-	}
-	table{
-		width : 80%
-	}
-	body{
-		background-color : #333;
-	}
-	tr{
-		color : white;
-	}
-	a {
-  		color : white;
-	}
+h2 {
+	font-size: 60px;
+	font-weight: bold;
+	font-family: 'Montserrat', sans-serif;
+	text-align: left;
+	color: #fff;
+  	position: relative;
+  	padding: 20px; 
+}
+.b{
+	/* background: #ff7f00; */
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 900;
+	width: 100%;
+	padding: 18px;
+	border:	none;
+} 
+.b tr{
+/* 	background-color: #000; */
+  	font-family: 'Montserrat', sans-serif;
+  	text-align: left;
+  	color: #fff;
+  	cursor: pointer;
+  	width: 100%;
+  	padding: 18px;
+ /*  	border-bottom: 1px solid #F5F5F5; */
+  	border-left: 0;
+  	border-right: 0;
+  	border-top: 0;
+  	outline: none;
+  	transition: 0.4s;  
+} 
+.b th{
+	background: #ff7f00;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 900;
+    height: 110px;
+/* 	width: 100%; */
+/* 	padding: 18px; */
+	border:	none;
+/* 	border-bottom: 1px solid #F5F5F5; */
+	color: black;
+}
+
+.b td {
+	border-bottom: 1px solid #F5F5F5;
+    height: 50px;
+}
+
+hr{
+		background-color:#ff7f00;
+}
+
+#list:hover 
+tr:hover 
+td{
+    background: #F5F5F5;
+    color: black;
+}
+
+.pag{
+	text-align: center;
+}
+
+.pag a{
+	color: #F5F5F5;
+	text-decoration: none;
+}
+
+.pag a:hover{
+	color: #ff7f00;
+}
+
 </style>
 </head>
 
@@ -63,16 +124,23 @@
 <pre>
 
 </pre>
-<div class="container">
 
-	<h1 style="color:white;"><b>회원 목록</b></h1>
+<div class="container">
+	<div class=title>
+	<b><h2>회원 목록</h2></b>
+	</div>
+	
+<pre>
+
+</pre>
+<c:if test="${sessionScope.sessionId eq 'admin' }"> 
 
 	<div align="center">
 
-<table id="list" class="table table-hover">
-<!-- 	<tr><th>No</th><th>아이디</th><th>이메일</th><th>닉네임</th><th>관리</th></tr> -->
 	
-	<tr id="headRow" style="text-align: center; background-color:#F5F5F5; color: black">
+<table id="list" class="b">
+	
+	<tr id="headRow" style="text-align: center; background-color: #ff7f00; color: black">
 		<th><b>NO</b></th>
 		<th><b>아이디</b></th>
 		<th><b>이메일</b></th>
@@ -88,59 +156,50 @@
 		<td>${BHDto.id}</td>
 		<td>${BHDto.email}</td>
 		<td>${BHDto.nickname}</td>
+<%-- 		<td><input type="button" id="memberrowdelete" value="회원 삭제" onclick="memberDelete(${status.index})"></td> --%>
 		<td><input type="button" id="memberrowdelete" value="회원 삭제" onclick="memberDelete(${status.index})"></td>
 	</tr>
+
 </c:forEach>		
 </table>
-</div> <!-- align center 끝 -->
 
-	<!-- 페이징처리 -->	
-		<c:choose>
-		    <c:when test="${boardKind eq '1'}">
-				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="${pageContext.request.contextPath}/reviewList?currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
-				</c:if>
-				
-				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-					<a href="${pageContext.request.contextPath}/reviewList?currentPage=${i}">[${i}]</a>
-				</c:forEach>
-				
-				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="${pageContext.request.contextPath}/reviewList?currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
-				</c:if>
-		    </c:when>
-		    <c:when test="${boardKind eq '2'}">
-				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="${pageContext.request.contextPath}/reviewProductList?pno=${pno}&currentPage=${pg.startPage-pg.pageBlock}">⬅︎</a>
-				</c:if>
-				
-				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-					<a href="${pageContext.request.contextPath}/reviewProductList?pno=${pno}&currentPage=${i}">[${i}]</a>
-				</c:forEach>
-				
-				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="${pageContext.request.contextPath}/reviewProductList?pno=${pno}&currentPage=${pg.startPage+pg.pageBlock}">➡︎︎</a>
-				</c:if>
-		    </c:when>
-		    <c:when test="${boardKind eq '3'}">
-				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="${pageContext.request.contextPath}/search?keyword=${keyword}&currentPage=${pg.startPage-pg.pageBlock}&search_option=${Search_option}">⬅︎</a>
-				</c:if>
-				
-				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-					<a href="${pageContext.request.contextPath}/search?keyword=${keyword}&currentPage=${i}&search_option=${Search_option}">[${i}]</a>
-				</c:forEach>
-				
-				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="${pageContext.request.contextPath}/search?keyword=${keyword}&currentPage=${pg.startPage+pg.pageBlock}&search_option=${Search_option}">➡︎︎</a>
-				</c:if>
-		    </c:when>
-		    
-				
-		</c:choose>
+<pre>
 
+</pre>
+
+	<!-- 페이징 -->	
+	<%-- 	<ul class="pag">
+		<c:if test="${pg.startPage > pg.pageBlock }">
+			<a href="${pageContext.request.contextPath}/Admin/viewallMember?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
+		</c:if>
+		
+		<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+			<a href="${pageContext.request.contextPath}/Admin/viewallMember?currentPage=${i}">[${i}]</a>
+		</c:forEach>
+		
+		<c:if test="${pg.endPage < pg.totalPage }">
+			<a href="${pageContext.request.contextPath}/Admin/viewallMember?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
+		</c:if>
+		</ul>  --%>
+</c:if>
+	
+	<ul class="pag">
+	<c:set var="num" value="${pg.total-pg.start+1 }"></c:set>
+	<c:set var="num" value="${num - 1 }"></c:set>
+	<c:if test="${pg.startPage > pg.pageBlock}">
+		<li class="page-item" href="${pageContext.request.contextPath}/Admin/viewallMember?currentPage=${pg.startPage - pg.pageBlock}">⬅︎</a>
+	</c:if>
+	<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+		<a href="${pageContext.request.contextPath}/Admin/viewallMember?currentPage=${i }">[${i}]</a>
+	</c:forEach>
+	<c:if test="${pg.endPage < pg.totalPage}">
+		<a href="${pageContext.request.contextPath}/Admin/viewallMember?currentPage=${pg.startPage + pg.pageBlock}">➡︎︎</a>
+	</c:if>
+	</ul>
+	
+	</div> <!-- align center 끝 -->
+<br><br>
+<%@include file="../footer.jsp" %>
 </div> <!-- container 끝 -->
-
-<br><br><%@include file="../footer.jsp" %>
 </body>
 </html>
