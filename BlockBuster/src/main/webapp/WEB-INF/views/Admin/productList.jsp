@@ -115,8 +115,12 @@ button:hover{
 	background-color: #F5F5F5;
 }
 
-a:link { color: #FFFFFF; }
-a:visited { color: #FFFFFF; }
+a:link{color: white;}
+a:visited{color: white;}
+a:hover{color: black;}
+/* a:visited { 
+	color: white; 
+} */
  
 .pag{
 	text-align: center;

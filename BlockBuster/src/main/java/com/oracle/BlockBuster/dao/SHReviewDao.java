@@ -1,7 +1,9 @@
 package com.oracle.BlockBuster.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
+import com.oracle.BlockBuster.model.SHProcedureVO;
 import com.oracle.BlockBuster.model.SHCommentModel;
 import com.oracle.BlockBuster.model.SHGoodModel;
 import com.oracle.BlockBuster.model.SHReviewModel;
@@ -81,6 +83,12 @@ public interface SHReviewDao {
 	int commentDelete(SHCommentModel SHcommentModel);
 	
 	int commentEdit(SHCommentModel SHcommentModel);
+
+	void insertProcedure(SHProcedureVO SHprocedureVO);
+
+	int cursorListSize();
+
+	void cursorList(HashMap<String, Object> map);
 
 
 

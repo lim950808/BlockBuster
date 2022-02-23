@@ -1,5 +1,6 @@
 package com.oracle.BlockBuster.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.BlockBuster.model.SHProcedureVO;
 import com.oracle.BlockBuster.model.SHCommentModel;
 import com.oracle.BlockBuster.model.SHGoodModel;
 import com.oracle.BlockBuster.model.SHReviewModel;
@@ -480,7 +482,7 @@ public class SHReviewDaoImpl implements SHReviewDao {
 
 	@Override
 	public int commentEdit(SHCommentModel SHcommentModel) {
-		logger.info("[*-*-3] commentEdit() commentEdit() 댓글 수정");
+		logger.info("[*-*-3] commentEdit() 댓글 수정");
 		
 		System.out.println("댓글 수정 시 모델안에 담긴 매개변수는? : "+SHcommentModel.toString());
 		
@@ -494,6 +496,50 @@ public class SHReviewDaoImpl implements SHReviewDao {
 		}
 		
 		return commentEdit;
+	}
+
+
+
+	@Override
+	public void insertProcedure(SHProcedureVO SHprocedureVO) {
+		logger.info("[*-*-3] insertProcedure() 프로시져로 익명게시글 입력");
+		
+		try {
+			session.selectOne("SH_insertProcedure", SHprocedureVO);
+		}catch(Exception e) {
+			logger.info("[*-*-4|예외] SHReviewDaoImpl insertProcedure Exception 발생 : "+e.getMessage());
+		}
+		
+	}
+
+
+
+	@Override
+	public int cursorListSize() {
+		logger.info("[*-*-3] cursorListSize() 커서 리스트 행 개수 확인");
+		
+		int size = 0;
+		
+		try {
+			size = session.selectOne("SH_cursorListSize");
+		}catch(Exception e) {
+			logger.info("[*-*-4|예외] SHReviewDaoImpl cursorListSize Exception 발생 : "+e.getMessage());
+		}
+		
+		return size;
+	}
+
+
+
+	@Override
+	public void cursorList(HashMap<String, Object> map) {
+		logger.info("[*-*-3] cursorList() 익명 게시글 리스트 확인");
+		
+		try {
+			session.selectOne("SH_cursorList", map);
+		}catch(Exception e) {
+			logger.info("[*-*-4|예외] SHReviewDaoImpl cursorList Exception 발생 : "+e.getMessage());
+		}
 	}
 
 

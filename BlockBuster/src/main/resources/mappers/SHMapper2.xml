@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="SHReviewDao">
+
+	<resultMap type="SHProcedureVO" id="CursorResult">
+	  	<result property="q_no"     column="q_no"/>
+	 	<result property="q_content"   column="q_content"/>
+	 	<result property="q_anonymous" column="q_anonymous"/>
+	 	<result property="q_date" column="q_date"/>
+	</resultMap>
+
+
+
+	<!-- 한줄인사 등록 -->
+	<select id="SH_insertProcedure" parameterType="SHProcedureVO" statementType="CALLABLE">
+		{
+			call procedure_QW(
+				#{q_anonymous  , mode=IN    , jdbcType=VARCHAR}
+			   ,#{q_content    , mode=IN    , jdbcType=VARCHAR}
+			)
+		}
+	</select>
+	
+	<!-- 한줄인사 행 개수 확인 -->
+	<select id="SH_cursorListSize" resultType="int">
+		SELECT count(*) FROM QW
+	</select>
+	
+	
+	<!-- 한줄인사 목록 -->
+	<select id="SH_cursorList" parameterType="java.util.Map" statementType="CALLABLE">
+		{ 
+		     call cursor_list(
+			   #{startNo,  mode=IN,    jdbcType=INTEGER}
+			  ,#{endNo,  mode=IN,    jdbcType=INTEGER}
+			  ,#{cursorList,     mode=OUT,   jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=CursorResult}
+			)
+		}
+	</select>
+   
+	
+</mapper>

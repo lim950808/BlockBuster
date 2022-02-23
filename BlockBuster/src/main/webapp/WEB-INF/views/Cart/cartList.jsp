@@ -10,14 +10,12 @@
 <title>Insert title here</title>
 
 <style>
-
  body { margin:0; padding:0; font-family:'맑은 고딕', verdana; }
  a { color:#05f; text-decoration:none; }
  a:hover { text-decoration:underline; }
  
  h1, h2, h3, h4, h5, h6 { margin:0; padding:0; }
  ul, lo, li { margin:0; padding:0; list-style:none; }
-
  /* ---------- */
  
  div#root { width:900px; margin:0 auto; }
@@ -77,37 +75,29 @@
 /* .delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;} */
 .delBtn button { font-size:18px; padding:5px 10px; border:none; background:#F5F5F5; border-radius:8px; }
 .delBtn button:hover { background-color: #ff7f00; }
-
 .checkBox { float:left; width:30px; }
 .checkBox input { width:16px; height:16px; }
-
 /* .listResult { padding:20px; background:#eee; } */
 .listResult { padding:20px; background:#000; border:2px solid #eee;}
 .listResult .sum { color:#eee; float:left; width:45%; font-size:22px; }
-
 .listResult .orderOpne { float:right; width:45%; text-align:right; }
 /* .listResult .orderOpne button { font-size:18px; padding:5px 10px; border:1px solid #999; background:#fff;} */
 .listResult .orderOpne button { font-size:18px; padding:5px 10px; border:none; background:#F5F5F5; border-radius:8px;}
 .listResult .orderOpne button:hover { background-color: #ff7f00; color: #000; }
 .listResult::after { content:""; display:block; clear:both; } 
-
 /* .orderInfo { border:5px solid #eee; padding:20px; display:none; } */
 .orderInfo { border:5px solid #eee; padding:20px; }
 .orderInfo .inputArea { margin:10px 0; }
 .orderInfo .inputArea label { display:inline-block; width:120px; margin-right:10px; }
 .orderInfo .inputArea input { font-size:14px; padding:5px; }
 #userAddr2, #userAddr3 { width:250px; }
-
 .orderInfo .inputArea:last-child { margin-top:30px; }
 /* .orderInfo .inputArea button { font-size:20px; border:2px solid #ccc; padding:5px 10px; background:#fff; margin-right:20px;} */
 .orderInfo .inputArea button { font-size:20px; border:none; padding:5px 10px; background:#F5F5F5; border-radius:8px; margin-right:20px;}
 .orderInfo .inputArea button:hover { background-color: #ff7f00; }
-
 .orderInfo .inputArea #sample2_address { width:230px; }
 .orderInfo .inputArea #sample2_detailAddress { width:280px; }
 .orderInfo .inputArea #sample2_extraAddress { display:none; }
-
-
 </style>
 
 <script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.3.1.min.js"></script>
@@ -273,8 +263,8 @@
 											// success.submit();
 											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
 										}else {
-											var msg = '장바구니가 비어있습니다. 상품을 추가해주세요.';
-											//var msg = '결제에 실패하였습니다.';
+											//var msg = '장바구니가 비어있습니다. 상품을 추가해주세요.';
+											var msg = '결제에 실패하였습니다.';
 											//msg += '에러내용 : ' + rsp.error_msg;
 										}
 										alert(msg);

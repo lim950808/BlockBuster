@@ -28,6 +28,7 @@
 		<typeAlias alias="SHGoodModel" type="com.oracle.BlockBuster.model.SHGoodModel"/>
 		<typeAlias alias="SHSearchModel" type="com.oracle.BlockBuster.model.SHSearchModel"/>
 		<typeAlias alias="SHTitleModel" type="com.oracle.BlockBuster.model.SHTitleModel"/>
+		<typeAlias alias="SHProcedureVO" type="com.oracle.BlockBuster.model.SHProcedureVO"/>
 		
 		<!-- 이창빈 -->
 		<typeAlias alias="CBfaqDto" 		type="com.oracle.BlockBuster.model.CBfaqDto"/>

@@ -2,6 +2,7 @@ package com.oracle.BlockBuster.service;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.BlockBuster.dao.SHReviewDao;
+import com.oracle.BlockBuster.model.SHProcedureVO;
 import com.oracle.BlockBuster.model.SHCommentModel;
 import com.oracle.BlockBuster.model.SHGoodModel;
 import com.oracle.BlockBuster.model.SHReviewModel;
@@ -322,6 +324,29 @@ public class SHServiceImpl implements SHService {
 		int commentEdit = SHReviewDao.commentEdit(SHcommentModel);
 		
 		return commentEdit;
+	}
+
+
+	@Override
+	public void insertProcedure(SHProcedureVO SHprocedureVO) {
+		logger.info("[*-*-2] insertProcedure() 프로시져로 익명게시글 입력");
+		SHReviewDao.insertProcedure(SHprocedureVO);
+	}
+
+
+	@Override
+	public int cursorListSize() {
+		logger.info("[*-*-2] cursorListSize() 커서 리스트 행 개수 확인");
+		int size = SHReviewDao.cursorListSize();
+		
+		return size;
+	}
+
+
+	@Override
+	public void cursorList(HashMap<String, Object> map) {
+		logger.info("[*-*-2] cursorList() 익명 게시글 리스트 확인");
+		SHReviewDao.cursorList(map);
 	}
 
 
