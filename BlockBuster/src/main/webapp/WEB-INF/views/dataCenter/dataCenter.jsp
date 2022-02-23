@@ -35,7 +35,7 @@ function getAllListByGenre(){
 }
 
 var url = location.protocol + '//' + location.host;
-url = url+'/listbygenre';
+url = url+'/media';
 $(document).ready(function(){
 	$('#url').append(url);
 });
