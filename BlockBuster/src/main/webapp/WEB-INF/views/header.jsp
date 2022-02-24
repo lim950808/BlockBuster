@@ -348,7 +348,7 @@ body {
 <!-- ------------------------------ 아이디 표시 --------------------------------------- -->	
  <div class="menuJE">	
 	<div class="dropdownJE">
-			<h6>${ sessionScope.sessionId}님 환영합니다</h6>
+			<h6>${ sessionScope.Nickname}님 환영합니다</h6>
 	  	</div>
 	  	
 <!-- ------------------------------ 카테고리 --------------------------------------- -->		  	
@@ -407,6 +407,8 @@ body {
 	  		<div class="dropdown-contentJE">
 	    		<a href="${pageContext.request.contextPath}/reviewList"><h2>Review</h2></a>
 	    		<a href="${pageContext.request.contextPath}/FAQ/listCB"><h2>FAQ</h2></a>
+	    		<a href="${pageContext.request.contextPath}/procedureForm"><h2>한줄인사</h2></a>
+	    		<a href="${pageContext.request.contextPath}/cursorList"><h2>cursor</h2></a>
 	  		</div>
 	</div>
 	  
