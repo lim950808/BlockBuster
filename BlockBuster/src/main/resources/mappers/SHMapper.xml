@@ -149,8 +149,9 @@
 	
 	<!-- 게시글 작성하기 -->
 	<insert id="SH_reviewWrite" parameterType="SHReviewModel">
-			INSERT INTO review(r_no, pno, id, title, r_title, r_content,r_img) 
-			values(REVIEW_R_NO_SEQ.nextval, #{pno}, #{id}, #{title}, #{r_title}, #{r_content}, #{r_img})
+			INSERT INTO review(r_no, pno, id, title, r_title, r_content <if test="r_img!=null"> ,r_img </if> )
+			values(REVIEW_R_NO_SEQ.nextval, #{pno}, #{id}, #{title}, #{r_title}, #{r_content}
+			 <if test="r_img!=null">,#{r_img} </if> )
 	</insert>
 	
 	
@@ -169,7 +170,7 @@
 	
 	<!-- 게시글 수정 -->
 	<update id="SH_ReviewEdit" parameterType="SHReviewModel">
-		UPDATE review SET r_title=#{r_title}, r_content=#{r_content}, r_img=#{r_img} WHERE r_no = #{r_no}
+		UPDATE review SET r_title=#{r_title}, r_content=#{r_content}<if test="r_img!=null"> , r_img=#{r_img}</if> WHERE r_no = #{r_no}
 	</update>
 	
 	

@@ -156,6 +156,8 @@ p {
 
 </head>
 <body>
+
+<img alt="background img" class="img-bg" src="${pageContext.request.contextPath}/resources/img/벽돌배경02.jpg" />
 <section class="login-form">
 <h1 align="center">비밀번호 찾기 </h1>
 <h5 align="center">작성하신 이메일로 임시비밀번호가 전송됩니다</h5>

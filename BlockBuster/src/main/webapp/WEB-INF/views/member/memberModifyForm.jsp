@@ -8,6 +8,9 @@
 
 <meta charset="UTF-8">
 <title>회원수정</title>
+<!-- <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
 <script type="text/javascript">
 
 
@@ -15,34 +18,26 @@
 //닉네임 중복확인
 function nickNameFuncChk(){
 	//getElementById --> ID가 가지고 있는 객체 
-	var nickNameChk  = document.getElementById("nickNameChk");
+	var nickNameChk  = document.getElementById("nickNameChk"); //hidden으로 값 "0" 저장 중복이면 "0", 아니면 "1"
 	var nickNameId   = document.getElementById("nickname");
 	
-	//alert("nickNameChk"+nickNameChk.value);
-	//alert("nickNameId"+nickNameId.value);
-	
-	// 한글사용, 소문자a~z, 대문자A~Z, 숫자 0~9, 1자리에서 8자리까지
+	// 시작^ 0~9, 소문자 a~z , +1개이상 $끝
 	var regExpNickname = /^[0-9a-z]+$/;
-	//  /^[0-9a-z]+$/;
-	//  /^[가-힣a-zA-Z0-9]{1,8}$/;
 	
+	//문자열 일치 여부 test()
 	if (!regExpNickname.test(nickname.value)) {
 	    alert("닉네임은 숫자나 영문자로 입력해 주세요!"); 
 	    frm.nickname.focus();
 	    frm.nickname.value='';
 	    return false;
 	}
-	
-	//alert("nickNameId.value->"+nickNameId.value);
 	 $.ajax(
 			{
-				type:'post',
-				url :"${pageContext.request.contextPath}/member/nickNameChk", //컨트롤러 url
-				data:{'nickname' : nickNameId.value}, 
-				dataType:'text',
-				success:function(data){
-						//console.log(data);
-						//alert("data->"+data)
+/*데이터 전송 타입*/	type:'post',
+/*데이터 받을 주소*/	url :"${pageContext.request.contextPath}/member/nickNameChk", //컨트롤러 url
+/*보내는 데이터*/	data:{'nickname' : nickNameId.value},  //파라미터 nickname값 검증
+/*받을 데이터 타입*/	dataType:'text',
+				success:function(data){//data에는 컨트롤러를 통해 리턴된 값이 들어있음
 					if(data == '1' ){
 						alert("중복된 닉네임입니다.");
 						frm.nickname.focus();
@@ -50,7 +45,7 @@ function nickNameFuncChk(){
 						return false;
 					}else{
 						alert("사용 가능한 닉네임입니다.");
-						nickNameChk.value = '1'; //중복 확인했을 때 1
+						nickNameChk.value = '1';
 					}
 				}
 			}
@@ -63,15 +58,10 @@ function emailFuncChk(){
 	//getElementById --> ID가 가지고 있는 객체 
 	var emailChk = document.getElementById("emailChk");
 	var emailId = document.getElementById("email");
-	
-	//alert("emailChk->"+emailChk.value);
-	//alert("emailId->"+emailId.value);
-	
 	var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	//alert("emailId.value->"+emailId.value);
 	
-	if (!regExpEmail.test(email.value)) {//정규식 유효성검사
-	    alert("이메일 입력을 확인 해주세요"); 
+	if (!regExpEmail.test(email.value)) {
+	    alert("이메일 형식을 확인해 주세요"); 
 	    frm.email.focus();
 	    frm.email.value='';
 	    return false;
@@ -83,8 +73,6 @@ function emailFuncChk(){
 				data:{'email':emailId.value},
 				dataType:'text',
 				success:function(data){
-						//console.log(data);
-						//alert("data->"+data)
 					if(data == '1'){
 						alert("중복된 이메일입니다.");
 						frm.email.focus();
@@ -92,7 +80,7 @@ function emailFuncChk(){
 						return false;
 					}else{
 						alert("사용 가능한 이메일입니다.");
-						emailChk.value = '1'; //중복 확인했을 때 1
+						emailChk.value = '1';
 					}
 				}
 			}
@@ -133,11 +121,9 @@ function register(){
 	   }else if(pw1 != pw2){ //비밀번호 동일하지 않을 때
 		   alert("입력하신 비밀번호가 동일하지 않습니다");
 		   frm.pw2.focus();
+		   frm.pw2.value='';
 		   return false;
 	   }
-	   
-	   //alert("nickNameChk");
-	   //alert("emailChk");
 	   
 	   if(nickNameChk == '1' && emailChk == '1'){ //중복 확인 둘 다 했을 때
 		   $('#frm').submit();

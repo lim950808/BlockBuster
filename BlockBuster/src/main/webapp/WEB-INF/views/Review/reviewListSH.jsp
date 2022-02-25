@@ -95,7 +95,7 @@
     color: black;
     }
     
-    h2 {
+    #revH {
 	    font-size: 60px;
 	    font-weight: bold;
 	    font-family: 'Montserrat', sans-serif;
@@ -127,6 +127,7 @@
 
 <script type="text/javascript">
 
+	/* 검색어 기입 여부 검증 */
 	function searchCheck(){
 		
 		if(keyword.value.length == 0){
@@ -145,10 +146,9 @@
 
 </pre>
 <div class="container">
- 	    <input type="hidden" name="boardKind" value="$(boardKind)">
+    <input type="hidden" name="boardKind" value="${boardKind}">
   
-  
-  	<h2 style="color:white;"><b>Review</b></h2>
+  	<h2 id="revH" style="color:white;"><b>Review</b></h2>
 
 	<div align="center">
   	
@@ -157,16 +157,16 @@
 		
 		<table id="list" class="table table-hover thChange" style="width:100%;">
 		
-				<tr	class = "table-active" style="text-align: center; background-color:#ff7f00; color: white">
-					<th scope="row"><b>글번호</b></th>
-					<th scope="row"><b>제 목</b></th>
-					<th scope="row"><b>추천수</b></th>
-					<th scope="row"><b>작성자</b></th>
-					<th scope="row"><b>조회수</b></th>
-					<th scope="row"><b>등록일</b></th>
-				</tr>
+			<tr	class = "table-active" style="text-align: center; background-color:#ff7f00; color: white">
+				<th scope="row"><b>글번호</b></th>
+				<th scope="row"><b>제 목</b></th>
+				<th scope="row"><b>추천수</b></th>
+				<th scope="row"><b>작성자</b></th>
+				<th scope="row"><b>조회수</b></th>
+				<th scope="row"><b>등록일</b></th>
+			</tr>
 			<c:choose>
-				<c:when test="${searchResult eq 0 || reviewProListResult eq 0 || reviewListResult eq 0}">
+				<c:when test="${searchResult eq 0 || reviewProListResult eq 0 || reviewListResult eq 0}"><!-- 리스트size로 검색결과 없음 확인 -->
 					<tr>
 						<td colspan="6" style="text-align: center;">검색 결과가 없습니다.  첫 번째 리뷰의 주인공이 되어 주세요.</td>
 					</tr>
@@ -184,6 +184,7 @@
 						</tr>
 						
 						<c:set var="num" value="${num - 1}"></c:set>
+						
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
@@ -192,8 +193,8 @@
 	
 	<br>
 	
+    <!-- 검색기능 -->
 	<div align="center">	
-	    <!-- 검색기능 -->
 		<form class="search-input" id="form1" name="form1" method="post" action="search">
 			<select name="search_option">
 		        <option value="title">영상제목</option>
@@ -201,7 +202,7 @@
 				<option value="nickName">작성자</option>
 		    </select>
 		    <input id="keyword" name="keyword" value="">
-		    <input type="hidden" name="Search_option" value="$(Search_option)">
+		    <input type="hidden" name="Search_option" value="${Search_option}">
 		    <button type="button"  onclick="searchCheck(); return false;" class="cs-search-btn" value="검색">검색</button>
 		</form>
 		
@@ -263,7 +264,7 @@
 		    </c:when>
 		    <c:otherwise>
 				<a href="javascript:window.history.back();">뒤로가기</a> &nbsp;|&nbsp;
-				<a href="reviewWriteForm?pno=${pno}">${title} 리뷰남기기</a>
+				<a href="reviewWriteForm?pno=${pno}">${title} 리뷰남기기</a><!-- 상품번호를 매개변수로 글 작성 -->
 		    </c:otherwise>
 		</c:choose>
 		<br>

@@ -85,8 +85,8 @@
 									<!-- <a href="/Cart/cartList" class="btn btn-success pull-right" id="btnOrder">주문하기</a> -->
 									<button type="button" class="addCart_btn">장바구니</button>
 									<script>
-										$(".addCart_btn").click(function(){
-											
+										$(".addCart_btn").click(function() {
+											//데이터를 파라미터로 보내기 => 즉, 선택된 것의 pno, price, title 값을 파라미터로 보냄.
 											var pno = $("#pno").val();
 											var price = $("#price").val();
 											var title = $("#title").val();
@@ -98,8 +98,7 @@
 												url : "${pageContext.request.contextPath}/Product/productDetail/addCart",
 												type : "post",
 												data : data,
-												success : function(result){
-													
+												success : function(result) {
 													if(result == 1) {
 														alert("장바구니에서 결제를 완료해주세요.");
 														location.href = "${pageContext.request.contextPath}/Cart/cartList";
@@ -123,16 +122,17 @@
 						<p class="reviewBbs" style="float:left;">
 							<button type="button" onclick="location.href='${pageContext.request.contextPath}/reviewProductList?pno=${product.pno}'">리뷰게시판</button>
 						</p>
-						
-						
+
 					</div>
 					
-					<%-- <div class="description">${product.description}</div> --%>
 				</div>
+				
 			</section>
+			
 			<aside id="aside">
 				<%@ include file="../aside.jsp" %>
 			</aside>
+			
 		</div>
 	</section>
 <pre>

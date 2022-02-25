@@ -3,10 +3,10 @@ package com.oracle.BlockBuster.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.oracle.BlockBuster.dao.JJMemberDao;
 import com.oracle.BlockBuster.model.JJMember;
-import com.oracle.BlockBuster.model.Member;
 
 @Service
 public class JJMemberServiceImpl implements JJMemberService {
@@ -50,4 +50,11 @@ public class JJMemberServiceImpl implements JJMemberService {
 		
 	}
 
+	@Override
+	public void findPw(JJMember member) {
+		System.out.println("findPw의 메소드 실행...");
+		memberDao.findPw(member);
+	}
+
+	
 }

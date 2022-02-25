@@ -12,16 +12,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.BlockBuster.model.JJMember;
 import com.oracle.BlockBuster.service.JJMemberService;
-import com.oracle.BlockBuster.service.MainService;
-import com.oracle.BlockBuster.service.loginCheck;
 
 @Controller
 public class JJMemberController {
@@ -30,17 +26,10 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	
 	@Autowired
 	private JJMemberService ms;
-	
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@Autowired
-	private loginCheck loginCheck;
-	
-	@Autowired
-	public MainService mainService;
-	
-	@GetMapping(value = "/")
+	@GetMapping(value = "welcome")
 	public String welcome() {
 		logger.info("welcome 시작");
 		return "welcome";
@@ -54,34 +43,15 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		return "member/login";
 	}
 	
-	//로그인 수행
+	//member = 매개변수
+	// member.getId()로 session을 가져옴
 	@GetMapping(value="login")
-	public String login(JJMember member, String requestURL, HttpServletRequest request) {
+	public String login(JJMember member,HttpServletRequest request) {
 		logger.info("login 시작");
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", member.getId());
-		
-		String name = mainService.nameGet(loginCheck.checkSessionId(request));
-		session.setAttribute("Nickname", name);
-		
-		String requestURLrst = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
-		
-		return	"redirect:"+requestURLrst;
-		//return "redirect:/loginView";
+		return	"/main";
 	}
-	
-//	@GetMapping(value="login")
-//	public String login(JJMember member, HttpServletRequest request) {
-//		String requestURL = null;
-//		logger.info("login 시작");
-//		HttpSession session = request.getSession();
-//		session.setAttribute("sessionId", member.getId());
-//		
-//		requestURL = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
-//		
-//		return	"redirect:"+requestURL;
-//		//return "redirect:/loginView";
-//	}
 	
 	@RequestMapping("idpwCheck")
 	@ResponseBody
@@ -93,15 +63,17 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	} //login 끝
 	
 	
-	//회원가입 시작
+	//--------------회원가입 시작-----------------//
 	@GetMapping("registrationView")
 	public String registrationView() {
 		logger.info("registrationView 시작...");
 		return "member/registration";
 	}
 	
-	 @RequestMapping("registration.do")
-		public String registration(JJMember member, Model model)  {
+	//회원가입 정보기입이 완료된후에 emailcheck 메서드로 이동,
+	//그 정보를 session에 가지고있다가 emailCheck.do에서 완료되면 regSubmit.do 실행과 함께 db에 저장.
+	@RequestMapping("registration.do")
+	public String registration(JJMember member, Model model)  {
 			logger.info("registration 시작...");
 			//이메일 아이디를 일단 받아서 있는지 db에서 조회하고 있으면 임시 메일 발송할수 있게 / 없으면 없는 이메일로 안내처리
 			System.out.println("MemberController의 registration 시작...");
@@ -136,18 +108,18 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		}
 	 
 	 
+	 //회원 가입 폼이완성된후 emailCheck 뷰페이지로 이동 -> 이메일코드를 확인
+	 //regSubmit 컨트롤러로 실질적인 DB로 정보 전송
 	 @RequestMapping(value="regSubmit.do")
-	 public String regSubmit(Model model, JJMember member, HttpServletRequest request) {
+	 public String regSubmit(JJMember member,HttpServletRequest request) {
 		 logger.info("regSubmit시작....");
-		 request.setAttribute("id", member);
-		 request.setAttribute("password", member);
-		 request.setAttribute("nickname", member);
-		 request.setAttribute("email", member);
+		 HttpSession session = request.getSession();
+		 session.setAttribute("memberInfo", member);
 		 ms.regSubmit(member);
-		 return "member/regSuccess";
+		return "member/regSuccess";
 	 }
-	 
 	
+	 //회원 가입 아이디 중복검사
 	@RequestMapping(value="/idCheck.do")
 	@ResponseBody
 	public String idCheck(JJMember member, HttpServletRequest request) {
@@ -156,30 +128,76 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 		return result;
 	}
 	
-	
+	//회원가입 닉네임 중복검사
 	 @RequestMapping(value="/nicknameCheck.do")
 	 @ResponseBody public String nicknameCheck(JJMember member, HttpServletRequest request ) {
 	 logger.info("nicknameCheck시작..."); 
 	 String result = ms.nicknameCheck(member);
 	 return result; 
 	 }
-	 	
-	//회원가입 끝
+	 
+
 	
-	 @GetMapping("findPwView.do")
-	 	public String findPwView() {
-		logger.info("findPwView 시작...");
-		return "member/findPw";
-	 }
+	//------------회원가입 끝---------------//
+	
+//	@GetMapping(value="findId")
+//	public String findId() {
+//		logger.info("findId 시작");
+//		return "member/findId";
+//	}
+	 
+	@GetMapping("findPwView.do")
+	public String findPwView() {
+	logger.info("findPwView 시작...");
+	return "member/findPw";
+	}		
+	
+	//비밀번호 찾기
+	//입력한 이메일을 db내용과 매칭해서 그 이메일로 코드를 임시 비밀번호로 전송.
+	//전송된 코드는 db에 update
+	@RequestMapping(value="findPw.do")
+	public String findPw(JJMember member, Model model, HttpServletRequest request) {
+		logger.info("findpw 시작...");
+		//이메일 아이디를 일단 받아서 있는지 db에서 조회하고 있으면 임시 메일 발송할수 있게 / 없으면 없는 이메일로 안내처리
+		System.out.println("MemberController의 findPw.do 시작...");
+		String tomail = member.getEmail(); // 받는사람 (비밀번호 찾기 form에서 받아서 parameter로 받은걸 변수 처리)
+		System.out.println(tomail);
+		String setFrom = member.getEmail();  // 비밀번호 찾기에 활용하려면(admnin메일 주소 하나 만들어서 여기서 발송처리)
+		String title = "임시비밀번호 안내드립니다.";//타이틀
+
+		try{
+			//Mine전자우편 Internet 표준 format(Mine = 전자 우편을 위한 인터넷 표준 프로토콜)
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true,  "UTF-8");
+			messageHelper.setFrom(setFrom);
+			messageHelper.setTo(tomail);
+			messageHelper.setSubject(title);
+			String code = (int) (Math.random()*999999)+1+"";
+			messageHelper.setText("임시비밀번호 = "+code); // 메일내용
+			System.out.println("임시비밀번호 = "+code);
+			//멤버 변수에 직접적으로 code를 넣음
+			//password를 code로 변경
+			member.setPassword(code);
+			mailSender.send(message);
+			model.addAttribute("code",code);
+			System.out.println("보낸 코드 값 code => "+code);
+		}catch(Exception e) {
+			System.out.println("MemberController의 registration의 오류 => "+e.getMessage());
+		}
+		ms.findPw(member);
+		return "member/login";
+	}
+
 	
 	/* 로그아웃 */
-	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
 	public String logoutMainGet(HttpServletRequest request) throws Exception{
 		logger.info("logOut 시작");
 		
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "forward:/";
+		return "forward:welcome";
 		
 	}
+	
 }

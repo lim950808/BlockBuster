@@ -9,16 +9,17 @@ import lombok.Setter;
 @Setter
 public class OrderList {
 
-	private String orderId;
-	private String id;
-	private int totalPrice;
-	private Date p_date;
+	private String orderId; 		//주문번호
+	private String id; 				//아이디	
+	private int totalPrice;			//총 결제금액
+	private Date p_date;			//결제일자
 	
-	private int orderDetailsNum;
-	private int pno;
+	private int orderDetailsNum;	//구매 상세페이지 번호
+	private int pno;				//품번
 	
-	private String title;
-	private String p_img;
-	private int price;
-	private String p_video;
+	private String title;			//영상제목
+	private String p_img;			//이미지 url
+	private int price;				//개별 가격
+	private String p_video;			//비디오 url
+	
 }

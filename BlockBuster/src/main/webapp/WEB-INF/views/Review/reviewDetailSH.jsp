@@ -48,7 +48,7 @@
 		
 		if(c_content.value.length == 0){
 			alert("댓글을 입력해주세요.");
-			c_content.value.focus();
+			c_content.focus();
 			return;
 		}
 		insertComment2();
@@ -123,11 +123,11 @@
 			    	success : function(data){
 				    		if(data == 1){
 								/* alert("insert 성공"); */
-								$('#heart').prop("src","${pageContext.request.contextPath}/resources/icon/heart-fill.svg");
+								$('#heart').attr("src","${pageContext.request.contextPath}/resources/icon/heart-fill.svg");
 								totalChange();
 							} else if (data == 2){
 								/* alert("delete 성공"); */
-								$('#heart').prop("src","${pageContext.request.contextPath}/resources/icon/heart.svg");
+								$('#heart').attr("src","${pageContext.request.contextPath}/resources/icon/heart.svg");
 								totalChange();
 							} else {
 								alert("실패");
@@ -190,47 +190,6 @@
 
 </pre>
   <div class="container">
-  
-	<%-- <h2>[${reviewDetail.title}]&nbsp;${reviewDetail.r_title}</h2> 
-	<table id="table1" class="table">
-		<!-- 작성자 -->
-		<tr>
-			<td>
-				작성자 : ${reviewDetail.nickName}&emsp;|&emsp;${reviewDetail.r_hit}&emsp;|&emsp;${reviewDetail.r_date}
-			</td>
-			<td style="text-align: right;">
-				
-				<c:choose>
-				    <c:when test="${sessionScope.sessionId==reviewDetail.id}">
-						<a href="reviewEditForm?r_no=${reviewDetail.r_no}">수정</a>&emsp;
-						<a href="" onclick="chk(); return false;">삭제</a>&emsp;
-						<a href="" onclick="imgchk(); return false;">이미지삭제</a>
-				    </c:when>
-				</c:choose>
-			</td>
-		</tr>
-		
-		<!-- 사진&내용 -->
-		<tr>
-			<td colspan="2"><img src="${pageContext.request.contextPath}/upload/${reviewDetail.r_img}" width ="280px" height="400px">&nbsp;${reviewDetail.r_content}</td>
-		</tr>
-		
-		<tr>
-			<td><input type="button" class="btn btn-outline-secondary" value="같은리뷰보기" onclick="location.href='reviewProductList?pno=${reviewDetail.pno}'">
-				<input type="button" class="btn btn-outline-secondary" value="다른리뷰보기" onclick="location.href='reviewList'"></td>
-			
-			<!-- 추천기능 -->
-			<td>
-				<div>
-					<a class="text-dark heart" style="text-decoration-line: none;">
-						<label  id="goodClick"><img id="heart" src="/resources/icon/heart.svg"></label>
-						<!-- <input type="submit" id="goodClick" value="추천" > -->
-					<span id="totalGoodId">${totalGood}</span>
-					</a>
-				</div>
-			</td>
-		</tr>
-	</table> --%>
 
 	<div class="card border-light mb-3">
 		<h3 class="card-header" style="color: black; background-color: #F7F7F7;">[${reviewDetail.title}]&nbsp;${reviewDetail.r_title}</h3>
@@ -287,7 +246,7 @@
 
 
 	<!-- 등록된 댓글 리스트 -->
-	<div id="Commentlist">
+	<div id="Commentlist"><!-- 댓글 페이지 처리 시에 get방식에 사용할 블록 -->
 		<%@ include file="commentListSH.jsp" %>
 	</div>
 	

@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="JJMemberDao">
 	
-	<select id="idpwChk" parameterType="JJMember" resultType="java.lang.String">
+	<select id="idpwChk" parameterType="JJMemberDto" resultType="java.lang.String">
 		select count(*) from member where id like #{id, jdbcType=VARCHAR} and password like #{password, jdbcType=VARCHAR}
 	</select>
 	
-	<select id="delChk" parameterType="JJMember" resultType="java.lang.String">
+	<select id="delChk" parameterType="JJMemberDto" resultType="java.lang.String">
 		select delstatus from member where id like #{id, jdbcType=VARCHAR} and password like #{password, jdbcType=VARCHAR}
 	</select>
 	
@@ -15,16 +15,21 @@
 			values (#{id},#{password},#{nickname},#{email})
 	</select>
 	
-	<select id="memberidCheck" parameterType="JJMember" resultType="java.lang.String">
+	<select id="memberidCheck" parameterType="JJMemberDto" resultType="java.lang.String">
 			SELECT count(*) FROM member	WHERE id = #{id}
 	</select>
 	
-	<select id="membernicknameCheck" parameterType="JJMember" resultType="java.lang.String">
+	<select id="membernicknameCheck" parameterType="JJMemberDto" resultType="java.lang.String">
 			SELECT count(*) FROM member	WHERE nickname = #{nickname}
 	</select>
 	<select id="regSubmit" >
-			insert into member(id,password,nickname,email)
+			insert into member(id,password,nickname,email) 
 			values (#{id},#{password},#{nickname},#{email})
 	</select>
+	<update id="findPw" parameterType="JJMemberDto">
+		update member
+   		set    password = #{password} 
+   		where  email=#{email}
+	</update>
 	
 </mapper>

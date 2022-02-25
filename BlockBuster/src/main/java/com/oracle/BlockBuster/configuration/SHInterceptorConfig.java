@@ -14,9 +14,14 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) { 
 		   registry.addInterceptor(new SHInterceptorService()).addPathPatterns("/main")
 		   													  .addPathPatterns("/reviewDetailSH") 		//김성휘
+		   													  .addPathPatterns("/reviewWriteForm")
 		   													  .addPathPatterns("/reviewWrite")
 		   													  .addPathPatterns("/reviewProWrite")
 		   													  .addPathPatterns("/reviewEditForm")
+		   													  .addPathPatterns("/reviewList")
+		   													  .addPathPatterns("/reviewProductList")
+		   													  .addPathPatterns("/delete")
+		   													  .addPathPatterns("/procedureForm")
 		   													  .addPathPatterns("/Admin/productList") 	//임재억
 		   													  .addPathPatterns("/Admin/detail")
 		   													  .addPathPatterns("/Admin/updateForm")

@@ -10,7 +10,8 @@ import lombok.Setter;
 public class SHProcedureVO {
 	
 	private int q_no;
-	private String q_anonymous;
+	private String id;
+	private String nickName;
 	private String q_content;
 	private Date q_date;
 }

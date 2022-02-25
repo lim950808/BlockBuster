@@ -36,9 +36,6 @@ public interface JEService {
 /////////////////////////////////////////
 // 상품 페이지
 /////////////////////////////////////////
-
-	//영상 레벨별 나누기
-	public List<Product> list(int genre, int level) throws Exception;
 	
 	//카테고리 별 영상
 	List<Product> categoryList(int c);
@@ -49,21 +46,31 @@ public interface JEService {
 	//상품 상세 페이지
 	Product productDetail(int pno);
 
+	
+/////////////////////////////////////////
+// 장바구니
+/////////////////////////////////////////	
+	
+	//카트담기 중복체크
+	int checkRepetition(Cart cart);
+	
 	//카트 담기
 	void addCart(Cart cart);
 
 	//카트 리스트
 	List<Cart> cartList(String id);
 
-//	//카트 수정
-//	int cartUpdate(Cart cart);
-
 	//카트 삭제
 	void deleteCart(Cart cart);
-	//int cartDelete(int id);
+
+	
+/////////////////////////////////////////
+//	결제
+/////////////////////////////////////////	
 	
 	//주문 정보
 	void orderInfo(Payment payment);
+	
 	//주문 상세 정보
 	void orderInfo_Details(PaymentDetails paymentDetails);
 	
@@ -75,26 +82,5 @@ public interface JEService {
 
 	//주문 상세 내역
 	List<OrderList> orderView(Payment payment);
-
-	//중복 카트담기 금지
-	int orderCheck(Product orderProduct);
-
-	int checkRepetition(Cart cart);
-
-
-	
-//	//구매내역
-//	List<Payment> orderCartList(String member);
-//	
-//
-//	Payment orderResultView(String orderNo);
-//
-//	List<Payment> orderListAll(String member);
-
-	
-
-
-
-
 
 }

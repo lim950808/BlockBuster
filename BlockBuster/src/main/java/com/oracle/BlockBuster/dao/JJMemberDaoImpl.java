@@ -3,8 +3,9 @@ package com.oracle.BlockBuster.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+
 import com.oracle.BlockBuster.model.JJMember;
-import com.oracle.BlockBuster.model.Member;
 
 @Repository
 public class JJMemberDaoImpl implements JJMemberDao {
@@ -69,5 +70,12 @@ public class JJMemberDaoImpl implements JJMemberDao {
 		
 	}
 
+	@Override
+	public void findPw(JJMember member) {
+		System.out.println("memberDaoImpl -> findPw 시작");
+		session.update("findPw", member);
+	}
+
+	
 
 }

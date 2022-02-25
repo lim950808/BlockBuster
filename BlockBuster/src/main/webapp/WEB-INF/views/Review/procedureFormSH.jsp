@@ -25,15 +25,9 @@
 	
 	
 	//한줄인사 입력 검증
-	function procedureCall(Vsize){
-		q_anonymous.value = q_anonymous.value.trim();
+	function procedureCall(){
 		q_content.value = q_content.value.trim();
 		
-		if(q_anonymous.value.length == 0){
-			alert("이름을 입력해주세요.");
-			q_anonymous.focus();
-			return;
-		}
 		if(q_content.value.length == 0){
 			alert("내용을 입력해주세요.");
 			q_content.focus();
@@ -45,13 +39,14 @@
 	//한줄인사 검증 되면 등록
 	function insertProcedure(){
 		
-		var q_anonymous=$("#q_anonymous").val();
+		var id=$("#id").val();
+		var nickName=$("#nickName").val();
 		var q_content=$("#q_content").val();
 		
 			$.ajax({
 				type : 'post',
 				url : "${pageContext.request.contextPath}/insertProcedure",
-				data : {'q_anonymous' : q_anonymous, 'q_content' : q_content},
+				data : {'id' : id, 'nickName' : nickName, 'q_content' : q_content},
 				dataType : 'text',
 				
 				success : function(data){
@@ -74,7 +69,7 @@
 			url : "${pageContext.request.contextPath}/cursorList",
 					
 			success : function(data){
-				$("#anonymousList").html(data);	//이전 내용을 지우고 HTML 태그를 포함하여 선택한 요소 안의 새로운 내용을 넣습니다				
+				$("#QWList").html(data);	//이전 내용을 지우고 HTML 태그를 포함하여 선택한 요소 안의 새로운 내용을 넣습니다				
 			}
 		});
 	 }
@@ -89,7 +84,8 @@
 		
 		  <div class="form-group col-sm-12" style="padding: 0px;">
 			<div class="col-sm-12">
-				<input id= "q_anonymous" type="hidden" name="q_anonymous" value="${sessionScope.sessionId}"  placeholder="${sessionScope.sessionId}" readonly/>
+				<input id="id" type="hidden" name="id" value="${sessionScope.sessionId}"  placeholder="${sessionScope.sessionId}" readonly/>
+				<input id="nickName" type="hidden" name="nickName" value="${sessionScope.Nickname}"  placeholder="${sessionScope.Nickname}" readonly/>
 				<textarea mexlength="300" id="q_content" class="form-control" rows="3" placeholder="한줄인사를 입력해 주세요"></textarea>
 			</div> 
 			 <div class="col-sm-2" style="float:right;">
@@ -99,7 +95,7 @@
 		<br><br><br>
 	 
 	<!-- 등록된 한줄인사 리스트 -->
-	<div id="anonymousList" class="col-sm-12">
+	<div id="QWList" class="col-sm-12">
 		<%@ include file="cursorListSH.jsp" %>
 	</div>
 	<br><br><br>

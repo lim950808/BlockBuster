@@ -9,6 +9,7 @@
 
 <script type="text/javascript">
 
+	/* 내용 기입 여부 검증 */
 	function insertCheck(){
 		if(r_title.value.length == 0){
 			alert("제목을 입력해주세요.");
@@ -32,8 +33,8 @@
 
 </pre>
 	<div class="container">
+	<h3>리뷰작성하기</h3>
 	
-		<h3>리뷰작성하기</h3>
 	<div class="card border-light mb-3">
 		<!-- 파일 등록을 위해 enctype="multipart/form-data" 을 선언 -->
 		<form action="<c:url value="reviewProWrite"/>" class="form-horizontal" id="frm" name="frm" method="post" enctype="multipart/form-data">
@@ -70,14 +71,14 @@
 			<div class="card-footer text-muted col-sm-12">
 				<div class="col-sm-12" style="text-align : right;">
 					<input type="button" type="submit" class="btn btn-outline-warning" value="저장"  onclick="insertCheck();return false;">&emsp;
-					<input type="button" class="btn btn-outline-secondary" value="리스트" onclick="location.href='${pageContext.request.contextPath}/reviewList'">
+					<input type="button" class="btn btn-outline-secondary" value="리스트" onclick="location.href='${pageContext.request.contextPath}/reviewProductList?pno=${pno}'">
 				</div>
 			</div>
 		</form>
 	</div>
+		<%@ include file="../footer.jsp" %>
 	</div>
 
-<%@ include file="../footer.jsp" %>
 
 	
 

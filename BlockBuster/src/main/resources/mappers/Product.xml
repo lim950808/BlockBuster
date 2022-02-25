@@ -7,6 +7,11 @@
 		SELECT count(*) FROM product
 	</select>
 
+
+<!-- ////////////////////////////////////// -->
+<!-- 관리자 상품관리 -->
+<!-- ////////////////////////////////////// -->
+
 	<select id="JEProductListAll" parameterType="Product" resultType="Product">
 		SELECT *
 		FROM (
@@ -20,7 +25,6 @@
      		 )
 		WHERE rn BETWEEN #{start} AND #{end}
 	</select>
-	
 	
 	<select id="JEProductSelOne" parameterType="int" resultType="Product">
 		SELECT a.*, b.cat_name cat_name, b.gen_name gen_name
@@ -51,47 +55,42 @@
 		WHERE pno=#{pno}
 	</delete>
 	
-	<!-- 카테고리별 상품 리스트: 1차 분류 -->
-	<select id="products_1" resultType="Product">
-		SELECT p.pno, p.title, p.category, p.genre, p.p_img, c.category, c.genre, c.cat_name, c.gen_name
-		FROM product p
-		INNER JOIN category c
-		ON p.genre = c.genre
-		WHERE p.genre = #{genre} OR c.category = #{category}
-	</select>
 	
-	<!-- 카테고리별 상품 리스트: 2차 분류 -->
-	<select id="products_2" resultType="Product">
-		SELECT p.pno, p.title, p.category, p.genre, p.p_img, c.category, c.genre, c.cat_name, c.gen_name
-		FROM product p
-		INNER JOIN category c
-		ON p.genre = c.genre
-		WHERE p.genre = #{genre}
-	</select>
+<!-- ////////////////////////////////////// -->
+<!-- 상품 페이지 -->
+<!-- ////////////////////////////////////// -->
 	
 	<!-- 카테고리 별 나열 -->
 	<select id="HTcategoryList" parameterType="int" resultType="Product">
       SELECT pno, title, category, genre, p_img
-      from product
-      where category like #{c}
+      FROM product
+      WHERE category like #{c}
    </select>
    
    <!-- 장르 별 나열 -->
    <select id="HTgenreList" parameterType="int" resultType="Product">
       SELECT pno, title, category, genre, p_img
-      from product
-      where genre like #{g}
+      FROM product
+      WHERE genre like #{g}
    </select>
 	
-	<!-- 상품 상세정보 -->
-	<!-- <select id="JEProductDetail" parameterType="int" resultType="Product">
-		SELECT * FROM product WHERE pno = #{pno}
-	</select> -->
-	
+	<!-- 상품 상세정보 -->	
 	<select id="JEProductDetail" parameterType="int" resultType="Product">
 		SELECT a.*, b.gen_name gen_name
 		FROM PRODUCT a  LEFT OUTER JOIN  CATEGORY b 
 		ON a.GENRE = b.GENRE
+		WHERE pno = #{pno}
+	</select>
+
+
+<!-- ////////////////////////////////////// -->
+<!-- 장바구니 -->
+<!-- ////////////////////////////////////// -->
+
+	<!-- 카트담기 중복체크 -->
+	<select id="cartCheck" resultType="int" parameterType="Cart">
+		SELECT count(*) 
+		FROM cart 
 		WHERE pno = #{pno}
 	</select>
 	
@@ -100,14 +99,6 @@
  		INSERT INTO cart (no, id, pno, title, price)
  		VALUES (cart_no_seq.NEXTVAL, #{id}, #{pno}, #{title}, #{price})
 	</insert>
-	
-	<!-- 카트 중복담기 금지 -->
-	<select id="orderCheck" parameterType="Product" resultType="int">
-		SELECT count(*)
-		FROM cart
-		WHERE pno = #{pno}
-		AND id = #{id}
-	</select>
 	
 	<!-- 카트 리스트 -->
 	<select id="cartList" resultType="Cart">
@@ -125,6 +116,11 @@
 		WHERE no = #{no}
 		AND id = #{id}
 	</delete>
+
+
+<!-- ////////////////////////////////////// -->
+<!-- 결제 -->
+<!-- ////////////////////////////////////// -->
 	
 	<!-- 주문 정보 -->
 	<insert id="orderInfo" parameterType="Payment">
@@ -167,12 +163,5 @@
 		WHERE o.id = #{id}
 		AND o.orderId = #{orderId}
 	</select>
-
-	<select id="cartCheck" resultType="int" parameterType="Cart">
-		select count(*) from cart where pno = #{pno}
-	</select>
 	
 </mapper>
-
-
-

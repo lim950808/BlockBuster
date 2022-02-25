@@ -127,11 +127,11 @@
    							<input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label>
    							<script>
 							$("#allCheck").click(function(){
- 								var chk = $("#allCheck").prop("checked");
+ 								var chk = $("#allCheck").prop("checked"); //checked : 속성명
  								if(chk) {
-  									$(".chBox").prop("checked", true);
+  									$(".chBox").prop("checked", true); //모두 선택됨
  								}else {
-  									$(".chBox").prop("checked", false);
+  									$(".chBox").prop("checked", false); //모두 선택해제됨.
  								}
 							});
 							</script> 
@@ -142,16 +142,16 @@
 							$(".selectDelete_btn").click(function(){
 								var confirm_val = confirm("정말 삭제하시겠습니까?");
 							  	if(confirm_val) {
-							   		var checkArr = new Array();
-								   	$("input[class='chBox']:checked").each(function(){
-								    	checkArr.push($(this).attr("data-no"));
+							   		var checkArr = new Array(); //배열 초기화
+								   	$("input[class='chBox']:checked").each(function() { //클래스가 chBox인것들의 값들을 배열에 담음. 
+								    	checkArr.push($(this).attr("data-no")); //해당 "cart.no"의 값을 가진 "data-no"
 								   	});
 								    
 								   	$.ajax({
 								    	url : "${pageContext.request.contextPath}/Cart/deleteCart",
 								    	type : "post",
-								    	data : { chbox : checkArr },
-								    	success : function(result){
+								    	data : { chbox : checkArr }, //http 요청과 함께 서버로 데이터 -> ex) data:{name:"홍길동"}
+								    	success : function(result) {
 								    		if(result == 1) {
 								    			location.href = "${pageContext.request.contextPath}/Cart/cartList";
 								    		}else {
@@ -172,8 +172,8 @@
 	 						<div class="checkBox">
    								<input type="checkbox" name="chBox" class="chBox" data-no="${cart.no}" />
    								<script>
-	 								$(".chBox").click(function(){
-	  									$("#allCheck").prop("checked", false);
+	 								$(".chBox").click(function() {
+	  									$("#allCheck").prop("checked", false); //prop()는 속성의 값을 true 혹은 false로 반환. -> checked시 false값을 세팅됨.
 	 								});
 								</script>
   							</div>
@@ -195,9 +195,9 @@
 										var confirm_val = confirm("정말 삭제하시겠습니까?");
 									  
 									  	if(confirm_val) {
-									   		var checkArr = new Array();
+									   		var checkArr = new Array(); //배열 초기화
 									   
-									   		checkArr.push($(this).attr("data-no"));
+									   		checkArr.push($(this).attr("data-no")); //해당 "cart.no"의 값을 가진 "data-no"를 배열에 담음.
 									              
 										   	$.ajax({
 										    	url : "${pageContext.request.contextPath}/Cart/deleteCart",
@@ -217,15 +217,14 @@
 	   							</div>
 	  						</div>
 	 					</li>
-	 				<c:set var="sum" value="${sum + cart.price}" />
+	 				<c:set var="sum" value="${sum + cart.price}" /> <!-- sum이라는 변수에 총합을 더해 놓음 -->
  					</c:forEach>
 				</ul>
-<!-- 				<pre>
-				
-				</pre> -->
+
 				<div class="listResult">
 					<div class="sum">
-				  		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
+				  		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원 
+				  		<!-- formatNumber(숫자 자리수로 나눔) : JSTL fmt태그 요망 -->
 				 	</div>
 				 	<div class="orderOpne">
 						<button id="check_module" type="button">결제</button>
@@ -245,12 +244,12 @@
 										 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
 										 */
 										name: 'BlockBuster',
-										// 결제창에서 보여질 이름
-										// name: '주문명 : ${auction.a_title}',
-										// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
+										// 결제창에서 보여질 이름(주문명)
+										// name: '${auction.a_title}',
+										// 위와 같이 model에 담은 정보를 넣어 쓸 수도 있습니다.
 										amount: '${sum}',
 										// amount: ${bid.b_bid},
-										// 가격 
+										// 총 가격 
 										buyer_name: '${cart.id}',
 										// 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
 										// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
@@ -258,7 +257,7 @@
 										console.log(rsp);
 										if (rsp.success) {
 											var msg = '결제가 완료되었습니다.';
-											location.href='${pageContext.request.contextPath}/Cart/cartList/order?totalPrice=${sum}'
+											location.href='${pageContext.request.contextPath}/Cart/cartList/order?totalPrice=${sum}' //sum값을 가진 totalPrice
 											/* msg += '결제 금액 : ' + rsp.paid_amount; */
 											// success.submit();
 											// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
@@ -274,7 +273,6 @@
 					</div>
 				</div>
 			</section>
-			
 		</div>
 	</section>
 <pre>

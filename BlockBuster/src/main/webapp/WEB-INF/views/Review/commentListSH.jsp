@@ -2,12 +2,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%
-	String context = request.getContextPath();
-    System.out.println("context->"+context);
-%>
-
-
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 
@@ -31,7 +25,7 @@
 				var cnoNo = $('#cnoNo'+Vindex).val(); //cno값을 가져옴
 				
 					$.ajax({
-						url : "<%=context%>/commentDelete",
+						url : "${pageContext.request.contextPath}/commentDelete",
 						data : {cno : cnoNo},
 					 	dataType :'text', 
 						success : function(data){
@@ -50,13 +44,13 @@
 		
 		
 
-		/* 댓글 수정 */
+		/* 댓글 수정(DB) */
 		function commentRealEdit(Vindex){
 				var cnoNo = $('#cnoNo'+Vindex).val();
 				var c_content=$("#c_contentEdit"+Vindex).val();/* 수정된 댓글 내용 */
 				
 					$.ajax({
-						url : "<%=context%>/commentRealEdit",
+						url : "${pageContext.request.contextPath}/commentRealEdit",
 						data : {'cno' : cnoNo, 'c_content' : c_content},
 					 	dataType :'text', 
 						success : function(data){
@@ -68,7 +62,7 @@
 					});
 		}
 		
-		
+		/* 댓글 수정(화면) */
 		function commentEdit(Vindex){
 			$('#cno2'+Vindex).hide();
 			$('#cno3'+Vindex).show();

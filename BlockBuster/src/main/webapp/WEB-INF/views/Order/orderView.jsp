@@ -110,7 +110,7 @@
 								<span>상품명</span>${orderView.title}<br />
 								<span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.price}" /> 원<br />                
 							</p>
-							<input type="button" value="재생 ▶" onclick="window.open('${orderView.p_video }')" class="button">
+							<input type="button" value="재생 ▶" onclick="window.open('${orderView.p_video }')" class="button"> <!-- window.open은 새로운 창이 뜸 -->
 						</div>
 					</li>					
 					</c:forEach>

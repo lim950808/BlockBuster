@@ -75,7 +75,7 @@ public class JEController {
 		return "/Admin/productList";
 	}
 	
-	//영상 상세 페이지
+	// 영상 상세 페이지
 	@GetMapping(value = "/Admin/detail")
 	public String detail(int pno, Model model) {
 		Product product = js.detail(pno);
@@ -162,6 +162,7 @@ public class JEController {
 		}
 	    	
 	}
+	
 	//파일 업로드
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
 		UUID uid = UUID.randomUUID();
@@ -183,6 +184,7 @@ public class JEController {
 		
 		return savedName;
 	}
+	
 	//상품 삭제
 	@RequestMapping(value = "/Admin/delete")
 	public String delete(int pno, Model model) {
@@ -193,100 +195,86 @@ public class JEController {
 	
 	
 /////////////////////////////////////////
-// 상품 페이지
+//	상품 페이지
 /////////////////////////////////////////
 	
-	//카테고리별 영상 리스트
-	@RequestMapping(value = "/Product/list", method = RequestMethod.GET)
-	public void getList(@RequestParam("g") int genre, @RequestParam("l") int level, Model model) throws Exception {
-		List<Product> list = null;
-		list = js.list(genre, level);
-		//model.addAttribute("c", category);
-		model.addAttribute("list", list);
-	}
-	
 	//상품 상세 -> productDetail페이지
-	@GetMapping(value = "/Product/productDetail")
+	@GetMapping(value = "/Product/productDetail") //요청경로(path)
 	public String product(Model model, int pno) {
 		Product product = js.productDetail(pno);
 		product.setPno(pno);
 		model.addAttribute("product", product);
-		
+		//model.addAttribute("변수이름", 변수에 넣을 데이터값);
+		//모델 캑체를 파라미터로 받음.
 		return "/Product/productDetail";
+		//파라미터로 받은 그 값을 "뷰 페이지"로 넘긴다.
 	}
 	
-	//카테고리 별 영상리스트
+	//카테고리별 영상리스트
 	@GetMapping(value = "CategoryList")
     public String CategoryList(Model model, HttpServletRequest request) {
-       int c = Integer.parseInt(request.getParameter("c"));
-       System.out.println("JEController의 CategoryList메서드 실행");
-       System.out.println("JEController의 CategoryList메서드 입력된 카테고리 값 => "+c);
-       List<Product> list = js.categoryList(c);
-       System.out.println("JEController의 CategoryList메서드의 list.size() => "+list.size());
-       model.addAttribute("list", list);
-       model.addAttribute("s", "segment"); // 장르페이지 인지 카테고리 페이지 인지 구분하는 처리
-       return "/Product/list";
+		int c = Integer.parseInt(request.getParameter("c")); //HttpServletRequest 객체 안의 "c"값을 형변환하여 int타입으로 가져온다.
+		System.out.println("JEController의 CategoryList메서드 실행");
+		System.out.println("JEController의 CategoryList메서드 입력된 카테고리 값 => " + c);
+		List<Product> list = js.categoryList(c); //"c"값을 list에 List형식으로 담는다.
+		System.out.println("JEController의 CategoryList메서드의 list.size() => " + list.size());	
+		model.addAttribute("list", list); //model객체를 이용해 list를 뷰로 값을 넘김.
+		model.addAttribute("s", "segment"); // "장르 페이지"인지 "카테고리 페이지"인지 구분하는 처리	(segment: 분할)
+		return "/Product/list";
     }
 	
-	//장르 별 영상리스트
+	//장르별 영상리스트
 	@GetMapping(value = "GenreList")
-	   public String GenreList(Model model, HttpServletRequest request) {
-	      int g = Integer.parseInt(request.getParameter("g"));
-	      System.out.println("JEController의 GenreList메서드 실행");
-	      System.out.println("JEController의 GenreList메서드 입력된 카테고리 값 => "+g);
-	      List<Product> list = js.genreList(g);
-	      System.out.println("JEController의 GenreList메서드의 list.size() => "+list.size());
-	      model.addAttribute("list", list);
-	      return "/Product/list";
-	   }
+	public String GenreList(Model model, HttpServletRequest request) {
+		int g = Integer.parseInt(request.getParameter("g"));
+		System.out.println("JEController의 GenreList메서드 실행");
+		System.out.println("JEController의 GenreList메서드 입력된 카테고리 값 => " + g);
+		List<Product> list = js.genreList(g);
+		System.out.println("JEController의 GenreList메서드의 list.size() => " + list.size());
+		model.addAttribute("list", list);
+		return "/Product/list";
+   }
+
+	
+/////////////////////////////////////////
+// 장바구니
+/////////////////////////////////////////	
 	
 	//카트에 담기
-	@ResponseBody
+	@ResponseBody //ajax를 위해 @ResponseBody 사용
 	@RequestMapping(value = "/Product/productDetail/addCart", method = RequestMethod.POST)
 	public int addCart(Cart cart, HttpSession session, int pno, Model model) throws Exception {
-		int result = 0;
-		//카트에 중복된 영상 예외처리
-		System.out.println("cart.pno => "+cart.getPno());
-		int checkRepetition = js.checkRepetition(cart);
-		System.out.println("checkNum => " +checkRepetition);
+		int result = 0; //0으로 초기화
+		System.out.println("cart.pno => " + cart.getPno());
+
+		int checkRepetition = js.checkRepetition(cart); //카트에 중복된 영상 예외처리
+		System.out.println("checkNum => " + checkRepetition);
 		if(checkRepetition == 0) { //카트 테이블에 중복된 영상 없을때
 			System.out.println("addCart start...");
 			String id = (String)session.getAttribute("sessionId");
-			System.out.println("addCart id->"+id);
-			//로그인 여부 구분
-		    if(id != null) {
+			System.out.println("addCart id->" + id);	
+			
+		    if(id != null) { //로그인 여부 구분
 				cart.setId(id);
-				js.addCart(cart);
-				result = 1;
+				js.addCart(cart); //로그인시 카트에 담기
+				result = 1; //정상적으로 카트에 담김.
 			}
 		}else if(checkRepetition >= 1){ //카트 테이블에 중복된 영상 있을때 
-			result = 2; //
-		}
-	    
-		/*
-		 * //중복 구매 불가 Product orderProduct = new Product(); orderProduct.setPno(pno);
-		 * orderProduct.setId(id); int orderCheck = js.orderCheck(orderProduct);
-		 * System.out.println("orderCheck: " + orderCheck);
-		 * model.addAttribute("orderCheck", orderCheck);
-		 */
-	    
-	    
-	    
-	    return result;
-	    
+			result = 2; //카트에 담지 못하는 예외 처리
+		}	    
+	    return result;	    
 	}
 	
 	//카트 리스트
 	@RequestMapping(value = "/Cart/cartList", method = RequestMethod.GET)
 	public String getCartList(HttpSession session, Model model) throws Exception {
 		System.out.println("get cartList started...");
-		// Login member
 		String id = (String)session.getAttribute("sessionId");
-		System.out.println("get cartList id->"+id);
+		System.out.println("get cartList id->" + id);
 		
-		List<Cart> cartList = js.cartList(id);
-		System.out.println("get cartList cartList.size()->"+cartList.size());
-		model.addAttribute("cartList", cartList);
+		List<Cart> cartList = js.cartList(id); //"id"값을 cartList에 List형식으로 담는다.
+		System.out.println("get cartList cartList.size()->" + cartList.size());
+		model.addAttribute("cartList", cartList); //cartList를 뷰단으로 넘김.
 		return "/Cart/cartList";
 	}
 	
@@ -296,25 +284,24 @@ public class JEController {
 	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, Cart cart) {
 		System.out.println("Delete cart");
 		String id = (String)session.getAttribute("sessionId");
-		int result = 0;
+		int result = 0; //초기화
 		int no = 0; //카트 번호(cartNum)
 		
-		//로그인 여부 구분
-		if(id != null) {
+		if(id != null) { //로그인 여부 구분
 			cart.setId(id);
-			for(String i : chArr) { //ajax에서 받은 chArr의 갯수만큼 반복
+			for(String i : chArr) { //ajax에서 받은 chArr(checked Array)의 갯수만큼 반복되는 for문
 				no = Integer.parseInt(i); //i번째 데이터를 no에 저장
 				cart.setNo(no);
 				js.deleteCart(cart);
 			}
-			result = 1;
+			result = 1; //정상적을 삭제됨.
 		}
 		return result;
 	}
 
 	
 /////////////////////////////////////////
-//payment 결제
+// 결제
 /////////////////////////////////////////
 	
 	//주문
@@ -322,13 +309,13 @@ public class JEController {
 	public String order(HttpSession session, Payment payment, PaymentDetails paymentDetails) {
 		System.out.println("order start...");
 		String id = (String)session.getAttribute("sessionId");
-		System.out.println("controoller Cart/cartList id-->"+id);
+		System.out.println("controoller Cart/cartList id-->" + id);
 		
 		// orderId(주문번호)생성 로직 - 캘린더 메서드로 랜덤숫자(subNum) 만들기
 		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);  // 연도 추출
-		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);  // 월 추출
-		String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));  // 일 추출
+		int year = cal.get(Calendar.YEAR);  // 연도(year) 추출
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);  // 월(month) 추출
+		String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));  // 일(date) 추출
 		String subNum = "";  // 랜덤 숫자를 저장할 문자열 변수
 		
 		for(int i=1; i<=6; i++) {  // 6회 반복
@@ -354,12 +341,11 @@ public class JEController {
 	//결제 후 주문 목록
 	@RequestMapping(value = "/Order/orderList", method = RequestMethod.GET)
 	public String getOrderList(HttpSession session, Payment payment, Model model) {
-		logger.info("get orderList");
-		
+		logger.info("get orderList");		
 		String id = (String)session.getAttribute("sessionId");
-		payment.setId(id);
-		List<Payment> orderList = js.orderList(payment);
-		model.addAttribute("orderList", orderList);
+		payment.setId(id);	
+		List<Payment> orderList = js.orderList(payment); //"payment"값을 cartList에 List형식으로 담음.
+		model.addAttribute("orderList", orderList); //orderList를 뷰단으로 넘김.
 		return "Order/orderList";
 	}
 	
@@ -367,14 +353,11 @@ public class JEController {
 	@RequestMapping(value = "/Order/orderView", method = RequestMethod.GET)
 	public void getOrderList(HttpSession session, @RequestParam("n") String orderId, Payment payment, Model model) {
 		logger.info("get orderView");
-		
 		String id = (String)session.getAttribute("sessionId");
-		
 		payment.setId(id);
 		payment.setOrderId(orderId);
-		
-		List<OrderList> orderView = js.orderView(payment);
-		model.addAttribute("orderView", orderView);
+		List<OrderList> orderView = js.orderView(payment); //"payment"값을 orderView에 List형식으로 담음.
+		model.addAttribute("orderView", orderView); //orderView를 뷰단으로 넘김.
 	}
 	
 }

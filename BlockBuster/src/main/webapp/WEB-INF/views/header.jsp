@@ -408,7 +408,6 @@ body {
 	    		<a href="${pageContext.request.contextPath}/reviewList"><h2>Review</h2></a>
 	    		<a href="${pageContext.request.contextPath}/FAQ/listCB"><h2>FAQ</h2></a>
 	    		<a href="${pageContext.request.contextPath}/procedureForm"><h2>한줄인사</h2></a>
-	    		<a href="${pageContext.request.contextPath}/cursorList"><h2>cursor</h2></a>
 	  		</div>
 	</div>
 	  

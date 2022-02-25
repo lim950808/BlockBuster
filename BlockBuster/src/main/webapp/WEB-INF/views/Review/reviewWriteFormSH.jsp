@@ -12,6 +12,7 @@
 
 <script type="text/javascript">
 
+	/* 영상 제목 자동완성 */
 	function getRecommendWords(){
 		var str="";
 		var str2="";
@@ -35,6 +36,7 @@
 			);
 	}
 	
+	/* 영상제목 검증 */
 	function insertCheck(){
 		
 		var title=$('#words').val();/* 영상제목 */
@@ -114,8 +116,8 @@
 	
 		</form>
 	</div>
-</div>
 <%@ include file="../footer.jsp" %>
+</div>
 
 </body>
 </html>

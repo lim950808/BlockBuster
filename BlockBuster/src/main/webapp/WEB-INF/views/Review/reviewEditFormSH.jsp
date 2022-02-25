@@ -45,7 +45,7 @@
 			<div class="col-sm-3 col-xs-12">
 			</div>
 			<div class="col-sm-9 col-xs-12">
-				<input style="height: 42px;" class="form-control" id="imgFile" name="imgFile" type="file"/>
+				<input style="height: 42px;" class="form-control" id="imgFile" name="imgFile" type="file" value="${editWriteForm.r_img}"/>
 			</div>
 		</div>
 		
@@ -57,6 +57,7 @@
 		</div>
 	</form>
   </div>
+	<%@ include file="../footer.jsp" %>
   </div>
   
 	<script type="text/javascript">
@@ -75,7 +76,6 @@
 	}
 	</script>
 
-<%@ include file="../footer.jsp" %>
 
 </body>
 </html>

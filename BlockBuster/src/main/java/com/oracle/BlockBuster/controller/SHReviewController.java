@@ -68,9 +68,10 @@ public class SHReviewController {
 		model.addAttribute("reviewList",searchResult); // 심플
 		model.addAttribute("keyword",searchModel.getKeyword()); //쉬운방법
 		model.addAttribute("boardKind", "검색");
-		model.addAttribute("Search_option",searchModel.getSearch_option()); //쉬운방법
+		model.addAttribute("Search_option",searchModel.getSearch_option());
 
-			return "Review/reviewListSH";
+		
+		return "Review/reviewListSH";
 	}
 	
 	
@@ -115,8 +116,6 @@ public class SHReviewController {
 	public String reviewProductList(int pno, String currentPage, Model model) {
 		logger.info("[STRAT] 상품페이지로부터 reviewProductList 시작--------------------");
 		
-		System.out.println("상품페이지로부터 온 pno : "+pno);
-		
 		//Paging 호출
 		logger.info("[3-1-1] totalPro() 시작");
 		int total = SHservice.totalPro(pno);
@@ -133,12 +132,11 @@ public class SHReviewController {
 		logger.info("[3-3-1] reviewProductList() 시작");
 		List<SHReviewModel> reviewProList = SHservice.reviewProductList(SHreviewModel);
 		model.addAttribute("reviewList", reviewProList);
-		System.out.println("reviewProList.size()->"+reviewProList.size());
+		logger.info("reviewProList.size()->"+reviewProList.size());
 		model.addAttribute("reviewProListResult", reviewProList.size());
 		
 		logger.info("[3-4-1] pnoToTitle() 시작");
 		String title = SHservice.pnoToTitle(pno);
-		System.out.println("title 가지고왔잖아? "+title);
 		model.addAttribute("title", title);
 		
 		model.addAttribute("pno", pno); // 리스트에서 번호에 따라 리뷰남기는 방식이다름 
@@ -184,6 +182,7 @@ public class SHReviewController {
 		int userGood = SHservice.userGood(SHgoodModel);
 		model.addAttribute("userGood", userGood);
 		
+		
 		return "Review/reviewDetailSH";
 	}
 	
@@ -217,10 +216,10 @@ public class SHReviewController {
 		logger.info("[STRAT] reviewWrite 전체 글작성 양식_후 시작--------------------");
 		
 		//파일 업로드
-		if(imgFile!=null) {
+		if(!(imgFile.getOriginalFilename() ==null || imgFile.getOriginalFilename().equals(""))) {
 			String uploadPath = request.getSession().getServletContext().getRealPath("/upload/"); // 파일 업로드할 폴더
 			
-			System.out.println("uploadForm POST Start");
+			logger.info("uploadForm POST Start");
 			logger.info("originalName: " + imgFile.getOriginalFilename());// 파일명
 		    logger.info("size: " + imgFile.getSize()); //yml에 설정한 사이즈
 		    logger.info("contentType: " + imgFile.getContentType()); // image
@@ -234,9 +233,6 @@ public class SHReviewController {
 		}
 		
 		//게시글 작성
-		System.out.println("SHreviewModel : " +SHreviewModel.toString());
-		
-		System.out.println(SHreviewModel.getTitle());
 		int pno = SHservice.titleToPno(SHreviewModel.getTitle());
 		SHreviewModel.setPno(pno);
 		
@@ -259,10 +255,10 @@ public class SHReviewController {
 		logger.info("[STRAT] reviewProWrite 스파이더맨 글작성 양식_후 시작--------------------");
 		
 		//파일 업로드
-		if(imgFile!=null) {
+		if(!(imgFile.getOriginalFilename() ==null || imgFile.getOriginalFilename().equals(""))) {
 			String uploadPath = request.getSession().getServletContext().getRealPath("/upload/"); // 파일 업로드할 폴더
 			
-			System.out.println("uploadForm POST Start");
+			logger.info("uploadForm POST Start");
 			logger.info("originalName: " + imgFile.getOriginalFilename());// 파일명
 		    logger.info("size: " + imgFile.getSize()); //yml에 설정한 사이즈
 		    logger.info("contentType: " + imgFile.getContentType()); // image
@@ -296,7 +292,6 @@ public class SHReviewController {
     // requestPath = requestPath + "/resources/image";
     System.out.println("uploadPath->"+uploadPath);
     
-    
     // Directory 생성 
 	File fileDirectory = new File(uploadPath);
 	if (!fileDirectory.exists()) {  //'uploadPath' directory 존재여부 확인
@@ -307,15 +302,15 @@ public class SHReviewController {
 	String savedName = uid.toString() + "_" + originalName;
     logger.info("savedName: " + savedName);
     
-    
     File target = new File(uploadPath, savedName);
     FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
+    
     
     return savedName;
   }	
 	
 	
-	//게시글 작성하기3 - 검색어로 title 찾기
+	//게시글 작성하기3 - 검색어로 title 찾기 - 영상 제목 자동완성에 사용
 	@RequestMapping(value="SearchWord")
 	@ResponseBody
 	public List<SHTitleModel> searchTitle() {
@@ -324,11 +319,12 @@ public class SHReviewController {
 		logger.info("[8-1-1] searchTitle() 시작");
 		List<SHTitleModel> titleNTotalWd = SHservice.searchTitle(); //제목
 		
+		
 		return titleNTotalWd;
 	}		
 		
 	
-	//게시글 제목 검증하기
+	//게시글 제목 검증하기 - 영상제목 검증에 사용
 	@PostMapping(value="checkTitle")
 	@ResponseBody
 	public String checkTitle(String title, Model model) {
@@ -340,6 +336,7 @@ public class SHReviewController {
 		
 		String checkTitleStr = String.valueOf(checkTitle);
 		
+		
 		return checkTitleStr;
 	}	
 
@@ -348,16 +345,18 @@ public class SHReviewController {
 	public String reviewEditForm(int r_no, Model model) {
 		logger.info("[STRAT] reviewEditForm 시작--------------------");
 		
-			logger.info("[10-1-1] reviewDetail 시작");
-			model.addAttribute("editWriteForm", SHservice.reviewDetail(r_no));
-			
-			return "Review/reviewEditFormSH";
+		logger.info("[10-1-1] reviewDetail 시작");
+		model.addAttribute("editWriteForm", SHservice.reviewDetail(r_no));
+		
+		
+		return "Review/reviewEditFormSH";
 	}
 	//게시글 수정2
 	@RequestMapping(value="edit")
 	public String ReviewEdit(HttpServletRequest request, MultipartFile imgFile, SHReviewModel SHreviewModel, Model model) throws Exception {
 		logger.info("[STRAT] ReviewEdit 시작");
-		
+	
+		if(!(imgFile.getOriginalFilename() ==null || imgFile.getOriginalFilename().equals(""))) {
 		//파일 업로드
 		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/"); // 파일 업로드할 폴더
 		
@@ -372,11 +371,12 @@ public class SHReviewController {
 	    
 	    logger.info("r_img : " + r_img);
 	    SHreviewModel.setR_img(r_img);
-		
+		}
 		
 		logger.info("[11-1-1] ReviewEdit() 시작");
 		int editResult = SHservice.ReviewEdit(SHreviewModel);
 		System.out.println("  edit 게시글 수정 반영 결과 : "+editResult);
+		
 		
 		return "forward:reviewList";
 	}

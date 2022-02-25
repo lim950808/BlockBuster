@@ -12,7 +12,6 @@ function register(){
 	   var pw1   = $('#pw1').val();
 	   var pw2   = $('#pw2').val();
 	
-	   
 	   if(pw1 =='' && pw2 == ''){ //비밀번호 입력 안 했을 시
 		   alert("비밀번호를 입력해주세요");
 		   return false;
@@ -26,13 +25,11 @@ function register(){
 	   }else if(pw1 != pw2){ //비밀번호 동일하지 않을 때
 		   alert("입력하신 비밀번호가 동일하지 않습니다");
 		   frm.pw2.focus();
+		   frm.pw2.value='';
 		   return false;
 	   }else{
 		   $('#frm').submit();
 	   }
-	   
-	   //alert("nickNameChk");
-	   //alert("emailChk");
 }
 
 </script>

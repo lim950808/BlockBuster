@@ -32,7 +32,7 @@ public class SHCommentController {
 	 
 	
 	
-	//댓글 DB반영 --> ok
+	//댓글 DB반영
 	@RequestMapping("commentInsert")
 	@ResponseBody
 	public String commentInsert(SHCommentModel SHcommentModel, HttpServletRequest request) { 
@@ -41,26 +41,22 @@ public class SHCommentController {
 		//세션에 저장된 id값 불러오기(필요)
 		SHcommentModel.setId(loginCheck.checkSessionId(request));
 		
-		System.out.println("댓글 입력 SHcommentModel : "+"\r\n"+SHcommentModel.toString()+"\r\n");
-		
-		
 		int insertResult = SHservice.commentInsert(SHcommentModel);
 		logger.info("commentInsert() 댓글 작성 반영 결과 : "+insertResult);
 		
 		String insertResultStr = String.valueOf(insertResult);
 		
+		
 		return insertResultStr;
-	
 	}
 	
 	
 	
 	
-	//등록된 댓글 list 불러오기 --> ok, 페이징 처리 미흡
+	//등록된 댓글 list 불러오기
 	@RequestMapping(value="commentList")
 	public String commentList(SHCommentModel SHcommentModel, String currentPage, Model model) { 
 		logger.info("[STRAT] commentList 시작--------------------");
-		System.out.println("commentList 실행 r_no : "+"\r\n"+SHcommentModel.toString()+", currentPage "+currentPage+"\r\n");
 		
 		int c_total = SHservice.c_total(SHcommentModel.getR_no());
 		logger.info("c_total 결과 : " +c_total);
@@ -75,11 +71,11 @@ public class SHCommentController {
 		model.addAttribute("c_total", c_total);
 		model.addAttribute("pg",pg);
 		
+		
 		return "Review/commentListSH";
 	}
 	
 	
-	//ok
 	//댓글 삭제
 	@RequestMapping(value="commentDelete")
 	@ResponseBody
@@ -91,6 +87,7 @@ public class SHCommentController {
 		logger.info("resultStr결과 : " +result);
 		
 		String resultStr = String.valueOf(result);
+		
 		
 		return resultStr; 
 	}
@@ -105,9 +102,10 @@ public class SHCommentController {
 		
 		logger.info("[5-1-1] commentEdit() 시작");
 		int editResult = SHservice.commentEdit(SHcommentModel);
-		System.out.println("  commentEdit 댓글 수정 반영 결과 : "+editResult);
+		System.out.println("commentEdit 댓글 수정 반영 결과 : "+editResult);
 		
 		String resultStr = String.valueOf(editResult);
+		
 		
 		return resultStr; 
 	}

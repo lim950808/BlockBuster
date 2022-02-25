@@ -170,7 +170,9 @@ p {
 		var form document.emailCheckFrm;
 		form.submit();
 	}
+		return true;
 	});
+	return true;
 }
 
 /* function chkcode(){
@@ -196,6 +198,8 @@ p {
 </script>
 </head>
 <body>
+<img alt="background img" class="img-bg" src="${pageContext.request.contextPath}/resources/img/벽돌배경02.jpg" />
+
 <section class="login-form">
 	<h1 align="center">이메일 코드 확인</h1>
 	<form id="emailCheckFrm" name="emailCheckFrm" action="${pageContext.request.contextPath}/regSubmit.do" onsubmit="chkcode(); return false;"> <!-- 로그인 후 메인으로 날라간 컨트롤러 맵핑  -->

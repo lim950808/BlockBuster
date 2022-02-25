@@ -23,7 +23,7 @@
 	<table id="list" class="table table-hover">
 		<tr style="background-color:#ff7f00; color: white">
 			<th>순번</th>
-			<th>이름</th>
+			<th>닉네임</th>
 			<th>한줄인사</th>
 			<th>날짜</th>
 		</tr>
@@ -31,7 +31,7 @@
 		<c:forEach var="listCursor" items="${listCursor}">
 			<tr>
 				<td>${listCursor.q_no}</td>
-			    <td>${listCursor.q_anonymous}</td>
+			    <td>${listCursor.nickName}</td>
 				<td>${listCursor.q_content}</td>
 				<td>${listCursor.q_date}</td>
 			</tr>

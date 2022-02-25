@@ -273,49 +273,7 @@ function nikchk(){
 <section class="login-form">
 	<h1 align="center">회원가입</h1>
 	<form id="registrationFrm" name="registrationFrm" action="${pageContext.request.contextPath}/registration.do" onsubmit="return register()">
-		<%-- <table>
-			<tbody>
-				<tr>
-					<td>아이디</td>
-					<td><input type="text" id="id" name="id" required></td>
-					<td><input type="button" id="check" value="중복체크" onclick="idchk()" required></td>
-				</tr>
-				<tr>
-					<td colspan=3 id="idCheck2"></td>
-				</tr>
-				<tr>
-					<td>패스워드</td>
-					<td colspan="2"><input id="password" name="password" type="password" required></td>
-				</tr>
-				<tr>
-					<td>패스워드 확인</td>
-					<td colspan="2"><input id="passwordCheck" name="passwordCheck" type="password" required></td>
-				</tr>
-				
-				<tr>
-					<td>닉네임</td>
-					<td colspan="2"><input id="nickname" name="nickname" type="text" required></td>
-				</tr>
-				
-				<tr>
-				<td><input type="button" id="nicknameChk" value="중복체크" onclick="nikchk()"></td>
-				</tr>
-				
-				<tr>
-					<td colspan=3 id="nickCheck"></td>
-				</tr>
-				
-				<tr>
-					<td>Email</td>
-					<td colspan="2"><input id="email" name="email" type="email" required></td>
-				</tr>			
-				
-				<tr>
-					<td colspan="3"><button type="submit" id="registration">회원가입</button></td>
-				</tr>
-			</tbody>
-		</table>
-		--%>
+		<img alt="background img" class="img-bg" src="${pageContext.request.contextPath}/resources/img/벽돌배경02.jpg" />
 		<div class="int-area">	
 			<input type="text" name="id" id="id" autocomplete="off" required autofocus>
 			<label for="id">ID</label>
