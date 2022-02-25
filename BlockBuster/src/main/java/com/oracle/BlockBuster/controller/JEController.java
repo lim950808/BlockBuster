@@ -198,6 +198,17 @@ public class JEController {
 //	상품 페이지
 /////////////////////////////////////////
 	
+	//상품 상세 -> productDetail페이지
+	@GetMapping(value = "/Product/productDetail") //요청경로(path)
+	public String product(Model model, int pno) {
+		Product product = js.productDetail(pno);
+		product.setPno(pno);
+		model.addAttribute("product", product);
+		//model.addAttribute("변수이름", 변수에 넣을 데이터값);
+		//모델 캑체를 파라미터로 받음.
+		return "/Product/productDetail";
+		//파라미터로 받은 그 값을 "뷰 페이지"로 넘긴다.
+	}
 	
 	//카테고리별 영상리스트
 	@GetMapping(value = "CategoryList")
@@ -224,17 +235,6 @@ public class JEController {
 		return "/Product/list";
    }
 
-	//상품 상세 -> productDetail페이지
-	@GetMapping(value = "/Product/productDetail") //요청경로(path)
-	public String product(Model model, int pno) {
-		Product product = js.productDetail(pno);
-		product.setPno(pno);
-		model.addAttribute("product", product);
-		//model.addAttribute("변수이름", 변수에 넣을 데이터값);
-		//모델 캑체를 파라미터로 받음.
-		return "/Product/productDetail";
-		//파라미터로 받은 그 값을 "뷰 페이지"로 넘긴다.
-	}
 	
 /////////////////////////////////////////
 // 장바구니
@@ -330,6 +330,7 @@ public class JEController {
 		js.orderInfo(payment); //주문 정보
 		
 		paymentDetails.setOrderId(orderId);
+		paymentDetails.setId(id);
 		js.orderInfo_Details(paymentDetails); //주문 상세 정보
 		
 		//결제 후 카트 비우기
@@ -344,7 +345,7 @@ public class JEController {
 		logger.info("get orderList");		
 		String id = (String)session.getAttribute("sessionId");
 		payment.setId(id);	
-		List<Payment> orderList = js.orderList(payment); //"payment"값을 orderList에 List형식으로 담음.
+		List<Payment> orderList = js.orderList(payment); //"payment"값을 cartList에 List형식으로 담음.
 		model.addAttribute("orderList", orderList); //orderList를 뷰단으로 넘김.
 		return "Order/orderList";
 	}

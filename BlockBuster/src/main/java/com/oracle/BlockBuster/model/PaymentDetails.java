@@ -10,5 +10,5 @@ public class PaymentDetails {
 	private int detailNo; 		//주문상세 번호 (pk, seq)
 	private String orderId; 	//주문번호
 	private int pno; 			//품번
-	
+	private String id;			//아이디
 }

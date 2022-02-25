@@ -130,9 +130,9 @@
 	
 	<!-- 주문 상세 정보 --> <!-- insert select문 : select에 있는 다수의 데이터 입력 가능 -->
 	<insert id="orderInfo_Details" parameterType="PaymentDetails">
-		INSERT INTO paymentDetails(detailNo, orderId, pno)
-			SELECT paymentDetails_detailNo_seq.nextval, #{orderId}, pno
-			FROM cart
+		INSERT INTO paymentDetails(detailNo, orderId, pno, id)
+			SELECT paymentDetails_detailNo_seq.nextval, #{orderId}, pno, #{id}
+			FROM cart where id = #{id}
 	</insert>
 	
 	<!-- 결제 후 카트 비우기 -->
@@ -150,7 +150,7 @@
 	</select>
 	
 	<!-- 결제 후 주문 상세 목록 -->
-	<select id="orderView" resultType="OrderList">
+	<select id="orderView" resultType="OrderList" parameterType="Payment">
 		SELECT
 			o.orderId, o.id, o.totalPrice, o.p_date, 
 			d.detailNo, d.pno, 
@@ -162,6 +162,7 @@
 				ON d.pno = p.pno
 		WHERE o.id = #{id}
 		AND o.orderId = #{orderId}
+		AND d.id = #{id}
 	</select>
 	
 </mapper>
