@@ -192,7 +192,7 @@ function RecommendTitleWords(){
 			<!-- 해당 카테고리 내에서만 제목으로 검색 -->
 			<c:set var="s" value="${s}"/><!-- genre말고 category에서만 검색창이 나타남 -->
 	      		<c:choose>
-	      			<c:when test="${not empty s}">
+	      			<c:when test="${not empty s}"> <!-- segment -->
 	         			<form class="exampleJE" action="${pageContext.request.contextPath}/HTGetPdtSearchResult">
 		            		<input type="hidden" id="sCategory" name="category"> 
 		         			<input type="text" name="keyword" id="words" list="searchingist2" onfocus="RecommendTitleWords()" placeholder="제목을 입력하세요.">

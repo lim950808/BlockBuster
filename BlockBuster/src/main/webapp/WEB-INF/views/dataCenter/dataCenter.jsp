@@ -22,7 +22,7 @@ function getAllListByGenre(){
 	var genreNo = $('#genre').val();
 		$.ajax({
 			type : "GET",
-			url :"${pageContext.request.contextPath}/listbygenre",
+			url :"${pageContext.request.contextPath}/media",
 			data:{genre:genreNo, title:"", casting:"", country:"", year:"", director:""},
 			dataType:'json',
 			success:function(data){

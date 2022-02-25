@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.BlockBuster.model.JJMember;
 import com.oracle.BlockBuster.service.JJMemberService;
+import com.oracle.BlockBuster.service.MainService;
+import com.oracle.BlockBuster.service.loginCheck;
 
 @Controller
 public class JJMemberController {
@@ -28,8 +30,12 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	private JJMemberService ms;
 	@Autowired
 	private JavaMailSender mailSender;
+	@Autowired
+	public MainService mainService;
+	@Autowired
+	public loginCheck loginCheck;
 	
-	@GetMapping(value = "welcome")
+	@GetMapping(value = "/")
 	public String welcome() {
 		logger.info("welcome 시작");
 		return "welcome";
@@ -45,12 +51,20 @@ private static final Logger logger = LoggerFactory.getLogger(JJMemberController.
 	
 	//member = 매개변수
 	// member.getId()로 session을 가져옴
+	//로그인 수행
 	@GetMapping(value="login")
-	public String login(JJMember member,HttpServletRequest request) {
+	public String login(JJMember member, String requestURL, HttpServletRequest request) {
 		logger.info("login 시작");
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", member.getId());
-		return	"/main";
+		
+		String name = mainService.nameGet(loginCheck.checkSessionId(request));
+		session.setAttribute("Nickname", name);
+		
+		String requestURLrst = requestURL==null || requestURL.equals("") ? "/main" : requestURL;
+		
+		return	"redirect:"+requestURLrst;
+		//return "redirect:/loginView";
 	}
 	
 	@RequestMapping("idpwCheck")
