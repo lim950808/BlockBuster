@@ -50,9 +50,9 @@
   		margin-left:-10px;
 		}
 	.col-md-4 img{
-  width:100%;
-  height:auto;
-}
+	  width:100%;
+	  height:auto;
+	}
   
 /* body .carousel-control-prev-icon,
 body .carousel-indicators li,

@@ -270,10 +270,10 @@ function nikchk(){
 </script>
 </head>
 <body>
+		<img alt="background img" class="img-bg" src="${pageContext.request.contextPath}/resources/img/벽돌배경02.jpg" />
 <section class="login-form">
 	<h1 align="center">회원가입</h1>
 	<form id="registrationFrm" name="registrationFrm" action="${pageContext.request.contextPath}/registration.do" onsubmit="return register()">
-		<img alt="background img" class="img-bg" src="${pageContext.request.contextPath}/resources/img/벽돌배경02.jpg" />
 		<div class="int-area">	
 			<input type="text" name="id" id="id" autocomplete="off" required autofocus>
 			<label for="id">ID</label>

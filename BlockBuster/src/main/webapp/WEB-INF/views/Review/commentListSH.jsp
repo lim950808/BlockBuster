@@ -20,7 +20,7 @@
 		/* 댓글 삭제 전 check */
 		function commentDeleteCheck(Vindex){
 			
-			if (confirm("정말 삭제하시겠습니까? 삭제할 경우, 게시글 복원이 불가합니다.") == true){   
+			if (confirm("정말 삭제하시겠습니까?") == true){   
 				
 				var cnoNo = $('#cnoNo'+Vindex).val(); //cno값을 가져옴
 				

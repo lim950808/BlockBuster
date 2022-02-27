@@ -20,10 +20,67 @@
 
   <!-- Template Main CSS File -->
   <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+  
+<style type="text/css"> 
+	.vid-bg {
+	   position: absolute;
+	   right: 0;
+	   bottom: 0;
+	   min-width: 100%;
+	   min-height: 100%;
+	   
+	}
+	.carousel-content span{
+		/* position: absolute;
+		right: 0;
+	    bottom: 0;
+	    TOP: 30px; */
+	    min-width: 100%;
+	    min-height: 100%;
+		color: #b3b3b3;
+		font-size: 60px;
+		font-weight: bold;
+		text-align: center;
+		text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff7f00,
+	    0 0 82px #ff7f00, 0 0 92px #ff7f00, 0 0 102px #ff7f00, 0 0 151px #ff7f00;   
+	}
+	.carousel-content a{
+		z-index: 10;
+		color: #fff;
+		font-weight: 500;
+	    font-size: 14px;
+	    letter-spacing: 1px;
+	    display: inline-block;
+	    padding: 12px 32px;
+	    border-radius: 50px;
+	    transition: 0.5s;
+	    line-height: 1;
+	    margin: 10px;
+		border: 2px solid #ff7f00;
+	}
+	.carousel-content a:hover{
+		z-index: 10;
+		color: #fff;
+		font-weight: 500;
+	    font-size: 14px;
+	    letter-spacing: 1px;
+	    display: inline-block;
+	    padding: 12px 32px;
+	    border-radius: 50px;
+	    transition: 0.5s;
+	    line-height: 1;
+	    margin: 10px;
+		border: 2px solid #ff7f00;
+		background-color: #ff7f00;
+	}
+	#hero .carousel-indicators .active {
+	    background-color: #ff7f00;
+	}
+</style>
 </head>
 <body>
 		<div class="carousel-item">
-            <div class="carousel-background"><img src="" alt=""></div>
+            <div class="carousel-background"><video src="${pageContext.request.contextPath}/resources/video/IronManBattle.mp4" class="vid-bg" autoplay loop muted></video></div>
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">회원가입이 완료되었습니다!</h2>
@@ -33,7 +90,7 @@
             </div>
           </div>
           
-          <section id="hero">
+  <section id="hero">
     <div class="hero-container">
       <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
@@ -41,7 +98,7 @@
      
           <!-- Slide 1 -->
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="" alt=""></div>
+            <div class="carousel-background"><video src="${pageContext.request.contextPath}/resources/video/IronManBattle.mp4" class="vid-bg" autoplay loop muted></video></div>
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">회원가입이 완료되었습니다!</h2>

@@ -30,7 +30,7 @@ public class DHController {
 		String id = (String) session.getAttribute("sessionId");
 		System.out.println("DHController myinfo id->"+id);
 		Member member = ds.memberDetail(id);
-		System.out.println("DHController myinfo member.getNickname()->"+member.getNickname());
+		System.out.println("DHController myinfo member.getNickname()->" + member.getNickname());
 		model.addAttribute("member",member);
 		return "/member/myinfo";
 	}
@@ -83,7 +83,7 @@ public class DHController {
 		String id = (String) session.getAttribute("sessionId");
 		int result = ds.memberDelete(id);  
 		System.out.println("memberDelete result-->"+result);//탈퇴회원1
-		return "redirect:/welcome";
+		return "redirect:/";
 	}
 	
 	
@@ -108,5 +108,6 @@ public class DHController {
 		System.out.println("emailChk result -->"+result);
 		String emailChk = String.valueOf(result);
 		return emailChk;
-	}	
+	}
+	
 }

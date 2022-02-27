@@ -103,7 +103,7 @@
 					<c:forEach items="${orderView}" var="orderView">					
 					<li>
 						<div class="thumb">
-							<img src="${orderView.p_img}" />
+							<img src="${orderView.p_img}" onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'" />
 						</div>
 						<div class="gdsInfo">
 							<p>

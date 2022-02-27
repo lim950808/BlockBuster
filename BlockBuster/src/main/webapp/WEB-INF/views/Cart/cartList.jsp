@@ -179,7 +179,7 @@
   							</div>
 	  						<div class="p_img">
 	   							<a href="${pageContext.request.contextPath}/Product/productDetail?pno=${cart.pno}">
-	   								<img src="${cart.p_img}">
+	   								<img src="${cart.p_img}" onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'">
 	   							</a>
 	  						</div>
 	  						<div class="info">

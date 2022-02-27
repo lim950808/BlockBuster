@@ -66,7 +66,7 @@
 				
 				<div class="products"><!-- <div class="goods"> -->
 					<div class="p_img"><!-- <div class="goodsImg"> -->
-						<img src="${product.p_img}">
+						<img src="${product.p_img}" onerror="this.src='${pageContext.request.contextPath}/resources/img/logo2.png'">
 					</div>
 					
 					<div class="info">
