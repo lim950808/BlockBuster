@@ -50,6 +50,11 @@ public class JEServiceImpl implements JEService {
 		uptCnt = jd.update(product);
 		return uptCnt;
 	}
+	
+	@Override
+	public String genNum(String genreTemp) {
+		return  jd.genNum(genreTemp);
+	}
 
 	//관리자 - 상품 등록
 	@Override

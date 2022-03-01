@@ -20,7 +20,7 @@
         		SELECT a.*, b.cat_name cat_name, b.gen_name gen_name
 				FROM PRODUCT a  LEFT OUTER JOIN  CATEGORY b 
 				ON a.category = b.category AND a.GENRE = b.GENRE
-				ORDER BY pno
+				ORDER BY pno desc
         		) a
      		 )
 		WHERE rn BETWEEN #{start} AND #{end}
@@ -43,6 +43,10 @@
 	
 	<select id="JESelectManager" resultType="Product">
 		SELECT * FROM product
+	</select>
+	
+	<select id="genreTemp" resultType="String">
+		select genre from category where gen_name=#{genreTemp}
 	</select>
 	
 	<insert id="insertProduct" parameterType="Product">

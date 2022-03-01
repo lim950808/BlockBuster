@@ -132,8 +132,12 @@ public class JEController {
 	
 	// 영상등록 Form에 입력한 값을 DB에 입력시키는 역할
 	@RequestMapping(value="/Admin/write",  method=RequestMethod.POST)
-	public String write(HttpServletRequest request, MultipartFile imgFile, Product product, Model model) throws Exception {
+	public String write(HttpServletRequest request, String genreTemp, MultipartFile imgFile, Product product, Model model) throws Exception {
 		System.out.println("JEController Start write..." );
+		
+		
+		int genNum = Integer.parseInt(js.genNum(genreTemp));
+		product.setGenre(genNum);
 	
 		if(imgFile!=null) {
 			String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");

@@ -25,6 +25,9 @@ public interface JEService {
 
 	//관리자 - 상품 수정
 	int update(Product product);
+	
+	//주문등록 시 gene..
+	String genNum(String genreTemp);
 
 	//관리자 - 상품 등록
 	int insert(Product product);

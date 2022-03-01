@@ -69,6 +69,11 @@ public class JEDaoImpl implements JEDao {
 		}
 		return editresult;
 	}
+	
+	@Override
+	public String genNum(String genreTemp) {
+		return  session.selectOne("genreTemp", genreTemp);
+	}
 
 	// 입력한 영상 정보를 실제 DB에 등록하는 부분 
 	@Override
