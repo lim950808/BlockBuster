@@ -76,12 +76,12 @@ a {
 
 <script>
 function categoryChange(e) {
-    var movie = ["1100", "1200", "1300", "1400", "1500", "1600", "1700"];
-    var drama = ["2100", "2200", "2300"];
-    var enter = ["3100", "3200", "3300", "3400", "3500"];
-    var dacu = ["4100", "4200", "4300"];
-    var ani  = ["5100", "5200"];
-    var target = document.getElementById("genre");
+	 var movie = ["공포", "액션", "범죄/스릴러", "전쟁", "판타지/SF", "코미디", "멜로/로맨스"];
+    var drama = ["미국드라마", "일본드라마", "한국드라마"];
+    var enter = ["KBS", "SBS", "MBC", "TVN", "JTBC"];
+    var dacu = ["히스토리", "디스커버리", "내셔널지오그래픽"];
+    var ani  = ["디즈니", "지브리"];
+    var target = document.getElementById("genreTemp");
 
     if(e.value == "1000") var d = movie;
     else if(e.value == "2000") var d = drama;
@@ -143,7 +143,7 @@ function categoryChange(e) {
 	            </select>
 			   </td>
 			   <td>
-	           <select class="form-control" id="genre" name="genre">
+	           <select class="form-control" id="genreTemp" name="genreTemp">
 	             <option>선택해주세요</option>
 	           </select>
 	  		   </td>

@@ -281,6 +281,10 @@ function nikchk(){
 		
 		<input type="button" id="check" value="중복체크" onclick="idchk()" required>
 		
+		<div class="caption">
+			<a id="idCheck2"></a> <!-- 아이디 중복체크 메세지 -->
+		</div>
+		
 		<div class="int-area">	
 			<input type="password" name="password" id="password" autocomplete="off" required autofocus>
 			<label for="password">비밀번호</label>
@@ -295,6 +299,11 @@ function nikchk(){
 			<input type="text" name="nickname" id="nickname" autocomplete="off" required autofocus>
 			<label for="nickname">닉네임</label>
 		</div>
+		
+		<div class="caption">
+			<a id="nickCheck"></a> <!-- 닉네임 중복체크 메세지 -->
+		</div>
+		
 		<div class="button">
 			<input type="button" id="nicknameChk" value="중복체크" onclick="nikchk()" required>
 		</div>
@@ -304,19 +313,11 @@ function nikchk(){
 			<label for="email">이메일</label>
 		</div>
 		
-		<div class="caption">
-			<a id="idCheck2"></a>
-		</div>
-		
-		<div class="caption">
-			<a id="nickCheck"></a>
-		</div>
-		
 		<div class="btn-area">
 			<button id="registration" type="submit">가입하기</button>
 		</div>
 
 	</form>
-	</section>
+</section>
 </body>
 </html>

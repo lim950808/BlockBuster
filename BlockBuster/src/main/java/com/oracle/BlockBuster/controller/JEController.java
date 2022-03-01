@@ -171,7 +171,7 @@ public class JEController {
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
 		UUID uid = UUID.randomUUID();
 		// requestPath = requestPath + "/resources/image";
-		System.out.println("uploadPath->"+uploadPath);
+		System.out.println("uploadPath->" + uploadPath);
 		
 		// Directory 생성
 		File fileDirectory = new File(uploadPath);
