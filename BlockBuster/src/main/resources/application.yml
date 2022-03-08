@@ -29,8 +29,8 @@ spring:
   mail: 
     host: smtp.gmail.com
     port: 587
-    username: lim080895@gmail.com
-    password: dlawodjr@8@8
+    username: //불법적인 구글 로그인 시도가 있었습니다.
+    password: //구글에 신고조치 했으니 사용하신 분은 개인적으로 연락바랍니다.
     properties: 
       mail:
         smtp:

@@ -86,7 +86,7 @@
 			<div class="col-sm-12">
 				<input id="id" type="hidden" name="id" value="${sessionScope.sessionId}"  placeholder="${sessionScope.sessionId}" readonly/>
 				<input id="nickName" type="hidden" name="nickName" value="${sessionScope.Nickname}"  placeholder="${sessionScope.Nickname}" readonly/>
-				<textarea mexlength="300" id="q_content" class="form-control" rows="3" placeholder="한줄인사를 입력해 주세요"></textarea>
+				<textarea maxlength="300" id="q_content" class="form-control" rows="3" placeholder="한줄인사를 입력해 주세요"></textarea>
 			</div> 
 			 <div class="col-sm-2" style="float:right;">
 				<button type="button" class="btn btn-warning" onclick="procedureCall()" style="width: 100%; margin-top: 10px"> 등  록 </button>

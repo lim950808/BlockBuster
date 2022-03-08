@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="../header.jsp" %> 
 <html>
@@ -8,6 +7,7 @@
 %>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <title>Write Form</title>
 <style>
 
@@ -144,7 +144,7 @@ function categoryChange(e) {
 			   </td>
 			   <td>
 	           <select class="form-control" id="genreTemp" name="genreTemp">
-	             <option>선택해주세요</option>
+	             <option>소분류 선택</option>
 	           </select>
 	  		   </td>
 	        </tr>

@@ -61,6 +61,5 @@ public class SHInterceptorConfig implements WebMvcConfigurer {
 		   													  .addPathPatterns("/member/nickNameChk")
 		   													  .addPathPatterns("/member/emailChk");
 	}
-	
-	
+		
 }
